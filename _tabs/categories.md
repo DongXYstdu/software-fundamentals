@@ -28,7 +28,7 @@ order: 1
   {% if cat_posts.size > 0 %}
 
 <div class="category-accordion" id="cat-{{ forloop.index }}">
-  <div class="category-header" onclick="toggleCategory('{{ forloop.index }}')">
+  <div class="category-header">
     <div class="category-title-area">
       <span class="category-icon" id="cat-icon-{{ forloop.index }}"></span>
       <h3 class="category-title">{{ category }}</h3>
@@ -64,21 +64,24 @@ order: 1
 {% endfor %}
 
 <script>
-function toggleCategory(id) {
-  var body = document.getElementById('cat-body-' + id);
-  var icon = document.getElementById('cat-icon-' + id);
-  var chevron = body.parentElement.querySelector('.category-chevron i');
+document.addEventListener('DOMContentLoaded', function() {
+  var headers = document.querySelectorAll('.category-header');
+  headers.forEach(function(header) {
+    header.addEventListener('click', function(e) {
+      var accordion = this.parentElement;
+      var body = accordion.querySelector('.category-body');
+      var chevron = accordion.querySelector('.category-chevron i');
 
-  if (body.classList.contains('collapsed')) {
-    body.classList.remove('collapsed');
-    icon.textContent = '';
-    chevron.style.transform = 'rotate(0deg)';
-  } else {
-    body.classList.add('collapsed');
-    icon.textContent = '';
-    chevron.style.transform = 'rotate(-90deg)';
-  }
-}
+      if (body.classList.contains('collapsed')) {
+        body.classList.remove('collapsed');
+        chevron.style.transform = 'rotate(0deg)';
+      } else {
+        body.classList.add('collapsed');
+        chevron.style.transform = 'rotate(-90deg)';
+      }
+    });
+  });
+});
 </script>
 
 <style>
