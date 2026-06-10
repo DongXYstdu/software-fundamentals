@@ -11,17 +11,17 @@ mermaid: true
 
 ## 容器化与Kubernetes：云原生的基础设施
 
-容器技术改变了软件的交付方式，Kubernetes 重新定义了基础设施的管理模式。理解容器原理和 K8s 核心概念，是云原生时代的必备技能�?
+容器技术改变了软件的交付方式，Kubernetes 重新定义了基础设施的管理模式。理解容器原理和 K8s 核心概念，是云原生时代的必备技能?
 
 ## 容器原理
 
-容器不是虚拟机，而是利用 Linux 内核特性实现的进程隔离�?
+容器不是虚拟机，而是利用 Linux 内核特性实现的进程隔离?
 
-### 容器 vs 虚拟�?
+### 容器 vs 虚拟?
 
 ```mermaid
 graph TB
-    subgraph 虚拟�?
+    subgraph 虚拟?
         APP1[App1] --> OS1[Guest OS]
         APP2[App2] --> OS2[Guest OS]
         OS1 --> Hypervisor[Hypervisor]
@@ -37,30 +37,30 @@ graph TB
     end
 ```
 
-| 维度 | 虚拟�?| 容器 |
+| 维度 | 虚拟?| 容器 |
 |------|--------|------|
-| 隔离级别 | 硬件�?| 进程�?|
-| 启动时间 | 分钟�?| 秒级 |
-| 镜像大小 | GB�?| MB�?|
-| 性能损�?| 5-15% | <2% |
-| 密度 | 几十�?| 数百�?|
-| 安全�?| 强（独立内核�?| 弱（共享内核�?|
+| 隔离级别 | 硬件?| 进程?|
+| 启动时间 | 分钟?| 秒级 |
+| 镜像大小 | GB?| MB?|
+| 性能损?| 5-15% | <2% |
+| 密度 | 几十?| 数百?|
+| 安全?| 强（独立内核?| 弱（共享内核?|
 
-### Namespace：资源隔�?
+### Namespace：资源隔?
 
 Namespace 让容器内的进程看不到宿主机的其他进程和资源：
 
 | Namespace | 隔离内容 | 参数 |
 |-----------|---------|------|
 | PID | 进程ID | `--pid` |
-| NET | 网络�?| `--net` |
+| NET | 网络?| `--net` |
 | IPC | 进程间通信 | `--ipc` |
-| MNT | 文件系统挂载�?| `--mount` |
+| MNT | 文件系统挂载?| `--mount` |
 | UTS | 主机名和域名 | `--uts` |
 | USER | 用户和用户组 | `--user` |
 
 ```bash
-# 创建隔离的容器进�?
+# 创建隔离的容器进?
 unshare --pid --mount --net --ipc --uts --fork /bin/bash
 
 # 查看进程的Namespace
@@ -69,12 +69,12 @@ ls -la /proc/$$/ns
 # lrwxrwxrwx 1 root root 0 ... net -> 'net:[4026531992]'
 ```
 
-### Cgroup：资源限�?
+### Cgroup：资源限?
 
 Cgroup（Control Group）限制容器可使用的资源：
 
 ```bash
-# 限制CPU和内�?
+# 限制CPU和内?
 mkdir /sys/fs/cgroup/mycontainer
 echo 100000 > /sys/fs/cgroup/mycontainer/cpu.cfs_quota_us    # 100ms/100ms = 1 CPU
 echo 536870912 > /sys/fs/cgroup/mycontainer/memory.max        # 512MB
@@ -94,16 +94,16 @@ graph TB
     end
 ```
 
-### UnionFS：镜像分�?
+### UnionFS：镜像分?
 
-Docker 镜像采用分层存储，每层只存储与上一层的差异�?
+Docker 镜像采用分层存储，每层只存储与上一层的差异?
 
 ```mermaid
 graph TB
     subgraph 容器文件系统
-        RW[可写�?- 容器运行时修改]
+        RW[可写?- 容器运行时修改]
         L3[Layer 3: 应用代码 50MB]
-        L2[Layer 2: 依赖�?200MB]
+        L2[Layer 2: 依赖?200MB]
         L1[Layer 1: 基础镜像 100MB]
     end
 
@@ -112,23 +112,23 @@ graph TB
     L2 --> L1
 ```
 
-## Docker 镜像�?Dockerfile
+## Docker 镜像?Dockerfile
 
-### Dockerfile 最佳实�?
+### Dockerfile 最佳实?
 
 ```dockerfile
-# 多阶段构�?- 减小最终镜像体�?
+# 多阶段构?- 减小最终镜像体?
 # 阶段1: 构建
 FROM eclipse-temurin:21-jdk AS builder
 
 WORKDIR /app
 
-# 先复制依赖文件，利用缓存�?
+# 先复制依赖文件，利用缓存?
 COPY gradle/ gradle/
 COPY gradlew build.gradle settings.gradle ./
 RUN ./gradlew dependencies --no-daemon
 
-# 再复制源�?
+# 再复制源?
 COPY src/ src/
 RUN ./gradlew bootJar --no-daemon -x test
 
@@ -140,10 +140,10 @@ RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 WORKDIR /app
 
-# 只复制构建产�?
+# 只复制构建产?
 COPY --from=builder /app/build/libs/*.jar app.jar
 
-# 健康检�?
+# 健康检?
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
     CMD curl -f http://localhost:8080/actuator/health || exit 1
 
@@ -165,11 +165,11 @@ ENTRYPOINT ["java", \
 
 | 策略 | 效果 | 示例 |
 |------|------|------|
-| 多阶段构�?| 镜像�?00MB�?50MB | 构建阶段用JDK，运行阶段用JRE |
+| 多阶段构?| 镜像?00MB?50MB | 构建阶段用JDK，运行阶段用JRE |
 | 合并RUN指令 | 减少镜像层数 | `RUN apt-get update && apt-get install -y ...` |
-| .dockerignore | 避免无关文件进入构建上下�?| 排除 `.git`, `node_modules` |
-| 基础镜像选择 | Alpine/Scratch 最�?| `eclipse-temurin:21-jre-alpine` |
-| 利用缓存 | 加速构�?| 先COPY依赖文件再COPY源码 |
+| .dockerignore | 避免无关文件进入构建上下?| 排除 `.git`, `node_modules` |
+| 基础镜像选择 | Alpine/Scratch 最?| `eclipse-temurin:21-jre-alpine` |
+| 利用缓存 | 加速构?| 先COPY依赖文件再COPY源码 |
 
 ### Docker Compose
 
@@ -276,7 +276,7 @@ graph TB
 
 ### Pod
 
-Pod �?K8s 最小调度单元，包含一个或多个容器�?
+Pod ?K8s 最小调度单元，包含一个或多个容器?
 
 ```yaml
 apiVersion: v1
@@ -365,8 +365,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1          # 滚动更新时最多多�?个Pod
-      maxUnavailable: 0    # 滚动更新时不允许不可�?
+      maxSurge: 1          # 滚动更新时最多多?个Pod
+      maxUnavailable: 0    # 滚动更新时不允许不可?
   template:
     metadata:
       labels:
@@ -388,7 +388,7 @@ spec:
 
 ### Service
 
-Service �?Pod 提供稳定的访问入口：
+Service ?Pod 提供稳定的访问入口：
 
 ```mermaid
 graph LR
@@ -457,8 +457,8 @@ spec:
 
 | 类型 | 访问范围 | 外部IP | 适用场景 |
 |------|---------|--------|---------|
-| ClusterIP | 集群内部 | �?| 内部服务通信 |
-| NodePort | 集群外部 | NodeIP:Port | 测试/简单暴�?|
+| ClusterIP | 集群内部 | ?| 内部服务通信 |
+| NodePort | 集群外部 | NodeIP:Port | 测试/简单暴?|
 | LoadBalancer | 集群外部 | 云LB IP | 生产环境 |
 | ExternalName | 集群内部 | CNAME | 外部服务引用 |
 
@@ -466,12 +466,12 @@ spec:
 
 ### 网络原则
 
-K8s 网络遵循四个基本原则�?
+K8s 网络遵循四个基本原则?
 
-1. **Pod 内容器共享网络命名空�?*（localhost 通信�?
-2. **Pod 间直接通信**（无需 NAT�?
-3. **Node �?Pod 直接通信**（无需 NAT�?
-4. **Pod 看到自己�?IP**（与其他节点看到的一致）
+1. **Pod 内容器共享网络命名空?*（localhost 通信?
+2. **Pod 间直接通信**（无需 NAT?
+3. **Node ?Pod 直接通信**（无需 NAT?
+4. **Pod 看到自己?IP**（与其他节点看到的一致）
 
 ```mermaid
 graph TB
@@ -501,14 +501,14 @@ graph TB
 
 | CNI | 性能 | 网络策略 | eBPF | 适用场景 |
 |-----|------|---------|------|---------|
-| Flannel | �?| 不支�?| �?| 简单网�?|
-| Calico | �?| 支持 | 可�?| 生产环境 |
-| Cilium | 极高 | 支持 | �?| 高性能/可观�?|
-| Weave | �?| 支持 | �?| 开发测�?|
+| Flannel | ?| 不支?| ?| 简单网?|
+| Calico | ?| 支持 | 可?| 生产环境 |
+| Cilium | 极高 | 支持 | ?| 高性能/可观?|
+| Weave | ?| 支持 | ?| 开发测?|
 
 ## Helm
 
-Helm �?K8s 的包管理器，�?K8s 资源模板化、参数化�?
+Helm ?K8s 的包管理器，?K8s 资源模板化、参数化?
 
 ```yaml
 # Chart.yaml
@@ -599,16 +599,16 @@ helm upgrade --install order-service ./chart \
 # 回滚
 helm rollback order-service 1
 
-# 查看渲染结果（不安装�?
+# 查看渲染结果（不安装?
 helm template ./chart --values values-prod.yaml
 
 # 查看发布历史
 helm history order-service -n production
 ```
 
-## CI/CD 流水�?
+## CI/CD 流水?
 
-### 完整�?GitOps 流水�?
+### 完整?GitOps 流水?
 
 ```mermaid
 graph LR
@@ -708,12 +708,12 @@ jobs:
 
 ### 部署策略
 
-| 策略 | 原理 | 停机时间 | 回滚速度 | 资源消�?|
+| 策略 | 原理 | 停机时间 | 回滚速度 | 资源消?|
 |------|------|---------|---------|---------|
-| 滚动更新 | 逐步替换旧Pod | �?| �?| �?|
-| 蓝绿部署 | 两套环境切换 | �?| �?| 高（2倍） |
-| 金丝雀发布 | 逐步增加流量 | �?| �?| �?|
-| A/B测试 | 按条件分�?| �?| �?| �?|
+| 滚动更新 | 逐步替换旧Pod | ?| ?| ?|
+| 蓝绿部署 | 两套环境切换 | ?| ?| 高（2倍） |
+| 金丝雀发布 | 逐步增加流量 | ?| ?| ?|
+| A/B测试 | 按条件分?| ?| ?| ?|
 
 ```yaml
 # 金丝雀发布 - Argo Rollouts
@@ -742,22 +742,22 @@ spec:
 
 **Q1：容器和虚拟机的本质区别是什么？**
 
-A：本质区别在�?*隔离边界**：虚拟机隔离在硬件层（独立的虚拟硬件、独立内核），容器隔离在操作系统层（共享宿主机内核，通过 Namespace 隔离进程视图，通过 Cgroup 限制资源）。这导致�?1) 容器启动快（秒级 vs 分钟级）——不需要启动内核；(2) 容器轻量（MB vs GB）——不需要完整的 Guest OS�?3) 容器密度高——共享内核，资源开销小；(4) 容器安全性弱——内核漏洞影响所有容器，逃逸风险更高。选择原则：强隔离需求（多租户、不可信代码）用虚拟机，快速交付和弹性伸缩用容器�?
+A：本质区别在?*隔离边界**：虚拟机隔离在硬件层（独立的虚拟硬件、独立内核），容器隔离在操作系统层（共享宿主机内核，通过 Namespace 隔离进程视图，通过 Cgroup 限制资源）。这导致?1) 容器启动快（秒级 vs 分钟级）——不需要启动内核；(2) 容器轻量（MB vs GB）——不需要完整的 Guest OS?3) 容器密度高——共享内核，资源开销小；(4) 容器安全性弱——内核漏洞影响所有容器，逃逸风险更高。选择原则：强隔离需求（多租户、不可信代码）用虚拟机，快速交付和弹性伸缩用容器?
 
-**Q2：K8s �?Deployment �?StatefulSet 的区别？**
+**Q2：K8s ?Deployment ?StatefulSet 的区别？**
 
-A：核心区别在�?*是否有状�?*。Deployment 管理无状态应用（Pod 可互换）�?1) Pod 名称随机（order-service-7b8f9c6d4-x2k7j）；(2) 没有固定网络标识（每次重建IP变化）；(3) 没有持久存储（重建后数据丢失）；(4) 扩缩容和滚动更新简单。StatefulSet 管理有状态应用（如数据库）：(1) Pod 名称有序（mysql-0, mysql-1）；(2) 固定网络标识（mysql-0.mysql-headless.default.svc.cluster.local）；(3) 持久存储与Pod绑定（PVC 不会随Pod删除）；(4) 有序部署和终止（0�?�?）�?*原则：能�?Deployment 就不�?StatefulSet**——数据库等有状态服务建议使用托管服务（RDS、Cloud SQL）而非自建�?
+A：核心区别在?*是否有状?*。Deployment 管理无状态应用（Pod 可互换）?1) Pod 名称随机（order-service-7b8f9c6d4-x2k7j）；(2) 没有固定网络标识（每次重建IP变化）；(3) 没有持久存储（重建后数据丢失）；(4) 扩缩容和滚动更新简单。StatefulSet 管理有状态应用（如数据库）：(1) Pod 名称有序（mysql-0, mysql-1）；(2) 固定网络标识（mysql-0.mysql-headless.default.svc.cluster.local）；(3) 持久存储与Pod绑定（PVC 不会随Pod删除）；(4) 有序部署和终止（0??）?*原则：能?Deployment 就不?StatefulSet**——数据库等有状态服务建议使用托管服务（RDS、Cloud SQL）而非自建?
 
-**Q3：K8s �?Service �?Ingress 有什么区别？**
+**Q3：K8s ?Service ?Ingress 有什么区别？**
 
-A：Service 是四层（TCP/UDP）负载均衡，Ingress 是七层（HTTP/HTTPS）反向代理。Service 提供�?1) 稳定�?ClusterIP�?2) Pod 负载均衡�?3) 服务发现。Ingress �?Service 之上提供�?1) 基于域名的路由（api.example.com �?order-service）；(2) 基于路径的路由（/orders �?order-service, /users �?user-service）；(3) TLS 终止�?4) 限流、认证等七层能力�?*简单场景用 Service（LoadBalancer/NodePort），复杂路由�?Ingress**。生产环境推荐：Ingress（Nginx/Traefik�? Service（ClusterIP），Ingress 处理外部流量，Service 处理内部通信�?
+A：Service 是四层（TCP/UDP）负载均衡，Ingress 是七层（HTTP/HTTPS）反向代理。Service 提供?1) 稳定?ClusterIP?2) Pod 负载均衡?3) 服务发现。Ingress ?Service 之上提供?1) 基于域名的路由（api.example.com ?order-service）；(2) 基于路径的路由（/orders ?order-service, /users ?user-service）；(3) TLS 终止?4) 限流、认证等七层能力?*简单场景用 Service（LoadBalancer/NodePort），复杂路由?Ingress**。生产环境推荐：Ingress（Nginx/Traefik? Service（ClusterIP），Ingress 处理外部流量，Service 处理内部通信?
 
-**Q4：如何优�?Docker 镜像大小�?*
+**Q4：如何优?Docker 镜像大小?*
 
-A：五个关键策略：(1) **多阶段构�?*：构建阶段用完整 JDK，运行阶段用 JRE �?Alpine 版本，镜像从 800MB 降到 150MB�?2) **选择小基础镜像**：`eclipse-temurin:21-jre-alpine` �?`eclipse-temurin:21-jre` �?200MB�?3) **合并 RUN 指令**：每�?RUN 产生一层，合并减少层数和大小（`RUN apt-get update && apt-get install -y pkg && rm -rf /var/lib/apt/lists/*`）；(4) **利用构建缓存**：先 COPY 依赖文件（变化少），�?COPY 源码（变化多），避免每次重新下载依赖�?5) **.dockerignore**：排�?`.git`、`node_modules`、`build` 等无关文件，加速构建并减小上下文�?
+A：五个关键策略：(1) **多阶段构?*：构建阶段用完整 JDK，运行阶段用 JRE ?Alpine 版本，镜像从 800MB 降到 150MB?2) **选择小基础镜像**：`eclipse-temurin:21-jre-alpine` ?`eclipse-temurin:21-jre` ?200MB?3) **合并 RUN 指令**：每?RUN 产生一层，合并减少层数和大小（`RUN apt-get update && apt-get install -y pkg && rm -rf /var/lib/apt/lists/*`）；(4) **利用构建缓存**：先 COPY 依赖文件（变化少），?COPY 源码（变化多），避免每次重新下载依赖?5) **.dockerignore**：排?`.git`、`node_modules`、`build` 等无关文件，加速构建并减小上下文?
 
 **Q5：什么是 GitOps？和传统 CI/CD 有什么区别？**
 
-A：GitOps 的核心是**Git 作为唯一事实来源**——所有基础设施和应用配置都以声明式代码存储�?Git 中，通过 Git 操作驱动部署。与传统 CI/CD 的区别：(1) **推�?vs 拉取**：传�?CI/CD �?Pipeline 推送变更到集群（需要集群凭证），GitOps 是集群内�?Agent（如 ArgoCD）拉�?Git 配置并同步（凭证在集群内）；(2) **声明�?vs 命令�?*：传统方式用 `kubectl apply` / `helm upgrade` 命令式部署，GitOps 声明期望状态，Agent 自动收敛�?3) **审计和回�?*：Git 历史就是完整的变更审计，回滚只需 `git revert`�?4) **一致�?*：Git 状�?= 集群状态，漂移自动修复。GitOps 的优势在于安全（不需要在 CI 中存储集群凭证）和可审计，适合生产环境�?
+A：GitOps 的核心是**Git 作为唯一事实来源**——所有基础设施和应用配置都以声明式代码存储?Git 中，通过 Git 操作驱动部署。与传统 CI/CD 的区别：(1) **推?vs 拉取**：传?CI/CD ?Pipeline 推送变更到集群（需要集群凭证），GitOps 是集群内?Agent（如 ArgoCD）拉?Git 配置并同步（凭证在集群内）；(2) **声明?vs 命令?*：传统方式用 `kubectl apply` / `helm upgrade` 命令式部署，GitOps 声明期望状态，Agent 自动收敛?3) **审计和回?*：Git 历史就是完整的变更审计，回滚只需 `git revert`?4) **一致?*：Git 状?= 集群状态，漂移自动修复。GitOps 的优势在于安全（不需要在 CI 中存储集群凭证）和可审计，适合生产环境?
 
 {% endraw %}

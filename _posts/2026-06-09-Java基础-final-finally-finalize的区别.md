@@ -5,37 +5,37 @@ categories: [Java, 基础]
 tags: [Java, 基础, 面试, 小哈学Java]
 ---
 
-## 面试考察�?
+## 面试考察?
 
-1. **基础知识全面�?*：面试官不仅仅是想知道你能否区分这三个长得像的关键词，更是想考察你对 Java 基础知识的掌握是否全面——从修饰符、异常处理到对象生命周期�?
+1. **基础知识全面?*：面试官不仅仅是想知道你能否区分这三个长得像的关键词，更是想考察你对 Java 基础知识的掌握是否全面——从修饰符、异常处理到对象生命周期?
 
-2. **实践应用能力**：考察你是否在实际项目中正确使用过 `final`（如不可变类、常量定义），是否理�?`finally` 在资源释放中的作用，以及是否知道 `finalize()` 已被废弃�?
+2. **实践应用能力**：考察你是否在实际项目中正确使用过 `final`（如不可变类、常量定义），是否理?`finally` 在资源释放中的作用，以及是否知道 `finalize()` 已被废弃?
 
-3. **技术敏感度**：看你是否关�?Java 版本演进，知�?`finalize()` �?JDK 9 开始被标记�?`@Deprecated`，理解其被废弃的原因�?
+3. **技术敏感度**：看你是否关?Java 版本演进，知?`finalize()` ?JDK 9 开始被标记?`@Deprecated`，理解其被废弃的原因?
 
 ## 核心答案
 
-这三个词虽然名字相似，但 **完全不是一类东�?*�?
+这三个词虽然名字相似，但 **完全不是一类东?*?
 
-| 关键�?| 类型 | 作用 | 使用场景 |
+| 关键?| 类型 | 作用 | 使用场景 |
 |---|---|---|---|
-| `final` | 关键�?| 修饰符，表示 "不可�? | 类、方法、变�?|
-| `finally` | 关键�?| 异常处理代码�?| �?`try-catch` 配合，确保代码执�?|
-| `finalize()` | 方法 | 对象回收前的回调 | **已废�?*，不推荐使用 |
+| `final` | 关键?| 修饰符，表示 "不可? | 类、方法、变?|
+| `finally` | 关键?| 异常处理代码?| ?`try-catch` 配合，确保代码执?|
+| `finalize()` | 方法 | 对象回收前的回调 | **已废?*，不推荐使用 |
 
-**一句话概括**：`final` 修饰不可变，`finally` 确保必执行，`finalize()` 回收前调用（已废弃）�?
+**一句话概括**：`final` 修饰不可变，`finally` 确保必执行，`finalize()` 回收前调用（已废弃）?
 
 ## 深度解析
 
-### 一、final：不可变修饰�?
+### 一、final：不可变修饰?
 
-`final` �?Java 中的修饰符，可以修饰 **类、方法、变�?*，表�?"最终的、不可改变的"�?
+`final` ?Java 中的修饰符，可以修饰 **类、方法、变?*，表?"最终的、不可改变的"?
 
-- **修饰�?*：该类不能被继承，所有成员方法隐式变�?`final`（无法重写）。典型应用是 Java 的包装类 `String`、`Integer` 等，保证不可变性从而实现线程安全和字符串常量池优化�?
+- **修饰?*：该类不能被继承，所有成员方法隐式变?`final`（无法重写）。典型应用是 Java 的包装类 `String`、`Integer` 等，保证不可变性从而实现线程安全和字符串常量池优化?
 
-- **修饰方法**：该方法不能被子类重写，但可以重载。常用于模板方法模式中，固定算法骨架不允许子类修改�?
+- **修饰方法**：该方法不能被子类重写，但可以重载。常用于模板方法模式中，固定算法骨架不允许子类修改?
 
-- **修饰变量**：变量只能赋值一次，成为常量。对于基本类型，值不可变；对于引用类型，引用不可变但对象内容可以改变�?
+- **修饰变量**：变量只能赋值一次，成为常量。对于基本类型，值不可变；对于引用类型，引用不可变但对象内容可以改变?
 
 ```java
 // final 修饰类：不能继承
@@ -46,7 +46,7 @@ final class ImmutableClass {
         this.value = value;
     }
 
-    // final 修饰方法：不能重�?
+    // final 修饰方法：不能重?
     public final int getValue() {
         return value;
     }
@@ -61,48 +61,48 @@ public class FinalDemo {
     private final int instanceId;
 
     public FinalDemo(int id) {
-        this.instanceId = id;  // 只能赋值一�?
+        this.instanceId = id;  // 只能赋值一?
     }
 
     public void demo() {
         final List<String> list = new ArrayList<>();
-        list.add("hello");     // �?可以修改对象内容
-        // list = new ArrayList<>(); // �?编译错误：引用不可变
+        list.add("hello");     // ?可以修改对象内容
+        // list = new ArrayList<>(); // ?编译错误：引用不可变
     }
 }
 ```
 
-**final 的常见面试陷�?*�?
+**final 的常见面试陷?*?
 
 ```java
 public class FinalTrap {
     public static void main(String[] args) {
         final int[] arr = {1, 2, 3};
-        arr[0] = 100;          // �?可以，修改的是数组内�?
-        // arr = new int[5]; // �?编译错误，引用不可变
+        arr[0] = 100;          // ?可以，修改的是数组内?
+        // arr = new int[5]; // ?编译错误，引用不可变
 
         final StringBuilder sb = new StringBuilder("hello");
-        sb.append(" world");   // �?可以，修改的是对象内�?
-        // sb = new StringBuilder(); // �?编译错误，引用不可变
+        sb.append(" world");   // ?可以，修改的是对象内?
+        // sb = new StringBuilder(); // ?编译错误，引用不可变
     }
 }
 ```
 
 ### 二、finally：异常处理的保障机制
 
-`finally` 是异常处理机制中的关键字，与 `try-catch` 配合使用�?*无论是否发生异常，`finally` 块中的代码都会执�?*�?
+`finally` 是异常处理机制中的关键字，与 `try-catch` 配合使用?*无论是否发生异常，`finally` 块中的代码都会执?*?
 
 关键点：
 
-- **无论是否发生异常**：`finally` 块都会执�?
-- **即使 `try` �?`catch` 中有 `return`**：`finally` 也会�?`return` 之前执行
-- **只有一种情况不执行**：在 `try` �?`catch` 中调用了 `System.exit()` 导致 JVM 退�?
+- **无论是否发生异常**：`finally` 块都会执?
+- **即使 `try` ?`catch` 中有 `return`**：`finally` 也会?`return` 之前执行
+- **只有一种情况不执行**：在 `try` ?`catch` 中调用了 `System.exit()` 导致 JVM 退?
 
 ```java
 // finally 的典型使用场景：资源释放
 public class FinallyDemo {
 
-    // 场景一：确保资源关�?
+    // 场景一：确保资源关?
     public void readFile(String path) {
         FileInputStream fis = null;
         try {
@@ -134,7 +134,7 @@ public class FinallyDemo {
 }
 ```
 
-**finally 的经典面试题**�?
+**finally 的经典面试题**?
 
 ```java
 public class FinallyReturn {
@@ -142,39 +142,39 @@ public class FinallyReturn {
         try {
             return 1;
         } finally {
-            return 2;  // ⚠️ 会覆�?try 中的 return
+            return 2;  // ⚠️ 会覆?try 中的 return
         }
     }
 
     public static void main(String[] args) {
-        System.out.println(test());  // 输出�?（不�?1！）
+        System.out.println(test());  // 输出?（不?1！）
     }
 }
 ```
 
-**重要规则**：如�?`finally` 中有 `return` 语句，会覆盖 `try` �?`catch` 中的 `return` 值。但实际开发中 **强烈不建�?* �?`finally` 中使�?`return`�?
+**重要规则**：如?`finally` 中有 `return` 语句，会覆盖 `try` ?`catch` 中的 `return` 值。但实际开发中 **强烈不建?* ?`finally` 中使?`return`?
 
-### 三、finalize()：已废弃的对象回收回�?
+### 三、finalize()：已废弃的对象回收回?
 
-`finalize()` �?`Object` 类中的一个方法，在对象被垃圾回收器回收之前调用。但�?**JDK 9 开始已被标记为 `@Deprecated(forRemoval=true)`**，计划在未来移除�?
+`finalize()` ?`Object` 类中的一个方法，在对象被垃圾回收器回收之前调用。但?**JDK 9 开始已被标记为 `@Deprecated(forRemoval=true)`**，计划在未来移除?
 
-这个机制存在严重问题�?
+这个机制存在严重问题?
 
-- **执行时间不确�?*：取决于 GC 的运行，可能很长时间都不执行
-- **可能根本不执�?*：程序结束时 GC 可能还没运行
-- **性能开销�?*：带�?`finalize()` 的对象需要特殊处理，影响 GC 效率
+- **执行时间不确?*：取决于 GC 的运行，可能很长时间都不执行
+- **可能根本不执?*：程序结束时 GC 可能还没运行
+- **性能开销?*：带?`finalize()` 的对象需要特殊处理，影响 GC 效率
 - **可能导致内存泄漏**：如果在 `finalize()` 中让对象重新被引用，会导致对象无法被回收
-- **不安�?*：`finalize()` 可能被恶意代码利�?
+- **不安?*：`finalize()` 可能被恶意代码利?
 
 ```java
-// finalize() 的使用（不推荐！�?
+// finalize() 的使用（不推荐！?
 public class FinalizeDemo {
 
     @Override
     protected void finalize() throws Throwable {
         try {
             // 尝试释放资源
-            System.out.println("对象即将被回�?);
+            System.out.println("对象即将被回?);
         } finally {
             super.finalize();
         }
@@ -205,28 +205,28 @@ try (ResourceDemo resource = new ResourceDemo()) {
 
 ### 四、三者对比总结
 
-| 关键�?| 类型 | 作用 | 使用场景 | 推荐程度 |
+| 关键?| 类型 | 作用 | 使用场景 | 推荐程度 |
 |---|---|---|---|---|
-| `final` | 修饰�?| 不可�?| 类、方法、变�?| �?推荐 |
-| `finally` | 代码�?| 确保执行 | try-catch 配合 | �?推荐 |
-| `finalize()` | 方法 | 回收前回�?| **已废�?* | �?不推�?|
+| `final` | 修饰?| 不可?| 类、方法、变?| ?推荐 |
+| `finally` | 代码?| 确保执行 | try-catch 配合 | ?推荐 |
+| `finalize()` | 方法 | 回收前回?| **已废?* | ?不推?|
 
 ## 面试高频追问
 
-1. **`final` 修饰的引用类型变量，其内部属性可以修改吗�?* 可以。`final` 只保证引用不可变，对象内容仍可修改�?
+1. **`final` 修饰的引用类型变量，其内部属性可以修改吗?* 可以。`final` 只保证引用不可变，对象内容仍可修改?
 
-2. **`finally` 块一定会执行吗？** 几乎一定。唯一例外�?`try` �?`catch` 中调用了 `System.exit()`，或者线�?虚拟机异常终止�?
+2. **`finally` 块一定会执行吗？** 几乎一定。唯一例外?`try` ?`catch` 中调用了 `System.exit()`，或者线?虚拟机异常终止?
 
-3. **为什�?`finalize()` 被废弃了�?* 执行时间不确定、性能差、可能导致内存泄漏、可能不执行。推荐使�?`Cleaner`（JDK 9+）或显式�?`close()` 方法�?
+3. **为什?`finalize()` 被废弃了?* 执行时间不确定、性能差、可能导致内存泄漏、可能不执行。推荐使?`Cleaner`（JDK 9+）或显式?`close()` 方法?
 
-4. **`try-with-resources` �?`try-finally` 有什么区别？** `try-with-resources`（JDK 7+）自动调�?`close()`，代码更简洁，异常处理更合理（不会丢失原始异常）�?
+4. **`try-with-resources` ?`try-finally` 有什么区别？** `try-with-resources`（JDK 7+）自动调?`close()`，代码更简洁，异常处理更合理（不会丢失原始异常）?
 
 ## 常见面试变体
 
-- "�?`final` 修饰的变量能修改吗？"
-- "finally �?finalize 有什么区别？"
-- "为什�?`finalize()` 方法被废弃了�?
-- "try 块中�?return，finally 还会执行吗？"
+- "?`final` 修饰的变量能修改吗？"
+- "finally ?finalize 有什么区别？"
+- "为什?`finalize()` 方法被废弃了?
+- "try 块中?return，finally 还会执行吗？"
 
 ## 记忆口诀
 
@@ -234,13 +234,13 @@ try (ResourceDemo resource = new ResourceDemo()) {
 
 **finally**：异常好搭档，资源释放保平安
 
-**finalize**：回收前调用，已废弃别再�?
+**finalize**：回收前调用，已废弃别再?
 
-**三兄弟区�?*：修饰符、代码块、废弃法，名字像但无关系
+**三兄弟区?*：修饰符、代码块、废弃法，名字像但无关系
 
 ## 总结
 
-`final`、`finally`、`finalize()` 三者除了名字相似外，没有本质联系。`final` 是修饰符，表�?"不可�?；`finally` 是异常处理机制，确保代码一定执行；`finalize()` 是已废弃的对象回收回调方法。实际开发中，`final` �?`finally` 经常使用，�?`finalize()` 应该避免使用，改�?`try-with-resources` �?`Cleaner` 替代�?
+`final`、`finally`、`finalize()` 三者除了名字相似外，没有本质联系。`final` 是修饰符，表?"不可?；`finally` 是异常处理机制，确保代码一定执行；`finalize()` 是已废弃的对象回收回调方法。实际开发中，`final` ?`finally` 经常使用，?`finalize()` 应该避免使用，改?`try-with-resources` ?`Cleaner` 替代?
 
 ---
 > 参考来源：[final、finally、finalize 的区别？](https://www.quanxiaoha.com/java-interview/final-finally-finalize-difference)
