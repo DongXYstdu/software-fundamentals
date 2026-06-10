@@ -7,6 +7,8 @@ math: true
 mermaid: true
 ---
 
+{% raw %}
+
 ## 容器化与Kubernetes：云原生的基础设施
 
 容器技术改变了软件的交付方式，Kubernetes 重新定义了基础设施的管理模式。理解容器原理和 K8s 核心概念，是云原生时代的必备技能。
@@ -757,3 +759,5 @@ A：五个关键策略：(1) **多阶段构建**：构建阶段用完整 JDK，�
 **Q5：什么是 GitOps？和传统 CI/CD 有什么区别？**
 
 A：GitOps 的核心是**Git 作为唯一事实来源**——所有基础设施和应用配置都以声明式代码存储在 Git 中，通过 Git 操作驱动部署。与传统 CI/CD 的区别：(1) **推送 vs 拉取**：传统 CI/CD 是 Pipeline 推送变更到集群（需要集群凭证），GitOps 是集群内的 Agent（如 ArgoCD）拉取 Git 配置并同步（凭证在集群内）；(2) **声明式 vs 命令式**：传统方式用 `kubectl apply` / `helm upgrade` 命令式部署，GitOps 声明期望状态，Agent 自动收敛；(3) **审计和回滚**：Git 历史就是完整的变更审计，回滚只需 `git revert`；(4) **一致性**：Git 状态 = 集群状态，漂移自动修复。GitOps 的优势在于安全（不需要在 CI 中存储集群凭证）和可审计，适合生产环境。
+
+{% endraw %}
