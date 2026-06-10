@@ -28,7 +28,7 @@ order: 1
   {% if cat_posts.size > 0 %}
 
 <div class="category-accordion" id="cat-{{ forloop.index }}">
-  <div class="category-header" onclick="toggleCategory('cat-{{ forloop.index }}')">
+  <div class="category-header" onclick="toggleCategory('{{ forloop.index }}')">
     <div class="category-title-area">
       <span class="category-icon" id="cat-icon-{{ forloop.index }}"></span>
       <h3 class="category-title">{{ category }}</h3>
