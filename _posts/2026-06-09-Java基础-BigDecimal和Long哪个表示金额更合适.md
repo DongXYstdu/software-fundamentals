@@ -4,93 +4,106 @@ date: 2026-06-09 09:00:00 +0800
 categories: [Java, 基础]
 tags: [Java, 基础, 面试, 小哈学Java]
 ---
+<main><div><p>一则或许对你有用的小广告</p> <p>欢迎 <a href="https://www.quanxiaoha.com/column/"><b>加入小哈的星球</b></a> ，你将获得：专属的实战项目（4个项目都能学） / 1v1 提问 / 简历修改 / Java 学习路线 / 社群讨论 / 学习打卡 / 每月赠书</p> <ul><li><p><b>《Spring AI 项目实战（问答机器人、RAG 智能客服、联网搜索）》</b> 已完结，基于 <code>Spring AI + Spring Boot 3.x + JDK 21...</code>， <a href="https://www.quanxiaoha.com/column/10508.html"><b>查看介绍</b></a></p></li> <li><p><b>《从零手撸：仿小红书（微服务架构）》</b> 已完结，基于 <code>Spring Cloud Alibaba + Spring Boot 3.x + JDK 17...</code>， <a href="https://www.quanxiaoha.com/column/10247.html"><b>查看介绍</b></a> ；演示链接： <a href="http://116.62.199.48:7070/"><b>http://116.62.199.48:7070/</b></a></p></li> <li><p><b>《从零手撸：前后端分离博客项目（全栈开发）》</b> 2 期已完结，演示链接： <a href="http://116.62.199.48/"><b>http://116.62.199.48/</b></a></p></li> <li><p>新开坑项目： <b>《从零手撸：秒杀系统高并发优化实战》</b> 正在更新中...， <a href="https://www.quanxiaoha.com/column/10659.html"><b>查看介绍</b></a></p></li></ul> <p>截止目前， <a href="https://www.quanxiaoha.com/column/">星球</a> 内专栏 <b>累计输出 150w+ 字，讲解图 5110+ 张，还在持续爆肝中.. 后续还会上新更多项目，已有 4700+ 小伙伴加入学习</b> ，欢迎 <a href="https://www.quanxiaoha.com/column/"><b>点击围观</b></a></p></div> <div><H2>面试考察点</H2> <ol> <li> <p><strong>浮点数精度问题理解</strong> ：面试官不仅仅是想知道你 "用 BigDecimal"，更是想考察你是否理解为什么 <code>float</code> / <code>double</code> 不能用于金额计算，以及浮点数精度丢失的根本原因。</p> </li> <li> <p><strong>技术选型能力</strong> ：考察你是否了解 <code>BigDecimal</code> 和 <code>Long</code> 各自的优缺点，能否根据业务场景（精度要求、性能要求、代码复杂度）做出合理选择。</p> </li> <li> <p><strong>生产实践经验</strong> ：看你是否在实际项目中处理过金额相关的需求，是否踩过坑（如数据库字段类型选择、前后端交互、并发计算等）。</p> </li> </ol> <H2>核心答案</H2> <p><strong>结论：没有绝对的优劣，需要根据场景选择</strong> 。</p> <table> <thead> <tr> <th>类型</th> <th>推荐场景</th> <th>核心优势</th> <th>主要劣势</th> </tr> </thead> <tbody> <tr> <td><code>BigDecimal</code></td> <td>复杂金融计算、需要小数精度</td> <td>精度无损失、API 丰富</td> <td>性能较差、代码繁琐</td> </tr> <tr> <td><code>Long</code> （分存储）</td> <td>简单场景、高并发、性能敏感</td> <td>性能高、计算简单、无精度问题</td> <td>需要手动转换单位、API 不直观</td> </tr> <tr> <td><code>double</code> / <code>float</code></td> <td><strong>❌ 禁止用于金额</strong></td> <td>无</td> <td>精度丢失、计算结果不可控</td> </tr> </tbody> </table> <p><strong>一句话概括</strong> ： <strong>金融系统推荐 <code>BigDecimal</code> ，互联网高并发场景可用 <code>Long</code> 分存储，永远不要用浮点数</strong> 。</p> <H2>深度解析</H2> <H3>一、为什么 float/double 不能表示金额</H3> <p>这是理解金额存储的基础—— <strong>二进制浮点数无法精确表示某些十进制小数</strong> 。</p>   <p>上图展示了浮点数精度丢失的根本原因： <strong>十进制小数在二进制中可能是无限循环小数</strong> 。</p> <ul> <li> <p><strong>根本原因</strong> ：计算机使用二进制存储，而 0.1、0.2 等十进制小数在二进制中是无限循环的，必须截断存储，导致精度丢失。</p> </li> <li> <p><strong>影响范围</strong> ：这不是 Java 特有的问题，而是 IEEE 754 浮点数标准的固有问题，所有语言都存在。</p> </li> <li> <p><strong>金额场景</strong> ：在金额计算中，0.01 的误差都可能导致账目不平，所以浮点数 <strong>绝对不能</strong> 用于金额存储和计算。</p> </li> </ul> <pre><code class="language-java" data-lang="java">// 浮点数精度丢失演示
+public class FloatPrecision {
+    public static void main(String[] args) {
+        double a = 0.1;
+        double b = 0.2;
+        double c = a + b;
 
-## 面试考察?
+        System.out.println(c);  // 输出：0.30000000000000004（不是 0.3！）
+        System.out.println(c == 0.3);  // 输出：false
 
-面试官提出这个问题，主要想考察以下几点?
+        // 更恐怖的例子
+        double sum = 0.0;
+        for (int i = 0; i &lt; 10; i++) {
+            sum += 0.1;
+        }
+        System.out.println(sum);  // 输出：0.9999999999999999（不是 1.0！）
+    }
+}</code></pre> <H3>二、BigDecimal：精确计算的首选</H3> <p><code>BigDecimal</code> 是 Java 提供的用于高精度计算的类，内部使用十进制存储，不会出现精度丢失。</p>   <p>上图展示了 <code>BigDecimal</code> 的内部存储结构，关键点：</p> <ul> <li> <p><strong>十进制存储</strong> ： <code>BigDecimal</code> 内部将数值存储为整数 + 小数位数，避免了二进制浮点数的精度问题。</p> </li> <li> <p><strong>任意精度</strong> ：理论上可以表示任意精度的数值，只受内存限制。</p> </li> <li> <p><strong>不可变对象</strong> ：所有运算都会返回新的 <code>BigDecimal</code> 对象，线程安全。</p> </li> </ul> <pre><code class="language-java" data-lang="java">// BigDecimal 正确用法
+public class BigDecimalDemo {
+    public static void main(String[] args) {
+        // ⚠️ 错误方式：用 double 构造，精度已经丢失
+        BigDecimal bad = new BigDecimal(0.1);
+        System.out.println(bad);  // 0.1000000000000000055511151231257827021181583404541015625
 
-1. **对金额处理核心需求的理解**：面试官不仅仅想知道两种类型的区别，更是想知道你是否了解金融计算?**"绝对精度"** 的重要性，以及处理小数时可能带来的 **"精度丢失"** 风险?
+        // ✅ 正确方式一：用字符串构造
+        BigDecimal good1 = new BigDecimal("0.1");
+        System.out.println(good1);  // 0.1
 
-2. **对数据类型特性的掌握程度**：考察你对 `BigDecimal`（不可变、任意精度）?`Long`（基本类型及其包装类、固定范围）的核心特性、性能开销和内存占用的理解?
+        // ✅ 正确方式二：用 valueOf（内部也是转字符串）
+        BigDecimal good2 = BigDecimal.valueOf(0.1);
+        System.out.println(good2);  // 0.1
 
-3. **实际场景的权衡与决策能力**：这是问题的关键。面试官希望看到你能根据 **业务规模（如是否涉及小数计算）、性能要求（如是否高频交易）、系统复杂度（如是否需要与多种货币交互?* 等具体场景，做出合理的技术选型，而不是死记硬背一?"标准答案"?
+        // 精确计算
+        BigDecimal a = new BigDecimal("0.1");
+        BigDecimal b = new BigDecimal("0.2");
+        BigDecimal c = a.add(b);  // 加法
+        System.out.println(c);  // 0.3（精确！）
 
-## 核心答案
+        // 比较大小：用 compareTo，不要用 equals
+        BigDecimal x = new BigDecimal("1.0");
+        BigDecimal y = new BigDecimal("1.00");
+        System.out.println(x.equals(y));     // false（scale 不同）
+        System.out.println(x.compareTo(y));  // 0（值相等）
+    }
+}</code></pre> <p><strong>BigDecimal 使用注意事项</strong> ：</p> <table> <thead> <tr> <th>注意点</th> <th>错误做法</th> <th>正确做法</th> </tr> </thead> <tbody> <tr> <td>构造方式</td> <td><code>new BigDecimal(0.1)</code></td> <td><code>new BigDecimal("0.1")</code> 或 <code>BigDecimal.valueOf(0.1)</code></td> </tr> <tr> <td>比较相等</td> <td><code>a.equals(b)</code></td> <td><code>a.compareTo(b) == 0</code></td> </tr> <tr> <td>除法</td> <td><code>a.divide(b)</code></td> <td><code>a.divide(b, 2, RoundingMode.HALF_UP)</code> （指定精度和舍入模式）</td> </tr> <tr> <td>运算</td> <td><code>a + b</code></td> <td><code>a.add(b)</code> （必须用方法调用）</td> </tr> </tbody> </table> <H3>三、Long 分存储：高性能的替代方案</H3> <p>将金额以 "分" 为单位用 <code>Long</code> 存储，也是一种常见的做法。例如 1.23 元存储为 123 分。</p>   <p>上图展示了 <code>Long</code> 分存储方案的核心思想，关键点：</p> <ul> <li> <p><strong>单位转换</strong> ：所有金额都乘以 100 转换为分，用整数存储和计算。</p> </li> <li> <p><strong>性能优势</strong> ： <code>Long</code> 是基本类型的包装类，运算速度远快于 <code>BigDecimal</code> 的方法调用。</p> </li> <li> <p><strong>精度保证</strong> ：整数运算没有精度问题，加减乘都安全（除法需要注意舍入）。</p> </li> </ul> <pre><code class="language-java" data-lang="java">// Long 分存储方案
+public class LongMoneyDemo {
+    // 金额常量：单位分
+    private static final long ONE_YUAN = 100L;
+    private static final long ONE_FEN = 1L;
 
-在绝大多数商业级系统中，**使用 `BigDecimal` 表示金额是更标准、更安全的选择**，因为它可以精确表示和计算任意精度的十进制小数，从根本上避免了使用浮点数（如 `float`、`double`）或整数模拟时可能出现的精度损失问题?
+    // 计算总价
+    public static long calculateTotal(long price, int quantity) {
+        return price * quantity;  // 简单的整数乘法
+    }
 
-然而，?**特定高性能、对内存和计算速度极度敏感、且金额单位固定（如人民币的 "??* 的场景下，使?`Long`（或 `BigInteger`）并?**"?** 等最小货币单位作为基准进行存储和计算，也是一种经过实践验证的有效优化方案。选择的关键在于权?**精度、性能、复杂度** ?**业务需?*?
+    // 计算折扣价（注意舍入）
+    public static long applyDiscount(long price, int discountPercent) {
+        // 例如：8 折 = 80%，price * 80 / 100
+        return price * discountPercent / 100;
+    }
 
-## 深度解析
+    // 分转元（显示用）
+    public static String toYuanString(long fen) {
+        long yuan = fen / 100;
+        long remainder = fen % 100;
+        return String.format("%d.%02d", yuan, remainder);
+    }
 
-### 原理/机制
+    // 元转分（输入用）
+    public static long toFen(String yuan) {
+        String[] parts = yuan.split("\\.");
+        long result = Long.parseLong(parts[0]) * 100;
+        if (parts.length &gt; 1) {
+            // 处理小数部分（注意 1.5 应该是 1.50）
+            String decimal = parts[1];
+            if (decimal.length() == 1) {
+                decimal += "0";
+            }
+            result += Long.parseLong(decimal);
+        }
+        return result;
+    }
 
-- **BigDecimal 如何保证精度?* `BigDecimal` 通过一?**`BigInteger` 类型的非标度值（`unscaledValue`?* 和一?**`int` 类型的标度（`scale`?* 来表示一个数。
+    public static void main(String[] args) {
+        long price = 1234;  // 12.34 元
+        int quantity = 3;
 
-其值为 `unscaledValue × 10^(-scale)`。
+        long total = calculateTotal(price, quantity);
+        System.out.println(toYuanString(total));  // 37.02
 
-这种基于十进制的表示法，使其在金融计算中（如加减乘除）可以完全避免二进制浮点数（如 `0.1` 在二进制中是循环小数）带来的精度问题。
+        long discounted = applyDiscount(price, 80);  // 8 折
+        System.out.println(toYuanString(discounted));  // 9.87
+    }
+}</code></pre> <H3>四、BigDecimal vs Long 全面对比</H3>   <p>上图对比了 <code>BigDecimal</code> 和 <code>Long</code> 的各项指标，选择建议：</p> <ul> <li> <p><strong>BigDecimal 更适合</strong> ：</p> <ul> <li>需要精确的小数计算（利率、汇率、折扣）</li> <li>金额计算逻辑复杂（多步骤、多精度）</li> <li>金融系统、银行系统</li> <li>对性能不敏感的场景</li> </ul> </li> <li> <p><strong>Long（分存储）更适合</strong> ：</p> <ul> <li>高并发、性能敏感场景（秒杀、交易）</li> <li>金额逻辑简单（主要是加减乘）</li> <li>只需要 2 位小数精度</li> <li>需要与前端数值交互</li> <li>数据库索引查询频繁</li> </ul> </li> </ul> <H3>五、数据库字段类型选择</H3> <p>金额在数据库中的存储也需要注意：</p> <table> <thead> <tr> <th>数据库类型</th> <th>BigDecimal 对应</th> <th>Long 对应</th> </tr> </thead> <tbody> <tr> <td>MySQL</td> <td><code>DECIMAL(19,2)</code> 或 <code>DECIMAL(20,2)</code></td> <td><code>BIGINT</code></td> </tr> <tr> <td>PostgreSQL</td> <td><code>NUMERIC(19,2)</code></td> <td><code>BIGINT</code></td> </tr> <tr> <td>Oracle</td> <td><code>NUMBER(19,2)</code></td> <td><code>NUMBER(19)</code></td> </tr> </tbody> </table> <pre><code class="language-java" data-lang="java">// MyBatis/JPA 实体映射
+@Entity
+public class Order {
+    // 方式一：BigDecimal
+    @Column(precision = 19, scale = 2)
+    private BigDecimal amount;
 
-此外，它允许你精确控制舍入行为（通过 `RoundingMode`）?
-
-- **Long 如何表示金额?* 使用 `Long` 时，金额的物理单位并?"?，而是选择一?**"缩放因子（Scaling Factor?**，通常是该货币的最小单位，如人民币?**"?**。
-
-例如，`123.45 元` 在数据库和内存中存储?`12345`（`Long` 类型）。
-
-所有计算都在这个放大后的整数基础上进行，仅在最终展示给用户时，才除以缩放因子转换为"?。
-
-这本质上是一?**"定点?** 的模拟?
-
-### 代码示例
-
-```java
-// 1. 使用 BigDecimal (推荐)
-BigDecimal price = new BigDecimal("19.99"); // 务必使用String构造器，避免double入参
-BigDecimal quantity = new BigDecimal("3");
-BigDecimal total = price.multiply(quantity); // 精确计算，结果为 59.97
-
-// 2. 使用 Long (以分为单?
-long priceInCents = 1999L; // 19.99?
-long quantity = 3L;
-long totalInCents = priceInCents * quantity; // 结果?5997，代?59.97?
-// 展示时需要转?
-System.out.println("总价: " + (totalInCents / 100.0) + "?); // 注意：此处除法可能产生小?
-```
-
-### 对比分析与最佳实?
-
-| 特性维?| **BigDecimal** | **Long (以分为单?** |
-|---|---|---|
-| **精度** | **完美保证**，任意精度十进制计算?| **可保?*，但仅限于最小单位以内。无法直接表?`0.001` 元（如厘）?|
-| **性能** | 相对较慢，对象创建、方法调用开销大?| **极快**，利?CPU 原生整数运算，内存连续，缓存友好?|
-| **内存占用** | 高，每个对象包含 `BigInteger`、`int` 等字段?| 极低?字节（若使用基本类型 `long`）?|
-| **代码复杂?* | 高，API 复杂，需注意构造方式、舍入模式和对象不可变性?| 低，纯算术运算，但需在业务层维护单位转换，容易出错（如忘记转换）?|
-| **适用场景** | **通用场景**：涉及复杂小数运算（如利率、税率）、多币种、审计要求高、与外部系统（如银行）交互?| **特定场景**：内部结算、高频交易（如秒杀）、性能瓶颈明确、且金额单位固定且无需更小小数的场景?|
-
-### 最佳实践与选择建议
-
-1. **默认选择 `BigDecimal`**：对于绝大多数业务系统，应优先使?`BigDecimal`。它能提供最安全的保障，避免难以追踪的财务误差?*务必使用 `String` 参数的构造器**，并明确设置舍入模式?
-
-2. **考虑 `Long` 的场?*：当你的系统满足以下所有条件时，可以谨慎考虑使用 `Long`?
-
-    - 只涉及单一货币（如人民币）?
-    - 业务上从不涉?"? 以下的小数（如厘、毫）?
-    - 存在已证实的、严重的性能瓶颈，且优化收益大于引入的复杂性和风险?
-    - 团队有能力在整个数据链路（DB、缓存、RPC、前端）中严格且一致地维护单位转换?
-
-3. **折中与抽?*：可以设计一?`Money` ?`Currency` 值对象，内部封装具体的表示方式（`BigDecimal` ?`Long`），对外提供统一的、类型安全的API。这样可以在未来根据需要进行内部实现的切换?
-
-### 常见误区
-
-- **误区一：使?`Double` ?`Float` 表示金额?* 这是绝对禁忌，二进制浮点数的固有精度问题会导致计算结果出?一分钱"的误差?
-
-- **误区二：认为 `BigDecimal` 一定比 `Long` 慢，所以不用?* 在非极端性能要求的业务中，`BigDecimal` 的开销是可接受的，不应过度优化?
-
-- **误区三：在使?`Long` 方案时，在不同层（如 DAO、Service、Controller）中混合使用 "? ?"??* 这会导致灾难性的混乱。必须确立一个明确的边界（如：在数据库和所有内部逻辑中永远使?"?，仅在最终给用户的API或界面上转换?"?）?
-
-## 总结
-
-**精度安全?`BigDecimal`，性能极致且场景固定可慎用 `Long`，但绝对要杜?`Double`?* 设计时应优先保障正确性，再根据实测的性能数据进行有针对性的优化?
-
----
-> 参考来源：[BigDecimal ?Long 哪个表示金额更合适，怎么选择？](https://www.quanxiaoha.com/java-interview/bigdecimal-vs-long-amount-representation)
+    // 方式二：Long（分）
+    private Long amountFen;
+}</code></pre> <H2>面试高频追问</H2> <ol> <li> <p><strong>为什么 <code>new BigDecimal(0.1)</code> 得到的不是精确的 0.1？</strong> 因为 <code>0.1</code> 作为 <code>double</code> 已经丢失精度， <code>BigDecimal</code> 只是记录了这个不精确的值。应该用字符串构造。</p> </li> <li> <p><strong><code>BigDecimal</code> 的 <code>equals()</code> 和 <code>compareTo()</code> 有什么区别？</strong> <code>equals()</code> 比较 scale（精度）， <code>1.0</code> 和 <code>1.00</code> 不相等； <code>compareTo()</code> 比较数值，返回 0 表示相等。</p> </li> <li> <p><strong>如果金额需要支持 3 位小数（如油价），Long 方案怎么处理？</strong> 可以用 "厘"（千分之一元）为单位，乘以 1000 存储。</p> </li> <li> <p><strong>高并发场景下，两种方案哪个更好？</strong> <code>Long</code> 更好。整数运算快、无对象创建、无 GC 压力、CPU 缓存友好。</p> </li> </ol> <H2>常见面试变体</H2> <ul> <li>"为什么不能用 double 存储金额？"</li> <li>"Java 中如何进行精确的金额计算？"</li> <li>"金融系统中金额字段应该用什么类型？"</li> <li>"BigDecimal 和 double 的区别是什么？"</li> </ul> <H2>记忆口诀</H2> <p><strong>金额存储三原则</strong> ：</p> <ol> <li> <p><strong>浮点数禁止</strong> ：double float 不能用，精度丢失账不平</p> </li> <li> <p><strong>精度优先用 Big</strong> ：金融计算 BigDecimal，API 丰富精度高</p> </li> <li> <p><strong>性能优先用 Long</strong> ：高并发场景用 Long 分，整数运算速度快</p> </li> </ol> <H2>总结</H2> <p>金额表示 <strong>绝对不能用 <code>float</code> / <code>double</code></strong> ，因为二进制浮点数无法精确表示十进制小数。 <code>BigDecimal</code> 是精确计算的首选，适合金融等对精度要求高的场景； <code>Long</code> 分存储是高性能的替代方案，适合互联网高并发场景。选择时需要权衡精度需求、性能要求、代码复杂度和团队规范。</p> </div></main>
