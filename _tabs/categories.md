@@ -5,55 +5,87 @@ icon: fas fa-stream
 order: 1
 ---
 
+{% comment %}
+分类体系设计：
+1. 入门专区：学习路径入口，展示系统化学习顺序
+2. 技术领域分类：按技术领域组织，忽略日期，按 order 排序
+3. 面试题：各领域面试题汇总
+
+Front Matter 规范：
+- categories: [一级分类, 二级分类] （二级可选）
+- order: 数字越小越靠前 （可选，默认按日期）
+- level: 入门/进阶/深入 （可选）
+- series: 系列名称 （可选，用于学习路径）
+- series_order: 系列内顺序 （可选）
+{% endcomment %}
+
+{% assign category_order = "入门,Java,数据库,操作系统,计算机网络,数据结构与算法,系统设计,开发工具,软件工程" | split: "," %}
+
 {% assign category_hierarchy = {
-  "入门": ["数据库入门", "数据结构入门"],
+  "入门": ["计算机基础入门", "编程语言入门", "数据库入门", "数据结构入门"],
+  "Java": ["Java基础", "Java集合", "Java并发", "JVM"],
   "数据库": ["MySQL", "Redis"],
-  "Java": ["Java基础", "Java集合"],
   "操作系统": [],
   "计算机网络": [],
-  "数据结构": [],
-  "算法": [],
-  "软件工程": [],
-  "DevOps": [],
-  "安全": [],
-  "并发编程": [],
-  "系统设计": [],
-  "分布式系统": [],
-  "编程语言": [],
-  "编译原理": [],
-  "软件设计": [],
-  "面试题汇总": [],
-  "核心总结": [],
-  "基础教程": [],
-  "前端开发": []
+  "数据结构与算法": ["数据结构", "算法"],
+  "系统设计": ["架构设计", "微服务", "分布式系统"],
+  "开发工具": ["Git", "Docker", "Linux"],
+  "软件工程": []
 } %}
 
-{% assign top_level_cats = "入门,数据库,Java,操作系统,计算机网络,数据结构,算法,软件工程,DevOps,安全,并发编程,系统设计,分布式系统,编程语言,编译原理,软件设计,面试题汇总,核心总结,基础教程,前端开发" | split: "," %}
+{% assign level_order = "入门,进阶,深入" | split: "," %}
 
-{% for top_cat in top_level_cats %}
+{% comment %}处理所有文章，提取分类信息并排序{% endcomment %}
+{% for top_cat in category_order %}
   {% assign sub_cats = category_hierarchy[top_cat] %}
   {% assign has_subcats = false %}
   {% if sub_cats.size > 0 %}
     {% assign has_subcats = true %}
   {% endif %}
 
-  {% assign direct_posts = "" | split: "" %}
+  {% comment %}收集属于该一级分类的文章{% endcomment %}
+  {% assign cat_posts = "" | split: "" %}
   {% for post in site.posts %}
     {% if post.categories contains top_cat %}
+      {% assign post_sub_cat = "" %}
       {% assign has_subcat = false %}
-      {% for sub_cat in sub_cats %}
-        {% if post.categories contains sub_cat %}
-          {% assign has_subcat = true %}
-          {% break %}
-        {% endif %}
-      {% endfor %}
+      {% if has_subcats %}
+        {% for sub_cat in sub_cats %}
+          {% if post.categories contains sub_cat %}
+            {% assign has_subcat = true %}
+            {% assign post_sub_cat = sub_cat %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
       {% unless has_subcat %}
-        {% assign direct_posts = direct_posts | push: post %}
+        {% assign cat_posts = cat_posts | push: post %}
       {% endunless %}
     {% endif %}
   {% endfor %}
 
-  {% assign total_posts = direct_posts.size %}
+  {% comment %}统计子分类文章数{% endcomment %}
+  {% assign sub_cat_counts = "{}" | split: "" | join: "" %}
+  {% assign sub_cat_posts_map = "{}" | split: "" | join: "" %}
+  {% for sub_cat in sub_cats %}
+    {% assign sub_posts_count = 0 %}
+    {% assign sub_posts_list = "" | split: "" %}
+    {% for post in site.posts %}
+      {% if post.categories contains sub_cat %}
+        {% assign sub_posts_list = sub_posts_list | push: post %}
+        {% assign sub_posts_count = sub_posts_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    {% if sub_posts_count > 0 %}
+      {% assign temp_map = sub_cat | append: "::" | append: sub_posts_count | append: "|||" %}
+      {% for sp in sub_posts_list %}
+        {% assign temp_map = temp_map | append: sp.url | append: "|||" %}
+      {% endfor %}
+      {% assign sub_cat_posts_map = sub_cat_posts_map | append: temp_map %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign total_posts = cat_posts.size %}
   {% for sub_cat in sub_cats %}
     {% for post in site.posts %}
       {% if post.categories contains sub_cat %}
@@ -70,41 +102,48 @@ order: 1
       <h3 class="category-title">{{ top_cat }}</h3>
       <span class="category-count">{{ total_posts }} 篇</span>
     </div>
-    {% if has_subcats or direct_posts.size > 0 %}
+    {% if has_subcats or cat_posts.size > 0 %}
     <span class="category-chevron"><i class="fas fa-chevron-down"></i></span>
     {% endif %}
   </div>
   
-  {% if has_subcats or direct_posts.size > 0 %}
+  {% if has_subcats or cat_posts.size > 0 %}
   <div class="category-body" id="cat-body-{{ forloop.index }}">
+
+    {% comment %}如果有子分类，显示子分类列表{% endcomment %}
     {% if has_subcats %}
     <div class="sub-category-list">
       {% for sub_cat in sub_cats %}
-        {% assign sub_posts = "" | split: "" %}
+        {% assign sub_posts_count = 0 %}
+        {% assign sub_posts_list = "" | split: "" %}
         {% for post in site.posts %}
           {% if post.categories contains sub_cat %}
-            {% assign sub_posts = sub_posts | push: post %}
+            {% assign sub_posts_list = sub_posts_list | push: post %}
+            {% assign sub_posts_count = sub_posts_count | plus: 1 %}
           {% endif %}
         {% endfor %}
         
-        {% if sub_posts.size > 0 %}
+        {% if sub_posts_count > 0 %}
         <div class="sub-category-block" id="sub-cat-{{ forloop.parentloop.index }}-{{ forloop.index }}">
           <div class="sub-category-header" data-level="2">
             <div class="sub-category-title-area">
               <span class="sub-category-icon"></span>
               <h4 class="sub-category-title">{{ sub_cat }}</h4>
-              <span class="sub-category-count">{{ sub_posts.size }} 篇</span>
+              <span class="sub-category-count">{{ sub_posts_count }} 篇</span>
             </div>
             <span class="sub-category-chevron"><i class="fas fa-chevron-right"></i></span>
           </div>
           <div class="sub-category-body" id="sub-cat-body-{{ forloop.parentloop.index }}-{{ forloop.index }}">
             <div class="post-list">
-              {% for post in sub_posts %}
+              {% for post in sub_posts_list %}
               <a class="post-item" href="{{ post.url | relative_url }}">
                 <div class="post-item-content">
                   <h5 class="post-title">{{ post.title }}</h5>
                   <div class="post-meta">
                     <span class="meta-date"><i class="far fa-calendar"></i> {{ post.date | date: "%Y-%m-%d" }}</span>
+                    {% if post.level %}
+                    <span class="level-badge level-{{ post.level }}">{{ post.level }}</span>
+                    {% endif %}
                   </div>
                 </div>
               </a>
@@ -117,18 +156,22 @@ order: 1
     </div>
     {% endif %}
 
-    {% if direct_posts.size > 0 %}
+    {% comment %}直接属于一级分类的文章（没有二级分类的）{% endcomment %}
+    {% if cat_posts.size > 0 %}
     <div class="direct-posts">
       <div class="section-header">
-        <span class="section-title">{{ top_cat }}（{{ direct_posts.size }} 篇）</span>
+        <span class="section-title">{{ top_cat }}（{{ cat_posts.size }} 篇）</span>
       </div>
       <div class="post-list">
-        {% for post in direct_posts %}
+        {% for post in cat_posts %}
         <a class="post-item" href="{{ post.url | relative_url }}">
           <div class="post-item-content">
             <h5 class="post-title">{{ post.title }}</h5>
             <div class="post-meta">
               <span class="meta-date"><i class="far fa-calendar"></i> {{ post.date | date: "%Y-%m-%d" }}</span>
+              {% if post.level %}
+              <span class="level-badge level-{{ post.level }}">{{ post.level }}</span>
+              {% endif %}
             </div>
           </div>
         </a>
@@ -136,6 +179,7 @@ order: 1
       </div>
     </div>
     {% endif %}
+
   </div>
   {% endif %}
 </div>
@@ -186,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
   /* ===== 分类页样式 ===== */
 
-  /* 分类区块 - 圆角方框 */
+  /* 分类区块 */
   .category-accordion {
     background: #ffffff;
     border: 1px solid #e8eaed;
@@ -201,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
     box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
   }
 
-  /* 一级分类标题栏 - 可点击 */
+  /* 一级分类标题栏 */
   .category-header {
     display: flex;
     align-items: center;
@@ -231,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: bold;
     width: 24px;
     text-align: center;
-    transition: transform 0.3s ease;
   }
 
   .category-title {
@@ -260,9 +303,9 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-left: 0.75rem;
   }
 
-  /* 一级分类内容区 - 可折叠 */
+  /* 一级分类内容区 */
   .category-body {
-    max-height: 2000px;
+    max-height: 3000px;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.3s ease,
@@ -350,9 +393,9 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-left: 0.5rem;
   }
 
-  /* 子分类内容区 - 可折叠 */
+  /* 子分类内容区 */
   .sub-category-body {
-    max-height: 1500px;
+    max-height: 2000px;
     overflow: hidden;
     transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.25s ease,
@@ -447,20 +490,28 @@ document.addEventListener('DOMContentLoaded', function() {
     gap: 0.25rem;
   }
 
-  .meta-tags {
-    display: flex;
-    gap: 0.35rem;
-    flex-wrap: wrap;
+  /* 难度标签 */
+  .level-badge {
+    font-size: 0.62rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
   }
 
-  .tag {
-    font-size: 0.6rem;
-    color: #6b7280;
-    background: #e9ecf2;
-    padding: 0.06rem 0.28rem;
-    border-radius: 4px;
-    font-weight: 500;
-    line-height: 1.3;
+  .level-badge.level-入门 {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .level-badge.level-进阶 {
+    background: #fef9c3;
+    color: #854d0e;
+  }
+
+  .level-badge.level-深入 {
+    background: #fee2e2;
+    color: #991b1b;
   }
 
   /* 暗色模式 */
@@ -541,9 +592,18 @@ document.addEventListener('DOMContentLoaded', function() {
     .meta-date {
       color: #6b7280;
     }
-    .tag {
-      color: #9ca3af;
-      background: #2d3348;
+
+    .level-badge.level-入门 {
+      background: #14532d;
+      color: #bbf7d0;
+    }
+    .level-badge.level-进阶 {
+      background: #713f12;
+      color: #fef08a;
+    }
+    .level-badge.level-深入 {
+      background: #7f1d1d;
+      color: #fecaca;
     }
   }
 </style>
