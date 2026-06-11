@@ -53,7 +53,6 @@ order: 1
             {% endif %}
           </div>
         </div>
-        <span class="post-arrow"><i class="fas fa-chevron-right"></i></span>
       </a>
       {% endfor %}
     </div>
@@ -245,12 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   .tag {
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     color: #6b7280;
     background: #e9ecf2;
-    padding: 0.12rem 0.45rem;
-    border-radius: 8px;
+    padding: 0.08rem 0.3rem;
+    border-radius: 4px;
     font-weight: 500;
+    line-height: 1.3;
   }
 
   .post-arrow {
