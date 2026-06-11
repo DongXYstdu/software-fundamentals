@@ -154,7 +154,13 @@ public V put(K key, V value) {
 
 ## 总结
 
-JDK 1.8 废弃分段锁的核心原因?**并发度固定、内存浪费、实现复?*。新?**CAS + synchronized** 方案实现?**并发度动态增?*（随容量扩容）?*锁粒度最?*（只锁单个桶）?*内存更省**（无 Segment 中间层）?*读无?*（volatile 保证可见性）。选择 synchronized 而非 ReentrantLock 是因?JDK 1.6 后的锁升级优化，以及无额外内存开销的优势。记住：**分段锁是历史的妥协，CAS + synchronized 才是最优解**?
+JDK 1.8 废弃分段锁的核心原因?**并发度固定、内存浪费、实现复?*。
+
+新?**CAS + synchronized** 方案实现?**并发度动态增?*（随容量扩容）?*锁粒度最?*（只锁单个桶）?*内存更省**（无 Segment 中间层）?*读无?*（volatile 保证可见性）。
+
+选择 synchronized 而非 ReentrantLock 是因?JDK 1.6 后的锁升级优化，以及无额外内存开销的优势。
+
+记住：**分段锁是历史的妥协，CAS + synchronized 才是最优解**?
 
 ---
 > 参考来源：[ConcurrentHashMap 为什么在 JDK 1.8 中废弃分段锁？](https://www.quanxiaoha.com/java-interview/why-concurrenthashmap-removed-segment-lock-jdk8)

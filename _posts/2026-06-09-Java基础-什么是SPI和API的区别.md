@@ -231,7 +231,9 @@ HelloService first = loader.iterator().next();  // 获取第一?
 
 ## 总结
 
-SPI ?Java 提供的服务发现机制，核心思想?**"接口在调用方，实现在扩展?**，通过 `META-INF/services/` 配置文件?`ServiceLoader` 实现运行时动态加载。与 API 相比，SPI 实现了控制反转，框架定义接口规范，开发者提供实现，框架在运行时发现并调用。SPI 广泛应用?JDBC、SLF4J、Dubbo、Spring Boot 等框架，是实现可扩展架构的核心机制?
+SPI ?Java 提供的服务发现机制，核心思想?**"接口在调用方，实现在扩展?**，通过 `META-INF/services/` 配置文件?`ServiceLoader` 实现运行时动态加载。
+
+与 API 相比，SPI 实现了控制反转，框架定义接口规范，开发者提供实现，框架在运行时发现并调用。SPI 广泛应用?JDBC、SLF4J、Dubbo、Spring Boot 等框架，是实现可扩展架构的核心机制?
 
 ---
 > 参考来源：[什么是 SPI，和 API 有啥区别？](https://www.quanxiaoha.com/java-interview/spi-vs-api-difference)

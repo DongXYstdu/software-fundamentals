@@ -240,7 +240,9 @@ try (ResourceDemo resource = new ResourceDemo()) {
 
 ## 总结
 
-`final`、`finally`、`finalize()` 三者除了名字相似外，没有本质联系。`final` 是修饰符，表?"不可?；`finally` 是异常处理机制，确保代码一定执行；`finalize()` 是已废弃的对象回收回调方法。实际开发中，`final` ?`finally` 经常使用，?`finalize()` 应该避免使用，改?`try-with-resources` ?`Cleaner` 替代?
+`final`、`finally`、`finalize()` 三者除了名字相似外，没有本质联系。`final` 是修饰符，表?"不可?；`finally` 是异常处理机制，确保代码一定执行；`finalize()` 是已废弃的对象回收回调方法。
+
+实际开发中，`final` ?`finally` 经常使用，?`finalize()` 应该避免使用，改?`try-with-resources` ?`Cleaner` 替代?
 
 ---
 > 参考来源：[final、finally、finalize 的区别？](https://www.quanxiaoha.com/java-interview/final-finally-finalize-difference)

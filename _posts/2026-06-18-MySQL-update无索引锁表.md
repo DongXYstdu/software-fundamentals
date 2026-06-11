@@ -47,8 +47,7 @@ Innodb 源码里面在扫描记录的时候，都是针对索引项这个单位�
 sql_safe_updates
 参数设置?1，开启安全更新模式?
 官方的解释：
-If set to 1, MySQL aborts UPDATE or DELETE statements that do not use a key in the WHERE clause or a LIMIT clause. (Specifically, UPDATE statements must have a WHERE clause that uses a key or a LIMIT clause, or both. DELETE statements must have both.) This makes it possible to catch UPDATE or DELETE statements where keys are not used properly and that would probably change or delete a large number of rows. The default value is 0.
-大致的意思是，当 sql_safe_updates 设置?1 时?
+If set to 1, MySQL aborts UPDATE or DELETE statements that do not use a key in the WHERE clause or a LIMIT clause. (Specifically, UPDATE statements must have a WHERE clause that uses a key or a LIMIT clause, or both. DELETE statements must have both.) This makes it possible to catch UPDATE or DELETE statements where keys are not used properly and that would probably change or delete a large number of rows. The default value is 0.大致的意思是，当 sql_safe_updates 设置?1 时?
 update 语句必须满足如下条件之一才能执行成功?
 使用 where，并?where 条件中必须有索引列；
 使用 limit?

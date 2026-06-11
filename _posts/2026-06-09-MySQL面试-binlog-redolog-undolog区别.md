@@ -176,7 +176,9 @@ SHOW VARIABLES LIKE '%binlog%';
 
 ## 总结
 
-redo log、undo log、binlog ?MySQL 的三大核心日志。redo log ?InnoDB 引擎层，采用循环写的 WAL 机制，保证崩溃恢复时?*持久?*；undo log 记录反向操作，支持事?*回滚**?**MVCC** 实现；binlog ?Server 层，追加写入，用?*主从复制**?*数据备份**。三者通过 "两阶段提? 保证一致性，?MySQL 高可用架构的基石?
+redo log、undo log、binlog ?MySQL 的三大核心日志。redo log ?InnoDB 引擎层，采用循环写的 WAL 机制，保证崩溃恢复时?*持久?*；undo log 记录反向操作，支持事?*回滚**?**MVCC** 实现；binlog ?Server 层，追加写入，用?*主从复制**?*数据备份**。
+
+三者通过 "两阶段提? 保证一致性，?MySQL 高可用架构的基石?
 
 ---
 > 参考来源：[MySQL binlog、redolog ?undolog 日志的区别是什么？](https://www.quanxiaoha.com/java-interview/mysql-binlog-redo-undo-difference)

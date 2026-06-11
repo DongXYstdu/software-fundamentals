@@ -471,20 +471,60 @@ git bisect good v1.0
 
 **Q1：GitFlow 和 Trunk Based Development 如何选择？**
 
-A：核心判断标准是**发布频率**和**团队成熟度**。GitFlow 适合有明确版本发布周期（如每月/每季度）的项目，需要维护多个版本。Trunk Based 适合持续部署（每天多次发布）的项目，要求团队能力成熟（小步提交、功能开关、自动化测试完善）。**趋势是向 Trunk Based 演进**——Google、Meta、Netflix 都采用主干开发。迁移路径：先从 GitFlow 简化为 GitHub Flow（去掉 release 分支），再逐步缩短 feature 分支生命周期，最终实现主干开发。
+A：核心判断标准是**发布频率**和**团队成熟度**。GitFlow 适合有明确版本发布周期（如每月/每季度）的项目，需要维护多个版本。Trunk Based 适合持续部署（每天多次发布）的项目，要求团队能力成熟（小步提交、功能开关、自动化测试完善）。
+
+**趋势是向 Trunk Based 演进**——Google、Meta、Netflix 都采用主干开发。
+
+迁移路径：先从 GitFlow 简化为 GitHub Flow（去掉 release 分支），再逐步缩短 feature 分支生命周期，最终实现主干开发。
 
 **Q2：如何处理代码评审中的分歧？**
 
-A：三级决策机制：(1) **技术讨论**：评审者和作者在 PR 中充分讨论，用代码和测试说话；(2) **设计评审**：如果是架构级分歧，升级为设计文档评审（RFC/Design Doc），让更多团队成员参与决策；(3) **技术负责人裁决**：最终由技术负责人根据项目约束做出决定。原则：**风格偏好让步于一致性，性能优化让步于可读性（除非有性能瓶颈），个人偏好让步于团队规范**。评审者应该提出建议而非命令，用"你觉得这样如何"而非"你必须这样改"。
+A：三级决策机制：(1) **技术讨论**：评审者和作者在 PR 中充分讨论，用代码和测试说话；
+
+(2) **设计评审**：如果是架构级分歧，升级为设计文档评审（RFC/Design Doc），让更多团队成员参与决策；
+
+(3) **技术负责人裁决**：最终由技术负责人根据项目约束做出决定。
+
+原则：**风格偏好让步于一致性，性能优化让步于可读性（除非有性能瓶颈），个人偏好让步于团队规范**。
+
+评审者应该提出建议而非命令，用"你觉得这样如何"而非"你必须这样改"。
 
 **Q3：Monorepo 的构建性能如何优化？**
 
-A：三大策略：(1) **增量构建**：只构建变更影响的项目。Nx 和 Turborepo 通过依赖图分析，自动识别受影响的项目（`nx affected --target=build`）；(2) **远程缓存**：相同的输入（源码+配置+环境）产生相同的输出，可以缓存和共享构建结果。Turborepo 支持远程缓存，团队内一人构建后其他人直接复用；(3) **并行执行**：Nx/Turborepo 自动并行化无依赖的任务。效果：Google 的 Monorepo 有数十亿行代码，通过增量构建和分布式执行，平均构建时间控制在分钟级。
+A：三大策略：(1) **增量构建**：只构建变更影响的项目。Nx 和 Turborepo 通过依赖图分析，自动识别受影响的项目（`nx affected --target=build`）；
+
+(2) **远程缓存**：相同的输入（源码+配置+环境）产生相同的输出，可以缓存和共享构建结果。Turborepo 支持远程缓存，团队内一人构建后其他人直接复用；
+
+(3) **并行执行**：Nx/Turborepo 自动并行化无依赖的任务。
+
+效果：Google 的 Monorepo 有数十亿行代码，通过增量构建和分布式执行，平均构建时间控制在分钟级。
 
 **Q4：git rebase 和 git merge 有什么区别？什么时候用哪个？**
 
-A：merge 保留完整历史（创建合并提交），rebase 重写历史（线性化）。**原则：公共分支用 merge，私有分支用 rebase**。(1) `git merge --no-ff`：feature 分支合入 main，保留分支历史，方便回溯；(2) `git rebase`：本地 feature 分支同步 main 的更新，保持线性历史，避免无意义的合并提交；(3) **永远不要 rebase 已推送的公共分支**——会导致其他人的提交历史混乱。`git pull --rebase` 优于 `git pull`，避免产生无意义的合并提交。
+A：merge 保留完整历史（创建合并提交），rebase 重写历史（线性化）。
+
+**原则：公共分支用 merge，私有分支用 rebase**。
+
+(1) `git merge --no-ff`：feature 分支合入 main，保留分支历史，方便回溯；
+
+(2) `git rebase`：本地 feature 分支同步 main 的更新，保持线性历史，避免无意义的合并提交；
+
+(3) **永远不要 rebase 已推送的公共分支**——会导致其他人的提交历史混乱。`git pull --rebase` 优于 `git pull`，避免产生无意义的合并提交。
 
 **Q5：如何写好 Commit Message？**
 
-A：好的 Commit Message 回答三个问题：**为什么改？改了什么？影响范围？** 遵循 Conventional Commits 规范：(1) **type** 必须准确——feat/fix/refactor 性质不同，影响语义版本号；(2) **subject** 用祈使句（"add feature" 而非 "added feature"），不超过72字符；(3) **body** 解释 why 而非 what——diff 已经展示了 what，body 应该解释为什么需要这个变更；(4) **footer** 关联 Issue（`Closes #123`）和破坏性变更（`BREAKING CHANGE: ...`）。工具保障：commitlint + husky 在提交时自动校验格式。
+A：好的 Commit Message 回答三个问题：**为什么改？
+
+改了什么？
+
+影响范围？
+
+** 遵循 Conventional Commits 规范：(1) **type** 必须准确——feat/fix/refactor 性质不同，影响语义版本号；
+
+(2) **subject** 用祈使句（"add feature" 而非 "added feature"），不超过72字符；
+
+(3) **body** 解释 why 而非 what——diff 已经展示了 what，body 应该解释为什么需要这个变更；
+
+(4) **footer** 关联 Issue（`Closes #123`）和破坏性变更（`BREAKING CHANGE: ...`）。
+
+工具保障：commitlint + husky 在提交时自动校验格式。

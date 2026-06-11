@@ -550,7 +550,15 @@ CREATE TABLE `lock_table` (
  - 并发性能：InnoDB引擎采用了行级锁定的机制，可以提供更好的并发性能，Myisam存储引擎只支持表锁，锁的粒度比较大?
  - 崩溃恢复：InnoDB 引擎通过 redo log 日志实现了崩溃恢复，可以在数据库发生异常情况（如断电）时，通过日志文件进行恢复，保证数据的持久性和一致性。MyISAM 是不支持崩溃恢复的?
  ### [#](#说一下mysql的innodb与myisam的区? 说一下mysql的innodb与MyISAM的区别？ - **事务**：InnoDB 支持事务，MyISAM 不支持事务，这是 MySQL 将默认存储引擎从 MyISAM 变成 InnoDB 的重要原因之一?
- - **索引结构**：InnoDB 是聚簇索引，MyISAM 是非聚簇索引。聚簇索引的文件存放在主键索引的叶子节点上，因此 InnoDB 必须要有主键，通过主键索引效率很高。但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此，主键不应该过大，因为主键太大，其他索引也都会很大。?MyISAM 是非聚簇索引，数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的?
+- **索引结构**：InnoDB 是聚簇索引，MyISAM 是非聚簇索引。
+
+聚簇索引的文件存放在主键索引的叶子节点上，因此 InnoDB 必须要有主键，通过主键索引效率很高。
+
+但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。
+
+因此，主键不应该过大，因为主键太大，其他索引也都会很大。?MyISAM 是非聚簇索引，数据文件是分离的，索引保存的是数据文件的指针。
+
+主键索引和辅助索引是独立的?
  - **锁粒?*：InnoDB 最小的锁粒度是行锁，MyISAM 最小的锁粒度是表锁。一个更新语句会锁住整张表，导致其他查询和更新都会被阻塞，因此并发访问受限?
  - **count 的效?*：InnoDB 不保存表的具体行数，执行 select count(*) from table 时需要全表扫描。而MyISAM 用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快?
  ### [#](#数据管理?数据文件大体分成哪几种数据文? 数据管理里，数据文件大体分成哪几种数据文件？ 我们每创建一?database（数据库?都会?/var/lib/mysql/ 目录里面创建一个以 database 为名的目录，然后保存表结构和表数据的文件都会存放在这个目录里?
@@ -570,7 +578,11 @@ t_order.ibd
 
  - db.opt，用来存储当前数据库的默认字符集和字符校验规则?
  - t_order.frm ，t_order 的表结构会保存在这个文件。在 MySQL 中建立一张表都会生成一?frm 文件，该文件是用来保存每个表的元数据信息的，主要包含表结构定义?
- - t_order.ibd，t_order 的表数据会保存在这个文件。表数据既可以存在共享表空间文件（文件名：ibdata1）里，也可以存放在独占表空间文件（文件名：表名字.ibd）。这个行为是由参?innodb_file_per_table 控制的，若设置了参数 innodb_file_per_table ?1，则会将存储的数据、索引等信息单独存储在一个独占表空间，从 MySQL 5.6.6 版本开始，它的默认值就?1 了，因此从这个版本之后， MySQL 中每一张表的数据都存放在一个独立的 .ibd 文件?
+- t_order.ibd，t_order 的表数据会保存在这个文件。
+
+表数据既可以存在共享表空间文件（文件名：ibdata1）里，也可以存放在独占表空间文件（文件名：表名字.ibd）。
+
+这个行为是由参?innodb_file_per_table 控制的，若设置了参数 innodb_file_per_table ?1，则会将存储的数据、索引等信息单独存储在一个独占表空间，从 MySQL 5.6.6 版本开始，它的默认值就?1 了，因此从这个版本之后， MySQL 中每一张表的数据都存放在一个独立的 .ibd 文件?
  ## [#](#索引) 索引 ### [#](#索引是什?有什么好? 索引是什么？有什么好处？ 索引类似于书籍的目录，可以减少扫描的数据量，提高查询效率?
 
  - 如果查询的时候，没有用到索引就会全表扫描，这时候查询的时间复杂度是 O(N)
@@ -838,7 +850,11 @@ select * from product where id= 5;
  因为表的数据都是存放在聚集索引的叶子节点里，所?InnoDB 存储引擎一定会为表创建一个聚集索引，且由于数据在物理上只会保存一份，所以聚簇索引只能有一个，而二级索引可以创建多个?
 
  ### [#](#mysql为什么用b-树结?和其他结构比的优? MySQL为什么用B+树结构？和其他结构比的优点？ - **B+Tree vs B Tree?*B+Tree 只在叶子节点存储数据，?B ?的非叶子节点也要存储数据，所?B+Tree 的单个节点的数据量更小，在相同的磁盘 I/O 次数下，就能查询更多的节点。另外，B+Tree 叶子节点采用的是双链表连接，适合 MySQL 中常见的基于范围的顺序查找，?B 树无法做到这一点?
- - **B+Tree vs 二叉树：**对于?N 个叶子节点的 B+Tree，其搜索复杂度为O(logdN)，其?d 表示节点允许的最大子节点个数?d 个。在实际的应用当中， d 值是大于100的，这样就保证了，即使数据达到千万级别时，B+Tree 的高度依然维持在 3~4 层左右，也就是说一次数据查询操作只需要做 3~4 次的磁盘 I/O 操作就能查询到目标数据。而二叉树的每个父节点的儿子节点个数只能是 2 个，意味着其搜索复杂度?O(logN)，这已经?B+Tree 高出不少，因此二叉树检索到目标数据所经历的磁?I/O 次数要更多?
+- **B+Tree vs 二叉树：**对于?N 个叶子节点的 B+Tree，其搜索复杂度为O(logdN)，其?d 表示节点允许的最大子节点个数?d 个。
+
+在实际的应用当中， d 值是大于100的，这样就保证了，即使数据达到千万级别时，B+Tree 的高度依然维持在 3~4 层左右，也就是说一次数据查询操作只需要做 3~4 次的磁盘 I/O 操作就能查询到目标数据。
+
+而二叉树的每个父节点的儿子节点个数只能是 2 个，意味着其搜索复杂度?O(logN)，这已经?B+Tree 高出不少，因此二叉树检索到目标数据所经历的磁?I/O 次数要更多?
  - **B+Tree vs Hash?*Hash 在做等值查询的时候效率贼快，搜索复杂度为 O(1)。但?Hash 表不适合做范围查询，它更适合做等值的查询，这也是 B+Tree 索引要比 Hash 表索引有着更广泛的适用场景的原?
  ### [#](#为什?mysql-不用跳表) 为什?MySQL 不用跳表?B+树的高度?层时存储的数据可能已达千万级别，但对于跳表而言同样去维护千万的数据量那么所造成的跳表层数过高而导致的磁盘io次数增多，也就是使用B+树在存储同样的数据下磁盘io次数更少?
 
@@ -987,7 +1003,11 @@ select a, b from table where a = ? and b =?
  ### [#](#了解过前缀索引? 了解过前缀索引吗？ 使用前缀索引是为了减小索引字段大小，可以增加一个索引页中存储的索引值，有效提高索引的查询速度。在一些大字符串的字段作为索引时，使用前缀索引可以帮助我们减小索引项的大小?
 
  ## [#](#事务) 事务 ### [#](#事务的特性是什?如何实现? 事务的特性是什么？如何实现的？ - **原子性（Atomicity?*：一个事务中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节，而且事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样，就好比买一件商品，购买成功时，则给商家付了钱，商品到手；购买失败时，则商品在商家手中，消费者的钱也没花出去?
- - **一致性（Consistency?*：是指事务操作前和操作后，数据满足完整性约束，数据库保持一致性状态。比如，用户 A 和用?B 在银行分别有 800 元和 600 元，总共 1400 元，用户 A 给用?B 转账 200 元，分为两个步骤，从 A 的账户扣?200 元和?B 的账户增?200 元。一致性就是要求上述步骤操作后，最后的结果是用?A 还有 600 元，用户 B ?800 元，总共 1400 元，而不会出现用?A 扣除?200 元，但用?B 未增加的情况（该情况，用?A ?B 均为 600 元，总共 1200 元）?
+- **一致性（Consistency?*：是指事务操作前和操作后，数据满足完整性约束，数据库保持一致性状态。
+
+比如，用户 A 和用?B 在银行分别有 800 元和 600 元，总共 1400 元，用户 A 给用?B 转账 200 元，分为两个步骤，从 A 的账户扣?200 元和?B 的账户增?200 元。
+
+一致性就是要求上述步骤操作后，最后的结果是用?A 还有 600 元，用户 B ?800 元，总共 1400 元，而不会出现用?A 扣除?200 元，但用?B 未增加的情况（该情况，用?A ?B 均为 600 元，总共 1200 元）?
  - **隔离性（Isolation?*：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致，因为多个事务同时使用相同的数据时，不会相互干扰，每个事务都有一个完整的数据空间，对其他并发事务是隔离的。也就是说，消费者购买商品这个事务，是不影响其他消费者购买的?
  - **持久性（Durability?*：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失?
  MySQL InnoDB 引擎通过什么技术来保证事务的这四个特性的呢？
@@ -1054,12 +1074,10 @@ select a, b from table where a = ? and b =?
  - **串行化（serializable?*；会对记录加上读写锁，在多个事务对这条记录进行读写操作时，如果发生了读写冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行?
  按隔离水平高低排序如下：
 
- ![image](https://cdn.nlark.com/yuque/0/2024/webp/29791029/1719915429467-c898c6a3-b1ed-4cb6-83e3-a669c33a90d5.webp#averageHue=%23f5ece3&amp;clientId=uf0d36b72-0b14-4&amp;from=paste&amp;id=u6640a0ec&amp;originHeight=144&amp;originWidth=962&amp;originalType=url&amp;ratio=1.100000023841858&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=uf49dbf46-7e2a-43f0-910d-4760225a191&amp;title=)
-
+![image](https://cdn.nlark.com/yuque/0/2024/webp/29791029/1719915429467-c898c6a3-b1ed-4cb6-83e3-a669c33a90d5.webp#averageHue=%23f5ece3&amp;clientId=uf0d36b72-0b14-4&amp;from=paste&amp;id=u6640a0ec&amp;originHeight=144&amp;originWidth=962&amp;originalType=url&amp;ratio=1.100000023841858&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=uf49dbf46-7e2a-43f0-910d-4760225a191&amp;title=)
  针对不同的隔离级别，并发事务时可能发生的现象也会不同?
 
- ![image](https://cdn.nlark.com/yuque/0/2024/webp/29791029/1719915429433-f7de575e-083a-4fea-b756-7737ae75c646.webp#averageHue=%23f7f6df&amp;clientId=uf0d36b72-0b14-4&amp;from=paste&amp;id=ubc5e8407&amp;originHeight=464&amp;originWidth=1080&amp;originalType=url&amp;ratio=1.100000023841858&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=uf4d37617-5ee5-4baf-9670-5b8208826c0&amp;title=)也就是说?
-
+![image](https://cdn.nlark.com/yuque/0/2024/webp/29791029/1719915429433-f7de575e-083a-4fea-b756-7737ae75c646.webp#averageHue=%23f7f6df&amp;clientId=uf0d36b72-0b14-4&amp;from=paste&amp;id=ubc5e8407&amp;originHeight=464&amp;originWidth=1080&amp;originalType=url&amp;ratio=1.100000023841858&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;taskId=uf4d37617-5ee5-4baf-9670-5b8208826c0&amp;title=)也就是说?
  - 在「读未提交」隔离级别下，可能发生脏读、不可重复读和幻读现象；
  - 在「读提交」隔离级别下，可能发生不可重复读和幻读现象，但是不可能发生脏读现象；
  - 在「可重复读」隔离级别下，可能发生幻读现象，但是不可能脏读和不可重复读现象；
@@ -1182,7 +1200,11 @@ mysql&gt; select * from t_stu where id = 5;
  如果一个事务特别多 sql，那么会带来这些问题?
 
  - 如果一个事务特别多 sql，锁定的数据太多，容易造成大量的死锁和锁超时?
- - 回滚记录会占用大量存储空间，事务回滚时间长。在[MySQL (opens new window)](https://cloud.tencent.com/product/cdb?from_column=20065&amp;from=20065)中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值，sql 越多，所需要保存的回滚数据就越多?
+- 回滚记录会占用大量存储空间，事务回滚时间长。
+
+在[MySQL (opens new window)](https://cloud.tencent.com/product/cdb?from_column=20065&amp;from=20065)中，实际上每条记录在更新的时候都会同时记录一条回滚操作。
+
+记录上的最新值，通过回滚操作，都可以得到前一个状态的值，sql 越多，所需要保存的回滚数据就越多?
  - 执行时间长，容易造成主从延迟，主库上必须等事务执行完成才会写入binlog，再传给备库。所以，如果一个主库上的语句执?0分钟，那这个事务很可能就会导致从库延?0分钟
  ## [#](#? ?### [#](#讲一下mysql里有哪些? 讲一下mysql里有哪些锁？ ?MySQL 里，根据加锁的范围，可以分为**全局锁、表级锁和行?*三类?
 
@@ -1245,8 +1267,12 @@ mysql&gt; select * from t_stu where id = 5;
 
  binlog ?3 种格式类型，分别?STATEMENT?*ROW（MySQL 5.7.7 及之后的默认格式?*、MIXED，区别如下：
 
- - STATEMENT：每一条修改数据的 SQL 都会被记录到 binlog 中（相当于记录了逻辑操作，所以针对这种格式， binlog 可以称为逻辑日志），主从复制?slave 端再根据 SQL 语句重现。但 STATEMENT 有动态函数的问题，比如你用了 uuid 或?now 这些函数，你在主库上执行的结果并不是你在从库执行的结果，这种随时在变的函数会导致复制的数据不一致；这也?MySQL 5.7.7 之后将默认格式改?ROW 的主要原因?
- - ROW：记录行数据最终被修改成什么样了（这种格式的日志，就不能称为逻辑日志了），不会出?STATEMENT 下动态函数的问题。但 ROW 的缺点是每行数据的变化结果都会被记录，比如执行批?update 语句，更新多少行数据就会产生多少条记录，?binlog 文件过大，而在 STATEMENT 格式下只会记录一?update 语句而已?*?MySQL 5.7.7 起，`binlog_format` 的默认值已?STATEMENT 改为 ROW**，目前主?MySQL 5.7 / 8.0 / 8.4 的默认都?ROW?
+- STATEMENT：每一条修改数据的 SQL 都会被记录到 binlog 中（相当于记录了逻辑操作，所以针对这种格式， binlog 可以称为逻辑日志），主从复制?slave 端再根据 SQL 语句重现。
+
+但 STATEMENT 有动态函数的问题，比如你用了 uuid 或?now 这些函数，你在主库上执行的结果并不是你在从库执行的结果，这种随时在变的函数会导致复制的数据不一致；这也?MySQL 5.7.7 之后将默认格式改?ROW 的主要原因?
+- ROW：记录行数据最终被修改成什么样了（这种格式的日志，就不能称为逻辑日志了），不会出?STATEMENT 下动态函数的问题。
+
+但 ROW 的缺点是每行数据的变化结果都会被记录，比如执行批?update 语句，更新多少行数据就会产生多少条记录，?binlog 文件过大，而在 STATEMENT 格式下只会记录一?update 语句而已?*?MySQL 5.7.7 起，`binlog_format` 的默认值已?STATEMENT 改为 ROW**，目前主?MySQL 5.7 / 8.0 / 8.4 的默认都?ROW?
  - MIXED：包含了 STATEMENT ?ROW 模式，它会根据不同的情况自动使用 ROW 模式?STATEMENT 模式?
  ### [#](#undolog日志的作用是什? UndoLog日志的作用是什么？ undo log 是一种用于撤销回退的日志，**它保证了事务?* **ACID 特性中的原子?*（Atomicity）?
 
@@ -1319,8 +1345,7 @@ mysql&gt; select * from t_stu where id = 5;
  从图中可看出，事务的提交过程有两个阶段，就是**?redo log 的写入拆成了两个步骤：prepare ?commit，中间再穿插写入binlog**，具体如下：
 
  - **prepare 阶段**：将 XID（内?XA 事务?ID?写入?redo log，同时将 redo log 对应的事务状态设置为 prepare，然后将 redo log 持久化到磁盘（innodb_flush_log_at_trx_commit = 1 的作用）?
- - **commit 阶段**：把 XID 写入?binlog，然后将 binlog 持久化到磁盘（sync_binlog = 1 的作用），接着调用引擎的提交事务接口，?redo log 状态设置为 commit，此时该状态并不需要持久化到磁盘，只需?write 到文件系统的 page cache 中就够了，因为只?binlog 写磁盘成功，就算 redo log 的状态还?prepare 也没有关系，一样会被认为事务已经执行成功；
- 我们来看看在两阶段提交的不同时刻，MySQL 异常重启会出现什么现象？下图中有时刻 A 和时?B 都有可能发生崩溃?
+- **commit 阶段**：把 XID 写入?binlog，然后将 binlog 持久化到磁盘（sync_binlog = 1 的作用），接着调用引擎的提交事务接口，?redo log 状态设置为 commit，此时该状态并不需要持久化到磁盘，只需?write 到文件系统的 page cache 中就够了，因为只?binlog 写磁盘成功，就算 redo log 的状态还?prepare 也没有关系，一样会被认为事务已经执行成功； 我们来看看在两阶段提交的不同时刻，MySQL 异常重启会出现什么现象？下图中有时刻 A 和时?B 都有可能发生崩溃?
 
  ![image](https://cdn.xiaolincoding.com//picgo/image-20240725231850469.png)
 
@@ -1375,7 +1400,9 @@ mysql&gt; select * from t_stu where id = 5;
 
  ![image](https://cdn.xiaolincoding.com//picgo/1737302055987-847a5e01-f883-4b5c-8c36-26ffad1f6f69.png)
 
- Doublewrite Buffer 作用是，在把页写到数据文件之前，InnoDB先把它们写到一个叫doublewrite buffer（双写缓冲区）的共享表空间内，在写doublewrite buffer完成后，InnoDB才会把页写到数据文件的适当的位置。如果在写页的过程中发生意外崩溃，InnoDB在稍后的恢复过程中在doublewrite buffer中找到完好的page副本用于恢复，所以本质上是一个最近写回的页面的备份拷贝?
+Doublewrite Buffer 作用是，在把页写到数据文件之前，InnoDB先把它们写到一个叫doublewrite buffer（双写缓冲区）的共享表空间内，在写doublewrite buffer完成后，InnoDB才会把页写到数据文件的适当的位置。
+
+如果在写页的过程中发生意外崩溃，InnoDB在稍后的恢复过程中在doublewrite buffer中找到完好的page副本用于恢复，所以本质上是一个最近写回的页面的备份拷贝?
 
  ![image](https://cdn.xiaolincoding.com//picgo/1737301211946-81988282-fb5d-44f9-b8d8-94f7396db723.png)
 

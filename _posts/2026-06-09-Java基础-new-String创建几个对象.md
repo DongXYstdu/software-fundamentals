@@ -43,7 +43,9 @@ tags: [Java, 基础, 面试, 小哈学Java]
 
     - 如果不存在，则在池中创建该对象，并返回其引用?
 
-- **`new String(String original)` 构造函?*：这个构造函数的官方文档说明是：`Initializes a newly created String object so that it represents the same sequence of characters as the argument; in other words, the newly created string is a copy of the argument string.` 它的作用?**在堆上创建一个新?`String` 对象**，并将参数字符串的字符数组拷贝（或引用，具体实现有优化）过去。因此，`new` 操作必然在堆中产生一个新对象?
+- **`new String(String original)` 构造函?*：这个构造函数的官方文档说明是：`Initializes a newly created String object so that it represents the same sequence of characters as the argument; in other words, the newly created string is a copy of the argument string.` 它的作用?**在堆上创建一个新?`String` 对象**，并将参数字符串的字符数组拷贝（或引用，具体实现有优化）过去。
+
+因此，`new` 操作必然在堆中产生一个新对象?
 
 ### 代码示例与内存分?
 

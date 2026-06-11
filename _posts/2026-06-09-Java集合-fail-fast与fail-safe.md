@@ -29,7 +29,17 @@ tags: [Java, 集合, 面试, 小哈学Java]
 
 ### 原理与机?
 
-- **Fail-Fast 原理**：其核心?**"预期修改次数"校验机制**。在 `ArrayList`、`HashMap` 等集合内部，维护了一个名?`modCount` 的整型变量。任何会改变集合结构的操作（?`add`，`remove`）都会使 `modCount` 自增。当创建迭代器时，迭代器会记录下当前?`modCount` 值为 `expectedModCount`。在每次迭代操作（如 `next()`，`remove()`）前，迭代器都会检?`modCount` 是否等于 `expectedModCount`。如果不相等，则说明集合在迭代期间被"外部"修改了，便会立即抛出 `ConcurrentModificationException`?
+- **Fail-Fast 原理**：其核心?**"预期修改次数"校验机制**。
+
+在 `ArrayList`、`HashMap` 等集合内部，维护了一个名?`modCount` 的整型变量。
+
+任何会改变集合结构的操作（?`add`，`remove`）都会使 `modCount` 自增。
+
+当创建迭代器时，迭代器会记录下当前?`modCount` 值为 `expectedModCount`。
+
+在每次迭代操作（如 `next()`，`remove()`）前，迭代器都会检?`modCount` 是否等于 `expectedModCount`。
+
+如果不相等，则说明集合在迭代期间被"外部"修改了，便会立即抛出 `ConcurrentModificationException`?
 
 ```java
 // ?ArrayList.Itr.next() 的简化逻辑为例

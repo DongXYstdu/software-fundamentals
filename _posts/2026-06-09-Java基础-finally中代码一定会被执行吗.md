@@ -93,7 +93,11 @@ try (FileInputStream fis = new FileInputStream("file.txt")) {
 
 ### 常见误区
 
-- **误区一?`finally` ?`return` 之后执行"**：这是一种非常普遍但错误的表述?*`finally` 块的执行?`return` 语句之前**。具体来说，如果 `try` ?`catch` 中有 `return`，JVM 会先将返回值存储在一个临时变量中，然后执?`finally` 块，最后再返回那个临时变量。即?`finally` 中修改了要返回的变量，对于基本数据类型和不可变对象（?`String`），返回值也不会改变（但对于对象引用，修改对象内部状态是有效的）?
+- **误区一?`finally` ?`return` 之后执行"**：这是一种非常普遍但错误的表述?*`finally` 块的执行?`return` 语句之前**。
+
+具体来说，如果 `try` ?`catch` 中有 `return`，JVM 会先将返回值存储在一个临时变量中，然后执?`finally` 块，最后再返回那个临时变量。
+
+即?`finally` 中修改了要返回的变量，对于基本数据类型和不可变对象（?`String`），返回值也不会改变（但对于对象引用，修改对象内部状态是有效的）?
 
 ```java
 static int testFinallyReturn() {

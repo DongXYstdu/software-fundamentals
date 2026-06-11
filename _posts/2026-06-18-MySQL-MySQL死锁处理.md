@@ -203,8 +203,7 @@ select ... for update
 的next-key 锁，而接下来的插入操作为了获取到插入意向锁，都在等待对方事务的间隙锁释放，于是就造成了循环等待，导致死锁?
 为什么间隙锁与间隙锁之间是兼容的?
 在MySQL官网上还有一段非常关键的描述?
-Gap locks in InnoDB are “purely inhibitive? which means that their only purpose is to prevent other transactions from Inserting to the gap. Gap locks can co-exist. A gap lock taken by one transaction does not prevent another transaction from taking a gap lock on the same gap. There is no difference between shared and exclusive gap locks. They do not conflict with each other, and they perform the same function.
-间隙锁的意义只在于阻止区间被插入
+Gap locks in InnoDB are “purely inhibitive? which means that their only purpose is to prevent other transactions from Inserting to the gap. Gap locks can co-exist. A gap lock taken by one transaction does not prevent another transaction from taking a gap lock on the same gap. There is no difference between shared and exclusive gap locks. They do not conflict with each other, and they perform the same function.间隙锁的意义只在于阻止区间被插入
 ，因此是可以共存的?
 一个事务获取的间隙锁不会阻止另一个事务获取同一个间隙范围的间隙?
 ，共享和排他的间隙锁是没有区别的，他们相互不冲突，且功能相同，即两个事务可以同时持有包含共同间隙的间隙锁?
@@ -220,8 +219,7 @@ next-key lock 是包含间隙锁+记录锁的，如果一个事务获取了 X �
 插入意向锁是什么？
 注意！插入意向锁名字虽然有意向锁，但是它并不是意向锁，它是一种特殊的间隙锁?
 在MySQL的官方文档中有以下重要描述：
-An Insert intention lock is a type of gap lock set by Insert operations prior to row Insertion. This lock signals the intent to Insert in such a way that multiple transactions Inserting into the same index gap need not wait for each other if they are not Inserting at the same position within the gap. Suppose that there are index records with values of 4 and 7. Separate transactions that attempt to Insert values of 5 and 6, respectively, each lock the gap between 4 and 7 with Insert intention locks prior to obtaining the exclusive lock on the Inserted row, but do not block each other because the rows are nonconflicting.
-这段话表明尽?
+An Insert intention lock is a type of gap lock set by Insert operations prior to row Insertion. This lock signals the intent to Insert in such a way that multiple transactions Inserting into the same index gap need not wait for each other if they are not Inserting at the same position within the gap. Suppose that there are index records with values of 4 and 7. Separate transactions that attempt to Insert values of 5 and 6, respectively, each lock the gap between 4 and 7 with Insert intention locks prior to obtaining the exclusive lock on the Inserted row, but do not block each other because the rows are nonconflicting.这段话表明尽?
 插入意向锁是一种特殊的间隙锁，但不同于间隙锁的是，该锁只用于并发插入操?
 ?
 如果说间隙锁锁住的是一个区间，那么「插入意向锁」锁住的就是一个点。因而从这个角度来说，插入意向锁确实是一种特殊的间隙锁?

@@ -213,7 +213,11 @@ static class Node<K,V> {
 
 ## 总结
 
-ConcurrentHashMap ?JDK 1.8 通过 **CAS + synchronized + volatile** 三者协同保证线程安全：**CAS** 用于空桶无锁插入?*synchronized** 用于哈希冲突时锁单个桶头节点?*volatile** 保证 Node ?val ?next 可见性。与 Hashtable 的全表锁相比，ConcurrentHashMap ?**桶级?* 实现了极高的并发度，**读操作完全无?*。记住：**锁粒度细、读无锁、写只锁?*?
+ConcurrentHashMap ?JDK 1.8 通过 **CAS + synchronized + volatile** 三者协同保证线程安全：**CAS** 用于空桶无锁插入?*synchronized** 用于哈希冲突时锁单个桶头节点?*volatile** 保证 Node ?val ?next 可见性。
+
+与 Hashtable 的全表锁相比，ConcurrentHashMap ?**桶级?* 实现了极高的并发度，**读操作完全无?*。
+
+记住：**锁粒度细、读无锁、写只锁?*?
 
 ---
 > 参考来源：[ConcurrentHashMap 是如何保证线程安全的？](https://www.quanxiaoha.com/java-interview/how-concurrenthashmap-thread-safe)

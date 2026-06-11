@@ -242,7 +242,6 @@ TIME_WAIT 状态之所以要持续 2MSL 时间，主要有两个目的?
 - 保证「被动关闭连接」的一方，能被正确的关闭；
 
 详细的为什么要设计 TIME_WAIT 状态，我在这篇有详细说明：[如果 TIME_WAIT 状态持续时间过短或者没有，会有什么问题？](https://mp.weixin.qq.com/s?__biz=MzUxODAzNDg4NQ==&mid=2247502380&idx=1&sn=7b82818a5fb6f1127d17f0ded550c4bd&scene=21#wechat_redirect)
-
 虽然 TIME_WAIT 状态持续的时间是有一点长，显得很不友好，但是它被设计来就是用来避免发生乱七八糟的事情?
 
 《UNIX网络编程》一书中却说道：**TIME_WAIT 是我们的朋友，它是有助于我们的，不要试图避免这个状态，而是应该弄清楚它** ?

@@ -43,8 +43,7 @@ tags: [Spring, 面试, 八股, 小林coding]
  ### [#](#spring-ioc和aop-介绍一? Spring IoC和AOP 介绍一?Spring IoC和AOP 区别?
 
  - **IoC**：即控制反转的意思，它是一种创建和获取对象的技术思想，依赖注?DI)是实现这种技术的一种方式。传统开发过程中，我们需要通过new关键字来创建对象。使用IoC思想开发方式的话，我们不通过new关键字创建对象，而是通过IoC容器来帮我们实例化对象?通过IoC的方式，可以大大降低对象之间的耦合度?
- - **AOP**：是面向切面编程，能够将那些与业务无关，却为业务模块所共同调用的逻辑封装起来，以减少系统的重复代码，降低模块间的耦合度。Spring AOP 基于动态代理：如果被代理对象实现了接口，Spring AOP 默认会使?JDK Proxy 创建代理对象；如果没有实现接口，则会使用 CGLIB 生成被代理对象的子类作为代理?*注意：自 Spring Boot 2.0 起，默认配置 `spring.aop.proxy-target-class=true`，即无论是否实现接口都优先使?CGLIB，如需切回 JDK 动态代理需手动设为 false**?
- ?Spring 框架中，IOC ?AOP 结合使用，可以更好地实现代码的模块化和分层管理。例如：
+- **AOP**：是面向切面编程，能够将那些与业务无关，却为业务模块所共同调用的逻辑封装起来，以减少系统的重复代码，降低模块间的耦合度。Spring AOP 基于动态代理：如果被代理对象实现了接口，Spring AOP 默认会使?JDK Proxy 创建代理对象；如果没有实现接口，则会使用 CGLIB 生成被代理对象的子类作为代理?*注意：自 Spring Boot 2.0 起，默认配置 `spring.aop.proxy-target-class=true`，即无论是否实现接口都优先使?CGLIB，如需切回 JDK 动态代理需手动设为 false**? ?Spring 框架中，IOC ?AOP 结合使用，可以更好地实现代码的模块化和分层管理。例如：
 
  - 通过 IOC 容器管理对象的依赖关系，然后通过 AOP 将横切关注点统一切入到需要的业务逻辑中?
  - 使用 IOC 容器管理 Service 层和 DAO 层的依赖关系，然后通过 AOP ?Service 层实现事务管理、日志记录等横切功能，使得业务逻辑更加清晰和可维护?
@@ -191,7 +190,13 @@ public class OrderService {
 
  Java动态代理主要分为两种类型：
 
- - **基于接口的代?*（JDK动态代理）?这种类型的代理要求目标对象必须实现至少一个接口。Java动态代理会创建一个实现了相同接口的代理类，然后在运行时动态生成该类的实例。这种代理的实现核心是`java.lang.reflect.Proxy`类和`java.lang.reflect.InvocationHandler`接口。每一个动态代理类都必须实现`InvocationHandler`接口，并且每个代理类的实例都关联到一个`handler`。当通过代理对象调用一个方法时，这个方法的调用会被转发为由`InvocationHandler`接口的`invoke()`方法来进行调用?
+- **基于接口的代?*（JDK动态代理）?这种类型的代理要求目标对象必须实现至少一个接口。Java动态代理会创建一个实现了相同接口的代理类，然后在运行时动态生成该类的实例。
+
+这种代理的实现核心是`java.lang.reflect.Proxy`类和`java.lang.reflect.InvocationHandler`接口。
+
+每一个动态代理类都必须实现`InvocationHandler`接口，并且每个代理类的实例都关联到一个`handler`。
+
+当通过代理对象调用一个方法时，这个方法的调用会被转发为由`InvocationHandler`接口的`invoke()`方法来进行调用?
 
  - **基于类的代理**（CGLIB动态代理）?CGLIB（Code Generation Library）是一个强大的高性能的代码生成库，它可以在运行时动态生成一个目标类的子类。CGLIB代理不需要目标类实现接口，而是通过继承的方式创建代理类。因此，如果目标对象没有实现任何接口，可以使用CGLIB来创建动态代理?
 
@@ -264,14 +269,28 @@ public class OrderService {
  Spring ?`DefaultSingletonBeanRegistry` 类中维护了三个重要的缓存 (Map)，称为“三级缓存”：
 
  - `singletonObjects` (一级缓?：存放的是完全初始化好的、可用的 Bean 实例，`getBean()` 方法最终返回的就是这里面的 Bean。此?Bean 已实例化、属性已填充、初始化方法已执行、AOP 代理（如果需要）也已生成?
- - `earlySingletonObjects` (二级缓存)：存放的是提前暴露的 Bean 的原始对象引??早期代理对象引用，专门用来处理循环依赖。当一?Bean 还在创建过程中（尚未完成属性填充和初始化），但它的引用需要被注入到另一?Bean 时，就暂时放在这里。此?Bean 已实例化（调用了构造函数），但属性尚未填充，初始化方法尚未执行，它可能是一个原始对象，也可能是一个为了解?AOP 代理问题而提前生成的代理对象?
- - `singletonFactories` (三级缓存)：存放的?Bean ?`ObjectFactory` 工厂对象。，这是解决循环依赖?AOP 代理协同工作的关键。当 Bean 被实例化后（刚调完构造函数），Spring 会创建一?`ObjectFactory` 并将其放入三级缓存。这个工厂的 `getObject()` 方法负责返回?Bean 的早期引用（可能是原始对象，也可能是提前生成的代理对象），当检测到循环依赖需要注入一个尚未完全初始化?Bean 时，就会调用这个工厂来获取早期引用?
+- `earlySingletonObjects` (二级缓存)：存放的是提前暴露的 Bean 的原始对象引??早期代理对象引用，专门用来处理循环依赖。
+
+当一?Bean 还在创建过程中（尚未完成属性填充和初始化），但它的引用需要被注入到另一?Bean 时，就暂时放在这里。
+
+此?Bean 已实例化（调用了构造函数），但属性尚未填充，初始化方法尚未执行，它可能是一个原始对象，也可能是一个为了解?AOP 代理问题而提前生成的代理对象?
+- `singletonFactories` (三级缓存)：存放的?Bean ?`ObjectFactory` 工厂对象。，这是解决循环依赖?AOP 代理协同工作的关键。
+
+当 Bean 被实例化后（刚调完构造函数），Spring 会创建一?`ObjectFactory` 并将其放入三级缓存。
+
+这个工厂的 `getObject()` 方法负责返回?Bean 的早期引用（可能是原始对象，也可能是提前生成的代理对象），当检测到循环依赖需要注入一个尚未完全初始化?Bean 时，就会调用这个工厂来获取早期引用?
  Spring 通过 三级缓存 ?提前暴露未完全初始化的对象引?的机制来解决单例作用?Bean ?setter 注入方式的循环依赖问题?
 
  假设存在两个相互依赖的单例Bean：`BeanA` 依赖 `BeanB`，同?`BeanB` 也依?`BeanA`。当Spring容器启动时，它会按照以下流程处理?
 
  - 第一步：创建`BeanA`的实例并提前暴露工厂?
- Spring首先调用`BeanA`的构造函数进行实例化，此时得到一个原始对象（尚未填充属性）。紧接着，Spring会将一个特殊的`ObjectFactory`工厂对象存入第三级缓存（`singletonFactories`）。这个工厂的使命是：当其他Bean需要引用`BeanA`时，它能动态返回当前这个半成品的`BeanA`（可能是原始对象，也可能是为应对AOP而提前生成的代理对象）。此时`BeanA`的状态是"已实例化但未初始?，像一座刚搭好钢筋骨架的大楼?
+Spring首先调用`BeanA`的构造函数进行实例化，此时得到一个原始对象（尚未填充属性）。
+
+紧接着，Spring会将一个特殊的`ObjectFactory`工厂对象存入第三级缓存（`singletonFactories`）。
+
+这个工厂的使命是：当其他Bean需要引用`BeanA`时，它能动态返回当前这个半成品的`BeanA`（可能是原始对象，也可能是为应对AOP而提前生成的代理对象）。
+
+此时`BeanA`的状态是"已实例化但未初始?，像一座刚搭好钢筋骨架的大楼?
 
  - 第二步：填充`BeanA`的属性时触发`BeanB`的创建?
  Spring开始为`BeanA`注入属性，发现它依赖`BeanB`。于是容器转向创建`BeanB`，同样先调用其构造函数实例化，并将`BeanB`对应的`ObjectFactory`工厂存入三级缓存。至此，三级缓存中同时存在`BeanA`和`BeanB`的工厂，它们都代表未完成初始化的半成品?
@@ -282,13 +301,27 @@ public class OrderService {
  - 在一级缓存（存放完整Bean）中未找到`BeanA`?
  - 在二级缓存（存放已暴露的早期引用）中同样未命中；
  - 最终在三级缓存中定位到`BeanA`的工厂?
- Spring立即调用该工厂的`getObject()`方法。这个方法会执行关键决策：若`BeanA`需要AOP代理，则动态生成代理对象（即使`BeanA`还未初始化）；若无需代理，则直接返回原始对象。得到的这个早期引用（可能是代理）被放入二级缓存（`earlySingletonObjects`），同时从三级缓存清理工厂条目。最后，Spring将这个早期引用注入到`BeanB`的属性中。至此，`BeanB`成功持有`BeanA`的引用——尽管`BeanA`此时仍是个半成品?
+Spring立即调用该工厂的`getObject()`方法。
+
+这个方法会执行关键决策：若`BeanA`需要AOP代理，则动态生成代理对象（即使`BeanA`还未初始化）；若无需代理，则直接返回原始对象。
+
+得到的这个早期引用（可能是代理）被放入二级缓存（`earlySingletonObjects`），同时从三级缓存清理工厂条目。
+
+最后，Spring将这个早期引用注入到`BeanB`的属性中。
+
+至此，`BeanB`成功持有`BeanA`的引用——尽管`BeanA`此时仍是个半成品?
 
  - 第四步：完成`BeanB`的生命周期?
  `BeanB`获得所有依赖后，Spring执行其初始化方法（如`@PostConstruct`），将其转化为完整可用的Bean。随后，`BeanB`被提升至一级缓存（`singletonObjects`），二级和三级缓存中关于`BeanB`的临时条目均被清除。此时`BeanB`已准备就绪，可被其他对象使用?
 
  - 第五步：回溯完成`BeanA`的构建?
- 随着`BeanB`创建完毕，流程回溯到最初中断的`BeanA`属性注入环节。Spring将已完备的`BeanB`实例注入`BeanA`，接着执行`BeanA`的初始化方法。这里有个精妙细节：若之前为`BeanA`生成过早期代理，Spring会直接复用二级缓存中的代理对象作为最终Bean，而非重复创建。最终，完全初始化的`BeanA`（可能是原始对象或代理）入驻一级缓存，其早期引用从二级缓存移除。至此循环闭环完成，两个Bean皆可用?
+随着`BeanB`创建完毕，流程回溯到最初中断的`BeanA`属性注入环节。Spring将已完备的`BeanB`实例注入`BeanA`，接着执行`BeanA`的初始化方法。
+
+这里有个精妙细节：若之前为`BeanA`生成过早期代理，Spring会直接复用二级缓存中的代理对象作为最终Bean，而非重复创建。
+
+最终，完全初始化的`BeanA`（可能是原始对象或代理）入驻一级缓存，其早期引用从二级缓存移除。
+
+至此循环闭环完成，两个Bean皆可用?
 
  三级缓存的设计的精髓?
 
@@ -303,15 +336,29 @@ public class OrderService {
 
  举个例子：假?Bean A 依赖 B，B 又依?A，且 A 需要被动态代理（比如加了 `@Transactional`）。如果只有二级缓存，?B 创建时去注入 A，拿到的?A 的原始对象。但 A 在后续初始化完成后才会生成代理对象，结果就是：B 拿着原始对象 A，?Spring 容器里存的是代理对象 A —?同一?Bean 出现了两个不同实例，这直接违反了单例的核心约束?
 
- 三级缓存中的 `ObjectFactory` 就是解决这个问题的关键。它不是直接缓存对象，而是存了一个能生产对象的工厂。当发生循环依赖时，调用这个工厂?`getObject()` 方法，这?Spring 会智能判断：如果这个 Bean 最终需要代理，就提前生成代理对象并放入二级缓存；如果不需要代理，就返回原始对象。这样一来，B 注入?A 就是最终形态（可能是代理对象），后?A 初始化完成后也不会再创建新代理，保证了对象全局唯一?
+三级缓存中的 `ObjectFactory` 就是解决这个问题的关键。
+
+它不是直接缓存对象，而是存了一个能生产对象的工厂。
+
+当发生循环依赖时，调用这个工厂?`getObject()` 方法，这?Spring 会智能判断：如果这个 Bean 最终需要代理，就提前生成代理对象并放入二级缓存；如果不需要代理，就返回原始对象。
+
+这样一来，B 注入?A 就是最终形态（可能是代理对象），后?A 初始化完成后也不会再创建新代理，保证了对象全局唯一?
 
  简单说，三级缓存的本质?**“按需延迟生成正确引用?* 。它既维持了 Bean 生命周期的完整性（正常流程在初始化后生成代理），又在循环依赖时特殊处理，避免逻辑矛盾。而二级缓存缺乏这种动态决策能力，因此无法替代三级缓存?
 
  ### [#](#spring三级缓存的数据结构是什? spring三级缓存的数据结构是什么？ 三者都?Map 类型的缓存，?value 的类型不同：
 
  - **一级缓存（Singleton Objects?*：`Map&lt;String, Object&gt;`，存储的是已经完全初始化好的 bean，即完全准备好可以使用的 bean 实例。键?bean 的名称，值是 bean 的实例。对?`DefaultSingletonBeanRegistry` 类中?`singletonObjects` 属性?
- - **二级缓存（Early Singleton Objects?*：`Map&lt;String, Object&gt;`，存储的是早期的 bean 引用，即已经实例化但还未完全初始化的 bean（可能是原始对象，也可能是为解决 AOP 循环依赖而提前生成的代理对象）。这?bean 已经被实例化，但可能还没有完成属性注入等操作。对?`DefaultSingletonBeanRegistry` 类中?`earlySingletonObjects` 属性?
- - **三级缓存（Singleton Factories?*：`Map&lt;String, ObjectFactory&lt;?&gt;&gt;`，注?value 不是 bean 实例本身，而是一?`ObjectFactory` 工厂函数。当一?bean 正在创建过程中被其他 bean 依赖时，就会调用这个工厂?`getObject()` 方法生成早期引用（必要时会提前生成代理），从而解决循环依赖与 AOP 协同的问题。对?`DefaultSingletonBeanRegistry` 类中?`singletonFactories` 属性?
+- **二级缓存（Early Singleton Objects?*：`Map&lt;String, Object&gt;`，存储的是早期的 bean 引用，即已经实例化但还未完全初始化的 bean（可能是原始对象，也可能是为解决 AOP 循环依赖而提前生成的代理对象）。
+
+这?bean 已经被实例化，但可能还没有完成属性注入等操作。
+
+对?`DefaultSingletonBeanRegistry` 类中?`earlySingletonObjects` 属性?
+- **三级缓存（Singleton Factories?*：`Map&lt;String, ObjectFactory&lt;?&gt;&gt;`，注?value 不是 bean 实例本身，而是一?`ObjectFactory` 工厂函数。
+
+当一?bean 正在创建过程中被其他 bean 依赖时，就会调用这个工厂?`getObject()` 方法生成早期引用（必要时会提前生成代理），从而解决循环依赖与 AOP 协同的问题。
+
+对?`DefaultSingletonBeanRegistry` 类中?`singletonFactories` 属性?
  ### [#](#spring框架中都用到了哪些设计模? spring框架中都用到了哪些设计模?- **工厂设计模式** : Spring使用工厂模式通过 BeanFactory、ApplicationContext 创建 bean 对象?
  - **代理设计模式** : Spring AOP 功能的实现?
  - **单例设计模式** : Spring 中的 Bean 默认都是单例的?
@@ -389,7 +436,11 @@ public class MyServiceImpl {
 }
 > @Repository
 
- @Repository注解用于标记一个类作为数据访问层的组件。它也是@Component注解的特例，用于标记数据访问层的bean。加上这个注解后，Spring 会通过 `PersistenceExceptionTranslationPostProcessor` 对持久层抛出的异常进行统一翻译（转换为 Spring ?`DataAccessException` 体系），忽略它会丢失这层异常转换能力?
+@Repository注解用于标记一个类作为数据访问层的组件。
+
+它也是@Component注解的特例，用于标记数据访问层的bean。
+
+加上这个注解后，Spring 会通过 `PersistenceExceptionTranslationPostProcessor` 对持久层抛出的异常进行统一翻译（转换为 Spring ?`DataAccessException` 体系），忽略它会丢失这层异常转换能力?
 
  
 @Repository
@@ -427,7 +478,9 @@ public class MyController {
  - Bean实例化后对将Bean的引入和值注入到Bean的属性中
  - 如果Bean实现了BeanNameAware接口的话，Spring将Bean的Id传递给setBeanName()方法
  - 如果Bean实现了BeanFactoryAware接口的话，Spring将调用setBeanFactory()方法，将BeanFactory容器实例传入
- - 如果 Bean 实现?BeanPostProcessor 接口，Spring 就将调用它们?`postProcessBeforeInitialization()` 方法。在这一阶段，`ApplicationContextAware` ?`setApplicationContext()` 由内置的 `ApplicationContextAwareProcessor` 完成调用?*`@PostConstruct` 注解标注的方法也是在这一阶段?`CommonAnnotationBeanPostProcessor` 调用的（早于 `afterPropertiesSet`?*?
+- 如果 Bean 实现?BeanPostProcessor 接口，Spring 就将调用它们?`postProcessBeforeInitialization()` 方法。
+
+在这一阶段，`ApplicationContextAware` ?`setApplicationContext()` 由内置的 `ApplicationContextAwareProcessor` 完成调用?*`@PostConstruct` 注解标注的方法也是在这一阶段?`CommonAnnotationBeanPostProcessor` 调用的（早于 `afterPropertiesSet`?*?
  - 如果 Bean 实现?InitializingBean 接口，Spring 将调用其 `afterPropertiesSet()` 方法；类似地，如?bean 使用 `init-method` 声明了初始化方法，该方法也会被调用?
  - 如果 Bean 实现?BeanPostProcessor 接口，Spring 就将调用它们?`postProcessAfterInitialization()` 方法?
  - 此时，Bean 已经准备就绪，可以被应用程序使用了。它们将一直驻留在应用上下文中，直到应用上下文被销毁?
@@ -450,7 +503,9 @@ public class MyController {
 **初始化流?* | 完整执行生命周期流程（属性注入、Aware接口、初始化方法等）?| 每次创建新实例时都会完整执行生命周期流程（仅到初始化完成）?| 
 **销毁时?* | 容器关闭时销毁，触发`DisposableBean`或`destroy-method`?| **容器不管理销?*，需由调用者自行释放资源（Spring不跟踪实例）?| 
 **内存占用** | 单实例常驻内存，高效但需注意线程安全?| 每次请求生成新实例，内存开销较大，需手动管理资源释放?| 
-**适用场景** | 无状态服务（如Service、DAO层）?| 有状态对象（如用户会话、临时计算对象）?| ### [#](#spring-bean的作用域有哪? Spring bean的作用域有哪些？ Spring框架中的Bean作用域（Scope）定义了Bean的生命周期和可见性。不同的作用域影响着Spring容器如何管理这些Bean的实例，包括它们如何被创建、如何被销毁以及它们是否可以被多个用户共享?
+**适用场景** | 无状态服务（如Service、DAO层）?| 有状态对象（如用户会话、临时计算对象）?| ### [#](#spring-bean的作用域有哪? Spring bean的作用域有哪些？ Spring框架中的Bean作用域（Scope）定义了Bean的生命周期和可见性。
+
+不同的作用域影响着Spring容器如何管理这些Bean的实例，包括它们如何被创建、如何被销毁以及它们是否可以被多个用户共享?
 
  Spring支持几种不同的作用域，以满足不同的应用场景需求。以下是一些主要的Bean作用域：
 
@@ -563,7 +618,13 @@ public class AppConfig {
  ## [#](#springmvc) SpringMVC ### [#](#mvc分层介绍一? MVC分层介绍一?MVC全名是Model View Controller，是模型(model)－视?view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑?
 
  - **视图(view)?为用户提供使用界面，与用户直接进行交互?*
- - **模型(model)?代表一个存取数据的对象?JAVA POJO（Plain Old Java Object，简单java对象）。它也可以带有逻辑，主要用于承载数据，并对用户提交请求进行计算的模块。模型分为两类，一类称为数据承?Bean，一类称为业务处理Bean。所谓数据承?Bean 是指实体类（如：User类），专门为用户承载业务数据的；而业务处?Bean 则是指Service ?Dao 对象?专门用于处理用户提交请求的?*
+- **模型(model)?代表一个存取数据的对象?JAVA POJO（Plain Old Java Object，简单java对象）。
+
+它也可以带有逻辑，主要用于承载数据，并对用户提交请求进行计算的模块。
+
+模型分为两类，一类称为数据承?Bean，一类称为业务处理Bean。
+
+所谓数据承?Bean 是指实体类（如：User类），专门为用户承载业务数据的；而业务处?Bean 则是指Service ?Dao 对象?专门用于处理用户提交请求的?*
  - **控制?controller)?用于将用户请求转发给相应?Model 进行处理，并根据 Model 的计算结果向用户提供相应响应。它使视图与模型分离?*
  ![image](https://cdn.xiaolincoding.com//picgo/1713944902120-e35c2b4f-e290-4973-aa1a-3193af3bb371.png)
 
@@ -670,7 +731,9 @@ public class AppConfig {
 
  SpringBoot 的自动装配原理是基于Spring Framework的条件化配置和@EnableAutoConfiguration注解实现的。这种机制允许开发者在项目中引入相关的依赖，SpringBoot 将根据这些依赖自动配置应用程序的上下文和功能?
 
- SpringBoot 定义了一套接口规范，这套规范规定：SpringBoot 在启动时会扫描外部引?jar 包中的自动配置元数据文件（Spring Boot 2.7 以前?`META-INF/spring.factories`?.7 及以后是 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`），将文件中配置的类型信息加载到 Spring 容器（此处涉及到 JVM 类加载机制与 Spring 的容器知识），并执行类中定义的各种操作。对于外?jar 来说，只需要按?SpringBoot 定义的标准，就能将自己的功能装置?SpringBoot?
+SpringBoot 定义了一套接口规范，这套规范规定：SpringBoot 在启动时会扫描外部引?jar 包中的自动配置元数据文件（Spring Boot 2.7 以前?`META-INF/spring.factories`?.7 及以后是 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`），将文件中配置的类型信息加载到 Spring 容器（此处涉及到 JVM 类加载机制与 Spring 的容器知识），并执行类中定义的各种操作。
+
+对于外?jar 来说，只需要按?SpringBoot 定义的标准，就能将自己的功能装置?SpringBoot?
 
  > 注意：从 Spring Boot 2.7 开始，官方推荐使用 `AutoConfiguration.imports` 文件来注册自动配置类，并配套新增?`@AutoConfiguration` 注解；`spring.factories` 中的自动配置条目?2.7 中被 **@Deprecated**?*Spring Boot 3.0 已完全不再从 `spring.factories` 加载自动配置?*（该文件仅保留用于其他类型的扩展点）?
 
@@ -695,8 +758,7 @@ public class AppConfig {
 
  ![image](https://cdn.xiaolincoding.com//picgo/1719495511568-bc5f9e21-9e2c-4888-91a8-4048058ff408.png)
 
- - `@AutoConfigurationPackage`：记录主启动类所在的包路径（注册一?`AutoConfigurationPackages` Bean），供后续自动配置（?JPA ?`@EntityScan`、MyBatis ?`@MapperScan` 等）使用，让它们知道默认应扫描哪个包?*注意：扫?`@Component` 等组件并注册到容器是 `@ComponentScan` 的职责，不是这个注解?*
- - @Import({AutoConfigurationImportSelector.class})，是自动装配的核心，接下来分析一下这个注?
+- `@AutoConfigurationPackage`：记录主启动类所在的包路径（注册一?`AutoConfigurationPackages` Bean），供后续自动配置（?JPA ?`@EntityScan`、MyBatis ?`@MapperScan` 等）使用，让它们知道默认应扫描哪个包?*注意：扫?`@Component` 等组件并注册到容器是 `@ComponentScan` 的职责，不是这个注解?* - @Import({AutoConfigurationImportSelector.class})，是自动装配的核心，接下来分析一下这个注?
  AutoConfigurationImportSelector ?Spring Boot 中一个重要的类，它实现了 ImportSelector 接口，用于实现自动配置的选择和导入。具体来说，它通过分析项目的类路径和条件来决定应该导入哪些自动配置类?
 
  代码太多，选取部分主要功能的代码：
@@ -767,7 +829,9 @@ public class AutoConfigurationImportSelector implements DeferredImportSelector, 
 }
 梳理一下，以下是`AutoConfigurationImportSelector`的主要工作：
 
- - 扫描类路? 在应用程序启动时，`AutoConfigurationImportSelector` 会扫描类路径上的元数据文件（Spring Boot 2.7 以前?`META-INF/spring.factories`?.7+ ?`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`），这些文件中包含了各种 Spring 配置和扩展的定义。在这里，它会查找所有在 `EnableAutoConfiguration` 键下登记的自动配置类，具体的实现?`getCandidateConfigurations` 方法?
+- 扫描类路? 在应用程序启动时，`AutoConfigurationImportSelector` 会扫描类路径上的元数据文件（Spring Boot 2.7 以前?`META-INF/spring.factories`?.7+ ?`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`），这些文件中包含了各种 Spring 配置和扩展的定义。
+
+在这里，它会查找所有在 `EnableAutoConfiguration` 键下登记的自动配置类，具体的实现?`getCandidateConfigurations` 方法?
 
  - 条件判断: 对于每一个发现的自动配置类，`AutoConfigurationImportSelector` 会使用条件判断机制（通常是通过 `@ConditionalOnXxx`注解）来确定是否满足导入条件。这些条件可以是配置属性、类是否存在、Bean是否存在等等?
 
@@ -776,8 +840,16 @@ public class AutoConfigurationImportSelector implements DeferredImportSelector, 
  ### [#](#说几个启动器-starter) 说几个启动器（starter)?- **spring-boot-starter-web**：这是最常用的起步依赖之一，它包含了Spring MVC和Tomcat嵌入式服务器，用于快速构建Web应用程序?
  - **spring-boot-starter-security**：提供了Spring Security的基本配置，帮助开发者快速实现应用的安全性，包括认证和授权功能?
  - **mybatis-spring-boot-starter**：这个Starter是由MyBatis团队提供的，用于简化在Spring Boot应用中集成MyBatis的过程。它自动配置了MyBatis的相关组件，包括SqlSessionFactory、MapperScannerConfigurer等，使得开发者能够快速地开始使用MyBatis进行数据库操作?
- - **spring-boot-starter-data-jpa** ?**spring-boot-starter-jdbc**：如果使用的?Java Persistence API (JPA) 进行数据库操作，那么应该使用 `spring-boot-starter-data-jpa`。这?Starter 包含?Hibernate（JPA 实现）、Spring Data JPA、HikariCP 连接池等必要的库?*注意：该 Starter 不包含具体数据库?JDBC 驱动，如要连?MySQL 还需另外引入 `mysql-connector-j` 依赖**，并?application.properties ?application.yml 中配?MySQL 的连接信息。如果倾向于直接使?JDBC 而不通过 JPA，那么可以使?`spring-boot-starter-jdbc`，它提供了基本的 JDBC 支持?
- - **spring-boot-starter-data-redis**：用于集?Redis 缓存和数据存储服务。这?Starter 包含了与 Redis 交互所需的客户端?*?Spring Boot 2.0 起默认是 Lettuce 客户?*，它基于 Netty 实现，线程安全且支持响应式；如需使用 Jedis，需要在依赖中排?lettuce-core 并手动引?jedis），以及 Spring Data Redis 的支持，使得?Spring Boot 应用中使?Redis 变得非常便捷。同样地，需要在配置文件中设?Redis 服务器的连接详情?
+- **spring-boot-starter-data-jpa** ?**spring-boot-starter-jdbc**：如果使用的?Java Persistence API (JPA) 进行数据库操作，那么应该使用 `spring-boot-starter-data-jpa`。
+
+这?Starter 包含?Hibernate（JPA 实现）、Spring Data JPA、HikariCP 连接池等必要的库?*注意：该 Starter 不包含具体数据库?JDBC 驱动，如要连?MySQL 还需另外引入 `mysql-connector-j` 依赖**，并?application.properties ?application.yml 中配?MySQL 的连接信息。
+
+如果倾向于直接使?JDBC 而不通过 JPA，那么可以使?`spring-boot-starter-jdbc`，它提供了基本的 JDBC 支持?
+- **spring-boot-starter-data-redis**：用于集?Redis 缓存和数据存储服务。
+
+这?Starter 包含了与 Redis 交互所需的客户端?*?Spring Boot 2.0 起默认是 Lettuce 客户?*，它基于 Netty 实现，线程安全且支持响应式；如需使用 Jedis，需要在依赖中排?lettuce-core 并手动引?jedis），以及 Spring Data Redis 的支持，使得?Spring Boot 应用中使?Redis 变得非常便捷。
+
+同样地，需要在配置文件中设?Redis 服务器的连接详情?
  - **spring-boot-starter-test**：包含了单元测试和集成测试所需的库，如JUnit, Spring Test, AssertJ等，便于进行测试驱动开?TDD)?
  ### [#](#写过springboot-starter? 写过SpringBoot starter? > 步骤1: 创建Maven项目
 
@@ -917,7 +989,11 @@ public class UserServiceImpl implements UserService {
  userRepository.save(user);
  }
 }
-这样，当调用 saveUser() 方法时，Spring 就会自动为该方法开启一个事务。如果方法执行成功，事务会自动提交；如果方法抛出 **RuntimeException ?Error**，事务会自动回滚?*注意：`@Transactional` 默认只对 RuntimeException ?Error 触发回滚，受检异常（checked Exception，如 IOException）默认不会回滚，如果希望受检异常也回滚，需要配?`@Transactional(rollbackFor = Exception.class)`**。另外，Spring Boot 通过 `TransactionAutoConfiguration` 已自动启用事务管理，无需手动添加 `@EnableTransactionManagement`?
+这样，当调用 saveUser() 方法时，Spring 就会自动为该方法开启一个事务。
+
+如果方法执行成功，事务会自动提交；如果方法抛出 **RuntimeException ?Error**，事务会自动回滚?*注意：`@Transactional` 默认只对 RuntimeException ?Error 触发回滚，受检异常（checked Exception，如 IOException）默认不会回滚，如果希望受检异常也回滚，需要配?`@Transactional(rollbackFor = Exception.class)`**。
+
+另外，Spring Boot 通过 `TransactionAutoConfiguration` 已自动启用事务管理，无需手动添加 `@EnableTransactionManagement`?
 
  事务相关的依赖通常通过 `spring-boot-starter-jdbc` ?`spring-boot-starter-data-jpa` 引入（它们会带入 `PlatformTransactionManager`）：
 
@@ -943,7 +1019,9 @@ public class UserServiceImpl implements UserService {
 &lt;/dependency&gt;
 > 自动配置
 
- Spring Boot 的自动配置机制会根据类路径下的依赖和开发者的配置，自动创建和配置应用所需?Bean。它通过 `@EnableAutoConfiguration` 注解启用，该注解会触?Spring Boot 去查找对应的自动配置元数据文件（2.7 以前?`META-INF/spring.factories`?.7 及以后是 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`，Spring Boot 3.0 已彻底移除对 `spring.factories` 自动配置条目的支持）?
+Spring Boot 的自动配置机制会根据类路径下的依赖和开发者的配置，自动创建和配置应用所需?Bean。
+
+它通过 `@EnableAutoConfiguration` 注解启用，该注解会触?Spring Boot 去查找对应的自动配置元数据文件（2.7 以前?`META-INF/spring.factories`?.7 及以后是 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`，Spring Boot 3.0 已彻底移除对 `spring.factories` 自动配置条目的支持）?
 
  元数据文件中定义了一系列自动配置类，Spring Boot 会根据当前项目的依赖情况，选择合适的自动配置类进行加载。例如，如果项目中包?`spring-boot-starter-web` 依赖，Spring Boot 会加?`WebMvcAutoConfiguration` 类，该类会自动配?Spring MVC 的相关组件，?DispatcherServlet、视图解析器等?
 
@@ -972,14 +1050,24 @@ public class WebMvcAutoConfiguration {
 **执行顺序** | 在Servlet之前执行 | 在DispatcherServlet之后、Controller方法前后执行 | 
 **依赖注入支持** | 无法直接注入Spring Bean（需间接获取?| 支持自动注入Spring Bean | 
 **触发时机** | `doFilter()`在请求前/响应后被调用 | `preHandle`、`postHandle`、`afterCompletion`分阶段触?| 
-**适用场景** | 全局请求处理（编码、日志、安全） | 业务逻辑相关的处理（权限、参数校验） | 过滤器是 Java Servlet 规范中的一部分，它可以对进?Servlet 容器的请求和响应进行预处理和后处理。过滤器通过实现 `javax.servlet.Filter`（Spring Boot 3.x 起为 `jakarta.servlet.Filter`）接口，并重写其中的 `init`、`doFilter` ?`destroy` 方法来完成相应的逻辑。当请求进入 Servlet 容器时，会按照配置的顺序依次经过各个过滤器，然后再到达目?Servlet 或控制器；响应返回时，也会按照相反的顺序再次经过这些过滤器?
+**适用场景** | 全局请求处理（编码、日志、安全） | 业务逻辑相关的处理（权限、参数校验） | 过滤器是 Java Servlet 规范中的一部分，它可以对进?Servlet 容器的请求和响应进行预处理和后处理。
 
- 拦截器是 Spring 框架提供的一种机制，它可以对控制器方法的执行进行拦截。拦截器通过实现 `org.springframework.web.servlet.HandlerInterceptor` 接口，并重写其中?`preHandle`、`postHandle` ?`afterCompletion` 方法来完成相应的逻辑。当请求到达控制器时，会先经过拦截器?`preHandle` 方法，如果该方法返回 `true`，则继续执行后续的控制器方法和其他拦截器；在控制器方法执行完成后，会调用拦截器的 `postHandle` 方法；最后，在请求处理完成后，会调用拦截器的 `afterCompletion` 方法?
+过滤器通过实现 `javax.servlet.Filter`（Spring Boot 3.x 起为 `jakarta.servlet.Filter`）接口，并重写其中的 `init`、`doFilter` ?`destroy` 方法来完成相应的逻辑。
+
+当请求进入 Servlet 容器时，会按照配置的顺序依次经过各个过滤器，然后再到达目?Servlet 或控制器；响应返回时，也会按照相反的顺序再次经过这些过滤器?
+
+拦截器是 Spring 框架提供的一种机制，它可以对控制器方法的执行进行拦截。
+
+拦截器通过实现 `org.springframework.web.servlet.HandlerInterceptor` 接口，并重写其中?`preHandle`、`postHandle` ?`afterCompletion` 方法来完成相应的逻辑。
+
+当请求到达控制器时，会先经过拦截器?`preHandle` 方法，如果该方法返回 `true`，则继续执行后续的控制器方法和其他拦截器；在控制器方法执行完成后，会调用拦截器的 `postHandle` 方法；最后，在请求处理完成后，会调用拦截器的 `afterCompletion` 方法?
 
  过滤器和拦截器的区别如下?
 
  - **所属规?*：过滤器?Java Servlet 规范的一部分，而拦截器?Spring 框架提供的机制?
- - **执行顺序**：过滤器在请求进?Servlet 容器后，在到?DispatcherServlet 之前执行；拦截器在请求进?DispatcherServlet 之后、Controller 方法执行之前?`preHandle` 触发，方法执行后视图渲染前由 `postHandle` 触发，视图渲染完成后?`afterCompletion` 触发。完整链路：Filter ?DispatcherServlet ?Interceptor.preHandle ?Controller ?Interceptor.postHandle ?View ?Interceptor.afterCompletion ?Filter 后置?
+- **执行顺序**：过滤器在请求进?Servlet 容器后，在到?DispatcherServlet 之前执行；拦截器在请求进?DispatcherServlet 之后、Controller 方法执行之前?`preHandle` 触发，方法执行后视图渲染前由 `postHandle` 触发，视图渲染完成后?`afterCompletion` 触发。
+
+完整链路：Filter ?DispatcherServlet ?Interceptor.preHandle ?Controller ?Interceptor.postHandle ?View ?Interceptor.afterCompletion ?Filter 后置?
  - **使用范围**：过滤器可以对所有类型的请求进行过滤，包括静态资源请求；拦截器只能对 Spring MVC 控制器的请求进行拦截?
  - **功能特?*：过滤器主要用于对请求和响应进行预处理和后处理，如字符编码处理、请求日志记录等；拦截器可以更细粒度地控制控制器方法的执行，如权限验证、性能监控等?
  ## [#](#mybatis) Mybatis ### [#](#与传统的jdbc相比-mybatis的优? 与传统的JDBC相比，MyBatis的优点？ - 基于 SQL 语句编程，相当灵活，不会对应用程序或者数据库的现有设计造成?何影响，SQL 写在 XML 里，解除 sql 与程序代码的耦合，便于统一管理；提?XML 标签，支持编写动?SQL 语句，并可重用?
@@ -1046,7 +1134,11 @@ public class MyBatisConfig {
 ```
 ### [#](#还记得jdbc连接数据库的步骤? 还记得JDBC连接数据库的步骤吗？ 使用Java JDBC连接数据库的一般步骤如下：
 
- - **加载数据库驱动程?*：在使用 JDBC 连接数据库之前，需要加载相应的数据库驱动程序。可以通过 `Class.forName("com.mysql.cj.jdbc.Driver")` 来加?MySQL 8.x 的驱动程序（MySQL 5.x 是旧驱动 `com.mysql.jdbc.Driver`，已废弃；另?JDBC 4.0+ 起驱动会通过 SPI 自动加载，`Class.forName` 不再是必需的）。不同数据库的驱动类名会有所不同?
+- **加载数据库驱动程?*：在使用 JDBC 连接数据库之前，需要加载相应的数据库驱动程序。
+
+可以通过 `Class.forName("com.mysql.cj.jdbc.Driver")` 来加?MySQL 8.x 的驱动程序（MySQL 5.x 是旧驱动 `com.mysql.jdbc.Driver`，已废弃；另?JDBC 4.0+ 起驱动会通过 SPI 自动加载，`Class.forName` 不再是必需的）。
+
+不同数据库的驱动类名会有所不同?
  - **建立数据库连?*：使?DriverManager 类的 getConnection(url, username, password) 方法来连接数据库，其中url是数据库的连接字符串（包括数据库类型、主机、端口等）、username是数据库用户名，password是密码?
  - **创建 Statement 对象**：通过 Connection 对象?createStatement() 方法创建一?Statement 对象，用于执?SQL 查询或更新操作?
  - **执行 SQL 查询或更新操?*：使?Statement 对象?executeQuery(sql) 方法来执?SELECT 查询操作，或者使?executeUpdate(sql) 方法来执?INSERT、UPDATE ?DELETE 操作?
@@ -1166,9 +1258,19 @@ User user = userMapper.selectUserById(1);
  微服务常用的组件?
 
  - **注册中心**：注册中心是微服务架构最核心的组件。它起到的作用是对新节点的注册与状态维护，**解决了「如何发现新节点以及检查各节点的运行状态的问题?*。微服务节点在启动时会将自己的服务名称、IP、端口等信息在注册中心登记，注册中心会定时检查该节点的运行状态。注册中心通常会采用心跳机制最大程度保证已登记过的服务节点都是可用的?
- - **负载均衡**：负载均?*解决了「如何发现服务及负载均衡如何实现的问题?*，通常微服务在互相调用时，并不是直接通过IP、端口进行访问调用。而是先通过服务名在注册中心查询该服务拥有哪些节点，注册中心将该服务可用节点列表返回给服务调用者，这个过程叫服务发现，因服务高可用的要求，服务调用者会接收到多个节点，必须要从中进行选择。因此服务调用者一端必须内置负载均衡器，通过负载均衡策略选择合适的节点发起实质性的通信请求?
+- **负载均衡**：负载均?*解决了「如何发现服务及负载均衡如何实现的问题?*，通常微服务在互相调用时，并不是直接通过IP、端口进行访问调用。
+
+而是先通过服务名在注册中心查询该服务拥有哪些节点，注册中心将该服务可用节点列表返回给服务调用者，这个过程叫服务发现，因服务高可用的要求，服务调用者会接收到多个节点，必须要从中进行选择。
+
+因此服务调用者一端必须内置负载均衡器，通过负载均衡策略选择合适的节点发起实质性的通信请求?
  - **服务通信**：服务通信组件解决了?*服务间如何进行消息通信的问?*」，服务间通信采用轻量级协议，通常是HTTP RESTful风格。但因为RESTful风格过于灵活，必须加以约束，通常应用时对其封装。例如在SpringCloud中就提供了Feign和RestTemplate两种技术屏蔽底层的实现细节，所有开发者都是基于封装后统一的SDK进行开发，有利于团队间的相互合作?
- - **配置中心**：配置中心主要解决了?*如何集中管理各节点配置文件的问题**」，在微服务架构下，所有的微服务节点都包含自己的各种配置文件，如jdbc配置、自定义配置、环境配置、运行参数配置等。要知道有的微服务可能可能有几十个节点，如果将这些配置文件分散存储在节点上，发生配置更改就需要逐个节点调整，将给运维人员带来巨大的压力。配置中心便由此而生，通过部署配置中心服务器，将各节点配置文件从服务中剥离，集中转存到配置中心。一般配置中心都有UI界面，方便实现大规模集群配置调整?
+- **配置中心**：配置中心主要解决了?*如何集中管理各节点配置文件的问题**」，在微服务架构下，所有的微服务节点都包含自己的各种配置文件，如jdbc配置、自定义配置、环境配置、运行参数配置等。
+
+要知道有的微服务可能可能有几十个节点，如果将这些配置文件分散存储在节点上，发生配置更改就需要逐个节点调整，将给运维人员带来巨大的压力。
+
+配置中心便由此而生，通过部署配置中心服务器，将各节点配置文件从服务中剥离，集中转存到配置中心。
+
+一般配置中心都有UI界面，方便实现大规模集群配置调整?
  - **集中式日志管?*：集中式日志主要是解决了?*如何收集各节点日志并统一管理的问?*」。微服务架构默认将应用日志分别保存在部署节点上，当需要对日志数据和操作数据进行数据分析和数据统计时，必须收集所有节点的日志数据。那么怎么高效收集所有节点的日志数据呢？业内常见的方案有ELK、EFK。通过搭建独立的日志收集系统，定时抓取各节点增量日志形成有效的统计报表，为统计和分析提供数据支撑?
  - 分布式链路追踪：分布式链路追踪解决了?*如何直观的了解各节点间的调用链路的问?*」。系统中一个复杂的业务流程，可能会出现连续调用多个微服务，我们需要了解完整的业务逻辑涉及的每个微服务的运行状态，通过可视化链路图展现，可以帮助开发人员快速分析系统瓶颈及出错的服务?
  - **服务保护**：服务保护主要是解决了?*如何对系统进行链路保护，避免服务雪崩的问?*」。在业务运行时，微服务间互相调用支撑，如果某个微服务出现高延迟导致线程池满载，或是业务处理失败。这里就需要引入服务保护组件来实现高延迟服务的快速降级，避免系统崩溃?
@@ -1200,8 +1302,7 @@ User user = userMapper.selectUserById(1);
 
  所以，服务熔断的作用类似于我们家用的保险丝，当某服务出现不可用或响应超时的情况时，为了防止整个系统出现雪崩，暂时停止对该服务的调用?
 
- 在Spring Cloud框架里，熔断机制通过Hystrix实现。Hystrix 会监控微服务间调用的状况，默认配置下：在 **10 ?* 的滚动窗口内（`metrics.rollingStats.timeInMilliseconds=10000`），请求数达?**20** 次（`circuitBreaker.requestVolumeThreshold=20`）且错误率超?**50%**（`circuitBreaker.errorThresholdPercentage=50`）时，就会启动熔断机制?
-
+在Spring Cloud框架里，熔断机制通过Hystrix实现。Hystrix 会监控微服务间调用的状况，默认配置下：在 **10 ?* 的滚动窗口内（`metrics.rollingStats.timeInMilliseconds=10000`），请求数达?**20** 次（`circuitBreaker.requestVolumeThreshold=20`）且错误率超?**50%**（`circuitBreaker.errorThresholdPercentage=50`）时，就会启动熔断机制?
  ### [#](#介绍一下服务降? 介绍一下服务降?服务降级一般是指在服务器压力剧增的时候，根据实际业务使用情况以及流量，对一些服务和页面有策略的不处理或者用一种简单的方式进行处理，从?*释放服务器资源的资源以保证核心业务的正常高效运行?*
 
  服务器的资源是有限的，而请求是无限的。在用户使用即并发高峰期，会影响整体服务的性能，严重的话会导致宕机，以至于某些重要服务不可用。故高峰期为了保证核心功能服务的可用性，就需要对某些服务降级处理。可以理解为舍小保大

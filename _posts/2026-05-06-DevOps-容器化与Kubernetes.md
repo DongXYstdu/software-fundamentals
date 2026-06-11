@@ -742,22 +742,54 @@ spec:
 
 **Q1：容器和虚拟机的本质区别是什么？**
 
-A：本质区别在?*隔离边界**：虚拟机隔离在硬件层（独立的虚拟硬件、独立内核），容器隔离在操作系统层（共享宿主机内核，通过 Namespace 隔离进程视图，通过 Cgroup 限制资源）。这导致?1) 容器启动快（秒级 vs 分钟级）——不需要启动内核；(2) 容器轻量（MB vs GB）——不需要完整的 Guest OS?3) 容器密度高——共享内核，资源开销小；(4) 容器安全性弱——内核漏洞影响所有容器，逃逸风险更高。选择原则：强隔离需求（多租户、不可信代码）用虚拟机，快速交付和弹性伸缩用容器?
+A：本质区别在?*隔离边界**：虚拟机隔离在硬件层（独立的虚拟硬件、独立内核），容器隔离在操作系统层（共享宿主机内核，通过 Namespace 隔离进程视图，通过 Cgroup 限制资源）。
+
+这导致?1) 容器启动快（秒级 vs 分钟级）——不需要启动内核；
+
+(2) 容器轻量（MB vs GB）——不需要完整的 Guest OS?3) 容器密度高——共享内核，资源开销小；
+
+(4) 容器安全性弱——内核漏洞影响所有容器，逃逸风险更高。
+
+选择原则：强隔离需求（多租户、不可信代码）用虚拟机，快速交付和弹性伸缩用容器?
 
 **Q2：K8s ?Deployment ?StatefulSet 的区别？**
 
-A：核心区别在?*是否有状?*。Deployment 管理无状态应用（Pod 可互换）?1) Pod 名称随机（order-service-7b8f9c6d4-x2k7j）；(2) 没有固定网络标识（每次重建IP变化）；(3) 没有持久存储（重建后数据丢失）；(4) 扩缩容和滚动更新简单。StatefulSet 管理有状态应用（如数据库）：(1) Pod 名称有序（mysql-0, mysql-1）；(2) 固定网络标识（mysql-0.mysql-headless.default.svc.cluster.local）；(3) 持久存储与Pod绑定（PVC 不会随Pod删除）；(4) 有序部署和终止（0??）?*原则：能?Deployment 就不?StatefulSet**——数据库等有状态服务建议使用托管服务（RDS、Cloud SQL）而非自建?
+A：核心区别在?*是否有状?*。Deployment 管理无状态应用（Pod 可互换）?1) Pod 名称随机（order-service-7b8f9c6d4-x2k7j）；
+
+(2) 没有固定网络标识（每次重建IP变化）；
+
+(3) 没有持久存储（重建后数据丢失）；
+
+(4) 扩缩容和滚动更新简单。StatefulSet 管理有状态应用（如数据库）：(1) Pod 名称有序（mysql-0, mysql-1）；
+
+(2) 固定网络标识（mysql-0.mysql-headless.default.svc.cluster.local）；
+
+(3) 持久存储与Pod绑定（PVC 不会随Pod删除）；
+
+(4) 有序部署和终止（0??）?*原则：能?Deployment 就不?StatefulSet**——数据库等有状态服务建议使用托管服务（RDS、Cloud SQL）而非自建?
 
 **Q3：K8s ?Service ?Ingress 有什么区别？**
 
-A：Service 是四层（TCP/UDP）负载均衡，Ingress 是七层（HTTP/HTTPS）反向代理。Service 提供?1) 稳定?ClusterIP?2) Pod 负载均衡?3) 服务发现。Ingress ?Service 之上提供?1) 基于域名的路由（api.example.com ?order-service）；(2) 基于路径的路由（/orders ?order-service, /users ?user-service）；(3) TLS 终止?4) 限流、认证等七层能力?*简单场景用 Service（LoadBalancer/NodePort），复杂路由?Ingress**。生产环境推荐：Ingress（Nginx/Traefik? Service（ClusterIP），Ingress 处理外部流量，Service 处理内部通信?
+A：Service 是四层（TCP/UDP）负载均衡，Ingress 是七层（HTTP/HTTPS）反向代理。Service 提供?1) 稳定?ClusterIP?2) Pod 负载均衡?3) 服务发现。Ingress ?Service 之上提供?1) 基于域名的路由（api.example.com ?order-service）；
+
+(2) 基于路径的路由（/orders ?order-service, /users ?user-service）；
+
+(3) TLS 终止?4) 限流、认证等七层能力?*简单场景用 Service（LoadBalancer/NodePort），复杂路由?Ingress**。
+
+生产环境推荐：Ingress（Nginx/Traefik? Service（ClusterIP），Ingress 处理外部流量，Service 处理内部通信?
 
 **Q4：如何优?Docker 镜像大小?*
 
-A：五个关键策略：(1) **多阶段构?*：构建阶段用完整 JDK，运行阶段用 JRE ?Alpine 版本，镜像从 800MB 降到 150MB?2) **选择小基础镜像**：`eclipse-temurin:21-jre-alpine` ?`eclipse-temurin:21-jre` ?200MB?3) **合并 RUN 指令**：每?RUN 产生一层，合并减少层数和大小（`RUN apt-get update && apt-get install -y pkg && rm -rf /var/lib/apt/lists/*`）；(4) **利用构建缓存**：先 COPY 依赖文件（变化少），?COPY 源码（变化多），避免每次重新下载依赖?5) **.dockerignore**：排?`.git`、`node_modules`、`build` 等无关文件，加速构建并减小上下文?
+A：五个关键策略：(1) **多阶段构?*：构建阶段用完整 JDK，运行阶段用 JRE ?Alpine 版本，镜像从 800MB 降到 150MB?2) **选择小基础镜像**：`eclipse-temurin:21-jre-alpine` ?`eclipse-temurin:21-jre` ?200MB?3) **合并 RUN 指令**：每?RUN 产生一层，合并减少层数和大小（`RUN apt-get update && apt-get install -y pkg && rm -rf /var/lib/apt/lists/*`）；
+
+(4) **利用构建缓存**：先 COPY 依赖文件（变化少），?COPY 源码（变化多），避免每次重新下载依赖?5) **.dockerignore**：排?`.git`、`node_modules`、`build` 等无关文件，加速构建并减小上下文?
 
 **Q5：什么是 GitOps？和传统 CI/CD 有什么区别？**
 
-A：GitOps 的核心是**Git 作为唯一事实来源**——所有基础设施和应用配置都以声明式代码存储?Git 中，通过 Git 操作驱动部署。与传统 CI/CD 的区别：(1) **推?vs 拉取**：传?CI/CD ?Pipeline 推送变更到集群（需要集群凭证），GitOps 是集群内?Agent（如 ArgoCD）拉?Git 配置并同步（凭证在集群内）；(2) **声明?vs 命令?*：传统方式用 `kubectl apply` / `helm upgrade` 命令式部署，GitOps 声明期望状态，Agent 自动收敛?3) **审计和回?*：Git 历史就是完整的变更审计，回滚只需 `git revert`?4) **一致?*：Git 状?= 集群状态，漂移自动修复。GitOps 的优势在于安全（不需要在 CI 中存储集群凭证）和可审计，适合生产环境?
+A：GitOps 的核心是**Git 作为唯一事实来源**——所有基础设施和应用配置都以声明式代码存储?Git 中，通过 Git 操作驱动部署。
+
+与传统 CI/CD 的区别：(1) **推?vs 拉取**：传?CI/CD ?Pipeline 推送变更到集群（需要集群凭证），GitOps 是集群内?Agent（如 ArgoCD）拉?Git 配置并同步（凭证在集群内）；
+
+(2) **声明?vs 命令?*：传统方式用 `kubectl apply` / `helm upgrade` 命令式部署，GitOps 声明期望状态，Agent 自动收敛?3) **审计和回?*：Git 历史就是完整的变更审计，回滚只需 `git revert`?4) **一致?*：Git 状?= 集群状态，漂移自动修复。GitOps 的优势在于安全（不需要在 CI 中存储集群凭证）和可审计，适合生产环境?
 
 {% endraw %}

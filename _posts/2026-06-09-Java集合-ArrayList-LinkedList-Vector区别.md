@@ -206,7 +206,9 @@ List<String> list = new ArrayList<>(100000);
 
 ## 总结
 
-`ArrayList` 基于动态数组，随机访问 O(1)、尾部增?O(1)，适合查询为主的场景；`LinkedList` 基于双向链表，头部增?O(1) 但随机访?O(n)，适合频繁头部操作；`Vector` 虽然线程安全但使用粗粒度锁性能差，已被 `CopyOnWriteArrayList` 等并发集合替代。实际开发中，预估容量初始化 `ArrayList`，特殊场景再考虑 `LinkedList`?
+`ArrayList` 基于动态数组，随机访问 O(1)、尾部增?O(1)，适合查询为主的场景；`LinkedList` 基于双向链表，头部增?O(1) 但随机访?O(n)，适合频繁头部操作；`Vector` 虽然线程安全但使用粗粒度锁性能差，已被 `CopyOnWriteArrayList` 等并发集合替代。
+
+实际开发中，预估容量初始化 `ArrayList`，特殊场景再考虑 `LinkedList`?
 
 ---
 > 参考来源：[ArrayList、LinkedList ?Vector 的区别？](https://www.quanxiaoha.com/java-interview/arraylist-vs-linkedlist-vs-vector-difference)
