@@ -1,7 +1,8 @@
 ---
 title: 既然HTTP 协议，为什么还要有 WebSocket
 date: 2026-06-10 09:00:00 +0800
-categories: [计算机网? 小林图解]
+order: 5
+categories: [计算机网络]
 tags: [计算机网? 小林coding, 图解]
 ---
 > 来源：公众号@小白debug

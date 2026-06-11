@@ -1,7 +1,8 @@
 ---
 title: MySQL的架构是怎样的？
 date: 2026-06-18 09:00:00 +0800
-categories: [数据? MySQL]
+order: 301
+categories: [数据库, MySQL]
 tags: [数据? MySQL, 小林coding, 图解]
 ---
 > 原文地址： [面试官：MySQL 的架构是怎么样的？](https://mp.weixin.qq.com/s/tHyUw0ZDyijEwTYEfhPG6g)

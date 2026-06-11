@@ -1,7 +1,8 @@
 ---
 title: MySQL面试
 date: 2026-06-19 09:00:00 +0800
-categories: [MySQL]
+order: 301
+categories: [数据库, MySQL]
 tags: [MySQL, 面试, 八股, 小林coding]
 ---
 

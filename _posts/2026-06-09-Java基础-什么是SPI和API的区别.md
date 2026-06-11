@@ -1,7 +1,8 @@
 ---
 title: 什么是 SPI，和 API 有啥区别
 date: 2026-06-09 09:00:00 +0800
-categories: [Java, 基础]
+order: 2
+categories: [Java, Java基础]
 tags: [Java, 基础, 面试, 小哈学Java]
 ---
 一则或许对你有用的小广告

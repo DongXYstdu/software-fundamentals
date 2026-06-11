@@ -1,7 +1,8 @@
 ---
 title: Redis分布式锁是怎么实现的？
 date: 2026-06-18 09:00:00 +0800
-categories: [数据? Redis]
+order: 302
+categories: [数据库, Redis]
 tags: [数据? Redis, 小林coding, 图解]
 ---
 > 原文地址： [面试官：多节点争抢资源， Redis 分布式锁是怎么实现的？](https://mp.weixin.qq.com/s/SXDJpOphGTy1NLeEAL9FbA)

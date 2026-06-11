@@ -1,7 +1,8 @@
 ---
 title: tcp_tw_reuse 为什么默认是关闭的？
 date: 2026-06-10 09:00:00 +0800
-categories: [计算机网? TCP]
+order: 5
+categories: [计算机网络]
 tags: [计算机网? TCP, 小林coding, 图解]
 ---
 ## 4.14 tcp\_tw\_reuse 为什么默认是关闭的？

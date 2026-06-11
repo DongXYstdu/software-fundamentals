@@ -1,7 +1,8 @@
 ---
 title: Redis面试
 date: 2026-06-19 09:00:00 +0800
-categories: [Redis]
+order: 302
+categories: [数据库, Redis]
 tags: [Redis, 面试, 八股, 小林coding]
 ---
 

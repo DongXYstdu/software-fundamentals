@@ -1,7 +1,8 @@
 ---
 title: update没加索引会锁全表吗？
 date: 2026-06-18 09:00:00 +0800
-categories: [数据? MySQL]
+order: 301
+categories: [数据库, MySQL]
 tags: [数据? MySQL, 小林coding, 图解]
 ---
 大家好，我是小林。

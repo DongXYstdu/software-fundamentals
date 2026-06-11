@@ -1,7 +1,8 @@
 ---
 title: 没有 accept，可以建TCP 连接吗？
 date: 2026-06-10 09:00:00 +0800
-categories: [计算机网? TCP]
+order: 5
+categories: [计算机网络]
 tags: [计算机网? TCP, 小林coding, 图解]
 ---
 > 来源：公众号@小白debug 原文地址： [阿里二面：没有 accept，能建立 TCP 连接吗？](https://mp.weixin.qq.com/s/oPX_JoZUaLn6sW54yppfvA)

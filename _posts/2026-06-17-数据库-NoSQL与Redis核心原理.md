@@ -1,7 +1,8 @@
 ---
 title: 数据库：NoSQL与Redis核心原理
 date: 2026-06-17 12:00:00 +0800
-categories: [数据库, NoSQL]
+order: 302
+categories: [数据库, Redis]
 tags: [Redis, NoSQL, 缓存, 数据结构, 零基础]
 math: true
 mermaid: true

@@ -1,7 +1,8 @@
 ---
 title: HashMap get put 时，底层流程是怎样的？
 date: 2026-06-09 09:00:00 +0800
-categories: [Java, 集合]
+order: 2
+categories: [Java, Java集合]
 tags: [Java, 集合, 面试, 小哈学Java]
 ---
 一则或许对你有用的小广告

@@ -1,7 +1,8 @@
 ---
 title: 数据结构入门：List、Map、Set 三大容器详解
 date: 2026-06-14 08:00:00 +0800
-categories: [数据结构, 入门]
+order: 1
+categories: [入门]
 tags: [List, Map, Set, 集合, 入门, 零基础]
 math: true
 mermaid: true

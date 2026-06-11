@@ -1,7 +1,7 @@
 ---
 title: 如何保证Redis分布式锁的高可用
 date: 2026-06-18 09:00:00 +0800
-categories: [数据? Redis]
+categories: [数据库, Redis]
 tags: [数据? Redis, 小林coding, 图解]
 ---
 > 原文地址： [面试官：如何保证分布式锁的高可用和高性能？](https://mp.weixin.qq.com/s/F3fU8YyZ3AI29hiNU1iIEg)

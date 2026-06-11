@@ -1,7 +1,8 @@
 ---
 title: 主从复制是怎么实现的？
 date: 2026-06-18 09:00:00 +0800
-categories: [数据? Redis]
+order: 302
+categories: [数据库, Redis]
 tags: [数据? Redis, 小林coding, 图解]
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: Linux命令面试
 date: 2026-06-19 09:00:00 +0800
-categories: [Linux]
+order: 803
+categories: [开发工具, Linux]
 tags: [Linux, 命令, 面试, 八股, 小林coding]
 ---
 

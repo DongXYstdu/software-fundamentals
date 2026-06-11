@@ -1,7 +1,8 @@
 ---
 title: Spring面试
 date: 2026-06-19 09:00:00 +0800
-categories: [Java]
+order: 201
+categories: [Java, Java基础]
 tags: [Spring, 面试, 八股, 小林coding]
 ---
 

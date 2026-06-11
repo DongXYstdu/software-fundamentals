@@ -1,7 +1,8 @@
 ---
 title: HashMap remove 方法是如何实现的
 date: 2026-06-09 09:00:00 +0800
-categories: [Java, 集合]
+order: 2
+categories: [Java, Java集合]
 tags: [Java, 集合, 面试, 小哈学Java]
 ---
 一则或许对你有用的小广告

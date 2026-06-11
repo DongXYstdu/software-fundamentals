@@ -4,7 +4,7 @@ title: I/O 多路复用：select/poll/epoll
 
 date: 2026-06-10 09:00:00 +0800
 
-categories: [操作系统, 小林图解]
+categories: [操作系统]
 
 tags: [操作系统, 小林coding, 图解]
 

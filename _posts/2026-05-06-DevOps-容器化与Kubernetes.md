@@ -1,8 +1,9 @@
 ---
 title: DevOps - 容器化与Kubernetes
 date: 2026-05-06 00:00:00 +0800
-categories: [DevOps, 容器化]
+categories: [开发工具, Docker]
 tags: [Docker, Kubernetes, 容器, 编排]
+order: 802
 math: true
 mermaid: true
 ---

@@ -4,7 +4,7 @@ title: Linux 内核 vs Windows 内核
 
 date: 2026-06-10 09:00:00 +0800
 
-categories: [操作系统, 小林图解]
+categories: [操作系统]
 
 tags: [操作系统, 小林coding, 图解]
 

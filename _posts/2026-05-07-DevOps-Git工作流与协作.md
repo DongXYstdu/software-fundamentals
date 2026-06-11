@@ -1,7 +1,8 @@
 ---
 title: DevOps - Git工作流与协作
 date: 2026-05-07 00:00:00 +0800
-categories: [DevOps, 版本控制]
+order: 801
+categories: [开发工具, Git]
 tags: [Git, 工作流, 代码评审]
 math: true
 mermaid: true
