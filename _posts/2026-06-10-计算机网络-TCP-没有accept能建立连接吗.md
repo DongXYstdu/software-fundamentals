@@ -4,218 +4,45 @@ date: 2026-06-10 09:00:00 +0800
 categories: [计算机网? TCP]
 tags: [计算机网? TCP, 小林coding, 图解]
 ---
-
-# 没有 accept，可以建?TCP 连接吗？
-
-来源：公众号@小白debug
-
-这次，我们来讨论一下，**没有 accept，能建立 TCP 连接吗？**
-
-下面这个动图，是我们平时客户端和服务端建立连接时的代码流程?
-
-![](https://aka.doubaocdn.com/s/EhBJ1wZOp1)
-
-对应的是下面一段简化过的服务端伪代码?
-
-```c
-int main()
+<main> <div> <blockquote><p>来源：公众号@小白debug 原文地址： <a href="https://mp.weixin.qq.com/s/oPX_JoZUaLn6sW54yppfvA">阿里二面：没有 accept，能建立 TCP 连接吗？</a> </p></blockquote> <p>大家好，我是小林。</p> <p>这次，我们来讨论一下， <strong>没有 accept，能建立 TCP 连接吗？</strong></p> <p>下面这个动图，是我们平时客户端和服务端建立连接时的代码流程。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/e0d405a55626eb8e4a52553a54680618.gif" alt="握手建立连接流程"></p> <p>对应的是下面一段简化过的服务端伪代码。</p> <pre><code class="language-c" data-lang="c">int main()
 {
-    /*Step 1: 创建服务器端监听socket描述符listen_fd*/
+    /*Step 1: 创建服务器端监听socket描述符listen_fd*/    
     listen_fd = socket(AF_INET, SOCK_STREAM, 0);
 
-    /*Step 2: bind绑定服务器端的IP和端口，所有客户端都向这个IP和端口发送和请求数据*/
+    /*Step 2: bind绑定服务器端的IP和端口，所有客户端都向这个IP和端口发送和请求数据*/    
     bind(listen_fd, xxx);
 
-    /*Step 3: 服务端开启监?/
+    /*Step 3: 服务端开启监听*/    
     listen(listen_fd, 128);
 
-    /*Step 4: 服务器等待客户端的链接，返回值cfd为客户端的socket描述?/
+    /*Step 4: 服务器等待客户端的链接，返回值cfd为客户端的socket描述符*/    
     cfd = accept(listen_fd, xxx);
 
-    /*Step 5: 读取客户端发来的数据*/
-    n = read(cfd, buf, sizeof(buf));
-}
-```
-
-估计大家也是老熟悉这段伪代码了?
-
-需要注意的是，在执行`listen()`方法之后还会执行一个`accept()`方法?
-
-**一般情况下**，如果启动服务器，会发现最后程序会**阻塞?* `accept()`里?
-
-此时服务端就算ok了，就等客户端了?
-
-那么，再看下简化过的客户端伪代码?
-
-```c
-int main()
+      /*Step 5: 读取客户端发来的数据*/
+      n = read(cfd, buf, sizeof(buf));
+}</code></pre> <p>估计大家也是老熟悉这段伪代码了。</p> <p>需要注意的是，在执行 <code>listen()</code> 方法之后还会执行一个 <code>accept()</code> 方法。</p> <p><strong>一般情况</strong> 下，如果启动服务器，会发现最后程序会 <strong>阻塞在</strong> <code>accept()</code> 里。</p> <p>此时服务端就算ok了，就等客户端了。</p> <p>那么，再看下简化过的客户端伪代码。</p> <pre><code class="language-c" data-lang="c">int main()
 {
-    /*Step 1: 创建客户端端socket描述符cfd*/
+    /*Step 1: 创建客户端端socket描述符cfd*/    
     cfd = socket(AF_INET, SOCK_STREAM, 0);
 
-    /*Step 2: connect方法,对服务器端的IP和端口号发起连接*/
+    /*Step 2: connect方法,对服务器端的IP和端口号发起连接*/    
     ret = connect(cfd, xxxx);
 
     /*Step 4: 向服务器端写数据*/
     write(cfd, buf, strlen(buf));
-}
-```
-
-客户端比较简单，创建好`socket`之后，直接就发起`connect`方法?
-
-此时回到服务端，会发?*之前一直阻塞的accept方法，返回结果了**?
-
-这就算两端成功建立好了一条连接。之后就可以愉快的进行读写操作了?
-
-那么，我们今天的问题是，**如果没有这个accept方法，TCP连接还能建立起来吗？**
-
-其实只要在执行`accept()` 之前执行一?`sleep(20)`，然后立刻执行客户端相关的方法，同时抓个包，就能得出结论?
-
-![](https://aka.doubaocdn.com/s/kyaC1wZOp1)
-
-从抓包结果看来，**就算不执行accept()方法，三次握手照常进行，并顺利建立连接?*
-
-更骚气的是，**在服务端执行accept()前，如果客户端发送消息给服务端，服务端是能够正常回复ack确认包的?*
-
-并且，`sleep(20)`结束后，服务端正常执行`accept()`，客户端前面发送的消息，还是能正常收到的?
-
-通过这个现象，我们可以多想想为什么。顺便好好了解下三次握手的细节?
-
-## 三次握手的细节分?
-
-我们先看面试八股文的老股，三次握手?
-
-![](https://aka.doubaocdn.com/s/ZPr31wZOp1)
-
-服务端代码，对socket执行bind方法可以绑定监听端口，然后执行`listen方法`后，就会进入监听（`LISTEN`）状态。内核会为每一个处于`LISTEN`状态的`socket`分配两个队列，分别叫**半连接队列和全连接队?*?
-
-![](https://aka.doubaocdn.com/s/j1cH1wZOp1)
-
-### 半连接队列、全连接队列是什?
-
-![](https://aka.doubaocdn.com/s/Lknu1wZOp1)
-
-- **半连接队列（SYN队列?*，服务端收到**第一次握?*后，会将`sock`加入到这个队列中，队列内的`sock`都处于`SYN_RECV` 状态?
-- **全连接队列（ACCEPT队列?*，在服务端收?*第三次握?*后，会将半连接队列的`sock`取出，放到全连接队列中。队列里的`sock`都处?`ESTABLISHED`状态。这里面的连接，?*等着服务端执行accept()后被取出了?*
-
-看到这里，文章开头的问题就有了答案，建立连接的过程中根本不需要`accept()`参与?*执行accept()只是为了从全连接队列里取出一条连接?*
-
-我们把话题再重新回到这两个队列上?
-
-虽然都叫**队列**，但其实**全连接队列（icsk_accept_queue）是个链?*，?*半连接队列（syn_table）是个哈希表**?
-
-![](https://aka.doubaocdn.com/s/U4Mg1wZOp1)
-
-### 为什么半连接队列要设计成哈希?
-
-先对比下**全连接里队列**，他本质是个链表，因为也是线性结构，说它是个队列也没毛病。它里面放的都是已经建立完成的连接，这些连接正等待被取走。而服务端取走连接的过程中，并不关心具体是哪个连接，只要是个连接就行，所以直接从队列头取就行了。这个过程算法复杂度为`O(1)`?
-
-?*半连接队?*却不太一样，因为队列里的都是不完整的连接，嗷嗷等待着第三次握手的到来。那么现在有一个第三次握手来了，则需要从队列里把相应IP端口的连接取出，**如果半连接队列还是个链表，那我们就需要依次遍历，才能拿到我们想要的那个连接，算法复杂度就是O(n)?*
-
-而如果将半连接队列设计成哈希表，那么查找半连接的算法复杂度就回到`O(1)`了?
-
-因此出于效率考虑，全连接队列被设计成链表，而半连接队列被设计为哈希表?
-
-### 怎么观察两个队列的大?
-
-#### 查看全连接队?
-
-```
-# ss -lnt
-State  Recv-Q  Send-Q  Local Address:Port  Peer Address:Port
-LISTEN 0       128         127.0.0.1:46269  *:*
-```
-
-通过`ss -lnt`命令，可以看到全连接队列的大小，其中`Send-Q`是指全连接队列的最大值，可以看到我这上面的最大值是`128`；`Recv-Q`是指当前的全连接队列的使用值，我这边用了`0`个，也就是全连接队列里为空，连接都被取出来了?
-
-当上面`Send-Q`和`Recv-Q`数值很接近的时候，那么全连接队列可能已经满了。可以通过下面的命令查看是否发生过队列**溢出**?
-
-```
-# netstat -s | grep overflowed
-    4343 times the listen queue of a socket overflowed
-```
-
-上面说明发生过`4343次`全连接队列溢出的情况。这个查看到的是**历史发生过的次数**?
-
-#### 查看半连接队?
-
-半连接队列没有命令可以直接查看到，但因为半连接队列里，放的都是`SYN_RECV`状态的连接，那可以通过统计处于这个状态的连接的数量，间接获得半连接队列的长度?
-
-```
-# netstat -nt | grep -i '127.0.0.1:8080' | grep -i 'SYN_RECV' | wc -l
-0
-```
-
-### 全连接队列满了会怎么样？
-
-如果队列满了，服务端还收到客户端的第三次握手ACK，默认当然会丢弃这个ACK?
-
-但除了丢弃之外，还有一些附带行为，这会?`tcp_abort_on_overflow` 参数的影响?
-
-- `tcp_abort_on_overflow`设置?0，全连接队列满了之后，会丢弃这个第三次握手ACK包，并且开启定时器，重传第二次握手的SYN+ACK，如果重传超过一定限制次数，还会把对应的**半连接队列里的连?*给删掉?
-- `tcp_abort_on_overflow`设置?1，全连接队列满了之后，就直接发RST给客户端，效果上看就是连接断了?
-
-### 半连接队列要是满了会怎么?
-
-**一般是丢弃**，但这个行为可以通过 `tcp_syncookies` 参数去控制?
-
-首先我们需要明白，一般情况下，半连接?生存"时间其实很短，只有在第一次和第三次握手间，如果半连接都满了，说明服务端疯狂收到第一次握手请求，如果是线上游戏应用，能有这么多请求进来，那说明你可能要富了。但现实往往比较骨感，你可能遇到?*SYN Flood攻击**?
-
-所?*SYN Flood攻击**，可以简单理解为，攻击方模拟客户端疯狂发第一次握手请求过来，在服务端憨憨地回复第二次握手过去之后，客户端死活不发第三次握手过来，这样做，可以把服务端半连接队列打满，从而导致正常连接不能正常进来?
-
-![](https://aka.doubaocdn.com/s/mVR61wZOp1)
-
-那这种情况怎么处理？有没有一种方法可?*绕过半连接队?*?
-
-有，上面提到的`tcp_syncookies`派上用场了?
-
-当它被设置为1的时候，客户端发?*第一次握?* SYN时，服务?*不会将其放入半连接队列中**，而是直接生成一个`cookies`，这个`cookies`会跟着**第二次握?*，发回客户端。客户端在发**第三次握?*的时候带上这个`cookies`，服务端验证到它就是当初发出去的那个，就会建立连接并放入到全连接队列中。可以看出整个过程不再需要半连接队列的参与?
-
-![](https://aka.doubaocdn.com/s/2wBS1wZOp1)
-
-#### 会有一个cookies队列?
-
-生成是`cookies`，保存在哪呢?*是不是会有一个队列保存这些cookies?*
-
-我们可以反过来想一下，如果有`cookies`队列，那它会跟半连接队列一样，到头来，还是会被**SYN Flood 攻击**打满?
-
-实际上`cookies`并不会有一个专门的队列保存，它是通过**通信双方的IP地址端口、时间戳、MSS**等信息进?*实时计算**的，保存?*TCP报头**的`seq`里?
-
-![](https://aka.doubaocdn.com/s/JgbQ1wZOp1)
-
-当服务端收到客户端发来的第三次握手包时，会通过seq还原?*通信双方的IP地址端口、时间戳、MSS**，验证通过则建立连接?
-
-### 没有 listen，为什么还能建立连?
-
-那既然没有`accept`方法能建立连接，那是不是没有`listen`方法，也能建立连接？是的，之前写的一篇文章提到过客户端是可以自己连自己的形成连接?*TCP自连?*），也可以两个客户端同时向对方发出请求建立连接（**TCP同时打开**），这两个情况都有个共同点，就是**没有服务端参与，也就是没有listen，就能建立连接?*
-
-当时文章最后也留了个疑问，**没有listen，为什么还能建立连接？**
-
-我们知道执行`listen`方法时，会创建半连接队列和全连接队列?
-
-三次握手的过程中会在这两个队列中暂存连接信息?
-
-所以形成连接，前提是你?*有个地方存放着**，方便握手的时候能根据IP端口等信息找到socket信息?
-
-**那么客户端会有半连接队列吗？**
-
-**显然没有**，因为客户端没有执行`listen`，因为半连接队列和全连接队列都是在执行`listen`方法时，内核自动创建的?
-
-但内核还有个**全局hash?*，可以用于存放`sock`连接的信息。这个全局`hash`表其实还细分为`ehash，bhash和listen_hash`等，但因为过于细节，大家理解成有一?*全局hash**就够了，
-
-在TCP自连接的情况中，客户端在`connect`方法时，最后会将自己的连接信息放入到这?*全局hash?*中，然后将信息发出，消息在经过回环地址重新回到TCP传输层的时候，就会根据IP端口信息，再一次从这个**全局hash**中取出信息。于是握手包一来一回，最后成功建立连接?
-
-TCP 同时打开的情况也类似，只不过从一个客户端变成了两个客户端而已?
-
-## 总结
-
-- **每一?* `socket`执行`listen`时，内核都会自动创建一个半连接队列和全连接队列?
-- 第三次握手前，TCP连接会放在半连接队列中，直到第三次握手到来，才会被放到全连接队列中?
-- `accept方法`只是为了从全连接队列中拿出一条连接，本身跟三次握手几?*毫无关系**?
-- 出于效率考虑，虽然都叫队列，但半连接队列其实被设计成?*哈希?*，而全连接队列本质是链表?
-- 全连接队列满了，再来第三次握手也会丢弃，此时如果`tcp_abort_on_overflow=1`，还会直接发`RST`给客户端?
-- 半连接队列满了，可能是因为受到了`SYN Flood`攻击，可以设置`tcp_syncookies`，绕开半连接队列?
-- 客户端没有半连接队列和全连接队列，但有一?*全局hash**，可以通过它实现自连接或TCP同时打开?
-
----
-> 参考来源：[没有 accept，能建立 TCP 连接吗？](https://xiaolincoding.com/network/3_tcp/tcp_no_accpet.html)
+}</code></pre> <p>客户端比较简单，创建好 <code>socket</code> 之后，直接就发起 <code>connect</code> 方法。</p> <p>此时回到服务端，会发现 <strong>之前一直阻塞的accept方法，返回结果了</strong> 。</p> <p>这就算两端成功建立好了一条连接。之后就可以愉快的进行读写操作了。</p> <p>那么，我们今天的问题是， <strong>如果没有这个accept方法，TCP连接还能建立起来吗？</strong></p> <p>其实只要在执行 <code>accept()</code> 之前执行一个 <code>sleep(20)</code> ，然后立刻执行客户端相关的方法，同时抓个包，就能得出结论。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/2cfc1d028f3e37f10c2f81375ddb998a.png" alt="不执行accept时抓包结果"></p> <p>从抓包结果看来， <strong>就算不执行accept()方法，三次握手照常进行，并顺利建立连接。</strong></p> <p>更骚气的是， <strong>在服务端执行accept()前，如果客户端发送消息给服务端，服务端是能够正常回复ack确认包的。</strong></p> <p>并且， <code>sleep(20)</code> 结束后，服务端正常执行 <code>accept()</code> ，客户端前面发送的消息，还是能正常收到的。</p> <p>通过这个现象，我们可以多想想为什么。顺便好好了解下三次握手的细节。</p> <H2>三次握手的细节分析</H2> <p>我们先看面试八股文的老股，三次握手。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/8d55a06f2efa946921ff61a008c76b00.png" alt="TCP三次握手"></p> <p>服务端代码，对socket执行bind方法可以绑定监听端口，然后执行 <code>listen方法</code> 后，就会进入监听（ <code>LISTEN</code> ）状态。内核会为每一个处于 <code>LISTEN</code> 状态的 <code>socket</code> 分配两个队列，分别叫 <strong>半连接队列和全连接队列</strong> 。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/d7e2d60b28b0f9b460aafbf1bd6e7892.png" alt="每个listen Socket都有一个全连接和半连接队列"></p> <H3>半连接队列、全连接队列是什么</H3> <p><img src="https://cdn.xiaolincoding.com//mysql/other/36242c85809865fcd2da48594de15ebb.png" alt="半连接队列和全连接队列"></p> <ul><li><strong>半连接队列（SYN队列）</strong> ，服务端收到 <strong>第一次握手</strong> 后，会将 <code>sock</code> 加入到这个队列中，队列内的 <code>sock</code> 都处于 <code>SYN_RECV</code> 状态。</li> <li><strong>全连接队列（ACCEPT队列）</strong> ，在服务端收到 <strong>第三次握手</strong> 后，会将半连接队列的 <code>sock</code> 取出，放到全连接队列中。队列里的 <code>sock</code> 都处于 <code>ESTABLISHED</code> 状态。这里面的连接，就 <strong>等着服务端执行accept()后被取出了。</strong></li></ul> <p>看到这里，文章开头的问题就有了答案，建立连接的过程中根本不需要 <code>accept()</code> 参与， <strong>执行accept()只是为了从全连接队列里取出一条连接。</strong></p> <p>我们把话题再重新回到这两个队列上。</p> <p>虽然都叫 <strong>队列</strong> ，但其实 <strong>全连接队列（icsk_accept_queue）是个链表</strong> ，而 <strong>半连接队列（syn_table）是个哈希表</strong> 。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/6f964fb09d6971dab1762a45dfa30b3b.png" alt="半连接全连接队列的内部结构"></p> <H3>为什么半连接队列要设计成哈希表</H3> <p>先对比下 <strong>全连接里队列</strong> ，他本质是个链表，因为也是线性结构，说它是个队列也没毛病。它里面放的都是已经建立完成的连接，这些连接正等待被取走。而服务端取走连接的过程中，并不关心具体是哪个连接，只要是个连接就行，所以直接从队列头取就行了。这个过程算法复杂度为 <code>O(1)</code> 。</p> <p>而 <strong>半连接队列</strong> 却不太一样，因为队列里的都是不完整的连接，嗷嗷等待着第三次握手的到来。那么现在有一个第三次握手来了，则需要从队列里把相应IP端口的连接取出， <strong>如果半连接队列还是个链表，那我们就需要依次遍历，才能拿到我们想要的那个连接，算法复杂度就是O(n)。</strong></p> <p>而如果将半连接队列设计成哈希表，那么查找半连接的算法复杂度就回到 <code>O(1)</code> 了。</p> <p>因此出于效率考虑，全连接队列被设计成链表，而半连接队列被设计为哈希表。</p> <H3>怎么观察两个队列的大小</H3> <H4>查看全连接队列</H4> <pre><code class="language-shell" data-lang="shell"># ss -lnt
+State      Recv-Q Send-Q     Local Address:Port           Peer Address:Port
+LISTEN     0      128        127.0.0.1:46269              *:*</code></pre> <p>通过 <code>ss -lnt</code> 命令，可以看到全连接队列的大小，其中 <code>Send-Q</code> 是指全连接队列的最大值，可以看到我这上面的最大值是 <code>128</code> ； <code>Recv-Q</code> 是指当前的全连接队列的使用值，我这边用了 <code>0</code> 个，也就是全连接队列里为空，连接都被取出来了。</p> <p>当上面 <code>Send-Q</code> 和 <code>Recv-Q</code> 数值很接近的时候，那么全连接队列可能已经满了。可以通过下面的命令查看是否发生过队列 <strong>溢出</strong> 。</p> <pre><code class="language-shell" data-lang="shell"># netstat -s | grep overflowed
+    4343 times the listen queue of a socket overflowed</code></pre> <p>上面说明发生过 <code>4343次</code> 全连接队列溢出的情况。这个查看到的是 <strong>历史发生过的次数</strong> 。</p> <p>如果配合使用 <code>watch -d</code> 命令，可以自动每 <code>2s</code> 间隔执行相同命令，还能高亮显示变化的数字部分，如果溢出的数字不断变多，说明 <strong>正在发生</strong> 溢出的行为。</p> <pre><code class="language-shell" data-lang="shell"># watch -d 'netstat -s | grep overflowed'
+Every 2.0s: netstat -s | grep overflowed                                
+Fri Sep 17 09:00:45 2021
+
+    4343 times the listen queue of a socket overflowed</code></pre> <H4>查看半连接队列</H4> <p>半连接队列没有命令可以直接查看到，但因为半连接队列里，放的都是 <code>SYN_RECV</code> 状态的连接，那可以通过统计处于这个状态的连接的数量，间接获得半连接队列的长度。</p> <pre><code class="language-shell" data-lang="shell"># netstat -nt | grep -i '127.0.0.1:8080' | grep -i 'SYN_RECV' | wc -l
+0</code></pre> <p>注意半连接队列和全连接队列都是挂在某个 <code>Listen socket</code> 上的，我这里用的是 <code>127.0.0.1:8080</code> ，大家可以替换成自己想要查看的 <strong>IP端口</strong> 。</p> <p>可以看到我的机器上的半连接队列长度为 <code>0</code> ，这个很正常， <strong>正经连接谁会没事老待在半连接队列里。</strong></p> <p>当队列里的半连接不断增多，最终也是会发生溢出，可以通过下面的命令查看。</p> <pre><code class="language-shell" data-lang="shell"># netstat -s | grep -i "SYNs to LISTEN sockets dropped" 
+    26395 SYNs to LISTEN sockets dropped</code></pre> <p>可以看到，我的机器上一共发生了 <code>26395</code> 次半连接队列溢出。同样建议配合 <code>watch -d</code> 命令使用。</p> <pre><code class="language-shell" data-lang="shell"># watch -d 'netstat -s | grep -i "SYNs to LISTEN sockets dropped"'
+Every 2.0s: netstat -s | grep -i "SYNs to LISTEN sockets dropped"       
+Fri Sep 17 08:36:38 2021
+
+    26395 SYNs to LISTEN sockets dropped</code></pre> <H3>全连接队列满了会怎么样？</H3> <p>如果队列满了，服务端还收到客户端的第三次握手ACK，默认当然会丢弃这个ACK。</p> <p>但除了丢弃之外，还有一些附带行为，这会受 <code>tcp_abort_on_overflow</code> 参数的影响。</p> <pre><code class="language-shell" data-lang="shell"># cat /proc/sys/net/ipv4/tcp_abort_on_overflow
+0</code></pre> <ul><li><code>tcp_abort_on_overflow</code> 设置为 0，全连接队列满了之后，会丢弃这个第三次握手ACK包，并且开启定时器，重传第二次握手的SYN+ACK，如果重传超过一定限制次数，还会把对应的 <strong>半连接队列里的连接</strong> 给删掉。</li></ul> <p><img src="https://cdn.xiaolincoding.com//mysql/other/874f2fb7108020fd4dcfa021f377ec66.png" alt="tcp_abort_on_overflow为0"></p> <ul><li><code>tcp_abort_on_overflow</code> 设置为 1，全连接队列满了之后，就直接发RST给客户端，效果上看就是连接断了。</li></ul> <p>这个现象是不是很熟悉，服务端 <strong>端口未监听</strong> 时，客户端尝试去连接，服务端也会回一个RST。这两个情况长一样，所以客户端这时候收到RST之后，其实无法区分到底是 <strong>端口未监听</strong> ，还是 <strong>全连接队列满了</strong> 。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/6a01c5df74748870a69921da89825d9c.png" alt="tcp_abort_on_overflow为1"></p> <H3>半连接队列要是满了会怎么样</H3> <p><strong>一般是丢弃</strong> ，但这个行为可以通过 <code>tcp_syncookies</code> 参数去控制。但比起这个，更重要的是先了解下半连接队列为什么会被打满。</p> <p>首先我们需要明白，一般情况下，半连接的"生存"时间其实很短，只有在第一次和第三次握手间，如果半连接都满了，说明服务端疯狂收到第一次握手请求，如果是线上游戏应用，能有这么多请求进来，那说明你可能要富了。但现实往往比较骨感，你可能遇到了 <strong>SYN Flood攻击</strong> 。</p> <p>所谓 <strong>SYN Flood攻击</strong> ，可以简单理解为，攻击方模拟客户端疯狂发第一次握手请求过来，在服务端憨憨地回复第二次握手过去之后，客户端死活不发第三次握手过来，这样做，可以把服务端半连接队列打满，从而导致正常连接不能正常进来。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/d894de5374a12bd5d75d86d4a718d186.png" alt="syn攻击"></p> <p>那这种情况怎么处理？有没有一种方法可以 <strong>绕过半连接队列</strong> ？</p> <p>有，上面提到的 <code>tcp_syncookies</code> 派上用场了。</p> <pre><code class="language-shell" data-lang="shell"># cat /proc/sys/net/ipv4/tcp_syncookies
+1</code></pre> <p>当它被设置为1的时候，客户端发来 <strong>第一次握手</strong> SYN时，服务端 <strong>不会将其放入半连接队列中</strong> ，而是直接生成一个 <code>cookies</code> ，这个 <code>cookies</code> 会跟着 <strong>第二次握手</strong> ，发回客户端。客户端在发 <strong>第三次握手</strong> 的时候带上这个 <code>cookies</code> ，服务端验证到它就是当初发出去的那个，就会建立连接并放入到全连接队列中。可以看出整个过程不再需要半连接队列的参与。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/d696b8b345526533bde8fa990e205c32.png" alt="tcp_syncookies=1"></p> <H4>会有一个cookies队列吗</H4> <p>生成是 <code>cookies</code> ，保存在哪呢？ <strong>是不是会有一个队列保存这些cookies？</strong></p> <p>我们可以反过来想一下，如果有 <code>cookies</code> 队列，那它会跟半连接队列一样，到头来，还是会被 <strong>SYN Flood 攻击</strong> 打满。</p> <p>实际上 <code>cookies</code> 并不会有一个专门的队列保存，它是通过 <strong>通信双方的IP地址端口、时间戳、MSS</strong> 等信息进行 <strong>实时计算</strong> 的，保存在 <strong>TCP报头</strong> 的 <code>seq</code> 里。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/6d280b0946a73ea6185653cbcfcc489f.png" alt="tcp报头_seq的位置"></p> <p>当服务端收到客户端发来的第三次握手包时，会通过seq还原出 <strong>通信双方的IP地址端口、时间戳、MSS</strong> ，验证通过则建立连接。</p> <H4>cookies方案为什么不直接取代半连接队列？</H4> <p>目前看下来 <code>syn cookies</code> 方案省下了半连接队列所需要的队列内存，还能解决 <strong>SYN Flood攻击</strong> ，那为什么不直接取代半连接队列？</p> <p>凡事皆有利弊， <code>cookies</code> 方案虽然能防 <strong>SYN Flood攻击</strong> ，但是也有一些问题。因为服务端并不会保存连接信息，所以如果传输过程中数据包丢了，也不会重发第二次握手的信息。</p> <p>另外，编码解码 <code>cookies</code> ，都是比较 <strong>耗CPU</strong> 的，利用这一点，如果此时攻击者构造大量的 <strong>第三次握手包（ACK包）</strong> ，同时带上各种瞎编的 <code>cookies</code> 信息，服务端收到 <code>ACK包</code> 后 <strong>以为是正经cookies</strong> ，憨憨地跑去解码（ <strong>耗CPU</strong> ），最后发现不是正经数据包后才丢弃。</p> <p>这种通过构造大量 <code>ACK包</code> 去消耗服务端资源的攻击，叫 <strong>ACK攻击</strong> ，受到攻击的服务器可能会因为 <strong>CPU资源耗尽</strong> 导致没能响应正经请求。</p> <p><img src="https://cdn.xiaolincoding.com//mysql/other/15a0a5f7fe15ee2bc5e07492eda5a8ea.gif" alt="ack攻击"></p> <H3>没有listen，为什么还能建立连接</H3> <p>那既然没有 <code>accept</code> 方法能建立连接，那是不是没有 <code>listen</code> 方法，也能建立连接？是的，之前写的一篇文章提到过客户端是可以自己连自己的形成连接（ <strong>TCP自连接</strong> ），也可以两个客户端同时向对方发出请求建立连接（ <strong>TCP同时打开</strong> ），这两个情况都有个共同点，就是 <strong>没有服务端参与，也就是没有listen，就能建立连接。</strong></p> <p>当时文章最后也留了个疑问， <strong>没有listen，为什么还能建立连接？</strong></p> <p>我们知道执行 <code>listen</code> 方法时，会创建半连接队列和全连接队列。</p> <p>三次握手的过程中会在这两个队列中暂存连接信息。</p> <p>所以形成连接，前提是你得 <strong>有个地方存放着</strong> ，方便握手的时候能根据IP端口等信息找到socket信息。</p> <p><strong>那么客户端会有半连接队列吗？</strong></p> <p><strong>显然没有</strong> ，因为客户端没有执行 <code>listen</code> ，因为半连接队列和全连接队列都是在执行 <code>listen</code> 方法时，内核自动创建的。</p> <p>但内核还有个 <strong>全局hash表</strong> ，可以用于存放 <code>sock</code> 连接的信息。这个全局 <code>hash</code> 表其实还细分为 <code>ehash，bhash和listen_hash</code> 等，但因为过于细节，大家理解成有一个 <strong>全局hash</strong> 就够了，</p> <p>在TCP自连接的情况中，客户端在 <code>connect</code> 方法时，最后会将自己的连接信息放入到这个 <strong>全局hash表</strong> 中，然后将信息发出，消息在经过回环地址重新回到TCP传输层的时候，就会根据IP端口信息，再一次从这个 <strong>全局hash</strong> 中取出信息。于是握手包一来一回，最后成功建立连接。</p> <p>TCP 同时打开的情况也类似，只不过从一个客户端变成了两个客户端而已。</p> <H2>总结</H2> <ul><li><strong>每一个</strong> <code>socket</code> 执行 <code>listen</code> 时，内核都会自动创建一个半连接队列和全连接队列。</li> <li>第三次握手前，TCP连接会放在半连接队列中，直到第三次握手到来，才会被放到全连接队列中。</li> <li><code>accept方法</code> 只是为了从全连接队列中拿出一条连接，本身跟三次握手几乎 <strong>毫无关系</strong> 。</li> <li>出于效率考虑，虽然都叫队列，但半连接队列其实被设计成了 <strong>哈希表</strong> ，而全连接队列本质是链表。</li> <li>全连接队列满了，再来第三次握手也会丢弃，此时如果 <code>tcp_abort_on_overflow=1</code> ，还会直接发 <code>RST</code> 给客户端。</li> <li>半连接队列满了，可能是因为受到了 <code>SYN Flood</code> 攻击，可以设置 <code>tcp_syncookies</code> ，绕开半连接队列。</li> <li>客户端没有半连接队列和全连接队列，但有一个 <strong>全局hash</strong> ，可以通过它实现自连接或TCP同时打开。</li></ul> <hr> <p>最新的图解文章都在公众号首发，别忘记关注哦！！如果你想加入百人技术交流群，扫码下方二维码回复「加群」。</p> <p><img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png" alt="img"></p></div> <p> ← <a href="https://xiaolincoding.com/network/3_tcp/tcp_no_listen.html">4.20 服务端没有 listen，客户端发起连接建立，会发生什么？</a> <a href="https://xiaolincoding.com/network/3_tcp/tcp_drop.html">4.22 用了 TCP 协议，数据一定不会丢吗？</a> → </p> </main>
