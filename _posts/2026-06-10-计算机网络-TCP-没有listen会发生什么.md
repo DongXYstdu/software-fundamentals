@@ -1,5 +1,5 @@
 ---
-title: 服务端没?listen，客户端发起连接建立，会发生什么？
+title: 服务端没listen，客户端发起连接建立，会发生什么？
 date: 2026-06-10 09:00:00 +0800
 categories: [计算机网? TCP]
 tags: [计算机网? TCP, 小林coding, 图解]

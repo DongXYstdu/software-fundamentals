@@ -1,5 +1,5 @@
 ---
-title: InnoDB ?MyISAM 有什么区别？
+title: InnoDB MyISAM 有什么区别？
 date: 2026-06-09 09:00:00 +0800
 categories: [数据? MySQL]
 tags: [MySQL, 面试, 小哈学Java]

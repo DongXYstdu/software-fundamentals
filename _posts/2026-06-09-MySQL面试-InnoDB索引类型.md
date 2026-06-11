@@ -1,5 +1,5 @@
 ---
-title: InnoDB 中索引类型有哪些?
+title: InnoDB 中索引类型有哪些
 date: 2026-06-09 09:00:00 +0800
 categories: [数据? MySQL]
 tags: [MySQL, 面试, 小哈学Java]

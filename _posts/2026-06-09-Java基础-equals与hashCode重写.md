@@ -1,5 +1,5 @@
 ---
-title: 为什么重?equals 时一定要重写 hashCode?
+title: 为什么重equals 时一定要重写 hashCode
 date: 2026-06-09 09:00:00 +0800
 categories: [Java, 基础]
 tags: [Java, 基础, 面试, 小哈学Java]

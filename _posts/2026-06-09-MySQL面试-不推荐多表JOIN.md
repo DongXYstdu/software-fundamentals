@@ -1,5 +1,5 @@
 ---
-title: 为什么互联网大厂不推荐使用多?JOIN?
+title: 为什么互联网大厂不推荐使用多JOIN
 date: 2026-06-09 09:00:00 +0800
 categories: [数据? MySQL]
 tags: [MySQL, 面试, 小哈学Java]

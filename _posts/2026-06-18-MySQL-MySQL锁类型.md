@@ -1,5 +1,5 @@
 ---
-title: MySQL有哪些锁?
+title: MySQL有哪些锁
 date: 2026-06-18 09:00:00 +0800
 categories: [数据? MySQL]
 tags: [数据? MySQL, 小林coding, 图解]

@@ -1,5 +1,5 @@
 ---
-title: Redis数据类型和应用场?
+title: Redis数据类型和应用场
 date: 2026-06-18 09:00:00 +0800
 categories: [数据? Redis]
 tags: [数据? Redis, 小林coding, 图解]

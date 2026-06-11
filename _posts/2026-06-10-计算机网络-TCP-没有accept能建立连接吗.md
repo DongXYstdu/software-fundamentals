@@ -1,5 +1,5 @@
 ---
-title: 没有 accept，可以建?TCP 连接吗？
+title: 没有 accept，可以建TCP 连接吗？
 date: 2026-06-10 09:00:00 +0800
 categories: [计算机网? TCP]
 tags: [计算机网? TCP, 小林coding, 图解]

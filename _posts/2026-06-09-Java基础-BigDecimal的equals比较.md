@@ -1,5 +1,5 @@
 ---
-title: 为什么不能用 BigDecimal ?equals 方法做等值比较？
+title: 为什么不能用 BigDecimal equals 方法做等值比较？
 date: 2026-06-09 09:00:00 +0800
 categories: [Java, 基础]
 tags: [Java, 基础, 面试, 小哈学Java]

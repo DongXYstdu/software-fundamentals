@@ -1,5 +1,5 @@
 ---
-title: 谈谈 InnoDB 中的表级锁、页级锁、行级锁?
+title: 谈谈 InnoDB 中的表级锁、页级锁、行级锁
 date: 2026-06-09 09:00:00 +0800
 categories: [数据? MySQL]
 tags: [MySQL, 面试, 小哈学Java]
