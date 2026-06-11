@@ -91,9 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  var firstHeader = document.querySelector('.category-header');
-  if (firstHeader) {
-    firstHeader.click();
+  var allBodies = document.querySelectorAll('.category-body');
+  var allChevrons = document.querySelectorAll('.category-chevron i');
+  for (var i = 1; i < allBodies.length; i++) {
+    allBodies[i].classList.add('collapsed');
+    if (allChevrons[i]) {
+      allChevrons[i].style.transform = 'rotate(-90deg)';
+    }
   }
 });
 </script>
