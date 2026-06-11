@@ -1,0 +1,81 @@
+/* ===== 文章上下文导航 ===== */
+.context-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--main-border-color, #e8eaed);
+  flex-wrap: wrap;
+}
+
+.context-link {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--card-bg, #f8f9fb);
+  border: 1px solid transparent;
+  text-decoration: none !important;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.context-link:hover:not(.disabled) {
+  background: var(--card-hover-bg, #eef1f7);
+  border-color: var(--link-color, #4a6cf7);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(74, 108, 247, 0.1);
+}
+
+.context-link.prev {
+  align-items: flex-start;
+}
+
+.context-link.next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.context-link.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.context-label {
+  font-size: 0.72rem;
+  color: var(--text-muted, #94a3b8);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.context-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--heading-color, #2d3748);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.context-link:hover:not(.disabled) .context-title {
+  color: var(--link-color, #4a6cf7);
+}
+
+@media (max-width: 600px) {
+  .context-nav {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .context-link.next {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
