@@ -5,8 +5,24 @@ icon: fas fa-home
 order: 0
 ---
 
-<!-- 置顶分类：数据库和数据结构 -->
+<!-- 站点介绍 Banner -->
+<div class="site-banner">
+  <div class="banner-content">
+    <h2>软件基础</h2>
+    <p class="banner-subtitle">夯实根基，理解本质</p>
+    <p class="banner-desc">一个专注于计算机科学与软件工程基础知识体系化梳理的个人技术博客。<br>
+    涵盖数据结构、操作系统、计算机网络、数据库、编程语言等核心领域。</p>
+    <div class="banner-stats">
+      <span class="stat-item"><strong>{{ site.posts.size }}</strong> 篇文章</span>
+      <span class="stat-divider">·</span>
+      <span class="stat-item">持续更新中</span>
+    </div>
+  </div>
+</div>
+
+<!-- 置顶分类 -->
 {% assign pinned_categories = "数据库, 数据结构" | split: ", " %}
+{% assign pinned_count = 0 %}
 
 {% for cat in pinned_categories %}
   {% assign cat_posts = "" | split: "" %}
@@ -16,10 +32,11 @@ order: 0
     {% endif %}
   {% endfor %}
   {% if cat_posts.size > 0 %}
+    {% assign pinned_count = pinned_count | plus: cat_posts.size %}
 
 <div class="section-block pinned-block">
   <div class="section-header">
-    <span class="section-badge">📌 置顶</span>
+    <span class="section-badge"><i class="fas fa-thumbtack"></i> 置顶</span>
     <h3 class="section-title">{{ cat }}（{{ cat_posts.size }} 篇）</h3>
   </div>
   <div class="post-list">
@@ -38,7 +55,6 @@ order: 0
           {% endif %}
         </div>
       </div>
-      <span class="post-arrow"><i class="fas fa-chevron-right"></i></span>
     </a>
     {% endfor %}
   </div>
@@ -47,176 +63,248 @@ order: 0
   {% endif %}
 {% endfor %}
 
-<!-- 其他文章 -->
+<!-- 按分类展示其他文章 -->
+{% assign all_categories = "" | split: "" %}
+{% for post in site.posts %}
+  {% if post.categories.size > 0 %}
+    {% assign first_cat = post.categories | first %}
+    {% unless all_categories contains first_cat %}
+      {% assign all_categories = all_categories | push: first_cat %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+{% for category in all_categories %}
+  {% unless pinned_categories contains category %}
+  {% assign cat_posts = "" | split: "" %}
+  {% for post in site.posts %}
+    {% if post.categories contains category %}
+      {% assign cat_posts = cat_posts | push: post %}
+    {% endif %}
+  {% endfor %}
+  {% if cat_posts.size > 0 %}
+
 <div class="section-block">
   <div class="section-header">
-    <h3 class="section-title">📚 其他文章（{{ site.posts.size | minus: 0 }} 篇）</h3>
+    <h3 class="section-title">{{ category }}（{{ cat_posts.size }} 篇）</h3>
   </div>
   <div class="post-list">
-    {% for post in site.posts %}
-      {% assign is_pinned = false %}
-      {% for c in post.categories %}
-        {% if pinned_categories contains c %}
-          {% assign is_pinned = true %}
-        {% endif %}
-      {% endfor %}
-      {% unless is_pinned %}
+    {% for post in cat_posts %}
     <a class="post-item" href="{{ post.url | relative_url }}">
       <div class="post-item-content">
         <h4 class="post-title">{{ post.title }}</h4>
         <div class="post-meta">
           <span class="meta-date"><i class="far fa-calendar"></i> {{ post.date | date: "%Y-%m-%d" }}</span>
-          {% if post.categories %}
+          {% if post.categories.size > 1 %}
           <span class="meta-tags">
-            {% for c in post.categories %}
+            {% for c in post.categories offset:1 %}
             <span class="tag">{{ c }}</span>{% unless forloop.last %}{% endunless %}
             {% endfor %}
           </span>
           {% endif %}
         </div>
       </div>
-      <span class="post-arrow"><i class="fas fa-chevron-right"></i></span>
     </a>
-      {% endunless %}
     {% endfor %}
   </div>
 </div>
 
+  {% endif %}
+  {% endunless %}
+{% endfor %}
+
 <style>
   /* ===== 首页样式 ===== */
+
+  /* 站点 Banner */
+  .site-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .site-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .banner-content {
+    position: relative;
+    z-index: 1;
+  }
+  .site-banner h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 0.3rem 0;
+    color: #fff;
+  }
+  .banner-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 0.8rem 0;
+    font-style: italic;
+  }
+  .banner-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+  }
+  .banner-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.9);
+  }
+  .banner-stats strong {
+    color: #fff;
+    font-size: 1rem;
+  }
+  .stat-divider {
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* 分区区块 */
   .section-block {
     background: #ffffff;
     border: 1px solid #e8eaed;
     border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
     transition: box-shadow 0.25s ease;
   }
-  
   .section-block:hover {
     box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
   }
-  
   .section-block.pinned-block {
     border-left: 4px solid #f59e0b;
   }
-  
   .section-header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
+    gap: 0.6rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.6rem;
     border-bottom: 1px solid #f0f0f0;
   }
-  
   .section-badge {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     background: linear-gradient(135deg, #f59e0b, #f97316);
     color: #fff;
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
+    padding: 0.18rem 0.55rem;
+    border-radius: 16px;
     font-weight: 600;
-    letter-spacing: 0.02em;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
   }
-  
+  .section-badge i {
+    font-size: 0.65rem;
+  }
   .section-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #1a1a2e;
     margin: 0;
   }
-  
+
+  /* 文章列表 */
   .post-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
-  
   .post-item {
     display: flex;
     align-items: center;
-    padding: 0.85rem 1rem;
-    border-radius: 12px;
+    padding: 0.7rem 0.8rem;
+    border-radius: 10px;
     background: #f8f9fb;
     border: 1px solid transparent;
     text-decoration: none;
     color: inherit;
     transition: all 0.2s ease;
   }
-  
   .post-item:hover {
     background: #eef1f7;
     border-color: #d0d7e2;
     transform: translateX(4px);
   }
-  
   .post-item-content {
     flex: 1;
     min-width: 0;
   }
-  
   .post-title {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: #2d3748;
-    margin: 0 0 0.35rem 0;
+    margin: 0 0 0.25rem 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  
   .post-item:hover .post-title {
     color: #4a6cf7;
   }
-  
   .post-meta {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
   }
-  
   .meta-date {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     color: #94a3b8;
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.25rem;
   }
-  
   .meta-tags {
     display: flex;
-    gap: 0.4rem;
+    gap: 0.3rem;
     flex-wrap: wrap;
   }
-  
   .tag {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: #6b7280;
     background: #e9ecf2;
-    padding: 0.15rem 0.5rem;
-    border-radius: 10px;
+    padding: 0.06rem 0.3rem;
+    border-radius: 4px;
     font-weight: 500;
+    line-height: 1.3;
   }
-  
-  .post-arrow {
-    color: #c0c7d2;
-    font-size: 0.75rem;
-    margin-left: 0.75rem;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-  }
-  
-  .post-item:hover .post-arrow {
-    color: #4a6cf7;
-    transform: translateX(3px);
-  }
-  
+
   /* 暗色模式 */
   @media (prefers-color-scheme: dark) {
+    .site-banner {
+      background: linear-gradient(135deg, #4c63d2 0%, #5b3a8c 100%);
+    }
     .section-block {
       background: #1e2333;
       border-color: #2d3348;
@@ -250,12 +338,6 @@ order: 0
     .tag {
       color: #9ca3af;
       background: #2d3348;
-    }
-    .post-arrow {
-      color: #4b5563;
-    }
-    .post-item:hover .post-arrow {
-      color: #818cf8;
     }
   }
 </style>
