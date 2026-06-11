@@ -363,3 +363,8 @@ EXPLAIN SELECT * FROM users WHERE name = '张三';
 ## 总结
 
 即使使用了索引，查询仍然可能很慢，原因包括：索引选择性差、违反最左前缀原则、 `SELECT *` 导致大量回表、 `LIKE '%xxx'` 或函数操作导致索引失效、数据量过大或倾斜、数据库配置不当等。排查时使用 `EXPLAIN` 分析执行计划，重点关注 `type` 、 `key` 、 `rows` 、 `Extra` 字段，通过覆盖索引、优化 SQL 写法、调整索引设计、分区分表等手段进行优化。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-深度分页优化/'><span class='context-label'>上一篇</span><span class='context-title'>MySQL 深度分页如何优化</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-索引设计原则/'><span class='context-label'>下一篇</span><span class='context-title'>设计索引时应遵循哪些原则</span></a>
+</div>

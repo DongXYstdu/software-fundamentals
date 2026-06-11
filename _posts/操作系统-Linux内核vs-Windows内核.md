@@ -160,3 +160,7 @@ Linux 的内核设计是采用了宏内核，Window 的内核设计则是采用�
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [2.7 为什么 0.1 + 0.2 不等于 0.3 ？](https://xiaolincoding.com/os/1_hardware/float.html) [4.1 为什么要有虚拟内存？](https://xiaolincoding.com/os/3_memory/vmem.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-IO模型与多路复用/'><span class='context-label'>上一篇</span><span class='context-title'>操作系统 - IO模型与多路复用</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-Linux基础教程/'><span class='context-label'>下一篇</span><span class='context-title'>Linux基础教程</span></a>
+</div>

@@ -290,3 +290,7 @@ HTTP/2 通过 Stream 的并发能力，解决了 HTTP/1 队头阻塞的问题，
 哈喽，我是小林，就爱图解计算机基础，如果文章对你有帮助，别忘记关注哦！
 
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-HTTP1.1优化/'><span class='context-label'>上一篇</span><span class='context-title'>HTTP/1.1 如何优化</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-HTTP3强势来袭/'><span class='context-label'>下一篇</span><span class='context-title'>HTTP/3 强势来袭</span></a>
+</div>

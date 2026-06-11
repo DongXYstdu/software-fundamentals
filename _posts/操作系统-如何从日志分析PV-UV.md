@@ -167,3 +167,7 @@ access.log 日志中，第 7 列是客户端请求的路径，先使用 `awk` �
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [10.1 如何查看网络的性能指标？](https://xiaolincoding.com/os/9_linux_cmd/linux_network.html) [11.1 操作系统怎么学？](https://xiaolincoding.com/os/10_learn/learn_os.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-多线程冲突怎么办/'><span class='context-label'>上一篇</span><span class='context-title'>多线程冲突了怎么办？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-如何写出CPU跑得更快的代码/'><span class='context-label'>下一篇</span><span class='context-title'>如何写出CPU 跑得更快的代码？</span></a>
+</div>

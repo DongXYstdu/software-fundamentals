@@ -176,3 +176,8 @@ END;
 ## 总结
 
 不建议使用存储过程的核心原因是它违背了分层架构原则，把业务逻辑下沉到数据库层，导致维护困难、调试困难、扩展困难、迁移困难。现代互联网架构强调职责分离，应用层负责业务逻辑，数据库层专注于数据存储，这样才能实现高内聚、低耦合、易扩展。当然，批量数据处理、复杂报表统计等特定场景可以适度使用存储过程，但要控制范围，避免滥用。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-truncate-delete-drop区别/'><span class='context-label'>上一篇</span><span class='context-title'>truncate、delete、drop 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-不推荐多表JOIN/'><span class='context-label'>下一篇</span><span class='context-title'>为什么互联网大厂不推荐使用多JOIN</span></a>
+</div>

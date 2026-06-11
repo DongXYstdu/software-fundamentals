@@ -223,3 +223,8 @@ killcx 工具则是属于主动获取，它是主动发送一个 SYN 报文，�
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.8 SYN 报文什么情况下会被丢弃？](https://xiaolincoding.com/network/3_tcp/syn_drop.html) [4.10 四次挥手中收到乱序的 FIN 包会如何处理？](https://xiaolincoding.com/network/3_tcp/out_of_order_fin.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-实战抓包分析/'><span class='context-label'>上一篇</span><span class='context-title'>TCP 实战抓包分析</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-序列号和确认号变化/'><span class='context-label'>下一篇</span><span class='context-title'>TCP 序列号和确认号是如何变化的？</span></a>
+</div>

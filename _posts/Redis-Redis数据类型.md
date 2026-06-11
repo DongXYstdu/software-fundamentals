@@ -1430,3 +1430,8 @@ Redis 后续版本又支持四种数据类型，它们的应用场景如下：
 最新的图解文章都在公众号首发，别忘记关注哦！！如果你想加入百人技术交流群，扫码下方二维码回复「加群」。
 
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Redis-Redis常见面试题/'><span class='context-label'>上一篇</span><span class='context-title'>Redis常见面试</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Redis-Redis数据结构图解/'><span class='context-label'>下一篇</span><span class='context-title'>图解Redis数据结构</span></a>
+</div>

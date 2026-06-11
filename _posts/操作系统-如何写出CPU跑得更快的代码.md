@@ -220,3 +220,8 @@ CPU 在从 CPU Cache 读取数据的时候，并不是读取 CPU Cache Line 中�
 没有啦，其实主要还是 **谢谢你们不离不弃的支持** 。
 
 *哈喽，我是小林，就爱图解计算机基础，如果觉得文章对你有帮助，欢迎微信搜索「小林coding」，关注后，回复「网络」再送你图解网络 PDF*
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-如何从日志分析PV-UV/'><span class='context-label'>上一篇</span><span class='context-title'>如何从日志分PV、UV</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-如何查看网络性能指标/'><span class='context-label'>下一篇</span><span class='context-title'>如何查看网络的性能指标</span></a>
+</div>

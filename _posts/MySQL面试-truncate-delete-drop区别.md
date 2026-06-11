@@ -208,3 +208,8 @@ ROLLBACK;
 ## 总结
 
 `DELETE` 是 DML，逐行删除、支持条件和回滚、触发器生效； `TRUNCATE` 是 DDL，整表清空、不可回滚、重置自增 ID、速度极快； `DROP` 是 DDL，删除整张表（结构+数据）。生产环境中，需要条件删除用 `DELETE` ，清空大表用 `TRUNCATE` （先备份），删除废弃表用 `DROP` 。 **务必记住：TRUNCATE 和 DROP 是高危操作，执行前必须确认数据已备份！**
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-count的区别/'><span class='context-label'>上一篇</span><span class='context-title'>count(1)、count(*) count(列名) 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-不建议使用存储过程/'><span class='context-label'>下一篇</span><span class='context-title'>为什么不建议使用存储过程</span></a>
+</div>

@@ -205,3 +205,8 @@ final Node<K,V>[] resize() {
 ## 总结
 
 HashMap 扩容在 `size > threshold` 时触发，容量翻倍（ `<< 1` ），使用 **高低位链表** 优化元素重分布——根据 hash 新增位的值，元素要么留在原位置，要么移动到 "原位置 + 原容量"。JDK 1.8 改用尾插法解决了 JDK 1.7 并发扩容的死循环问题。记住： **负载因子 0.75、容量 2 的幂、高低位分家** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap并发问题/'><span class='context-label'>上一篇</span><span class='context-title'>HashMap 用在并发场景中会出现什么问题？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap转红黑树/'><span class='context-label'>下一篇</span><span class='context-title'>为什么在 Jdk 8 HashMap 要转成红黑树</span></a>
+</div>

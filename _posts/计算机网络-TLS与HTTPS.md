@@ -480,3 +480,8 @@ A: mTLS 要求客户端也提供证书，服务器验证客户端身份。应用
 **Q6: 证书过期导致服务不可用如何预防？**
 
 A: (1) 自动化续期（Let's Encrypt + Certbot）；(2) 证书监控告警（Prometheus + ssl_exporter）；(3) 多级提醒（30天/14天/7天/1天）；(4) 使用证书透明度（CT）日志监控；(5) 预留手动续期窗口。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/安全-认证与授权/'><span class='context-label'>上一篇</span><span class='context-title'>安全 - 认证与授权</span></a>
+<a class='context-link next disabled'><span class='context-label'>下一篇</span><span class='context-title'>暂无</span></a>
+</div>

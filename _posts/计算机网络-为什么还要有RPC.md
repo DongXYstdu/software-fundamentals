@@ -202,3 +202,8 @@ res = remoteFunc(req)
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [3.7 HTTP/3 强势来袭](https://xiaolincoding.com/network/2_http/http3.html) [3.9 既然有 HTTP 协议，为什么还要有 WebSocket？](https://xiaolincoding.com/network/2_http/http_websocket.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-面向字节流协议/'><span class='context-label'>上一篇</span><span class='context-title'>如何理解TCP 面向字节流协议？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-为什么还要有WebSocket/'><span class='context-label'>下一篇</span><span class='context-title'>既然HTTP 协议，为什么还要有 WebSocket</span></a>
+</div>

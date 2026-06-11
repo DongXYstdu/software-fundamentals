@@ -230,3 +230,8 @@ SET GLOBAL auto_increment_increment = 2;
 ## 总结
 
 自增主键用完会导致插入失败，解决方案有两种： **单机场景改用 BIGINT** （约 922 亿亿容量，足够使用）； **分布式场景使用雪花算法** 生成全局唯一、趋势递增的 ID。新表设计建议直接用 `BIGINT UNSIGNED` ，避免后续迁移成本。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-脏读幻读不可重复读/'><span class='context-label'>上一篇</span><span class='context-title'>脏读、幻读、不可重复读是什么？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Redis-AOF持久化原理/'><span class='context-label'>下一篇</span><span class='context-title'>AOF持久化是怎么实现的？</span></a>
+</div>

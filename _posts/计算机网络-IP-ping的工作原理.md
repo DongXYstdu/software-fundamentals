@@ -326,3 +326,7 @@ traceroute 还有一个作用是 **故意设置不分片，从而确定路径的
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [5.1 IP 基础知识全家桶](https://xiaolincoding.com/network/4_ip/ip_base.html) [5.3 断网了，还能 ping 通 127.0.0.1 吗？](https://xiaolincoding.com/network/4_ip/ping_lo.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-IP-IP基础知识全家桶/'><span class='context-label'>上一篇</span><span class='context-title'>IP 基础知识全家</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-IP网络模型/'><span class='context-label'>下一篇</span><span class='context-title'>TCP/IP 网络模型有哪几层</span></a>
+</div>

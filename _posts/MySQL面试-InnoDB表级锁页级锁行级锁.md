@@ -193,3 +193,8 @@ UPDATE user SET status = 1 WHERE id IN (1, 2, 3, ...);
 ## 总结
 
 InnoDB 支持行级锁、页级锁、表级锁三种粒度，默认使用 **行级锁** 实现高并发。行级锁包括记录锁、间隙锁、临键锁等，通过意向锁实现多粒度锁定的协调。生产环境需特别注意 **无索引查询导致的锁表问题** ，确保 `UPDATE` / `DELETE` 操作走索引，避免全表扫描带来的性能灾难。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-InnoDB索引类型/'><span class='context-label'>上一篇</span><span class='context-title'>InnoDB 中索引类型有哪些</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-SQL调优指南/'><span class='context-label'>下一篇</span><span class='context-title'>如何进行 SQL 调优</span></a>
+</div>

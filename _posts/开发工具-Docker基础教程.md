@@ -83,3 +83,7 @@ docker exec -it <容器ID> /bin/bash
 ## 相关链接
 
 Docker 官网： [https://www.docker.com](https://www.docker.com/)
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Linux-Linux面试题/'><span class='context-label'>上一篇</span><span class='context-title'>Linux命令面试</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/开发工具-Docker面试题/'><span class='context-label'>下一篇</span><span class='context-title'>Docker面试</span></a>
+</div>

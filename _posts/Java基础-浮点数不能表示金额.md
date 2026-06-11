@@ -179,3 +179,8 @@ public class LongMoneyDemo {
 ## 总结
 
 浮点数采用 IEEE 754 二进制存储，无法精确表示某些十进制小数，金额计算必须使用 `BigDecimal` （字符串构造）或将金额转为整数（分）存储。数据库中金额字段使用 `DECIMAL` 或 `BIGINT` ， **禁止使用 `FLOAT` / `DOUBLE`** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-泛型与类型擦除/'><span class='context-label'>上一篇</span><span class='context-title'>"什么是泛型？为什么要使用它？"</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-深拷贝与浅拷贝/'><span class='context-label'>下一篇</span><span class='context-title'>深拷贝和浅拷贝的区别</span></a>
+</div>

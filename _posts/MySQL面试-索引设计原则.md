@@ -223,3 +223,8 @@ SELECT * FROM users WHERE name LIKE '张%' AND age = 25;
 ## 总结
 
 索引设计需要在查询性能和写入成本之间做权衡。核心原则是：选择高频查询且区分度高的列建立索引；联合索引遵循最左前缀原则，区分度高的列放前面；善用覆盖索引避免回表；控制索引数量避免过度索引；长字符串可使用前缀索引节省空间。记住，索引不是越多越好，要根据实际业务场景和查询模式进行设计。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-索引慢查询原因/'><span class='context-label'>上一篇</span><span class='context-title'>用了索引还是很慢，可能是什么原因？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-脏读幻读不可重复读/'><span class='context-label'>下一篇</span><span class='context-title'>脏读、幻读、不可重复读是什么？</span></a>
+</div>

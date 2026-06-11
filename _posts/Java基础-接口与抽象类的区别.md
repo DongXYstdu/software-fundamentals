@@ -240,3 +240,8 @@ Comparator<String> comparator = Comparator
 ## 总结
 
 接口和抽象类的核心区别在于 **设计意图** ：接口定义 "能力"（能做什么），抽象类定义 "本质"（是什么）。选择时，优先考虑是否需要成员变量/构造方法（用抽象类），是否需要多实现（用接口）。JDK 8 之后接口可以有默认实现，但无法改变"接口无状态"的本质，遵循"面向接口编程"原则， **优先使用接口，必要时才用抽象类** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-序列化与反序列化/'><span class='context-label'>上一篇</span><span class='context-title'>什么是序列化与反序列化</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-泛型与类型擦除/'><span class='context-label'>下一篇</span><span class='context-title'>"什么是泛型？为什么要使用它？"</span></a>
+</div>

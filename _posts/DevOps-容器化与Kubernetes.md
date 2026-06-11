@@ -788,3 +788,8 @@ A：GitOps 的核心是**Git 作为唯一事实来源**——所有基础设施�
 (2) **声明式vs 命令式**：传统方式用 `kubectl apply` / `helm upgrade` 命令式部署，GitOps 声明期望状态，Agent 自动收敛；(3) **审计和回滚**：Git 历史就是完整的变更审计，回滚只需 `git revert`；(4) **一致性**：Git 状态= 集群状态，漂移自动修复。GitOps 的优势在于安全（不需要在 CI 中存储集群凭证）和可审计，适合生产环境。
 
 {% endraw %}
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/DevOps-Git工作流与协作/'><span class='context-label'>上一篇</span><span class='context-title'>DevOps - Git工作流与协作</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Linux-Linux面试题/'><span class='context-label'>下一篇</span><span class='context-title'>Linux命令面试</span></a>
+</div>

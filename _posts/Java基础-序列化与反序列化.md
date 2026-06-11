@@ -178,3 +178,8 @@ Object obj = ois.readObject();  // 可能触发恶意代码执行！
 ## 总结
 
 序列化将 Java 对象转换为字节序列，便于存储和传输；反序列化将字节恢复为对象。Java 原生序列化通过 `Serializable` 接口实现，但存在性能差、体积大、安全风险等问题， **生产环境推荐使用 JSON、Protobuf 等更优方案** 。务必显式定义 `serialVersionUID` ，敏感字段使用 `transient` 排除。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-如何理解Java中的多态/'><span class='context-label'>上一篇</span><span class='context-title'>如何理解 Java 中的多态？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-接口与抽象类的区别/'><span class='context-label'>下一篇</span><span class='context-title'>"接口和抽象类的区别是什么？怎么选择"</span></a>
+</div>

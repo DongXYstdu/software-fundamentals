@@ -721,3 +721,8 @@ tcp\_retries1和tcp\_retries2都是在TCP三次握手之后的场景。
 **小林是专为大家图解的工具人，Goodbye，我们下次见！**
 
 ← [4.2 TCP 重传、滑动窗口、流量控制、拥塞控制](https://xiaolincoding.com/network/3_tcp/tcp_feature.html) [4.4 TCP 半连接队列和全连接队列](https://xiaolincoding.com/network/3_tcp/tcp_queue.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-如何优化TCP/'><span class='context-label'>上一篇</span><span class='context-title'>如何优化 TCP</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-已建立连接收到SYN/'><span class='context-label'>下一篇</span><span class='context-title'>已建立连接的 TCP，收SYN 会发生什么？</span></a>
+</div>

@@ -218,3 +218,8 @@ WebSocket完美继承了 TCP 协议的 **全双工** 能力，并且还贴心的
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [3.8 既然有 HTTP 协议，为什么还要有 RPC？](https://xiaolincoding.com/network/2_http/http_rpc.html) [4.1 TCP 三次握手与四次挥手面试题](https://xiaolincoding.com/network/3_tcp/tcp_interview.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-为什么还要有RPC/'><span class='context-label'>上一篇</span><span class='context-title'>既然HTTP 协议，为什么还要有 RPC</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-计算机网络核心总结/'><span class='context-label'>下一篇</span><span class='context-title'>计算机网络核心总结</span></a>
+</div>

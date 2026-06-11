@@ -201,3 +201,8 @@ public final class ImmutableClass {          // 1. final 修饰类
 ## 总结
 
 `String` 设计成 `final` 不可变类，是为了实现 **常量池内存优化、天然线程安全、哈希值缓存、系统安全保障、设计一致性** 五大核心价值。不可变性是 `String` 成为 Java 中最重要、最高频使用类的基础支撑，也是不可变对象设计模式的经典范例。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-String-StringBuilder-StringBuffer区别/'><span class='context-label'>上一篇</span><span class='context-title'>"String、StringBuilder StringBuffer 的区别？"</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-UUID与唯一性/'><span class='context-label'>下一篇</span><span class='context-title'>什么是 UUID，能保证唯一性吗</span></a>
+</div>

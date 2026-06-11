@@ -291,3 +291,8 @@ QUIC 协议没有用四元组的方式来“绑定”连接，而是通过 **连
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.17 TCP 协议有什么缺陷？](https://xiaolincoding.com/network/3_tcp/tcp_problem.html) [4.19 TCP 和 UDP 可以使用同一个端口吗？](https://xiaolincoding.com/network/3_tcp/port.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-四次挥手变三次/'><span class='context-label'>上一篇</span><span class='context-title'>TCP 四次挥手，可以变成三次吗</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-如何优化TCP/'><span class='context-label'>下一篇</span><span class='context-title'>如何优化 TCP</span></a>
+</div>

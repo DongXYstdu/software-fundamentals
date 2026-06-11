@@ -241,3 +241,8 @@ try (ResourceDemo resource = new ResourceDemo()) {
 ## 总结
 
 `final` 、 `finally` 、 `finalize()` 三者除了名字相似外，没有本质联系。 `final` 是修饰符，表示 "不可变"； `finally` 是异常处理机制，确保代码一定执行； `finalize()` 是已废弃的对象回收回调方法。实际开发中， `final` 和 `finally` 经常使用，而 `finalize()` 应该避免使用，改用 `try-with-resources` 或 `Cleaner` 替代。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-equals与hashCode重写/'><span class='context-label'>上一篇</span><span class='context-title'>为什么重equals 时一定要重写 hashCode</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-finally中代码一定会被执行吗/'><span class='context-label'>下一篇</span><span class='context-title'>finally 中代码一定会被执行吗</span></a>
+</div>

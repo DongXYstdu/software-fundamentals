@@ -238,3 +238,8 @@ public void test() {
 ## 总结
 
 `finally` 中的代码在 **绝大多数情况下会执行** ，只有在 JVM 退出（ `System.exit()` ）、线程死亡、系统崩溃等极端情况下才不会执行。 `finally` 的执行时机在 `return` 之前，但 `return` 的值在 `finally` 执行前就已确定。 **强烈不建议** 在 `finally` 中使用 `return` ，这会覆盖返回值并吞掉异常。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-final-finally-finalize的区别/'><span class='context-label'>上一篇</span><span class='context-title'>final、finally、finalize 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-new-String创建几个对象/'><span class='context-label'>下一篇</span><span class='context-title'>"String str = new String(\"abc\") 创建了几个对象？"</span></a>
+</div>

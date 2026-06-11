@@ -458,3 +458,8 @@ A: (1) 多 NS 记录指向不同服务商；(2) 使用 Anycast 部署；(3) 主�
 **Q6: CNAME 为什么不能和其它记录共存？**
 
 A: RFC 规定 CNAME 不能与同一名称的其它记录类型共存（包括 SOA、NS 除外）。因为 CNAME 表示"此名称是另一个名称的别名"，查询任何记录类型都应跟随 CNAME 解析。如果同时存在 A 记录和 CNAME，解析器行为不确定。根域（zone apex）不能使用 CNAME，这是 CDN 接入的常见痛点。
+
+<div class='context-nav'>
+<a class='context-link prev disabled'><span class='context-label'>上一篇</span><span class='context-title'>暂无</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-HTTP1.1优化/'><span class='context-label'>下一篇</span><span class='context-title'>HTTP/1.1 如何优化</span></a>
+</div>

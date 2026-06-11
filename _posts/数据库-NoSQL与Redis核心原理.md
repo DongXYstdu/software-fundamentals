@@ -304,3 +304,8 @@ NoSQL 是关系型数据库的重要补充：
 - **分布式锁**：SET key value NX EX seconds + Lua 脚本释放
 
 Redis 不是万能的——它是关系型数据库的加速器而不是替代品。用好 Redis，能让你的系统性能提升一个数量级。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/数据库-MySQL执行原理与架构/'><span class='context-label'>上一篇</span><span class='context-title'>数据库：MySQL执行原理与架构</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/数据库-Redis核心原理/'><span class='context-label'>下一篇</span><span class='context-title'>数据库 - Redis核心原理</span></a>
+</div>

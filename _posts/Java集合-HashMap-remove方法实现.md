@@ -218,3 +218,8 @@ public void clear() {
 ## 总结
 
 HashMap 的 `remove()` 方法通过 hash 定位桶后，根据节点类型执行不同删除逻辑： **链表删除只需修改指针** （O(1)）， **红黑树删除需要旋转和变色修复平衡** （O(log n)）。删除后如果红黑树节点数 ≤ 6，会退化为链表。注意： **HashMap 只有扩容没有缩容** ，删除元素不会减小容量。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap-hash方法实现/'><span class='context-label'>上一篇</span><span class='context-title'>HashMap hash 方法是如何实现的</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap并发问题/'><span class='context-label'>下一篇</span><span class='context-title'>HashMap 用在并发场景中会出现什么问题？</span></a>
+</div>

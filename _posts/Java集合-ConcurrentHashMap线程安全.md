@@ -216,3 +216,8 @@ static class Node<K,V> {
 ## 总结
 
 ConcurrentHashMap 在 JDK 1.8 通过 **CAS + synchronized + volatile** 三者协同保证线程安全： **CAS** 用于空桶无锁插入， **synchronized** 用于哈希冲突时锁单个桶头节点， **volatile** 保证 Node 的 val 和 next 可见性。与 Hashtable 的全表锁相比，ConcurrentHashMap 的 **桶级锁** 实现了极高的并发度， **读操作完全无锁** 。记住： **锁粒度细、读无锁、写只锁桶** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-ConcurrentHashMap废弃分段锁/'><span class='context-label'>上一篇</span><span class='context-title'>ConcurrentHashMap 为什么在 JDK 1.8 中废弃分段锁</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap-Hashtable-ConcurrentHashMap区别/'><span class='context-label'>下一篇</span><span class='context-title'>HashMap、Hashtable ConcurrentHashMap 的区别？</span></a>
+</div>

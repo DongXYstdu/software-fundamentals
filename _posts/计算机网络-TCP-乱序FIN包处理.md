@@ -107,3 +107,8 @@ https://elixir.bootlin.com/linux/latest/source
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.9 已建立连接的TCP，收到SYN会发生什么？](https://xiaolincoding.com/network/3_tcp/challenge_ack.html) [4.11 在 TIME\_WAIT 状态的 TCP 连接，收到 SYN 后会发生什么？](https://xiaolincoding.com/network/3_tcp/time_wait_recv_syn.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-三次握手与四次挥手面试题/'><span class='context-label'>上一篇</span><span class='context-title'>TCP 三次握手与四次挥手面试题</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-初始化序列号不一样/'><span class='context-label'>下一篇</span><span class='context-title'>为什TCP 每次建立连接时，初始化序列号都要不一样呢</span></a>
+</div>

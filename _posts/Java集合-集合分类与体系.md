@@ -128,3 +128,8 @@ Map<String, String> map = new ConcurrentHashMap<>();
 ## 总结
 
 Java 集合框架分为 `Collection` （单列）和 `Map` （双列）两大体系。 `Collection` 下分 `List` （有序可重复）、 `Set` （无序唯一）、 `Queue` （队列）三类； `Map` 存储键值对，核心实现包括 `HashMap` 、 `LinkedHashMap` 、 `TreeMap` 、 `ConcurrentHashMap` 。选型时根据 "有序性、唯一性、线程安全、排序需求" 四个维度判断，日常开发 `ArrayList` + `HashMap` 覆盖 90% 场景。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-fail-fast与fail-safe/'><span class='context-label'>上一篇</span><span class='context-title'>什么是 fail-fast？什么是 fail-safe</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/开发框架-Spring框架核心总结/'><span class='context-label'>下一篇</span><span class='context-title'>Spring框架核心总结</span></a>
+</div>

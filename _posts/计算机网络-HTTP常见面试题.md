@@ -1035,3 +1035,7 @@ SSL/TLS 1.2 需要 4 握手，需要 2 个 RTT 的时延，我文中的图是把
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [2.3 Linux 系统是如何收发网络包的？](https://xiaolincoding.com/network/1_base/how_os_deal_network_package.html) [3.2 HTTP/1.1 如何优化？](https://xiaolincoding.com/network/2_http/http_optimize.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-HTTP协议演进/'><span class='context-label'>上一篇</span><span class='context-title'>计算机网络 - HTTP协议演进</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-IP-IP基础知识全家桶/'><span class='context-label'>下一篇</span><span class='context-title'>IP 基础知识全家</span></a>
+</div>

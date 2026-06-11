@@ -175,3 +175,8 @@ treeSet.add("b");
 ## 总结
 
 `HashSet` 保证元素不重复的核心机制是： **底层基于 `HashMap` 实现** ，元素作为 key 存储，利用 HashMap 的 key 唯一性。判断重复时， **先比较 `hashCode()` ，相同再调用 `equals()`** ，都返回 true 才认为是重复元素。 `TreeSet` 则不同，使用 `compareTo()` 或 `Comparator` 判断相等。记住： **Set 元素必须正确实现 `hashCode()` 和 `equals()`** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap默认负载因子0.75/'><span class='context-label'>上一篇</span><span class='context-title'>为什HashMap 的默认负载因子要设置0.75</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-fail-fast与fail-safe/'><span class='context-label'>下一篇</span><span class='context-title'>什么是 fail-fast？什么是 fail-safe</span></a>
+</div>

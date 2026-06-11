@@ -239,3 +239,8 @@ flowchart TD
 
 ---
 > 参考来源：[JavaGuide](https://javaguide.cn/java/concurrent/)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java-Java基础面试题/'><span class='context-label'>上一篇</span><span class='context-title'>Java基础面试</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java-Java并发面试题/'><span class='context-label'>下一篇</span><span class='context-title'>Java并发编程面试</span></a>
+</div>

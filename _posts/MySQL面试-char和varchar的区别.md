@@ -194,3 +194,8 @@ INSERT INTO t (name) VALUES ('Tom   ');  -- CHAR 会丢失空格！
 ## 总结
 
 `CHAR` 是定长类型，存储时补空格、检索时去空格，适合长度固定的数据（手机号、MD5 值）； `VARCHAR` 是变长类型，按实际长度存储，额外使用 1~2 字节记录长度，适合长度变化的数据（用户名、地址）。选择原则： **固定长度用 CHAR，变化长度用 VARCHAR** ，性能差异通常可以忽略，优先考虑空间利用率和业务语义。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-binlog-redolog-undolog区别/'><span class='context-label'>上一篇</span><span class='context-title'>binlog、redolog undolog 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-count的区别/'><span class='context-label'>下一篇</span><span class='context-title'>count(1)、count(*) count(列名) 的区别？</span></a>
+</div>

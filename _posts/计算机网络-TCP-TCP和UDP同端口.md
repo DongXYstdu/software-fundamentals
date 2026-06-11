@@ -285,3 +285,7 @@ TCP 连接是由四元组（源IP地址，源端口，目的IP地址，目的端
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.18 如何基于 UDP 协议实现可靠传输？](https://xiaolincoding.com/network/3_tcp/quic.html) [4.20 服务端没有 listen，客户端发起连接建立，会发生什么？](https://xiaolincoding.com/network/3_tcp/tcp_no_listen.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-SYN报文被丢弃/'><span class='context-label'>上一篇</span><span class='context-title'>SYN 报文什么情况下会被丢弃</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-TCP的缺陷/'><span class='context-label'>下一篇</span><span class='context-title'>TCP 有什么缺陷？</span></a>
+</div>

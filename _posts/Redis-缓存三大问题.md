@@ -181,3 +181,7 @@ tags: [数据? Redis, 小林coding, 图解]
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [如何保证 Redis 分布式锁的高可用和高性能？](https://xiaolincoding.com/redis/cluster/redlock.html) [数据库和缓存如何保证一致性？](https://xiaolincoding.com/redis/architecture/mysql_redis_consistency.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Redis-数据库与缓存一致性/'><span class='context-label'>上一篇</span><span class='context-title'>数据库和缓存如何保证一致性？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/数据库-MySQL执行原理与架构/'><span class='context-label'>下一篇</span><span class='context-title'>数据库：MySQL执行原理与架构</span></a>
+</div>

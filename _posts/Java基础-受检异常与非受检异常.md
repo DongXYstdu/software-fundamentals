@@ -188,3 +188,8 @@ try {
 ## 总结
 
 Java 异常分为受检异常（必须显式处理）和非受检异常（不强制处理）。受检异常适合可恢复的场景，非受检异常适合程序 bug 或无法恢复的场景。实际开发中，推荐使用非受检异常（继承 `RuntimeException` ）设计业务异常，避免受检异常污染方法签名。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-反射机制与性能/'><span class='context-label'>上一篇</span><span class='context-title'>"什么是反射机制？为什么反射慢"</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-如何理解Java中的多态/'><span class='context-label'>下一篇</span><span class='context-title'>如何理解 Java 中的多态？</span></a>
+</div>

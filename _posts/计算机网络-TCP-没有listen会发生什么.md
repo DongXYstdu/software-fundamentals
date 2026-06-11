@@ -229,3 +229,7 @@ int main(void)
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.19 TCP 和 UDP 可以使用同一个端口吗？](https://xiaolincoding.com/network/3_tcp/port.html) [4.21 没有 accept，能建立 TCP 连接吗？](https://xiaolincoding.com/network/3_tcp/tcp_no_accpet.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-没有accept能建立连接吗/'><span class='context-label'>上一篇</span><span class='context-title'>没有 accept，可以建TCP 连接吗？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-用了TCP数据一定会丢吗/'><span class='context-label'>下一篇</span><span class='context-title'>用了 TCP 协议，数据一定不会丢吗？</span></a>
+</div>

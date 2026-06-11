@@ -476,3 +476,8 @@ A: Chrome DevTools → Network 面板 → 右键列头 → 勾选 Protocol 列�
 **Q6: HTTP/2 的服务器推送在实际中为什么使用较少？**
 
 A: 服务器推送存在几个问题：(1) 服务器难以准确判断客户端是否已缓存该资源；(2) 推送的资源占用客户端缓存空间；(3) 中间代理可能不支持推送；(4) Chrome 已在 2023 年宣布移除 HTTP/2 Server Push 支持。替代方案是使用 `<link rel="preload">` 让客户端主动预加载。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-HTTPS优化/'><span class='context-label'>上一篇</span><span class='context-title'>HTTPS 如何优化</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-HTTP常见面试题/'><span class='context-label'>下一篇</span><span class='context-title'>HTTP 常见面试</span></a>
+</div>

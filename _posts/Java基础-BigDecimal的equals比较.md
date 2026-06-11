@@ -180,3 +180,8 @@ public class BigDecimalCompareDemo {
 ## 总结
 
 `BigDecimal` 的 `equals()` 方法会比较 `scale` （精度），导致 `1.0` 和 `1.00` 被判定为不相等。 **金额比较必须使用 `compareTo() == 0`** ，只比较数值大小，忽略精度差异。同时，构造 `BigDecimal` 时应使用字符串或 `valueOf()` ，避免 `double` 构造导致的精度丢失。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-BigDecimal和Long哪个表示金额更合适/'><span class='context-label'>上一篇</span><span class='context-title'>BigDecimal Long 哪个表示金额更合适？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-String-StringBuilder-StringBuffer区别/'><span class='context-label'>下一篇</span><span class='context-title'>"String、StringBuilder StringBuffer 的区别？"</span></a>
+</div>

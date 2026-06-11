@@ -408,3 +408,8 @@ GoF 23 种设计模式常被误解为"模板"。**设计模式的价值不在于
 3. **简单优先**：KISS (Keep It Simple, Stupid)。YAGNI (You Aren't Gonna Need It)。不要过度设计，等到变化发生时再重构。
 
 下一篇我们将讨论 **架构模式：分层架构、事件驱动、微服务的本质取舍**。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/软件工程-软件测试方法论/'><span class='context-label'>上一篇</span><span class='context-title'>软件测试方法论——从单元测试到混沌工程的体系化实践</span></a>
+<a class='context-link next disabled'><span class='context-label'>下一篇</span><span class='context-title'>暂无</span></a>
+</div>

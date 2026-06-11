@@ -218,3 +218,8 @@ final Node<K,V> getNode(int hash, Object key) {
 ## 总结
 
 HashMap 的 `put` 和 `get` 操作都遵循 **"hash → 定位桶 → 遍历处理"** 的核心逻辑。 `put` 流程更复杂，包含初始化、插入、更新、树化检查、扩容检查等步骤； `get` 相对简单，只做查找返回。两者共享 hash 计算和 key 比较逻辑，时间复杂度在理想情况下为 O(1)，最坏情况（红黑树）为 O(log n)。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap-Hashtable-ConcurrentHashMap区别/'><span class='context-label'>上一篇</span><span class='context-title'>HashMap、Hashtable ConcurrentHashMap 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap-hash方法实现/'><span class='context-label'>下一篇</span><span class='context-title'>HashMap hash 方法是如何实现的</span></a>
+</div>

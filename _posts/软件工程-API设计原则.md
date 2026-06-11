@@ -525,3 +525,8 @@ graph TD
 **Q5：游标分页和偏移分页各自的适用场景？**
 
 > 偏移分页适合：管理后台、需要跳页、数据量小（< 10 万）。游标分页适合：面向用户的列表（信息流、时间线）、数据量大、实时性要求高。偏移分页在深分页时性能差（`OFFSET 100000` 需扫描前 10 万行），且在并发写入时可能重复或遗漏数据。游标分页基于排序键值定位，深分页性能恒定。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/数据库-性能优化实战/'><span class='context-label'>上一篇</span><span class='context-title'>数据库：性能优化实战</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/软件工程-代码重构/'><span class='context-label'>下一篇</span><span class='context-title'>代码重构——从异味识别到持续改进的工程实践</span></a>
+</div>

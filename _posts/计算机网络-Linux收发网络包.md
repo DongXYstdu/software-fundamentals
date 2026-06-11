@@ -183,3 +183,7 @@ TCP/IP 模型主要分为应用层、传输层、网络层、网络接口层四�
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [2.2 键入网址到网页显示，期间发生了什么？](https://xiaolincoding.com/network/1_base/what_happen_url.html) [3.1 HTTP 常见面试题](https://xiaolincoding.com/network/2_http/http_interview.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统核心概念-进程与线程/'><span class='context-label'>上一篇</span><span class='context-title'>操作系统核心概念：进程与线程</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-断电与进程崩溃区别/'><span class='context-label'>下一篇</span><span class='context-title'>TCP 连接，一端断电和进程崩溃有什么区别？</span></a>
+</div>

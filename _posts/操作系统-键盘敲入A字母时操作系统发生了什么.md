@@ -199,3 +199,7 @@ CPU 收到中断请求后，操作系统会 **保存被中断进程的 CPU 上�
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [7.2 进程写文件时，进程发生了崩溃，已写入的数据会丢失吗？](https://xiaolincoding.com/os/6_file_system/pagecache.html) [9.1 什么是零拷贝？](https://xiaolincoding.com/os/8_network_system/zero_copy.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-避免预读失效和缓存污染/'><span class='context-label'>上一篇</span><span class='context-title'>如何避免预读失效和缓存污染的问题</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-高性能网络模式-Reactor和Proactor/'><span class='context-label'>下一篇</span><span class='context-title'>高性能网络模式：Reactor Proactor</span></a>
+</div>

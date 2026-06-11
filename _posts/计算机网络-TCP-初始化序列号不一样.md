@@ -137,3 +137,8 @@ static inline bool tcp_paws_check(const struct tcp_options_received *rx_opt, int
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.6 如何理解是 TCP 面向字节流协议？](https://xiaolincoding.com/network/3_tcp/tcp_stream.html) [4.8 SYN 报文什么情况下会被丢弃？](https://xiaolincoding.com/network/3_tcp/syn_drop.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-乱序FIN包处理/'><span class='context-label'>上一篇</span><span class='context-title'>四次挥手中收到乱序的 FIN 包会如何处理</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-半连接队列和全连接队列/'><span class='context-label'>下一篇</span><span class='context-title'>TCP 半连接队列和全连接队</span></a>
+</div>

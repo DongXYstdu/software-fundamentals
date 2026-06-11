@@ -73,3 +73,7 @@ $ python3 hello.py
 ```
 Hello, World!
 ```
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/编程语言-Java基础教程/'><span class='context-label'>上一篇</span><span class='context-title'>Java基础教程</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/编程语言-垃圾回收与内存管理/'><span class='context-label'>下一篇</span><span class='context-title'>编程语言：垃圾回收与内存管理——从手动管理到所有权模型</span></a>
+</div>

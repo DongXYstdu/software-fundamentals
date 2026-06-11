@@ -213,3 +213,8 @@ WHERE create_time >= '2024-01-01'
 ## 总结
 
 MySQL 慢查询排查五步法： **开启慢查询日志 → 定位问题 SQL → `EXPLAIN` 分析执行计划 → 针对性优化（加索引/改写 SQL）→ 验证效果** 。核心是看 `EXPLAIN` 的 `type` （避免 ALL）、 `key` （确认走索引）、 `rows` （扫描行数）、 `Extra` （关注 `Using filesort` 和 `Using temporary` ）。优化手段包括添加索引、避免索引失效、使用覆盖索引、改写 SQL 等。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-回表查询与避免/'><span class='context-label'>上一篇</span><span class='context-title'>什么是回表查询？如何避免？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-数据库死锁与解决/'><span class='context-label'>下一篇</span><span class='context-title'>什么是数据库死锁，怎么解决</span></a>
+</div>

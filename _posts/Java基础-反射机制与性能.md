@@ -312,3 +312,8 @@ mh.invokeExact(user, "hi");  // 性能接近直接调用
 ## 总结
 
 Java 反射机制允许程序在运行时获取类的完整信息并动态调用方法，是框架开发的基石。反射慢的根本原因是运行时方法查找、参数装箱、安全检查和 JIT 优化受限，性能损耗约 10-100 倍。优化策略包括缓存 `Method` 对象、调用 `setAccessible(true)` 、使用 `MethodHandle` 或字节码生成技术。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-什么是SPI和API的区别/'><span class='context-label'>上一篇</span><span class='context-title'>什么是 SPI，和 API 有啥区别</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-受检异常与非受检异常/'><span class='context-label'>下一篇</span><span class='context-title'>Java 中异常分哪两类，有什么区别？</span></a>
+</div>

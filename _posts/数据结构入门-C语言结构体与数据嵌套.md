@@ -570,3 +570,8 @@ graph LR
 | **内存对齐** | 整块读取 | 成员顺序影响内存大小 |
 
 下一篇文章，我们将学习**数据结构的嵌套与组合**——现实世界的数据往往不是简单的平铺，而是一层套一层的！
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/数据库入门-电商系统数据库设计实战/'><span class='context-label'>上一篇</span><span class='context-title'>数据库入门：电商系统数据库设计实战</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/数据结构入门-List与Map和Set/'><span class='context-label'>下一篇</span><span class='context-title'>数据结构入门：List、Map、Set 三大容器详解</span></a>
+</div>

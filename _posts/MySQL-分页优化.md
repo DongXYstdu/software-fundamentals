@@ -284,3 +284,8 @@ select * from page;
 * 如果数据量很少，比如1k的量级，且长期不太可能有巨大的增长，还是用 `limit offset, size` 的方案吧，整挺好，能用就行。
 
 ← [count(\*) 和 count(1) 有什么区别？哪个性能最好？](https://xiaolincoding.com/mysql/index/count.html) [事务隔离级别是怎么实现的？](https://xiaolincoding.com/mysql/transaction/mvcc.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL-事务隔离实现原理/'><span class='context-label'>上一篇</span><span class='context-title'>事务隔离级别是怎么实现的？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL-单表不超过2000W行/'><span class='context-label'>下一篇</span><span class='context-title'>MySQL单表不要超过2000W行靠谱吗</span></a>
+</div>

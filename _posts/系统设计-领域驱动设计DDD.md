@@ -526,3 +526,8 @@ A：分三步走：(1) **事件风暴**：拉上业务专家和技术团队，�
 (3) **按需拆分**：当某个模块的部署频率、扩展需求、团队归属出现明显差异时，再拆分为独立服务。
 
 核心是**先建模，后拆分**，而非先拆服务再补模型。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/系统设计-系统设计面试题/'><span class='context-label'>上一篇</span><span class='context-title'>系统设计面试</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/系统设计-高可用架构设计/'><span class='context-label'>下一篇</span><span class='context-title'>系统设计：高可用架构设计——从度量到实践</span></a>
+</div>

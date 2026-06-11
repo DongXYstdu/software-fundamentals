@@ -297,3 +297,8 @@ CREATE INDEX idx_all ON tiny_table(col1, col2, col3);  -- 表太小，全表扫�
 ## 总结
 
 InnoDB 物理上只有 **聚簇索引** （主键，存完整数据）和 **二级索引** （非主键，存主键值）两种结构。功能上分为主键索引、唯一索引、普通索引、联合索引、前缀索引、全文索引等。核心优化思路是： **减少回表（覆盖索引）、遵循最左前缀（联合索引）、选择高区分度列、使用自增主键** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-InnoDB和MyISAM的区别/'><span class='context-label'>上一篇</span><span class='context-title'>InnoDB MyISAM 有什么区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-InnoDB表级锁页级锁行级锁/'><span class='context-label'>下一篇</span><span class='context-title'>谈谈 InnoDB 中的表级锁、页级锁、行级锁</span></a>
+</div>

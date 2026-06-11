@@ -529,3 +529,8 @@ A：好的 Commit Message 回答三个问题：**为什么改？
 (4) **footer** 关联 Issue（`Closes #123`）和破坏性变更（`BREAKING CHANGE: ...`）。
 
 工具保障：commitlint + husky 在提交时自动校验格式。
+
+<div class='context-nav'>
+<a class='context-link prev disabled'><span class='context-label'>上一篇</span><span class='context-title'>暂无</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/DevOps-容器化与Kubernetes/'><span class='context-label'>下一篇</span><span class='context-title'>DevOps - 容器化与Kubernetes</span></a>
+</div>

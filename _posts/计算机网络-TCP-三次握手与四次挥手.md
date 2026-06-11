@@ -232,3 +232,8 @@ flowchart LR
 TCP 的连接管理虽然看起来复杂，但每条规则背后都有清晰的工程考量——**可靠性优先于效率**。理解这些设计取舍，是深入掌握网络协议的关键。
 
 下一篇我们将讨论 **TCP 的滑动窗口与流量控制**。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-tcp-tw-reuse默认关闭/'><span class='context-label'>上一篇</span><span class='context-title'>tcp_tw_reuse 为什么默认是关闭的？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-三次握手与四次挥手面试题/'><span class='context-label'>下一篇</span><span class='context-title'>TCP 三次握手与四次挥手面试题</span></a>
+</div>

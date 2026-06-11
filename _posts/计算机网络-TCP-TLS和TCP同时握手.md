@@ -123,3 +123,7 @@ TLSv1.3 还有个更厉害的地方在于 **会话恢复** 机制，在 **重连
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.14 tcptwreuse 为什么默认是关闭的？](https://xiaolincoding.com/network/3_tcp/tcp_tw_reuse_close.html) [4.16 TCP Keepalive 和 HTTP Keep-Alive 是一个东西吗？](https://xiaolincoding.com/network/3_tcp/tcp_http_keepalive.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-TIME_WAIT收到SYN/'><span class='context-label'>上一篇</span><span class='context-title'>TIME_WAIT 状态的 TCP 连接，收SYN 后会发生什么？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-tcp-tw-reuse默认关闭/'><span class='context-label'>下一篇</span><span class='context-title'>tcp_tw_reuse 为什么默认是关闭的？</span></a>
+</div>

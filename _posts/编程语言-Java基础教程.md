@@ -63,3 +63,7 @@ Hello World
 Gif 图演示：
 
 ![](https://www.runoob.com/wp-content/uploads/2013/12/java-HelloWorld.gif)
+<div class='context-nav'>
+<a class='context-link prev disabled'><span class='context-label'>上一篇</span><span class='context-title'>暂无</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/编程语言-Python3基础教程/'><span class='context-label'>下一篇</span><span class='context-title'>Python3基础教程</span></a>
+</div>

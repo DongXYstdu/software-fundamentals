@@ -736,3 +736,7 @@ Linux 会对缓冲区动态调节，我们应该把缓冲区的上限设置为�
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.4 TCP 半连接队列和全连接队列](https://xiaolincoding.com/network/3_tcp/tcp_queue.html) [4.6 如何理解是 TCP 面向字节流协议？](https://xiaolincoding.com/network/3_tcp/tcp_stream.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-基于UDP实现可靠传输/'><span class='context-label'>上一篇</span><span class='context-title'>如何基于 UDP 协议实现可靠传输</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-实战抓包分析/'><span class='context-label'>下一篇</span><span class='context-title'>TCP 实战抓包分析</span></a>
+</div>

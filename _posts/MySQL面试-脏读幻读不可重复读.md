@@ -164,3 +164,8 @@ COMMIT;  -- 事务 A 提交后，事务 B 才能插入
 ## 总结
 
 脏读是读到未提交的数据（最严重）；不可重复读是同一事务内同一行数据变了（UPDATE/DELETE）；幻读是同一事务内查询结果行数变了（INSERT/DELETE）。MySQL 默认使用 `REPEATABLE READ` 隔离级别，通过 **MVCC** 解决不可重复读，通过 **MVCC + Next-Key Lock** 解决幻读。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-索引设计原则/'><span class='context-label'>上一篇</span><span class='context-title'>设计索引时应遵循哪些原则</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-自增主键用完了怎么办/'><span class='context-label'>下一篇</span><span class='context-title'>自增主键用完了怎么办？</span></a>
+</div>

@@ -170,3 +170,8 @@ WHERE order_id NOT IN (SELECT id FROM orders);
 ## 总结
 
 外键通过数据库约束保证参照完整性，但代价是 **性能开销、锁竞争、死锁风险、无法分库分表** 。互联网高并发场景普遍在 **应用层维护关联关系** ，通过业务代码校验、消息队列、分布式事务等方式保证数据一致性。只有单机小系统、强一致性需求的场景才考虑使用外键。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-不推荐多表JOIN/'><span class='context-label'>上一篇</span><span class='context-title'>为什么互联网大厂不推荐使用多JOIN</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-乐观锁与悲观锁实现/'><span class='context-label'>下一篇</span><span class='context-title'>乐观锁与悲观锁怎么实现</span></a>
+</div>

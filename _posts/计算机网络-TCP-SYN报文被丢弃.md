@@ -182,3 +182,7 @@ syncookies 参数主要有以下三个值：
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.7 为什么 TCP 每次建立连接时，初始化序列号都要不一样呢？](https://xiaolincoding.com/network/3_tcp/isn_deff.html) [4.9 已建立连接的TCP，收到SYN会发生什么？](https://xiaolincoding.com/network/3_tcp/challenge_ack.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-Keepalive与HTTP-KeepAlive/'><span class='context-label'>上一篇</span><span class='context-title'>TCP Keepalive HTTP Keep-Alive 是一个东西吗</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-TCP和UDP同端口/'><span class='context-label'>下一篇</span><span class='context-title'>TCP UDP 可以使用同一个端口吗</span></a>
+</div>

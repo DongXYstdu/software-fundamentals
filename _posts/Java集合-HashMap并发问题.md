@@ -126,3 +126,8 @@ Map<String, String> map = new HashMap<>();  // 并发会出问题！
 ## 总结
 
 HashMap 在并发场景下，JDK 1.7 会因头插法导致 **死循环** （CPU 100%），JDK 1.8 虽用尾插法避免了死循环，但仍存在 **数据覆盖/丢失** 问题。 **任何版本的 HashMap 都不是线程安全的** ，并发场景必须使用 `ConcurrentHashMap` ，它通过 CAS + 桶级 synchronized 实现高并发安全。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap-remove方法实现/'><span class='context-label'>上一篇</span><span class='context-title'>HashMap remove 方法是如何实现的</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap扩容机制/'><span class='context-label'>下一篇</span><span class='context-title'>说说 HashMap 的扩容机制？如何扩容的？</span></a>
+</div>

@@ -60,3 +60,7 @@ HTML 很容易学习！相信您能很快学会它！
 ## HTML/CSS/JS 在线工具
 
 HTML/CSS/JS 在线工具可以在线编辑 HTML、CSS、JS 代码，并实时查看效果，你也可以将优质代码保存分享： [https://www.jyshare.com/front-end/61](https://www.jyshare.com/front-end/61)
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/前端开发-CSS基础教程/'><span class='context-label'>上一篇</span><span class='context-title'>CSS基础教程</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/前端开发-JavaScript基础教程/'><span class='context-label'>下一篇</span><span class='context-title'>JavaScript基础教程</span></a>
+</div>

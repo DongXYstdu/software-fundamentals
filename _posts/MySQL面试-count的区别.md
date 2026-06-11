@@ -183,3 +183,8 @@ FROM user;
 ## 总结
 
 `count(*)` 和 `count(1)` 效果相同，统计所有行数，MySQL 5.7+ 会将两者优化成相同的执行计划，推荐使用语义更清晰的 `count(*)` ； `count(列名)` 只统计该列 **非 NULL 的行数** 。InnoDB 由于 MVCC 机制无法像 MyISAM 一样存储精确行数，大表 count 需要通过缓存或计数表优化。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-char和varchar的区别/'><span class='context-label'>上一篇</span><span class='context-title'>char varchar 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-truncate-delete-drop区别/'><span class='context-label'>下一篇</span><span class='context-title'>truncate、delete、drop 的区别？</span></a>
+</div>

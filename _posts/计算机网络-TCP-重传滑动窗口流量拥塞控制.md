@@ -662,3 +662,7 @@ TIP
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0)
 
 ← [4.1 TCP 三次握手与四次挥手面试题](https://xiaolincoding.com/network/3_tcp/tcp_interview.html) [4.3 TCP 实战抓包分析](https://xiaolincoding.com/network/3_tcp/tcp_tcpdump.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-用了TCP数据一定会丢吗/'><span class='context-label'>上一篇</span><span class='context-title'>用了 TCP 协议，数据一定不会丢吗？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-面向字节流协议/'><span class='context-label'>下一篇</span><span class='context-title'>如何理解TCP 面向字节流协议？</span></a>
+</div>

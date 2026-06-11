@@ -148,3 +148,8 @@ for (; true; ) {  // 多此一举
 ## 总结
 
 `while(true)` 和 `for(;;)` 性能完全相同，编译后字节码一致，都是单条 `goto` 指令。选择哪个取决于团队编码风格，推荐使用 `while(true)` 提高可读性。真正需要关注的是无限循环中是否有阻塞操作，避免 CPU 空转。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-new-String创建几个对象/'><span class='context-label'>上一篇</span><span class='context-title'>"String str = new String(\"abc\") 创建了几个对象？"</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-为什么Java不支持多继承/'><span class='context-label'>下一篇</span><span class='context-title'>为什Java 不支持多继承</span></a>
+</div>

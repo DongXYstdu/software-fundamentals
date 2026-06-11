@@ -110,3 +110,7 @@ HTTP/2 多个请求是跑在一个 TCP 连接中的，那么当 TCP 丢包时，
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.16 TCP Keepalive 和 HTTP Keep-Alive 是一个东西吗？](https://xiaolincoding.com/network/3_tcp/tcp_http_keepalive.html) [4.18 如何基于 UDP 协议实现可靠传输？](https://xiaolincoding.com/network/3_tcp/quic.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-TCP和UDP同端口/'><span class='context-label'>上一篇</span><span class='context-title'>TCP UDP 可以使用同一个端口吗</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-TIME_WAIT收到SYN/'><span class='context-label'>下一篇</span><span class='context-title'>TIME_WAIT 状态的 TCP 连接，收SYN 后会发生什么？</span></a>
+</div>

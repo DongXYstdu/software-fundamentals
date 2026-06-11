@@ -454,3 +454,8 @@ A: (1) 使用近似值：`EXPLAIN` 的 rows 估算或 `SHOW TABLE STATUS`；(2) 
 **Q6: 什么是 Index Condition Pushdown (ICP)？**
 
 A: ICP 是 MySQL 5.6+ 的优化。在没有 ICP 时，存储引擎通过索引找到行后返回给 Server 层，Server 层再根据 WHERE 条件过滤。ICP 允许将部分 WHERE 条件下推到存储引擎层，在索引扫描时就过滤，减少回表次数。EXPLAIN 中 Extra = Using index condition 表示启用了 ICP。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/数据库-Redis核心原理/'><span class='context-label'>上一篇</span><span class='context-title'>数据库 - Redis核心原理</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/数据库-事务与并发控制/'><span class='context-label'>下一篇</span><span class='context-title'>数据库 - 事务与并发控制</span></a>
+</div>

@@ -85,3 +85,7 @@ JavaScript 一直在升级，所以我们需要时刻了解 JavaScript 的新技
 ## HTML/CSS/JS 在线工具
 
 HTML/CSS/JS 在线工具可以在线编辑 HTML、CSS、JS 代码，并实时查看效果，你也可以将优质代码保存分享： [https://www.jyshare.com/front-end/61/](https://www.jyshare.com/front-end/61/)
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/前端开发-HTML基础教程/'><span class='context-label'>上一篇</span><span class='context-title'>HTML基础教程</span></a>
+<a class='context-link next disabled'><span class='context-label'>下一篇</span><span class='context-title'>暂无</span></a>
+</div>

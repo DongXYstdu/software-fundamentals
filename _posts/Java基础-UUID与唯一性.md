@@ -146,3 +146,8 @@ public class UUIDDemo {
 ## 总结
 
 UUID 是 128 位的通用唯一标识符，Java 默认生成 v4 版本（随机）。虽然理论上存在极小概率冲突，但实际应用中可以认为是唯一的。 **UUID 不适合作为数据库主键** （无序、占用空间大），分布式主键推荐使用雪花算法或号段模式。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-String为什么设计成final不可变/'><span class='context-label'>上一篇</span><span class='context-title'>"String 为什么设计成 final 不可变的"</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-equals与hashCode重写/'><span class='context-label'>下一篇</span><span class='context-title'>为什么重equals 时一定要重写 hashCode</span></a>
+</div>

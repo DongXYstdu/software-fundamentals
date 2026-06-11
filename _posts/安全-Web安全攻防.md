@@ -621,3 +621,8 @@ A：云环境的元数据服务（如 AWS 的 `169.254.169.254`）通过内网 I
 (3) 网络层隔离（安全组禁止实例访问元数据以外的内网地址）；
 
 (4) 出站流量代理。
+
+<div class='context-nav'>
+<a class='context-link prev disabled'><span class='context-label'>上一篇</span><span class='context-title'>暂无</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/安全-认证与授权/'><span class='context-label'>下一篇</span><span class='context-title'>安全 - 认证与授权</span></a>
+</div>

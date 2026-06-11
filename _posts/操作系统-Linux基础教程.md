@@ -51,3 +51,7 @@ Linux 遵循 GNU 通用公共许可证（GPL），任何个人和机构都可以
 - Fedora（及其相关版本Red Hat Enterprise Linux、CentOS）
 - openSUSE
 - ...
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-Linux内核vs-Windows内核/'><span class='context-label'>上一篇</span><span class='context-title'>Linux 内核 vs Windows 内核</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-malloc如何分配内存/'><span class='context-label'>下一篇</span><span class='context-title'>malloc是如何分配内存的</span></a>
+</div>

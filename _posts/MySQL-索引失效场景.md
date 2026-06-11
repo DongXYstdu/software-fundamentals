@@ -307,3 +307,7 @@ select * from t_user where id = 1 or age = 18;
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [MySQL 单表不要超过 2000W 行，靠谱吗？](https://xiaolincoding.com/mysql/index/2000w.html) [count(\*) 和 count(1) 有什么区别？哪个性能最好？](https://xiaolincoding.com/mysql/index/count.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL-死锁原因分析/'><span class='context-label'>上一篇</span><span class='context-title'>加了什么锁导致死锁的？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL-索引常见面试题/'><span class='context-label'>下一篇</span><span class='context-title'>索引常见面试</span></a>
+</div>

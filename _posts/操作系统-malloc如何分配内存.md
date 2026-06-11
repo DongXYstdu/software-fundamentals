@@ -240,3 +240,7 @@ int main() {
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.1 为什么要有虚拟内存？](https://xiaolincoding.com/os/3_memory/vmem.html) [4.3 内存满了，会发生什么？](https://xiaolincoding.com/os/3_memory/mem_reclaim.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-Linux基础教程/'><span class='context-label'>上一篇</span><span class='context-title'>Linux基础教程</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-为什么0.1加0.2不等于0.3/'><span class='context-label'>下一篇</span><span class='context-title'>为什0.1 + 0.2 不等0.3</span></a>
+</div>

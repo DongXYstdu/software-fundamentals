@@ -246,3 +246,8 @@ B 树和 B+ 都是通过多叉树的方式，会将树的高度变矮，所以�
 最新的图解文章都在公众号首发，别忘记关注哦！！如果你想加入百人技术交流群，扫码下方二维码回复「加群」。
 
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL-三大日志的作用/'><span class='context-label'>上一篇</span><span class='context-title'>undo log、redo log、binlog有什么用</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL-事务隔离实现原理/'><span class='context-label'>下一篇</span><span class='context-title'>事务隔离级别是怎么实现的？</span></a>
+</div>

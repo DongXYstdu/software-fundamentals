@@ -302,3 +302,8 @@ String s2 = list2.get(0);  // 无需强转
 ## 总结
 
 Java 泛型通过类型参数化实现编译期类型检查，解决了类型安全和强制转换问题。核心原理是类型擦除——编译时将泛型类型替换为原始类型，这是 Java 为了向后兼容的设计权衡。使用时遵循 PECS 原则（Producer Extends, Consumer Super），并注意泛型的限制（不能用基本类型、不能创建泛型数组等）。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-接口与抽象类的区别/'><span class='context-label'>上一篇</span><span class='context-title'>"接口和抽象类的区别是什么？怎么选择"</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-浮点数不能表示金额/'><span class='context-label'>下一篇</span><span class='context-title'>为什么不能用浮点数表示金额？</span></a>
+</div>

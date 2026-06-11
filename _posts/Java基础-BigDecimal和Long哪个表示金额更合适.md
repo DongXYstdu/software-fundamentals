@@ -246,3 +246,8 @@ public class Order {
 ## 总结
 
 金额表示 **绝对不能用 `float` / `double`** ，因为二进制浮点数无法精确表示十进制小数。 `BigDecimal` 是精确计算的首选，适合金融等对精度要求高的场景； `Long` 分存储是高性能的替代方案，适合互联网高并发场景。选择时需要权衡精度需求、性能要求、代码复杂度和团队规范。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-AIO-BIO和NIO的区别/'><span class='context-label'>上一篇</span><span class='context-title'>AIO、BIO NIO 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-BigDecimal的equals比较/'><span class='context-label'>下一篇</span><span class='context-title'>为什么不能用 BigDecimal equals 方法做等值比较？</span></a>
+</div>

@@ -157,3 +157,8 @@ public V put(K key, V value) {
 ## 总结
 
 JDK 1.8 废弃分段锁的核心原因是 **并发度固定、内存浪费、实现复杂** 。新的 **CAS + synchronized** 方案实现了 **并发度动态增长** （随容量扩容）、 **锁粒度最细** （只锁单个桶）、 **内存更省** （无 Segment 中间层）、 **读无锁** （volatile 保证可见性）。选择 synchronized 而非 ReentrantLock 是因为 JDK 1.6 后的锁升级优化，以及无额外内存开销的优势。记住： **分段锁是历史的妥协，CAS + synchronized 才是最优解** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-ArrayList-LinkedList-Vector区别/'><span class='context-label'>上一篇</span><span class='context-title'>ArrayList、LinkedList Vector 的区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-ConcurrentHashMap线程安全/'><span class='context-label'>下一篇</span><span class='context-title'>ConcurrentHashMap 是如何保证线程安全的</span></a>
+</div>

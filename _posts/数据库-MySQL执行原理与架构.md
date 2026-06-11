@@ -333,3 +333,8 @@ MySQL的执行流程是一个复杂而精妙的系统：
 5. **存储引擎**：负责数据的存储和读取
 
 理解MySQL的执行原理对于优化SQL性能至关重要。通过合理的索引设计、SQL优化和配置调整，可以显著提升MySQL的性能。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Redis-缓存三大问题/'><span class='context-label'>上一篇</span><span class='context-title'>什么是缓存雪崩、击穿、穿透？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/数据库-NoSQL与Redis核心原理/'><span class='context-label'>下一篇</span><span class='context-title'>数据库：NoSQL与Redis核心原理</span></a>
+</div>

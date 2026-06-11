@@ -224,3 +224,8 @@ Person deepCopy = gson.fromJson(gson.toJson(original), Person.class);
 ## 总结
 
 浅拷贝只复制对象本身，引用类型成员仍然共享；深拷贝递归复制所有层级对象，完全独立。生产环境推荐使用 JSON 工具（Jackson/Gson）或序列化方式实现深拷贝，避免手动递归 `clone()` 的繁琐和遗漏。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-浮点数不能表示金额/'><span class='context-label'>上一篇</span><span class='context-title'>为什么不能用浮点数表示金额？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-ArrayList-LinkedList-Vector区别/'><span class='context-label'>下一篇</span><span class='context-title'>ArrayList、LinkedList Vector 的区别？</span></a>
+</div>

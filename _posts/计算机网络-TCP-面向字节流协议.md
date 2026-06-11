@@ -98,3 +98,7 @@ struct {
 当接收方接收到包头的大小（比如 4 个字节）后，就解析包头的内容，于是就可以知道数据的长度，然后接下来就继续读取数据，直到读满数据的长度，就可以组装成一个完整到用户消息来处理了。
 
 ← [4.5 如何优化 TCP?](https://xiaolincoding.com/network/3_tcp/tcp_optimize.html) [4.7 为什么 TCP 每次建立连接时，初始化序列号都要不一样呢？](https://xiaolincoding.com/network/3_tcp/isn_deff.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-重传滑动窗口流量拥塞控制/'><span class='context-label'>上一篇</span><span class='context-title'>TCP 重传、滑动窗口、流量控制、拥塞控</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-为什么还要有RPC/'><span class='context-label'>下一篇</span><span class='context-title'>既然HTTP 协议，为什么还要有 RPC</span></a>
+</div>

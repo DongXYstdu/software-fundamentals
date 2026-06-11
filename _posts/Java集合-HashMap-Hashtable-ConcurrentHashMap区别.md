@@ -241,3 +241,8 @@ Map<String, String> cmap = new ConcurrentHashMap<>(64);
 ## 总结
 
 `HashMap` 非线程安全但性能最高，适合单线程； `Hashtable` 使用全表 `synchronized` 锁，性能差已被淘汰； `ConcurrentHashMap` 是多线程首选，JDK 8 采用 CAS + `synchronized` 桶级别锁实现高并发，迭代器弱一致性，不允许 null 键值。生产环境多线程场景必须使用 `ConcurrentHashMap` 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-ConcurrentHashMap线程安全/'><span class='context-label'>上一篇</span><span class='context-title'>ConcurrentHashMap 是如何保证线程安全的</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap-get和put底层流程/'><span class='context-label'>下一篇</span><span class='context-title'>HashMap get put 时，底层流程是怎样的？</span></a>
+</div>

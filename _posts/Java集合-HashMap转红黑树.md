@@ -153,3 +153,8 @@ final void treeifyBin(Node<K,V>[] tab, int hash) {
 ## 总结
 
 JDK 8 引入红黑树是为了解决 **极端哈希冲突** 导致的链表查询性能退化问题，将复杂度从 O(n) 优化到 O(log n)。树化需要满足链表长度 ≥ 8 且容量 ≥ 64 两个条件。红黑树相比 AVL 树维护成本更低，同时还能有效防御 HashDoS 攻击。记住： **树化是兜底方案，不是常规优化** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap扩容机制/'><span class='context-label'>上一篇</span><span class='context-title'>说说 HashMap 的扩容机制？如何扩容的？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap默认负载因子0.75/'><span class='context-label'>下一篇</span><span class='context-title'>为什HashMap 的默认负载因子要设置0.75</span></a>
+</div>

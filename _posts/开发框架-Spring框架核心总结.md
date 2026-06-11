@@ -271,3 +271,8 @@ Spring框架是Java开发的必备技能，掌握以下核心知识：
 
 ---
 > 参考来源：[JavaGuide](https://javaguide.cn/spring/)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-集合分类与体系/'><span class='context-label'>上一篇</span><span class='context-title'>Java中的集合类有哪些？如何分类的</span></a>
+<a class='context-link next disabled'><span class='context-label'>下一篇</span><span class='context-title'>暂无</span></a>
+</div>

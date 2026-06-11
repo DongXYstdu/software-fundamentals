@@ -644,3 +644,7 @@ A: 分离的好处：(1) **防止 accept 被阻塞**：如果 Sub Reactor 中的
 **Q6: Java NIO 的 Selector 在 Linux 上为什么有时候会空轮询(CPU 100%)？**
 
 A: 这是 JDK 的一个已知 Bug（JDK-6403933），根源是 Linux epoll 的一个特性：当 epoll_wait 监听的 fd 被对端关闭时，epoll 会返回一个事件但对应的 fd 已经无效，导致 Selector.select() 立即返回 0，形成无限循环。Netty 通过检测空轮询次数（默认 512 次）后重建 Selector 来解决此问题。JDK 8u60+ 和 JDK 11 已修复此问题。
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-IO多路复用-select-poll-epoll/'><span class='context-label'>上一篇</span><span class='context-title'>I/O 多路复用：select/poll/epoll</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-Linux内核vs-Windows内核/'><span class='context-label'>下一篇</span><span class='context-title'>Linux 内核 vs Windows 内核</span></a>
+</div>

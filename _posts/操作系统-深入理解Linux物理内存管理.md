@@ -1222,3 +1222,7 @@ IO bridge 负责将系统总线上的电子信号转换成存储总线上的电�
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.5 如何避免预读失效和缓存污染的问题？](https://xiaolincoding.com/os/3_memory/cache_lru.html) [4.7 深入理解 Linux 物理内存管理](https://xiaolincoding.com/os/3_memory/linux_mem2.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-文件系统原理/'><span class='context-label'>上一篇</span><span class='context-title'>操作系统 - 文件系统原理</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-深入理解Linux虚拟内存管理/'><span class='context-label'>下一篇</span><span class='context-title'>深入理解 Linux 虚拟内存管理</span></a>
+</div>

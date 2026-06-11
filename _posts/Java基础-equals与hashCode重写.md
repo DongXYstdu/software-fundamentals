@@ -208,3 +208,8 @@ record Person(String name, int age) {}
 ## 总结
 
 Java 规定相等对象的 `hashCode` 必须相等。只重写 `equals()` 不重写 `hashCode()` 会违反契约，导致 `HashMap` 、 `HashSet` 等哈希集合无法正确识别重复元素。实际开发中，使用 IDE 自动生成或 Lombok 的 `@EqualsAndHashCode` 注解，避免手写出错。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-UUID与唯一性/'><span class='context-label'>上一篇</span><span class='context-title'>什么是 UUID，能保证唯一性吗</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-final-finally-finalize的区别/'><span class='context-label'>下一篇</span><span class='context-title'>final、finally、finalize 的区别？</span></a>
+</div>

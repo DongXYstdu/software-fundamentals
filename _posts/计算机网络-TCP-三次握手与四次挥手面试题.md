@@ -1159,3 +1159,7 @@ accept 系统调用并不参与 TCP 三次握手过程，它只是负责从 TCP 
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [3.9 既然有 HTTP 协议，为什么还要有 WebSocket？](https://xiaolincoding.com/network/2_http/http_websocket.html) [4.2 TCP 重传、滑动窗口、流量控制、拥塞控制](https://xiaolincoding.com/network/3_tcp/tcp_feature.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-三次握手与四次挥手/'><span class='context-label'>上一篇</span><span class='context-title'>计算机网络：TCP 的三次握手与四次挥手</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-乱序FIN包处理/'><span class='context-label'>下一篇</span><span class='context-title'>四次挥手中收到乱序的 FIN 包会如何处理</span></a>
+</div>

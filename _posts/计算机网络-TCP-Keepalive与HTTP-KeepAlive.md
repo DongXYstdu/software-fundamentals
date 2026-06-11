@@ -118,3 +118,7 @@ TCP 的 Keepalive 也叫 TCP 保活机制，该功能是由「内核」实现的
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.15 HTTPS 中 TLS 和 TCP 能同时握手吗？](https://xiaolincoding.com/network/3_tcp/tcp_tls.html) [4.17 TCP 协议有什么缺陷？](https://xiaolincoding.com/network/3_tcp/tcp_problem.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-IP网络模型/'><span class='context-label'>上一篇</span><span class='context-title'>TCP/IP 网络模型有哪几层</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-SYN报文被丢弃/'><span class='context-label'>下一篇</span><span class='context-title'>SYN 报文什么情况下会被丢弃</span></a>
+</div>

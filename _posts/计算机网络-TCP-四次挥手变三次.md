@@ -320,3 +320,8 @@ tcpdump -i lo tcp and port 8888 -s0 -w /home/tcp_close.pcap
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.22 用了 TCP 协议，数据一定不会丢吗？](https://xiaolincoding.com/network/3_tcp/tcp_drop.html) [4.24 TCP 序列号和确认号是如何变化的？](https://xiaolincoding.com/network/3_tcp/tcp_seq_ack.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-半连接队列和全连接队列/'><span class='context-label'>上一篇</span><span class='context-title'>TCP 半连接队列和全连接队</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-基于UDP实现可靠传输/'><span class='context-label'>下一篇</span><span class='context-title'>如何基于 UDP 协议实现可靠传输</span></a>
+</div>

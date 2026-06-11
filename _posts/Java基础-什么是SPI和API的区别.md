@@ -232,3 +232,8 @@ HelloService first = loader.iterator().next();  // 获取第一个
 ## 总结
 
 SPI 是 Java 提供的服务发现机制，核心思想是 **"接口在调用方，实现在扩展方"** ，通过 `META-INF/services/` 配置文件和 `ServiceLoader` 实现运行时动态加载。与 API 相比，SPI 实现了控制反转，框架定义接口规范，开发者提供实现，框架在运行时发现并调用。SPI 广泛应用于 JDBC、SLF4J、Dubbo、Spring Boot 等框架，是实现可扩展架构的核心机制。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-为什么Java不支持多继承/'><span class='context-label'>上一篇</span><span class='context-title'>为什Java 不支持多继承</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-反射机制与性能/'><span class='context-label'>下一篇</span><span class='context-title'>"什么是反射机制？为什么反射慢"</span></a>
+</div>

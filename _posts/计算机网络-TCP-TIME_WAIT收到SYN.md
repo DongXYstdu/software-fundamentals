@@ -269,3 +269,7 @@ TIME\_WAIT 状态之所以要持续 2MSL 时间，主要有两个目的：
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.10 四次挥手中收到乱序的 FIN 包会如何处理？](https://xiaolincoding.com/network/3_tcp/out_of_order_fin.html) [4.12 TCP 连接，一端断电和进程崩溃有什么区别？](https://xiaolincoding.com/network/3_tcp/tcp_down_and_crash.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-TCP的缺陷/'><span class='context-label'>上一篇</span><span class='context-title'>TCP 有什么缺陷？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-TLS和TCP同时握手/'><span class='context-label'>下一篇</span><span class='context-title'>HTTPS TLS TCP 能同时握手吗</span></a>
+</div>

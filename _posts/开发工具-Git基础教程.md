@@ -54,3 +54,7 @@ PDF 版命令手册： [github-git-cheat-sheet.pdf](https://www.runoob.com/manua
 - 2、 [Git GUI使用方法](https://www.runoob.com/w3cnote/git-gui-window.html)
 - 3、 [Github 简明教程](https://www.runoob.com/w3cnote/git-guide.html)
 - 5、 [互联网组织的未来：剖析GitHub员工的任性之源](https://www.runoob.com/w3cnote/internet-organization-github.html)
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/开发工具-Docker面试题/'><span class='context-label'>上一篇</span><span class='context-title'>Docker面试</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/开发工具-Git面试题/'><span class='context-label'>下一篇</span><span class='context-title'>Git命令面试</span></a>
+</div>

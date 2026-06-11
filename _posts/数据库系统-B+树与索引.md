@@ -312,3 +312,8 @@ EXPLAIN SELECT * FROM users WHERE name = '董向阳';
 索引优化是数据库性能调优的重中之重。理解 B+ 树的原理，才能设计出合理的索引结构，写出高效的 SQL。
 
 下一篇我们将讨论 **SQL 查询优化与执行计划分析**。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/数据库-索引原理与使用实践/'><span class='context-label'>上一篇</span><span class='context-title'>数据库：索引原理与使用实践</span></a>
+<a class='context-link next disabled'><span class='context-label'>下一篇</span><span class='context-title'>暂无</span></a>
+</div>

@@ -172,3 +172,7 @@ QUIC 协议的特点：
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [3.6 HTTP/2 牛逼在哪？](https://xiaolincoding.com/network/2_http/http2.html) [3.8 既然有 HTTP 协议，为什么还要有 RPC？](https://xiaolincoding.com/network/2_http/http_rpc.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-HTTP2牛逼在哪/'><span class='context-label'>上一篇</span><span class='context-title'>HTTP/2 牛逼在哪？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-HTTPS-ECDHE握手解析/'><span class='context-label'>下一篇</span><span class='context-title'>HTTPS ECDHE 握手解析</span></a>
+</div>

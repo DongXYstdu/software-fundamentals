@@ -201,3 +201,8 @@ SELECT name, age FROM user WHERE name = 'Bob';
 ## 总结
 
 回表是 InnoDB 通过二级索引查询时，因索引不包含完整数据而需要二次查找聚簇索引的过程。避免回表的核心手段是 **覆盖索引** —— 将查询涉及的字段都放入联合索引，使 MySQL 能直接从索引树获取所有数据。生产环境中应避免 `SELECT *` ，根据高频查询设计合理的联合索引。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-唯一索引和主键索引的区别/'><span class='context-label'>上一篇</span><span class='context-title'>唯一索引和主键索引的区别</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-慢查询排查/'><span class='context-label'>下一篇</span><span class='context-title'>慢查询怎么排查</span></a>
+</div>

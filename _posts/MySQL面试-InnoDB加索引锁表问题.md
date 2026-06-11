@@ -156,3 +156,8 @@ WHERE LOCK_STATUS = 'PENDING';
 ## 总结
 
 MySQL 5.6 之后，InnoDB 加索引默认使用 Online DDL（ `INPLACE` 算法）， **不会锁表** ，支持并发读写。但在执行的开始和结束阶段需要获取 MDL 锁，如果有长事务可能导致阻塞。生产环境建议明确指定 `ALGORITHM=INPLACE, LOCK=NONE` ，并在业务低峰期执行，超大表可考虑使用 `pt-online-schema-change` 工具。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL-记录锁间隙锁防幻读/'><span class='context-label'>上一篇</span><span class='context-title'>MySQL记录间隙锁可以防止幻读吗</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-InnoDB和MyISAM的区别/'><span class='context-label'>下一篇</span><span class='context-title'>InnoDB MyISAM 有什么区别？</span></a>
+</div>

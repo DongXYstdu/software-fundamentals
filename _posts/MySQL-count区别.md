@@ -170,3 +170,8 @@ count(1)、 count(\*)、 count(主键字段)在执行的时候，如果表里存
 最新的图解文章都在公众号首发，别忘记关注哦！！如果你想加入百人技术交流群，扫码下方二维码回复「加群」。
 
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL-SQL查询执行过程/'><span class='context-label'>上一篇</span><span class='context-title'>执行一条SQL查询语句期间发生了什么？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL-update无索引锁表/'><span class='context-label'>下一篇</span><span class='context-title'>update没加索引会锁全表吗？</span></a>
+</div>

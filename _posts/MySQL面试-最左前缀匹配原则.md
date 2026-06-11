@@ -168,3 +168,8 @@ WHERE a = 1 AND c = 3
 ## 总结
 
 最左前缀匹配原则是联合索引的核心使用规则，其根本原因是联合索引的 B+ 树按照定义顺序构建，先按第一列排序，第一列相同再按第二列排序。因此只有从最左列开始连续匹配，才能利用索引的有序性。实际应用中，应将区分度高的列、等值条件列放在前面，范围条件列放在后面，并通过 `EXPLAIN` 的 `key_len` 验证索引使用情况。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-数据库范式与反范式化/'><span class='context-label'>上一篇</span><span class='context-title'>什么是数据库范式，为什么要反范式化设计</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-深度分页优化/'><span class='context-label'>下一篇</span><span class='context-title'>MySQL 深度分页如何优化</span></a>
+</div>

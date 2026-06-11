@@ -336,3 +336,8 @@ SELECT * FROM information_schema.INNODB_TRX;
 ## 总结
 
 乐观锁通过版本号机制在更新时检测冲突，适合读多写少、冲突率低的场景；悲观锁通过 `FOR UPDATE` 加排他锁强制串行化，适合写多冲突、一致性要求高的场景。生产环境需根据业务特点选择，高并发场景可结合 Redis 分布式锁优化。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-为什么不推荐使用外键/'><span class='context-label'>上一篇</span><span class='context-title'>为什么不推荐使用外键</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-唯一索引和主键索引的区别/'><span class='context-label'>下一篇</span><span class='context-title'>唯一索引和主键索引的区别</span></a>
+</div>

@@ -184,3 +184,8 @@ public List<OrderVO> listOrders(List<Long> orderIds) {
 ## 总结
 
 互联网大厂不推荐使用多表 JOIN，是因为大数据量下 JOIN 会消耗大量数据库资源，影响系统性能和并发能力；更重要的是，分库分表后跨库 JOIN 根本无法执行。替代方案是：应用层分步查询组装数据、批量查询减少交互次数、数据冗余避免频繁关联。JOIN 在小数据量、单体应用、后台管理等场景可以使用，但在高并发、大数据量、分布式架构下应该尽量避免。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-不建议使用存储过程/'><span class='context-label'>上一篇</span><span class='context-title'>为什么不建议使用存储过程</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-为什么不推荐使用外键/'><span class='context-label'>下一篇</span><span class='context-title'>为什么不推荐使用外键</span></a>
+</div>

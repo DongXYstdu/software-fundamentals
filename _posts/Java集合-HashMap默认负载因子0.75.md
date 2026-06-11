@@ -134,3 +134,8 @@ Map<String, String> map = new HashMap<>(capacity);
 ## 总结
 
 HashMap 默认负载因子 0.75 是 **空间利用率与查询效率的黄金平衡点** 。从数学角度看，0.75 配合泊松分布，使得链表长度 ≥ 8 的概率约为千万分之一，这正是 JDK 1.8 将链表转红黑树阈值设为 8 的依据。内存紧张时可适当调高，查询敏感时可适当调低。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap转红黑树/'><span class='context-label'>上一篇</span><span class='context-title'>为什么在 Jdk 8 HashMap 要转成红黑树</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-Set保证元素不重复/'><span class='context-label'>下一篇</span><span class='context-title'>Set 如何保证元素不重复的</span></a>
+</div>

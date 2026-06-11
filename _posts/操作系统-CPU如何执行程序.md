@@ -334,3 +334,8 @@ CPU 的硬件参数都会有 `GHz` 这个参数，比如一个 1 GHz 的 CPU，�
 **哈喽，我是小林，就爱图解计算机基础，如果觉得文章对你有帮助，欢迎微信搜索「小林coding」，关注后，回复「网络」再送你图解网络 PDF**
 
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-CPU如何执行任务/'><span class='context-label'>上一篇</span><span class='context-title'>CPU 是如何执行任务的</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-CPU缓存一致性/'><span class='context-label'>下一篇</span><span class='context-title'>CPU 缓存一致</span></a>
+</div>

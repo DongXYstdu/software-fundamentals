@@ -172,3 +172,8 @@ SHOW VARIABLES LIKE '%binlog%';
 ## 总结
 
 redo log、undo log、binlog 是 MySQL 的三大核心日志。redo log 在 InnoDB 引擎层，采用循环写的 WAL 机制，保证崩溃恢复时的 **持久性** ；undo log 记录反向操作，支持事务 **回滚** 和 **MVCC** 实现；binlog 在 Server 层，追加写入，用于 **主从复制** 和 **数据备份** 。三者通过 "两阶段提交" 保证一致性，是 MySQL 高可用架构的基石。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-SQL调优指南/'><span class='context-label'>上一篇</span><span class='context-title'>如何进行 SQL 调优</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-char和varchar的区别/'><span class='context-label'>下一篇</span><span class='context-title'>char varchar 的区别？</span></a>
+</div>

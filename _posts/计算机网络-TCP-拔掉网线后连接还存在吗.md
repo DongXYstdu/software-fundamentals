@@ -156,3 +156,8 @@ TCP keepalive 是 **TCP 层（内核态）** 实现的，它是给所有基于 T
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.12 TCP 连接，一端断电和进程崩溃有什么区别？](https://xiaolincoding.com/network/3_tcp/tcp_down_and_crash.html) [4.14 tcptwreuse 为什么默认是关闭的？](https://xiaolincoding.com/network/3_tcp/tcp_tw_reuse_close.html) →
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-序列号和确认号变化/'><span class='context-label'>上一篇</span><span class='context-title'>TCP 序列号和确认号是如何变化的？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-没有accept能建立连接吗/'><span class='context-label'>下一篇</span><span class='context-title'>没有 accept，可以建TCP 连接吗？</span></a>
+</div>

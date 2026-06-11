@@ -126,3 +126,8 @@ static final int hash(Object key) {
 ## 总结
 
 HashMap 的 `hash()` 方法通过 **`hashCode ^ (hashCode >>> 16)`** 扰动算法，将高 16 位与低 16 位异或，让高位信息参与散列运算。这是因为桶索引只用到低位，扰动可以让高位原本不同但低位相同的 key 散列到不同桶，减少冲突。选择异或是因为它产生 0 和 1 的概率相等，散列最均匀。null 键的 hash 固定为 0。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-HashMap-get和put底层流程/'><span class='context-label'>上一篇</span><span class='context-title'>HashMap get put 时，底层流程是怎样的？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-HashMap-remove方法实现/'><span class='context-label'>下一篇</span><span class='context-title'>HashMap remove 方法是如何实现的</span></a>
+</div>

@@ -192,3 +192,8 @@ SHOW ENGINE INNODB STATUS;
 ## 总结
 
 数据库死锁是多事务并发时资源竞争导致的循环等待现象。核心解决方案是 **统一访问顺序** （破坏循环等待）、 **减小事务粒度** （减少锁持有时间）、 **优化索引** （减少锁范围），同时配合数据库的 **死锁检测和超时机制** 兜底。生产环境中应建立死锁监控告警，及时发现并处理问题。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-慢查询排查/'><span class='context-label'>上一篇</span><span class='context-title'>慢查询怎么排查</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-数据库范式与反范式化/'><span class='context-label'>下一篇</span><span class='context-title'>什么是数据库范式，为什么要反范式化设计</span></a>
+</div>

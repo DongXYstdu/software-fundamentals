@@ -254,3 +254,8 @@ EXPLAIN ANALYZE SELECT * FROM orders WHERE user_id = 100;
 ## 总结
 
 MySQL SQL 调优的核心思路是：通过慢查询日志定位问题 SQL，使用 `EXPLAIN` 分析执行计划找出性能瓶颈（全表扫描、文件排序、临时表等），然后针对性地进行索引优化（遵循最左前缀、避免索引失效场景）、SQL 改写（避免 `SELECT *` 、优化深分页）、表结构调整（选择合适字段类型、适度反范式）。调优是一个持续迭代的过程，需要结合业务场景和数据特点综合考量。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-InnoDB表级锁页级锁行级锁/'><span class='context-label'>上一篇</span><span class='context-title'>谈谈 InnoDB 中的表级锁、页级锁、行级锁</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-binlog-redolog-undolog区别/'><span class='context-label'>下一篇</span><span class='context-title'>binlog、redolog undolog 的区别？</span></a>
+</div>

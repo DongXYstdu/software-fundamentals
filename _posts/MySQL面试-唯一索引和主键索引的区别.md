@@ -167,3 +167,8 @@ InnoDB 要求每张表必须有聚簇索引：
 ## 总结
 
 主键索引是 **聚簇索引** ，每表只能有一个，不允许 NULL，叶子节点存储完整行数据；唯一索引是 **二级索引** ，可以有多个，允许 NULL（可多个），叶子节点存储主键值。查询时主键直接获取数据，唯一索引需要回表。推荐使用 `BIGINT` 自增主键，业务唯一约束用唯一索引。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-乐观锁与悲观锁实现/'><span class='context-label'>上一篇</span><span class='context-title'>乐观锁与悲观锁怎么实现</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-回表查询与避免/'><span class='context-label'>下一篇</span><span class='context-title'>什么是回表查询？如何避免？</span></a>
+</div>

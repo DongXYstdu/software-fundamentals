@@ -132,3 +132,8 @@ tags: [MySQL, 面试, 小哈学Java]
 ## 总结
 
 数据库范式是为了消除数据冗余、保证数据一致性而设计的一套规范，常见的三大范式分别解决了字段原子性、部分依赖、传递依赖的问题。但范式设计会导致多表 JOIN，影响查询性能，且在分库分表场景下难以实现。反范式化设计通过引入冗余数据来提升查询性能，本质是 "空间换时间"。实际项目中需要根据业务场景权衡，通常采用范式设计为主、适度反范式化的混合策略。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-数据库死锁与解决/'><span class='context-label'>上一篇</span><span class='context-title'>什么是数据库死锁，怎么解决</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-最左前缀匹配原则/'><span class='context-label'>下一篇</span><span class='context-title'>什么是最左前缀匹配？为什么要遵守</span></a>
+</div>

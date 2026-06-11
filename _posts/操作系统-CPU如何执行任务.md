@@ -247,3 +247,8 @@ CPU 读写数据的时候，并不是按一个一个字节为单位来进行读�
 ***哈喽，我是小林，就爱图解计算机基础，如果觉得文章对你有帮助，欢迎微信搜索「小林coding」，关注后，回复「网络」再送你图解网络 PDF***
 
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-4GB内存申请8G会怎样/'><span class='context-label'>上一篇</span><span class='context-title'>4GB 物理内存的机器上，申8G 内存会怎么样？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-CPU如何执行程序/'><span class='context-label'>下一篇</span><span class='context-title'>CPU 是如何执行程序的</span></a>
+</div>

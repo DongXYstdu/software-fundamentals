@@ -428,3 +428,8 @@ TCP 半连接队列的大小对于不同的 Linux 内核版本会有不同的计
 **小林是专为大家图解的工具人，Goodbye，我们下次见！**
 
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-初始化序列号不一样/'><span class='context-label'>上一篇</span><span class='context-title'>为什TCP 每次建立连接时，初始化序列号都要不一样呢</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-四次挥手变三次/'><span class='context-label'>下一篇</span><span class='context-title'>TCP 四次挥手，可以变成三次吗</span></a>
+</div>

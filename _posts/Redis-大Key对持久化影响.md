@@ -137,3 +137,7 @@ AOF 重写机制和 RDB 快照（bgsave 命令）的过程，都会分别通过 
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [RDB 快照是怎么实现的？](https://xiaolincoding.com/redis/storage/rdb.html) [Redis 过期删除策略和内存淘汰策略有什么区别？](https://xiaolincoding.com/redis/module/strategy.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Redis-Redlock高可用/'><span class='context-label'>上一篇</span><span class='context-title'>如何保证Redis分布式锁的高可用</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Redis-数据库与缓存一致性/'><span class='context-label'>下一篇</span><span class='context-title'>数据库和缓存如何保证一致性？</span></a>
+</div>

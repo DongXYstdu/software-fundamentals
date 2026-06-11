@@ -408,3 +408,7 @@ max_trx_id     = 53        ← 下一个将要分配的事务 id
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [MySQL 分页有什么性能问题？怎么优化？](https://xiaolincoding.com/mysql/index/limit.html) [MySQL 可重复读隔离级别，完全解决幻读了吗？](https://xiaolincoding.com/mysql/transaction/phantom.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL-为什么用B+树/'><span class='context-label'>上一篇</span><span class='context-title'>为什么MySQL采用B+树作为索引？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL-分页优化/'><span class='context-label'>下一篇</span><span class='context-title'>MySQL分页性能问题与优</span></a>
+</div>

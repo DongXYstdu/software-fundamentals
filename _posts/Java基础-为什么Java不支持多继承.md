@@ -209,3 +209,8 @@ Java 的处理方式是 **强制类必须重写冲突的方法** ，从而消除
 ## 总结
 
 Java 不支持类的多继承，核心原因是避免 **菱形继承问题** 带来的方法调用二义性和状态管理复杂性。Java 选择 "单继承 + 多接口实现" 的设计，在保持语言简单的同时，通过接口实现了类似多继承的能力。JDK 8 的接口默认方法虽然引入了新的冲突可能，但通过强制重写冲突方法的规则，保证了无歧义性。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-while-true与for循环性能比较/'><span class='context-label'>上一篇</span><span class='context-title'>"while(true) for(;;) 哪个性能更好"</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-什么是SPI和API的区别/'><span class='context-label'>下一篇</span><span class='context-title'>什么是 SPI，和 API 有啥区别</span></a>
+</div>

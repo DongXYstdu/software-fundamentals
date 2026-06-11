@@ -195,3 +195,8 @@ JVM是Java生态的基石，理解其内部机制对于：
 
 ---
 > 参考来源：[JavaGuide](https://javaguide.cn/java/jvm/java-jvm.html)
+
+<div class='context-nav'>
+<a class='context-link prev disabled'><span class='context-label'>上一篇</span><span class='context-title'>暂无</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java-JVM面试题/'><span class='context-label'>下一篇</span><span class='context-title'>Java虚拟机面试题</span></a>
+</div>

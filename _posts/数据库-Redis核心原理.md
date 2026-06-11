@@ -656,3 +656,8 @@ A: Big Key 指单个 key 的 value 过大（如 > 10KB 的字符串、> 5000 元
 (4) 删除时用 `UNLINK` 异步删除；
 
 (5) 定期扫描 `redis-cli --bigkeys`。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/数据库-NoSQL与Redis核心原理/'><span class='context-label'>上一篇</span><span class='context-title'>数据库：NoSQL与Redis核心原理</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/数据库-SQL查询优化/'><span class='context-label'>下一篇</span><span class='context-title'>数据库 - SQL查询优化</span></a>
+</div>

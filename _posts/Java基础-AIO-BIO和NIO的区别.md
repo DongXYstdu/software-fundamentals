@@ -287,3 +287,8 @@ public class AioServer {
 ## 总结
 
 BIO 是同步阻塞 IO，一连接一线程，适合连接数少且固定的场景；NIO 是同步非阻塞 IO，使用 Selector 多路复用，一个线程管理多个连接，是高并发场景的主流选择；AIO 是异步非阻塞 IO，操作系统完成 IO 后回调通知，理论上最先进但 Linux 支持不完善。 **生产环境推荐使用 NIO** （如 Netty），BIO 用于简单场景，AIO 在 Windows 环境下可以考虑。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java-Spring面试题/'><span class='context-label'>上一篇</span><span class='context-title'>Spring面试</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-BigDecimal和Long哪个表示金额更合适/'><span class='context-label'>下一篇</span><span class='context-title'>BigDecimal Long 哪个表示金额更合适？</span></a>
+</div>

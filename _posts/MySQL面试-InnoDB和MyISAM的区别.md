@@ -181,3 +181,8 @@ UPDATE row_counts SET row_count = row_count + 1 WHERE table_name = 'orders';
 ## 总结
 
 `InnoDB` 支持事务、行级锁、外键、崩溃恢复，采用聚簇索引，是现代 MySQL 的默认引擎，适合高并发 OLTP 场景。 `MyISAM` 只支持表级锁，无事务和崩溃恢复，但 `COUNT(*)` 性能极佳，适合读多写少的分析型场景。 **实际项目中 99% 的场景都应该选择 InnoDB** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-InnoDB加索引锁表问题/'><span class='context-label'>上一篇</span><span class='context-title'>InnoDB 加索引，这个时候会锁表</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-InnoDB索引类型/'><span class='context-label'>下一篇</span><span class='context-title'>InnoDB 中索引类型有哪些</span></a>
+</div>

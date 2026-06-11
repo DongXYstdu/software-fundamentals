@@ -152,3 +152,8 @@ String s4 = "hello";  // 直接复用常量池中的对象，0 个新对象
 ## 总结
 
 `String str = new String("abc")` 创建对象的数量取决于常量池状态： **首次执行创建 2 个对象** （常量池 1 + 堆 1）， **非首次执行只创建 1 个对象** （仅堆中）。核心是理解字符串字面量的常量池机制和 `new` 关键字的堆对象创建机制，生产环境应优先使用字面量方式避免不必要的对象创建。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-finally中代码一定会被执行吗/'><span class='context-label'>上一篇</span><span class='context-title'>finally 中代码一定会被执行吗</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-while-true与for循环性能比较/'><span class='context-label'>下一篇</span><span class='context-title'>"while(true) for(;;) 哪个性能更好"</span></a>
+</div>

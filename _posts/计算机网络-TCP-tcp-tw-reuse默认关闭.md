@@ -219,3 +219,7 @@ tcp\_tw\_reuse 的作用是让客户端快速复用处于 TIME\_WAIT 状态的�
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.13 拔掉网线后， 原本的 TCP 连接还存在吗？](https://xiaolincoding.com/network/3_tcp/tcp_unplug_the_network_cable.html) [4.15 HTTPS 中 TLS 和 TCP 能同时握手吗？](https://xiaolincoding.com/network/3_tcp/tcp_tls.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-TCP-TLS和TCP同时握手/'><span class='context-label'>上一篇</span><span class='context-title'>HTTPS TLS TCP 能同时握手吗</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-TCP-三次握手与四次挥手/'><span class='context-label'>下一篇</span><span class='context-title'>计算机网络：TCP 的三次握手与四次挥手</span></a>
+</div>

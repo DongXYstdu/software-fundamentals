@@ -515,3 +515,8 @@ Raft 通过选举限制保证：Candidate 请求投票时，必须携带自己�
 ## 总结
 
 CAP 定理不是教条，而是思考框架。在工程实践中，一致性不是二元选择，而是连续谱。理解不同一致性模型的语义和代价，根据业务需求选择合适的一致性级别，才是分布式系统设计的核心能力。共识算法（Paxos/Raft）为需要强一致性的场景提供了可靠的基础，但它们也有性能代价——需要在一致性与可用性之间找到平衡点。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/分布式-分布式面试题/'><span class='context-label'>上一篇</span><span class='context-title'>分布式面试题</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/分布式系统-分布式事务/'><span class='context-label'>下一篇</span><span class='context-title'>分布式系统：分布式事务——从 2PC 到 Saga 的演进</span></a>
+</div>

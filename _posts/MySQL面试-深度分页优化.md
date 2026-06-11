@@ -188,3 +188,8 @@ public PageResult<Order> listOrders(int pageNum, int pageSize) {
 ## 总结
 
 深度分页的性能问题本质是 `offset` 导致的大量无效扫描。优化核心是 **"用索引直接定位，避免扫描后丢弃"** ：生产环境推荐 **子查询 + JOIN** （兼容跳页）或 **游标分页** （性能最优），同时配合 **业务层限制最大页数** ，这是最经济实用的方案。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/MySQL面试-最左前缀匹配原则/'><span class='context-label'>上一篇</span><span class='context-title'>什么是最左前缀匹配？为什么要遵守</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL面试-索引慢查询原因/'><span class='context-label'>下一篇</span><span class='context-title'>用了索引还是很慢，可能是什么原因？</span></a>
+</div>

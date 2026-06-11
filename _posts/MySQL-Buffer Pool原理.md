@@ -280,3 +280,7 @@ InnoDB 对 LRU 做了一些优化，我们熟悉的 LRU 算法通常是将最近
 最新的图解文章都在公众号首发，别忘记关注哦！！如果你想加入百人技术交流群，扫码下方二维码回复「加群」。
 
 ![img](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+<div class='context-nav'>
+<a class='context-link prev disabled'><span class='context-label'>上一篇</span><span class='context-title'>暂无</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/MySQL-MySQL加锁机制/'><span class='context-label'>下一篇</span><span class='context-title'>MySQL是怎么加锁的？</span></a>
+</div>

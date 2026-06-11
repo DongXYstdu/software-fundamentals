@@ -300,3 +300,7 @@ Reactor 可以理解为「来了事件操作系统通知应用进程，让应用
 ***哈喽，我是小林，就爱图解计算机基础，如果觉得文章对你有帮助，欢迎微信搜索「小林coding」，关注后，回复「网络」再送你图解网络 PDF***
 
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-键盘敲入A字母时操作系统发生了什么/'><span class='context-label'>上一篇</span><span class='context-title'>键盘敲入 A 字母时，操作系统期间发生了什么？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统核心概念-进程与线程/'><span class='context-label'>下一篇</span><span class='context-title'>操作系统核心概念：进程与线程</span></a>
+</div>

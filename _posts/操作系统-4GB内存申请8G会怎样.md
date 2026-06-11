@@ -358,3 +358,7 @@ TLB 的命中率其实是很高的，因为程序最常访问的页就那么几�
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost3@main/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [3.1 Linux 内核 vs Windows 内核](https://xiaolincoding.com/os/2_os_structure/linux_vs_windows.html) [4.2 malloc 是如何分配内存的？](https://xiaolincoding.com/os/3_memory/malloc.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Redis-过期策略与内存淘汰/'><span class='context-label'>上一篇</span><span class='context-title'>Redis过期删除策略和内存淘汰策略区</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-CPU如何执行任务/'><span class='context-label'>下一篇</span><span class='context-title'>CPU 是如何执行任务的</span></a>
+</div>

@@ -211,3 +211,8 @@ private class Itr implements Iterator<E> {
 ## 总结
 
 **fail-fast** 通过 `modCount` 检测机制，发现集合被修改立即抛出 `ConcurrentModificationException` ，代表集合有 `ArrayList` 、 `HashMap` 等。 **fail-safe** 通过迭代副本实现，不会抛异常但可能读到旧数据，代表集合有 `CopyOnWriteArrayList` 、 `ConcurrentHashMap` 等。记住： **单线程迭代删除用迭代器的 `remove()` ，多线程用并发集合** 。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java集合-Set保证元素不重复/'><span class='context-label'>上一篇</span><span class='context-title'>Set 如何保证元素不重复的</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java集合-集合分类与体系/'><span class='context-label'>下一篇</span><span class='context-title'>Java中的集合类有哪些？如何分类的</span></a>
+</div>

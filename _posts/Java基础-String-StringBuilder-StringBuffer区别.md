@@ -187,3 +187,8 @@ for (int i = 0; i < 10000; i++) {
 ## 总结
 
 `String` 不可变、线程安全但拼接性能差； `StringBuilder` 可变、单线程性能最优； `StringBuffer` 可变、多线程安全但略有同步开销。实际开发中，单线程场景优先使用 `StringBuilder` ，循环拼接必须避免使用 `String` 的 `+` 操作。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-BigDecimal的equals比较/'><span class='context-label'>上一篇</span><span class='context-title'>为什么不能用 BigDecimal equals 方法做等值比较？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-String为什么设计成final不可变/'><span class='context-label'>下一篇</span><span class='context-title'>"String 为什么设计成 final 不可变的"</span></a>
+</div>

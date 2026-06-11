@@ -275,3 +275,8 @@ JVM 实现多态的核心机制是 **虚方法表** ：
 ## 总结
 
 多态是 Java 面向对象的核心特性，本质是 **"同一接口，不同实现"** ，通过继承/实现 + 重写 + 父类引用指向子类对象实现。JVM 通过虚方法表在运行时动态绑定具体方法。注意字段、静态方法、私有方法、final 方法都不具备多态性。多态是实现开闭原则、依赖倒置原则的基础，是设计模式的核心支撑。
+
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/Java基础-受检异常与非受检异常/'><span class='context-label'>上一篇</span><span class='context-title'>Java 中异常分哪两类，有什么区别？</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/Java基础-序列化与反序列化/'><span class='context-label'>下一篇</span><span class='context-title'>什么是序列化与反序列化</span></a>
+</div>

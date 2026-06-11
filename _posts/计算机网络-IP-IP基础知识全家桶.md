@@ -672,3 +672,7 @@ IGMP 分为了三个版本分别是，IGMPv1、IGMPv2、IGMPv3。
 ![](https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E5%85%B6%E4%BB%96/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BB%8B%E7%BB%8D.png)
 
 ← [4.24 TCP 序列号和确认号是如何变化的？](https://xiaolincoding.com/network/3_tcp/tcp_seq_ack.html) [5.2 ping 的工作原理](https://xiaolincoding.com/network/4_ip/ping.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/计算机网络-HTTP常见面试题/'><span class='context-label'>上一篇</span><span class='context-title'>HTTP 常见面试</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/计算机网络-IP-ping的工作原理/'><span class='context-label'>下一篇</span><span class='context-title'>ping 的工作原</span></a>
+</div>

@@ -199,3 +199,7 @@ MESI 协议，是已修改、独占、共享、已失效这四个状态的英文
 ***哈喽，我是小林，就爱图解计算机基础，如果觉得文章对你有帮助，欢迎微信搜索「小林coding」，关注后，回复「网络」再送你图解网络 PDF***
 
 ← [2.3 如何写出让 CPU 跑得更快的代码？](https://xiaolincoding.com/os/1_hardware/how_to_make_cpu_run_faster.html) [2.5 CPU 是如何执行任务的？](https://xiaolincoding.com/os/1_hardware/how_cpu_deal_task.html) →
+<div class='context-nav'>
+<a class='context-link prev' href='/software-fundamentals/posts/操作系统-CPU如何执行程序/'><span class='context-label'>上一篇</span><span class='context-title'>CPU 是如何执行程序的</span></a>
+<a class='context-link next' href='/software-fundamentals/posts/操作系统-IO多路复用-select-poll-epoll/'><span class='context-label'>下一篇</span><span class='context-title'>I/O 多路复用：select/poll/epoll</span></a>
+</div>
