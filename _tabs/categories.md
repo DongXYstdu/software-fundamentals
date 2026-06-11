@@ -8,12 +8,12 @@ order: 1
 {% comment %}
 分类体系设计：
 1. 入门专区：学习路径入口，展示系统化学习顺序
-2. 技术领域分类：按技术领域组织，忽略日期，按 order 排序
+2. 技术领域分类：按技术领域组织，按 orders 字段排序
 3. 面试题：各领域面试题汇总
 
 Front Matter 规范：
 - categories: [一级分类, 二级分类] （二级可选）
-- order: 数字越小越靠前 （可选，默认按日期）
+- orders: {分类名: 排序号} （按分类定义排序，数值越小越靠前，默认9999）
 - level: 入门/进阶/深入 （可选）
 - series: 系列名称 （可选，用于学习路径）
 - series_order: 系列内顺序 （可选）
@@ -35,6 +35,12 @@ Front Matter 规范：
 
 {% assign level_order = "入门,进阶,深入" | split: "," %}
 
+{% comment %}
+排序辅助逻辑：
+使用 "pad(order)|||url" 格式排序，然后用二次匹配渲染文章
+{% endcomment %}
+{% capture zero5 %}00000{% endcapture %}
+
 {% comment %}处理所有文章，提取分类信息并排序{% endcomment %}
 {% for top_cat in category_order %}
   {% assign sub_cats = category_hierarchy[top_cat] %}
@@ -43,55 +49,58 @@ Front Matter 规范：
     {% assign has_subcats = true %}
   {% endif %}
 
-  {% comment %}收集属于该一级分类的文章{% endcomment %}
-  {% assign cat_posts = "" | split: "" %}
+  {% comment %}一级分类文章排序：收集 "order|||url" 字符串并排序{% endcomment %}
+  {% assign top_cat_sorted_urls = "" | split: "" %}
+  {% assign top_cat_direct_urls = "" | split: "" %}
   {% for post in site.posts %}
-    {% if post.categories contains top_cat %}
-      {% assign post_sub_cat = "" %}
-      {% assign has_subcat = false %}
-      {% if has_subcats %}
-        {% for sub_cat in sub_cats %}
-          {% if post.categories contains sub_cat %}
-            {% assign has_subcat = true %}
-            {% assign post_sub_cat = sub_cat %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-      {% unless has_subcat %}
-        {% assign cat_posts = cat_posts | push: post %}
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
-
-  {% comment %}统计子分类文章数{% endcomment %}
-  {% assign sub_cat_counts = "{}" | split: "" | join: "" %}
-  {% assign sub_cat_posts_map = "{}" | split: "" | join: "" %}
-  {% for sub_cat in sub_cats %}
-    {% assign sub_posts_count = 0 %}
-    {% assign sub_posts_list = "" | split: "" %}
-    {% for post in site.posts %}
-      {% if post.categories contains sub_cat %}
-        {% assign sub_posts_list = sub_posts_list | push: post %}
-        {% assign sub_posts_count = sub_posts_count | plus: 1 %}
-      {% endif %}
-    {% endfor %}
-    {% if sub_posts_count > 0 %}
-      {% assign temp_map = sub_cat | append: "::" | append: sub_posts_count | append: "|||" %}
-      {% for sp in sub_posts_list %}
-        {% assign temp_map = temp_map | append: sp.url | append: "|||" %}
+    {% assign is_in_subcat = false %}
+    {% if has_subcats %}
+      {% for sub_cat in sub_cats %}
+        {% if post.categories contains sub_cat %}
+          {% assign is_in_subcat = true %}
+          {% break %}
+        {% endif %}
       {% endfor %}
-      {% assign sub_cat_posts_map = sub_cat_posts_map | append: temp_map %}
     {% endif %}
+    {% unless is_in_subcat %}
+      {% if post.categories contains top_cat %}
+        {% assign post_order = post.orders[top_cat] | default: 9999 %}
+        {% assign padded = zero5 | append: post_order %}
+        {% assign padded = padded | slice: -5, 5 %}
+        {% assign entry = padded | append: "|||" | append: post.url %}
+        {% assign top_cat_sorted_urls = top_cat_sorted_urls | push: entry %}
+        {% assign top_cat_direct_urls = top_cat_direct_urls | push: entry %}
+      {% endif %}
+    {% endunless %}
   {% endfor %}
+  {% assign top_cat_sorted_urls = top_cat_sorted_urls | sort %}
 
-  {% assign total_posts = cat_posts.size %}
+  {% comment %}子分类文章排序：为每个子分类收集排序后的URL列表{% endcomment %}
   {% for sub_cat in sub_cats %}
+    {% assign sub_sorted_urls = "" | split: "" %}
     {% for post in site.posts %}
       {% if post.categories contains sub_cat %}
-        {% assign total_posts = total_posts | plus: 1 %}
+        {% assign post_order = post.orders[sub_cat] | default: 9999 %}
+        {% assign padded = zero5 | append: post_order %}
+        {% assign padded = padded | slice: -5, 5 %}
+        {% assign entry = padded | append: "|||" | append: post.url %}
+        {% assign sub_sorted_urls = sub_sorted_urls | push: entry %}
       {% endif %}
     {% endfor %}
+    {% assign sub_sorted_urls = sub_sorted_urls | sort %}
+  {% endfor %}
+
+  {% comment %}统计总文章数{% endcomment %}
+  {% assign total_posts = 0 %}
+  {% assign total_posts = total_posts | plus: top_cat_direct_urls.size %}
+  {% for sub_cat in sub_cats %}
+    {% assign sub_count = 0 %}
+    {% for post in site.posts %}
+      {% if post.categories contains sub_cat %}
+        {% assign sub_count = sub_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    {% assign total_posts = total_posts | plus: sub_count %}
   {% endfor %}
 
   {% if total_posts > 0 %}
@@ -102,40 +111,49 @@ Front Matter 规范：
       <h3 class="category-title">{{ top_cat }}</h3>
       <span class="category-count">{{ total_posts }} 篇</span>
     </div>
-    {% if has_subcats or cat_posts.size > 0 %}
+    {% if has_subcats or top_cat_direct_urls.size > 0 %}
     <span class="category-chevron"><i class="fas fa-chevron-down"></i></span>
     {% endif %}
   </div>
   
-  {% if has_subcats or cat_posts.size > 0 %}
+  {% if has_subcats or top_cat_direct_urls.size > 0 %}
   <div class="category-body" id="cat-body-{{ forloop.index }}">
 
     {% comment %}如果有子分类，显示子分类列表{% endcomment %}
     {% if has_subcats %}
     <div class="sub-category-list">
       {% for sub_cat in sub_cats %}
-        {% assign sub_posts_count = 0 %}
-        {% assign sub_posts_list = "" | split: "" %}
+        {% assign sub_count = 0 %}
+        {% assign sub_sorted_urls = "" | split: "" %}
         {% for post in site.posts %}
           {% if post.categories contains sub_cat %}
-            {% assign sub_posts_list = sub_posts_list | push: post %}
-            {% assign sub_posts_count = sub_posts_count | plus: 1 %}
+            {% assign post_order = post.orders[sub_cat] | default: 9999 %}
+            {% assign padded = zero5 | append: post_order %}
+            {% assign padded = padded | slice: -5, 5 %}
+            {% assign entry = padded | append: "|||" | append: post.url %}
+            {% assign sub_sorted_urls = sub_sorted_urls | push: entry %}
+            {% assign sub_count = sub_count | plus: 1 %}
           {% endif %}
         {% endfor %}
+        {% assign sub_sorted_urls = sub_sorted_urls | sort %}
         
-        {% if sub_posts_count > 0 %}
+        {% if sub_count > 0 %}
         <div class="sub-category-block" id="sub-cat-{{ forloop.parentloop.index }}-{{ forloop.index }}">
           <div class="sub-category-header" data-level="2">
             <div class="sub-category-title-area">
               <span class="sub-category-icon"></span>
               <h4 class="sub-category-title">{{ sub_cat }}</h4>
-              <span class="sub-category-count">{{ sub_posts_count }} 篇</span>
+              <span class="sub-category-count">{{ sub_count }} 篇</span>
             </div>
             <span class="sub-category-chevron"><i class="fas fa-chevron-right"></i></span>
           </div>
           <div class="sub-category-body" id="sub-cat-body-{{ forloop.parentloop.index }}-{{ forloop.index }}">
             <div class="post-list">
-              {% for post in sub_posts_list %}
+              {% for url_entry in sub_sorted_urls %}
+                {% assign url_parts = url_entry | split: "|||" %}
+                {% assign target_url = url_parts[1] %}
+                {% for post in site.posts %}
+                  {% if post.url == target_url %}
               <a class="post-item" href="{{ post.url | relative_url }}">
                 <div class="post-item-content">
                   <h5 class="post-title">{{ post.title }}</h5>
@@ -147,6 +165,8 @@ Front Matter 规范：
                   </div>
                 </div>
               </a>
+                  {% endif %}
+                {% endfor %}
               {% endfor %}
             </div>
           </div>
@@ -157,13 +177,17 @@ Front Matter 规范：
     {% endif %}
 
     {% comment %}直接属于一级分类的文章（没有二级分类的）{% endcomment %}
-    {% if cat_posts.size > 0 %}
+    {% if top_cat_direct_urls.size > 0 %}
     <div class="direct-posts">
       <div class="section-header">
-        <span class="section-title">{{ top_cat }}（{{ cat_posts.size }} 篇）</span>
+        <span class="section-title">{{ top_cat }}（{{ top_cat_direct_urls.size }} 篇）</span>
       </div>
       <div class="post-list">
-        {% for post in cat_posts %}
+        {% for url_entry in top_cat_sorted_urls %}
+          {% assign url_parts = url_entry | split: "|||" %}
+          {% assign target_url = url_parts[1] %}
+          {% for post in site.posts %}
+            {% if post.url == target_url %}
         <a class="post-item" href="{{ post.url | relative_url }}">
           <div class="post-item-content">
             <h5 class="post-title">{{ post.title }}</h5>
@@ -175,6 +199,8 @@ Front Matter 规范：
             </div>
           </div>
         </a>
+            {% endif %}
+          {% endfor %}
         {% endfor %}
       </div>
     </div>

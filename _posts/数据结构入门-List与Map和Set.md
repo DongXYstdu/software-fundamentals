@@ -4,6 +4,8 @@ date: 2026-06-14 08:00:00 +0800
 order: 1
 categories: [入门]
 tags: [List, Map, Set, 集合, 入门, 零基础]
+orders:
+  入门: 3
 math: true
 mermaid: true
 ---
