@@ -17,7 +17,7 @@ Front Matter 规范：
 - level: 入门/进阶/深入 （可选）
 {% endcomment %}
 
-{% assign category_order = "入门,Java,数据库,操作系统,计算机网络,数据结构与算法,系统设计,开发工具,软件工程" | split: "," %}
+{% assign category_order = "入门,Java,数据库,操作系统,计算机网络,数据结构与算法,智控,系统设计,开发工具,软件工程" | split: "," %}
 
 {% capture zero5 %}00000{% endcapture %}
 
