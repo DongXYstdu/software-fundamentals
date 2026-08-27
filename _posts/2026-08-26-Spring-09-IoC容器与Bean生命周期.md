@@ -1,7 +1,7 @@
 ---
 title: IoC 容器与 Bean 生命周期
 date: 2026-08-26 09:00:00 +0800
-categories: [Spring]
+categories: [Java, Spring]
 tags: [IoC, Bean生命周期]
 ---
 

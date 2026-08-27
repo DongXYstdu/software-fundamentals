@@ -1,7 +1,7 @@
 ---
 title: 手写 Spring Boot Starter 并发布到中央仓库
 date: 2026-08-26 09:00:00 +0800
-categories: [Spring]
+categories: [Java, Spring]
 tags: [SpringBoot, Starter, Maven, 发版]
 ---
 
