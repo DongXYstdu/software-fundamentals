@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 700" width="100%" role="img">
+<title>DDD 收编：边界切分工具</title>
+<desc>BC→聚合→仓储→防腐层，模块化切刀的"判据工厂"</desc>
+<style>svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}</style>
+<text x="24" y="30" font-size="15" font-weight="500" fill="#2C2C2A">DDD 收编：给"切刀"装一套判据（这是模块化缺的那块拼图）</text>
+
+<rect x="40" y="70" width="300" height="200" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="190" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">战略设计：BC 限界上下文</text>
+<text x="60" y="122" font-size="11" fill="#3C3489">· 一句话：一个业务领域内的自治语言与一致性范围</text>
+<text x="60" y="144" font-size="11" fill="#3C3489">· 判定：同一术语在不同上下文含义不同 → 必须拆 BC</text>
+<text x="60" y="166" font-size="11" fill="#3C3489">　（你网关照明的"站点上报" vs 运维的"站点"就不同）</text>
+<text x="60" y="188" font-size="11" fill="#3C3489">· 切分判据：语言边界 + 一致性边界 + 团队边界</text>
+<text x="60" y="210" font-size="11" fill="#3C3489">→ 每个 BC 就是"模块化"那个模块的内核</text>
+
+<rect x="380" y="70" width="300" height="200" rx="12" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="1"/>
+<text x="530" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#5C4A06">战术设计：聚合与聚合根</text>
+<text x="400" y="122" font-size="11" fill="#5C4A06">· 聚合 = 一组"必须一起变"的对象，统一入口=聚合根</text>
+<text x="400" y="144" font-size="11" fill="#5C4A06">· 一致性边界：聚合内事务内完成，跨聚合只靠最终一致</text>
+<text x="400" y="166" font-size="11" fill="#5C4A06">· 判定原子性：改 A 不改 B 会出问题 → A/B 同一聚合</text>
+<text x="400" y="188" font-size="11" fill="#5C4A06">→ 聚合是"模块内切得对不对"的最小物理单元</text>
+
+<rect x="720" y="70" width="310" height="200" rx="12" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="875" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">一致性边界：事务该多大</text>
+<text x="740" y="122" font-size="11" fill="#27500A">· 聚合边界 = 事务边界：一次请求改一个聚合根</text>
+<text x="740" y="144" font-size="11" fill="#27500A">· 跨聚合写 → 不要硬塞一个大事务，用最终一致</text>
+<text x="740" y="166" font-size="11" fill="#27500A">· 接 L2：@Transactional 为什么要小而明确</text>
+<text x="740" y="188" font-size="11" fill="#27500A">· 这是 DDD 与事务课的链接点</text>
+
+<rect x="40" y="300" width="990" height="180" rx="12" fill="#F5F5F4" stroke="#E4E4E7" stroke-width="1"/>
+<text x="60" y="326" font-size="12" font-weight="500" fill="#2C2C2A">落地组件：把判据翻译成代码骨架（模块内部再纵切）</text>
+<rect x="60" y="340" width="150" height="46" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/><text x="135" y="360" text-anchor="middle" font-size="10.5" font-weight="500" fill="#3C3489">interface/API</text><text x="135" y="376" text-anchor="middle" font-size="8.5" fill="#5F5E5A">对外契约(防腐层)</text>
+<rect x="230" y="340" width="150" height="46" rx="8" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.8"/><text x="305" y="360" text-anchor="middle" font-size="10.5" font-weight="500" fill="#5C4A06">application</text><text x="305" y="376" text-anchor="middle" font-size="8.5" fill="#5F5E5A">用例编排/事务</text>
+<rect x="400" y="340" width="150" height="46" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/><text x="475" y="360" text-anchor="middle" font-size="10.5" font-weight="500" fill="#27500A">domain</text><text x="475" y="376" text-anchor="middle" font-size="8.5" fill="#5F5E5A">实体/值对象/领域服务</text>
+<rect x="570" y="340" width="150" height="46" rx="8" fill="#F5F5F4" stroke="#A8A29E" stroke-width="0.8"/><text x="645" y="360" text-anchor="middle" font-size="10.5" font-weight="500" fill="#3F3F46">infra</text><text x="645" y="376" text-anchor="middle" font-size="8.5" fill="#78716C">Mapper/外部依赖</text>
+<path d="M210 363 H230 M380 363 H400 M550 363 H570" stroke="#A8A29E" stroke-width="1.4" fill="none"/>
+<text x="60" y="416" font-size="11" fill="#3F3F46">依赖方向固定向内：API/App → domain → infra 由 domain 定义接口、infra 实现（依赖倒置）</text>
+<text x="60" y="436" font-size="11" fill="#3F3F46">仓储(Repository)是 domain 与 infra 的桥：domain 只声明"我要存什么"，实现交 infra → 换库不动领域</text>
+<text x="60" y="456" font-size="11" fill="#3F3F46">防腐层(Anti-Corruption)隔离外部系统：上游变化不污染你的 domain 语言（对接 TDengine/第三方走它）</text>
+
+<text x="24" y="510" font-size="10.5" fill="#78716C">一句话：BC 定"切成几个模块"，聚合定"模块内怎么切"，仓储/防腐层定"内外怎么隔离"。</text>
+</svg>

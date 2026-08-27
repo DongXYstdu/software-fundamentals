@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="100%" role="img">
+<title>Netty 主从 Reactor 落地</title>
+<desc>bossGroup 一个 EventLoop 专职 accept；workerGroup 多个 EventLoop 分管连接读写；Channel 与 EventLoop 终身绑定</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">Netty 主从 Reactor 落地</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A">EventLoop = 1 线程 + 1 Selector + 1 任务队列</text>
+<rect x="40" y="70" width="180" height="120" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="130" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">bossGroup（Main）</text>
+<rect x="60" y="106" width="140" height="40" rx="8" fill="#FFFFFF" stroke="#534AB7" stroke-width="0.5"/>
+<text x="130" y="124" text-anchor="middle" font-size="11" fill="#3C3489">EventLoop × 1</text>
+<text x="130" y="140" text-anchor="middle" font-size="10" fill="#7F77DD">只 accept 新连接</text>
+<text x="130" y="172" text-anchor="middle" font-size="10" fill="#534AB7">NioEventLoopGroup(1)</text>
+<rect x="260" y="70" width="380" height="120" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+<text x="450" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">workerGroup（Sub 组）</text>
+<rect x="276" y="106" width="110" height="40" rx="8" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="331" y="124" text-anchor="middle" font-size="11" fill="#0C447C">EventLoop 1</text>
+<text x="331" y="140" text-anchor="middle" font-size="10" fill="#378ADD">管连接 a、d</text>
+<rect x="395" y="106" width="110" height="40" rx="8" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="450" y="124" text-anchor="middle" font-size="11" fill="#0C447C">EventLoop 2</text>
+<text x="450" y="140" text-anchor="middle" font-size="10" fill="#378ADD">管连接 b、e</text>
+<rect x="514" y="106" width="110" height="40" rx="8" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="569" y="124" text-anchor="middle" font-size="11" fill="#0C447C">EventLoop 3</text>
+<text x="569" y="140" text-anchor="middle" font-size="10" fill="#378ADD">管连接 c、f</text>
+<text x="450" y="172" text-anchor="middle" font-size="10" fill="#185FA5">NioEventLoopGroup() 默认 2×CPU 核数</text>
+<line x1="220" y1="130" x2="260" y2="130" stroke="#5F5E5A" stroke-width="1"/>
+<text x="240" y="122" text-anchor="middle" font-size="10" fill="#5F5E5A">注册</text>
+<rect x="40" y="214" width="600" height="66" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="340" y="238" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">Channel 与 EventLoop 终身绑定</text>
+<text x="340" y="258" text-anchor="middle" font-size="11" fill="#3B6D11">一条连接的所有读写、Pipeline 回调都在同一线程 → Handler 里不用加锁</text>
+<text x="340" y="274" text-anchor="middle" font-size="11" fill="#3B6D11">代价：慢 Handler 拖垮该 EventLoop 上所有连接 → 业务逻辑提交独立线程池</text>
+<rect x="40" y="296" width="600" height="76" rx="10" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="318" text-anchor="middle" font-size="12" font-weight="500" fill="#444441">每条连接的 Pipeline（责任链）</text>
+<text x="340" y="340" text-anchor="middle" font-size="11" fill="#5F5E5A">入站：解码器 → 业务 Handler（按 addLast 顺序）</text>
+<text x="340" y="358" text-anchor="middle" font-size="11" fill="#5F5E5A">出站：业务 Handler → 编码器（逆 addLast 顺序）</text>
+</svg>

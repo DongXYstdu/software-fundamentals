@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 640" width="100%" role="img">
+<title>AOP 代理：JDK 动态代理 vs CGLIB 与自调用失效推演</title>
+<style>
+svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}
+.th{font-size:15px;font-weight:500;fill:#2C2C2A;}
+.th1{font-size:13px;font-weight:500;fill:#2C2C2A;}
+.ts{font-size:9.5px;fill:#5F5E5A;}
+.tm{font-size:9.5px;fill:#5F5E5A;font-family:monospace;}
+.mt{font-size:10.5px;font-weight:500;fill:#0C447C;}
+.gt{font-size:10.5px;font-weight:500;fill:#27500A;}
+.rt{font-size:10.5px;font-weight:500;fill:#4A1B0C;}
+.mut{font-size:10.5px;font-weight:500;fill:#5F5E5A;}
+.bs{font-size:11px;font-weight:500;fill:#0C447C;}
+.gs{font-size:11px;font-weight:500;fill:#27500A;}
+.bt{font-size:10px;fill:#185FA5;}
+.gtx{font-size:10px;fill:#3B6D11;}
+.rtx{font-size:10px;fill:#993C1D;}
+.mtx{font-size:10px;fill:#5F5E5A;}
+</style>
+<text class="th" x="24" y="28">两种代理的生成方式</text>
+
+<rect x="24" y="48" width="350" height="150" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="mt" x="199" y="72" text-anchor="middle">JDK 动态代理</text>
+<text class="bt" x="199" y="92" text-anchor="middle">基于接口：运行时生成实现目标接口的 $Proxy 类</text>
+<text class="tm" x="199" y="110" text-anchor="middle">Proxy.newProxyInstance(loader, 接口, handler)</text>
+<text class="bt" x="199" y="130" text-anchor="middle">调用路径：$Proxy → InvocationHandler → 目标方法</text>
+<text class="bt" x="199" y="150" text-anchor="middle">前提：目标类必须实现接口</text>
+<text class="bt" x="199" y="170" text-anchor="middle">代理对象与目标类是「兄弟」关系（同接口）</text>
+<text class="bt" x="199" y="188" text-anchor="middle">只能代理接口方法</text>
+
+<rect x="390" y="48" width="346" height="150" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text class="gt" x="563" y="72" text-anchor="middle">CGLIB</text>
+<text class="gtx" x="563" y="92" text-anchor="middle">基于继承：运行时生成目标类的子类</text>
+<text class="tm" x="563" y="110" text-anchor="middle">Enhancer → 生成 SubClass extends 目标类</text>
+<text class="gtx" x="563" y="130" text-anchor="middle">调用路径：子类重写方法 → MethodInterceptor → super.目标方法</text>
+<text class="gtx" x="563" y="150" text-anchor="middle">前提：目标类不能是 final，方法不能是 final</text>
+<text class="gtx" x="563" y="170" text-anchor="middle">代理对象与目标类是「父子」关系</text>
+<text class="gtx" x="563" y="188" text-anchor="middle">final 类/方法无法被继承 → 无法代理</text>
+
+<rect x="24" y="214" width="712" height="64" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="th1" x="380" y="238" text-anchor="middle" fill="#3C3489" font-size="12">Spring 的选型规则（Boot 2.x 起默认）</text>
+<text class="ts" x="380" y="258" text-anchor="middle">spring.aop.proxy-target-class=true（默认）→ 一律 CGLIB，哪怕有接口</text>
+<text class="ts" x="380" y="272" text-anchor="middle">原因：注入具体类（@Autowired UserServiceImpl）时 JDK 代理会类型不匹配；统一 CGLIB 避免这类坑</text>
+
+<text class="th" x="24" y="312">自调用失效推演（@Transactional 不生效的根因）</text>
+
+<rect x="24" y="330" width="140" height="44" rx="8" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text class="mut" x="94" y="348" text-anchor="middle">Controller</text>
+<text class="ts" x="94" y="364" text-anchor="middle">外部调用方</text>
+<line x1="164" y1="352" x2="204" y2="352" stroke="#5F5E5A" stroke-width="1.2"/>
+<text class="ts" x="184" y="344" text-anchor="middle">① 走代理</text>
+
+<rect x="206" y="330" width="180" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="bs" x="296" y="348" text-anchor="middle">代理对象（外层壳）</text>
+<text class="bt" x="296" y="364" text-anchor="middle">开启事务 → 调目标方法</text>
+<line x1="386" y1="352" x2="426" y2="352" stroke="#5F5E5A" stroke-width="1.2"/>
+<text class="ts" x="406" y="344" text-anchor="middle">② 委托</text>
+
+<rect x="428" y="330" width="308" height="120" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text class="gs" x="582" y="352" text-anchor="middle">目标对象（原始 Bean）</text>
+<text class="tm" x="582" y="372" text-anchor="middle">methodA() { this.methodB(); }</text>
+<text class="gtx" x="582" y="392" text-anchor="middle">methodB() 上有 @Transactional</text>
+<text class="gtx" x="582" y="412" text-anchor="middle">③ this.methodB() —— this 是原始对象</text>
+<text class="gtx" x="582" y="430" text-anchor="middle">不经过代理壳 → methodB 的事务切面不触发</text>
+
+<line x1="582" y1="450" x2="582" y2="478" stroke="#993C1D" stroke-width="1.2"/>
+<rect x="330" y="480" width="406" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="rt" x="533" y="502" text-anchor="middle" font-size="12">结果：methodB 的 @Transactional 静默失效</text>
+<text class="rtx" x="533" y="522" text-anchor="middle">代理在对象「外面」，this 调用在「里面」—— 永远碰不到代理</text>
+
+<rect x="24" y="556" width="712" height="66" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text x="380" y="578" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A">三种解法：① 拆类（把 methodB 移到另一个 Bean，首选）② 注入自己（@Lazy self）再 self.methodB()</text>
+<text x="380" y="598" text-anchor="middle" font-size="11" fill="#27500A">③ AopContext.currentProxy()（需 exposeProxy=true）—— 本质都是「让调用重新穿过代理壳」</text>
+</svg>

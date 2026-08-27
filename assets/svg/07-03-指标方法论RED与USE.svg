@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 280" width="100%" role="img">
+<title>指标方法论 RED USE 四金信号</title>
+<desc>RED 服务视角、USE 资源视角、四金信号 Google SRE 视角，对应不同监控重点</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">指标方法论：看什么、怎么看</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">三套方法对应三种视角，配合用才完整</text>
+<rect x="40" y="76" width="180" height="36" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="130" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">方法</text>
+<rect x="220" y="76" width="180" height="36" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="310" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">视角</text>
+<rect x="400" y="76" width="240" height="36" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="520" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">四要素</text>
+<rect x="40" y="112" width="180" height="36" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="130" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">RED</text>
+<rect x="220" y="112" width="180" height="36" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="310" y="130" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">服务视角</text>
+<rect x="400" y="112" width="240" height="36" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="520" y="130" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">Rate · Errors · Duration</text>
+<rect x="40" y="148" width="180" height="36" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="130" y="166" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A" dominant-baseline="central">USE</text>
+<rect x="220" y="148" width="180" height="36" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="310" y="166" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">资源视角</text>
+<rect x="400" y="148" width="240" height="36" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="520" y="166" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">Utilization · Saturation · Errors</text>
+<rect x="40" y="184" width="180" height="36" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="130" y="202" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489" dominant-baseline="central">四金信号</text>
+<rect x="220" y="184" width="180" height="36" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="310" y="202" text-anchor="middle" font-size="11" fill="#3C3489" dominant-baseline="central">Google SRE</text>
+<rect x="400" y="184" width="240" height="36" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="520" y="202" text-anchor="middle" font-size="11" fill="#3C3489" dominant-baseline="central">延迟 · 流量 · 错误 · 饱和度</text>
+<text x="340" y="252" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">网关实战：QPS=流量 · Modbus 错误率=错误 · 响应 P99=延迟 · TDengine 写入队列=饱和度</text>
+</svg>

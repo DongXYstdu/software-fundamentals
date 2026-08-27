@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="100%" role="img">
+<title>从三层到六边形演进</title>
+<desc>贫血三层：Service 网状互调、规则无家可归；六边形：内核居中，箭头全部向内</desc>
+<defs>
+<marker id="arrow1201" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">从贫血三层到六边形：给业务规则补一个唯一的家</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">有层次 ≠ 层次分明 —— 分明 = 业务有唯一的家 + 依赖单向可预期 + 变化隔离在所属层</text>
+<rect x="30" y="64" width="300" height="28" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="180" y="78" text-anchor="middle" font-size="12" font-weight="500" fill="#4A1B0C" dominant-baseline="central">❌ 贫血三层：上薄下薄中间一坨</text>
+<rect x="60" y="104" width="240" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="180" y="119" text-anchor="middle" font-size="10" fill="#444441" dominant-baseline="central">controller/ 协议适配（薄）</text>
+<rect x="60" y="146" width="240" height="110" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="180" y="162" text-anchor="middle" font-size="10.5" font-weight="500" fill="#4A1B0C" dominant-baseline="central">service/ 上帝 Service（规则黑洞）</text>
+<rect x="76" y="174" width="70" height="26" rx="5" fill="#FFFFFF" stroke="#993C1D" stroke-width="0.6"/>
+<text x="111" y="187" text-anchor="middle" font-size="9" fill="#4A1B0C" dominant-baseline="central">AlarmService</text>
+<rect x="158" y="174" width="70" height="26" rx="5" fill="#FFFFFF" stroke="#993C1D" stroke-width="0.6"/>
+<text x="193" y="187" text-anchor="middle" font-size="9" fill="#4A1B0C" dominant-baseline="central">NotifyService</text>
+<rect x="240" y="174" width="50" height="26" rx="5" fill="#FFFFFF" stroke="#993C1D" stroke-width="0.6"/>
+<text x="265" y="187" text-anchor="middle" font-size="9" fill="#4A1B0C" dominant-baseline="central">Device..</text>
+<line x1="146" y1="180" x2="158" y2="180" stroke="#993C1D" stroke-width="1" marker-end="url(#arrow1201)"/>
+<line x1="158" y1="194" x2="146" y2="194" stroke="#993C1D" stroke-width="1" marker-end="url(#arrow1201)"/>
+<line x1="228" y1="180" x2="240" y2="180" stroke="#993C1D" stroke-width="1" marker-end="url(#arrow1201)"/>
+<line x1="240" y1="194" x2="228" y2="194" stroke="#993C1D" stroke-width="1" marker-end="url(#arrow1201)"/>
+<text x="180" y="220" text-anchor="middle" font-size="9" fill="#993C1D" dominant-baseline="central">规则判断 + 流程编排 + SQL 耦合在一个方法</text>
+<text x="180" y="236" text-anchor="middle" font-size="9" fill="#993C1D" dominant-baseline="central">层内任意互调 → 名义三层，实际一张网</text>
+<rect x="60" y="268" width="240" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="180" y="283" text-anchor="middle" font-size="10" fill="#444441" dominant-baseline="central">mapper/ + entity/（数据袋，无行为）</text>
+<text x="180" y="318" text-anchor="middle" font-size="10" fill="#993C1D" dominant-baseline="central">病灶：规则不可单测 · Service 互调成网 · 换技术穿三层</text>
+<rect x="350" y="64" width="300" height="28" rx="6" fill="#EAF3EC" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="500" y="78" text-anchor="middle" font-size="12" font-weight="500" fill="#1F3D0A" dominant-baseline="central">✅ 六边形：业务居心，箭头全部向内</text>
+<rect x="356" y="102" width="88" height="30" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="400" y="117" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">REST 适配器</text>
+<rect x="456" y="102" width="88" height="30" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="500" y="117" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">定时器★ 驱动</text>
+<rect x="556" y="102" width="88" height="30" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="600" y="117" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">MQTT 适配器</text>
+<line x1="400" y1="132" x2="430" y2="150" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1201)"/>
+<line x1="500" y1="132" x2="500" y2="150" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1201)"/>
+<line x1="600" y1="132" x2="570" y2="150" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1201)"/>
+<rect x="366" y="152" width="268" height="96" rx="10" fill="#EAF3EC" stroke="#3B6D11" stroke-width="1.2"/>
+<text x="500" y="170" text-anchor="middle" font-size="11" font-weight="500" fill="#1F3D0A" dominant-baseline="central">应 用 内 核</text>
+<text x="500" y="192" text-anchor="middle" font-size="10" fill="#1F3D0A" dominant-baseline="central">应用层：用例编排 + 端口定义（薄）</text>
+<text x="500" y="212" text-anchor="middle" font-size="10" fill="#1F3D0A" dominant-baseline="central">领域层：业务规则（纯·唯一的家）</text>
+<text x="500" y="234" text-anchor="middle" font-size="9.5" fill="#3B6D11" dominant-baseline="central">不依赖 Spring/MyBatis/Kafka/Modbus</text>
+<line x1="400" y1="268" x2="430" y2="250" stroke="#3B6D11" stroke-width="1.2" marker-end="url(#arrow1201)"/>
+<line x1="500" y1="268" x2="500" y2="250" stroke="#3B6D11" stroke-width="1.2" marker-end="url(#arrow1201)"/>
+<line x1="600" y1="268" x2="570" y2="250" stroke="#3B6D11" stroke-width="1.2" marker-end="url(#arrow1201)"/>
+<rect x="356" y="268" width="88" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.7"/>
+<text x="400" y="283" text-anchor="middle" font-size="9.5" fill="#444441" dominant-baseline="central">MyBatis 适配</text>
+<rect x="456" y="268" width="88" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.7"/>
+<text x="500" y="283" text-anchor="middle" font-size="9.5" fill="#444441" dominant-baseline="central">Kafka 适配</text>
+<rect x="556" y="268" width="88" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.7"/>
+<text x="600" y="283" text-anchor="middle" font-size="9.5" fill="#444441" dominant-baseline="central">Modbus 适配</text>
+<text x="500" y="318" text-anchor="middle" font-size="10" fill="#3B6D11" dominant-baseline="central">业务变 → 只动内核 · 技术变 → 只换适配器 · 规则毫秒级单测</text>
+<text x="340" y="356" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" dominant-baseline="central">迁移 = 改名 + 补位 + 调方向，不是重写</text>
+<text x="340" y="378" text-anchor="middle" font-size="10.5" fill="#5F5E5A" dominant-baseline="central">controller→驱动适配器 · mapper→被驱动适配器 · entity→领域模型（补行为） · Service 拆两半（编排/规则）</text>
+<text x="340" y="402" text-anchor="middle" font-size="10.5" fill="#5F5E5A" dominant-baseline="central">终点不是形状像六边形，是"变化被隔离"（09 课验收标准的架构版）</text>
+</svg>

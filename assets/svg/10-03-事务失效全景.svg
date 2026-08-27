@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 660" width="100%" role="img">
+<title>事务失效全景：8 个场景按三层定位</title>
+<style>
+svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}
+.th{font-size:15px;font-weight:500;fill:#2C2C2A;}
+.th1{font-size:12px;font-weight:500;fill:#2C2C2A;}
+.ts{font-size:9.5px;fill:#5F5E5A;}
+.tm{font-size:9.5px;fill:#5F5E5A;font-family:monospace;}
+.lb{font-size:11px;font-weight:500;fill:#0C447C;}
+.tb{font-size:10px;fill:#185FA5;}
+.lp{font-size:11px;font-weight:500;fill:#3C3489;}
+.tp{font-size:10px;fill:#534AB7;}
+.lr{font-size:11px;font-weight:500;fill:#4A1B0C;}
+.tr{font-size:10px;fill:#993C1D;}
+.gt{font-size:11px;font-weight:500;fill:#27500A;}
+.gtx{font-size:11px;fill:#27500A;}
+</style>
+<text class="th" x="24" y="26">事务失效 8 场景 · 按根因分 3 层</text>
+<text class="ts" x="24" y="44">排障顺序：层 1 → 层 2 → 层 3（先定位层，再找场景）</text>
+
+<rect x="24" y="58" width="712" height="188" rx="10" fill="none" stroke="#A8A29E" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text class="th1" x="40" y="78">层 1 · 代理层失效 —— 调用根本没穿过代理壳，切面从未介入</text>
+<rect x="24" y="88" width="172" height="150" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="lb" x="110" y="108" text-anchor="middle">① 自调用</text>
+<text class="tm" x="110" y="126" text-anchor="middle">this.methodB()</text>
+<text class="tb" x="110" y="146" text-anchor="middle">根因：this 是原始对象</text>
+<text class="tb" x="110" y="160" text-anchor="middle">代理在对象外面碰不到</text>
+<text class="tb" x="110" y="180" text-anchor="middle">修复：拆类（首选）</text>
+<text class="tb" x="110" y="194" text-anchor="middle">或 @Lazy 注入 self</text>
+
+<rect x="204" y="88" width="172" height="150" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="lb" x="290" y="108" text-anchor="middle">② 非 public 方法</text>
+<text class="tm" x="290" y="126" text-anchor="middle">private / protected</text>
+<text class="tb" x="290" y="146" text-anchor="middle">根因：代理靠重写方法</text>
+<text class="tb" x="290" y="160" text-anchor="middle">非 public 不参与重写</text>
+<text class="tb" x="290" y="180" text-anchor="middle">静默失效不报错</text>
+<text class="tb" x="290" y="194" text-anchor="middle">修复：改 public 并拆类</text>
+
+<rect x="384" y="88" width="172" height="150" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="lb" x="470" y="108" text-anchor="middle">③ Bean 未受管</text>
+<text class="tm" x="470" y="126" text-anchor="middle">手动 new / 未被扫描</text>
+<text class="tb" x="470" y="146" text-anchor="middle">根因：没过后置钩子</text>
+<text class="tb" x="470" y="160" text-anchor="middle">根本没生成代理</text>
+<text class="tb" x="470" y="180" text-anchor="middle">修复：交给容器管理</text>
+<text class="tb" x="470" y="194" text-anchor="middle">检查包路径与注解</text>
+
+<rect x="564" y="88" width="172" height="150" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="lb" x="650" y="108" text-anchor="middle">④ final 方法 / 类</text>
+<text class="tm" x="650" y="126" text-anchor="middle">final method</text>
+<text class="tb" x="650" y="146" text-anchor="middle">根因：CGLIB 靠继承重写</text>
+<text class="tb" x="650" y="160" text-anchor="middle">final 禁止重写</text>
+<text class="tb" x="650" y="180" text-anchor="middle">修复：去掉 final</text>
+<text class="tb" x="650" y="194" text-anchor="middle">（Kotlin 类默认 final 注意）</text>
+
+<rect x="24" y="258" width="712" height="148" rx="10" fill="none" stroke="#A8A29E" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text class="th1" x="40" y="278">层 2 · 切面判断失效 —— 代理生效了，但回滚没被触发</text>
+<rect x="24" y="288" width="350" height="108" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="lp" x="199" y="308" text-anchor="middle">⑤ 异常被 try-catch 吞掉</text>
+<text class="tp" x="199" y="328" text-anchor="middle">根因：切面靠捕获异常决定回滚，吞掉 = 认为成功</text>
+<text class="tp" x="199" y="344" text-anchor="middle">catch 里打了日志也没用 —— 切面看不见</text>
+<text class="tp" x="199" y="366" text-anchor="middle">修复：重新抛出，或 catch 中 setRollbackOnly()</text>
+
+<rect x="390" y="288" width="346" height="108" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="lp" x="563" y="308" text-anchor="middle">⑥ 受检异常未配 rollbackFor</text>
+<text class="tp" x="563" y="328" text-anchor="middle">根因：默认只回滚 RuntimeException 与 Error</text>
+<text class="tp" x="563" y="344" text-anchor="middle">抛 IOException 等 → 照常提交</text>
+<text class="tp" x="563" y="366" text-anchor="middle">修复：rollbackFor = Exception.class（yudao 全局规范）</text>
+
+<rect x="24" y="418" width="712" height="148" rx="10" fill="none" stroke="#A8A29E" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text class="th1" x="40" y="438">层 3 · 环境与边界失效 —— 机制正确，但边界外</text>
+<rect x="24" y="448" width="350" height="108" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="lr" x="199" y="468" text-anchor="middle">⑦ 多线程调用</text>
+<text class="tr" x="199" y="488" text-anchor="middle">根因：事务 Connection 绑定 ThreadLocal</text>
+<text class="tr" x="199" y="504" text-anchor="middle">子线程拿到新连接，不在同一事务里</text>
+<text class="tr" x="199" y="526" text-anchor="middle">修复：事务内完成全部逻辑，或用编程式事务</text>
+
+<rect x="390" y="448" width="346" height="108" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="lr" x="563" y="468" text-anchor="middle">⑧ 数据库引擎不支持</text>
+<text class="tr" x="563" y="488" text-anchor="middle">根因：MyISAM 引擎层没有事务能力</text>
+<text class="tr" x="563" y="504" text-anchor="middle">注解配置全对也没用</text>
+<text class="tr" x="563" y="526" text-anchor="middle">修复：换 InnoDB（MySQL 默认已如此）</text>
+
+<rect x="24" y="580" width="712" height="62" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text class="gt" x="380" y="602" text-anchor="middle">全课主线：容器管蓝图 → 生命周期生代理（后置钩子）→ 三级缓存保引用一致 → 代理定切面生死 → 传播定嵌套规则 → 失效三层排障</text>
+<text class="gtx" x="380" y="624" text-anchor="middle">层 1 占了一半场景 —— 呼应第 4 段结论：切面的一切都以「调用穿过代理」为前提</text>
+</svg>

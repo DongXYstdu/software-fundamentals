@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 388" width="100%" role="img">
+<title>GC 日志解剖</title>
+<desc>一行 G1 Young GC 日志的六个字段：标签、序号、停顿类型、触发原因、堆占用变化、停顿时长</desc>
+<text x="40" y="30" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">GC 日志解剖：读懂这一行，其他都是变体</text>
+<text x="58" y="170" font-family="monospace" font-size="12" fill="#5F5E5A" dominant-baseline="central">[gc] </text>
+<text x="76" y="170" font-family="monospace" font-size="12" fill="#185FA5" dominant-baseline="central">GC(4821) </text>
+<text x="141" y="170" font-family="monospace" font-size="12" fill="#0C447C" dominant-baseline="central">Pause Young (Normal) </text>
+<text x="292" y="170" font-family="monospace" font-size="12" fill="#534AB7" dominant-baseline="central">(G1 Evacuation Pause) </text>
+<text x="450" y="170" font-family="monospace" font-size="12" fill="#3B6D11" dominant-baseline="central">987M-&gt;89M(1024M) </text>
+<text x="572" y="170" font-family="monospace" font-size="12" fill="#993C1D" dominant-baseline="central">12.345ms</text>
+<rect x="40" y="60" width="170" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="125" y="80" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">日志标签</text>
+<text x="125" y="98" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">-Xlog:gc* 输出类别</text>
+<rect x="245" y="60" width="170" height="56" rx="8" fill="#E6F1FB" stroke="#0C447C" stroke-width="0.5"/>
+<text x="330" y="80" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">停顿类型</text>
+<text x="330" y="98" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">Young · Mixed · Full</text>
+<rect x="450" y="60" width="170" height="56" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="535" y="80" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A" dominant-baseline="central">堆占用变化</text>
+<text x="535" y="98" text-anchor="middle" font-size="11" fill="#3B6D11" dominant-baseline="central">回收前-&gt;后（总堆）</text>
+<polyline points="125,116 125,148 58,148 58,160" fill="none" stroke="#5F5E5A" stroke-width="0.5" stroke-dasharray="3 2"/>
+<polyline points="330,116 330,148 216,148 216,160" fill="none" stroke="#0C447C" stroke-width="0.5" stroke-dasharray="3 2"/>
+<polyline points="535,116 535,148 511,148 511,160" fill="none" stroke="#3B6D11" stroke-width="0.5" stroke-dasharray="3 2"/>
+<rect x="40" y="204" width="170" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="125" y="224" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">GC 序号</text>
+<text x="125" y="242" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">跨行追踪同次回收</text>
+<rect x="245" y="204" width="170" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="330" y="224" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">触发原因</text>
+<text x="330" y="242" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">Evacuation=复制存活</text>
+<rect x="450" y="204" width="170" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="535" y="224" text-anchor="middle" font-size="12" font-weight="500" fill="#4A1B0C" dominant-baseline="central">STW 停顿</text>
+<text x="535" y="242" text-anchor="middle" font-size="11" fill="#993C1D" dominant-baseline="central">对停顿目标的答卷</text>
+<polyline points="125,204 125,192 108,192 108,180" fill="none" stroke="#185FA5" stroke-width="0.5" stroke-dasharray="3 2"/>
+<polyline points="330,204 330,192 371,192 371,180" fill="none" stroke="#534AB7" stroke-width="0.5" stroke-dasharray="3 2"/>
+<polyline points="535,204 535,192 601,192 601,180" fill="none" stroke="#993C1D" stroke-width="0.5" stroke-dasharray="3 2"/>
+<text x="40" y="300" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">看到这三个信号要警觉：</text>
+<text x="40" y="324" font-family="monospace" font-size="11" fill="#993C1D" dominant-baseline="central">Pause Full (G1 Compaction Pause)</text>
+<text x="285" y="324" font-size="11" fill="#5F5E5A" dominant-baseline="central">G1 退化串行整理——并发标记跟不上分配</text>
+<text x="40" y="346" font-family="monospace" font-size="11" fill="#993C1D" dominant-baseline="central">to-space exhausted</text>
+<text x="285" y="346" font-size="11" fill="#5F5E5A" dominant-baseline="central">复制目标不足——加大堆或调低停顿目标</text>
+<text x="40" y="368" font-family="monospace" font-size="11" fill="#993C1D" dominant-baseline="central">Humongous Allocation 频繁</text>
+<text x="285" y="368" font-size="11" fill="#5F5E5A" dominant-baseline="central">大对象多——控批量大小或增大 Region</text>
+</svg>

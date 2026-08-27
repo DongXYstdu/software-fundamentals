@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470" width="100%" role="img">
+<title>发版流程全景：从本地 Starter 到 Maven 中央仓库</title>
+<desc>本地工程经 GPG 签名、Central Portal 校验、Release 后进入中央仓库并同步至镜像</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">发版流程全景 · 本地 Starter → Maven 中央仓库</text>
+<text x="340" y="48" text-anchor="middle" font-size="12" fill="#5F5E5A">OSSRH 已停用 · 唯一入口 Central Portal · 发布不可撤回</text>
+<g>
+<rect x="46" y="68" width="108" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="100" y="88" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">本地 Starter 工程</text>
+<text x="100" y="108" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">mvn deploy</text>
+</g>
+<line x1="154" y1="100" x2="164" y2="100" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="164,96 172,100 164,104" fill="#5F5E5A"/>
+<g>
+<rect x="174" y="68" width="108" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="228" y="88" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">GPG 签名</text>
+<text x="228" y="108" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">每个构件生成 .asc</text>
+</g>
+<line x1="282" y1="100" x2="292" y2="100" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="292,96 300,100 292,104" fill="#5F5E5A"/>
+<g>
+<rect x="302" y="68" width="108" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="356" y="83" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">Central Portal</text>
+<text x="356" y="100" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">校验队列 Staging</text>
+<text x="356" y="117" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">自动规则检查</text>
+</g>
+<line x1="410" y1="100" x2="420" y2="100" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="420,96 428,100 420,104" fill="#5F5E5A"/>
+<g>
+<rect x="430" y="68" width="108" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="484" y="88" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">Release</text>
+<text x="484" y="108" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">手动 / 自动发布</text>
+</g>
+<line x1="538" y1="100" x2="548" y2="100" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="548,96 556,100 548,104" fill="#5F5E5A"/>
+<g>
+<rect x="558" y="68" width="108" height="64" rx="8" fill="#185FA5"/>
+<text x="612" y="83" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF" dominant-baseline="central">中央仓库</text>
+<text x="612" y="100" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">repo1.maven.org</text>
+<text x="612" y="117" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">发布不可撤回</text>
+</g>
+<line x1="612" y1="132" x2="612" y2="152" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="608,152 612,160 616,152" fill="#5F5E5A"/>
+<g>
+<rect x="430" y="162" width="236" height="56" rx="8" fill="#F7F7F5" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="548" y="180" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">镜像同步（aliyun 等）</text>
+<text x="548" y="200" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">你的项目 settings.xml 指向镜像</text>
+</g>
+<g>
+<rect x="46" y="248" width="280" height="180" rx="8" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="60" y="272" font-size="13" font-weight="500" fill="#0C447C">Portal 校验清单（硬性规则）</text>
+<text x="60" y="298" font-size="11" fill="#444441">1. POM 元信息：name·description·url</text>
+<text x="74" y="316" font-size="11" fill="#444441">·licenses·developers·scm 齐全</text>
+<text x="60" y="340" font-size="11" fill="#444441">2. 附带 -sources.jar 源码包</text>
+<text x="60" y="362" font-size="11" fill="#444441">3. 附带 -javadoc.jar（可空壳）</text>
+<text x="60" y="384" font-size="11" fill="#444441">4. 所有构件带 GPG 签名 .asc</text>
+<text x="60" y="406" font-size="11" fill="#444441">5. groupId 属已验证命名空间·禁 SNAPSHOT</text>
+</g>
+<g>
+<rect x="350" y="248" width="284" height="180" rx="8" fill="#FFFFFF" stroke="#534AB7" stroke-width="0.5"/>
+<text x="364" y="272" font-size="13" font-weight="500" fill="#3C3489">命名空间验证（二选一）</text>
+<text x="364" y="300" font-size="11" fill="#444441">▸ 自有域名：com.yourcompany</text>
+<text x="378" y="318" font-size="11" fill="#5F5E5A">DNS 加 TXT 记录验证所有权</text>
+<text x="364" y="346" font-size="11" fill="#444441">▸ GitHub 账号：io.github.用户名</text>
+<text x="378" y="364" font-size="11" fill="#5F5E5A">Portal 跳转 GitHub 授权（个人推荐）</text>
+<text x="364" y="394" font-size="11" fill="#8A8880">groupId 不要求与 Java 包名一致</text>
+<text x="364" y="412" font-size="11" fill="#8A8880">但惯例保持一致</text>
+</g>
+<text x="340" y="452" text-anchor="middle" font-size="11" fill="#8A8880">2025-06-30 起 OSSRH 停用 · central-publishing-maven-plugin 为唯一发布插件</text>
+</svg>

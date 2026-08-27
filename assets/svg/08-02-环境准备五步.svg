@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="100%" role="img">
+<title>环境准备五步：发版前的凭证与密钥</title>
+<desc>注册Portal生成Token、验证命名空间、GPG生成密钥、上传公钥、配置settings.xml</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">环境准备五步 · 发版前的凭证与密钥</text>
+<text x="340" y="48" text-anchor="middle" font-size="12" fill="#5F5E5A">四样必备：Portal Token · 已验证命名空间 · GPG 密钥 · settings.xml 凭证</text>
+<g>
+<rect x="40" y="70" width="108" height="84" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="94" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">① 注册 Portal</text>
+<text x="94" y="110" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">GitHub 登录</text>
+<text x="94" y="128" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">生成 User Token</text>
+</g>
+<line x1="148" y1="112" x2="158" y2="112" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="158,108 166,112 158,116" fill="#5F5E5A"/>
+<g>
+<rect x="166" y="70" width="108" height="84" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="220" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">② 验证命名空间</text>
+<text x="220" y="110" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">io.github.用户名</text>
+<text x="220" y="128" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">建公开仓库验证</text>
+</g>
+<line x1="274" y1="112" x2="284" y2="112" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="284,108 292,112 284,116" fill="#5F5E5A"/>
+<g>
+<rect x="292" y="70" width="108" height="84" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="346" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">③ GPG 生成密钥</text>
+<text x="346" y="110" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">Gpg4win</text>
+<text x="346" y="128" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">gpg --full-gen-key</text>
+</g>
+<line x1="400" y1="112" x2="410" y2="112" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="410,108 418,112 410,116" fill="#5F5E5A"/>
+<g>
+<rect x="418" y="70" width="108" height="84" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="472" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">④ 上传公钥</text>
+<text x="472" y="110" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">keyserver.ubuntu.com</text>
+<text x="472" y="128" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">--send-keys KeyID</text>
+</g>
+<line x1="526" y1="112" x2="536" y2="112" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="536,108 544,112 536,116" fill="#5F5E5A"/>
+<g>
+<rect x="544" y="70" width="108" height="84" rx="8" fill="#185FA5"/>
+<text x="598" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF" dominant-baseline="central">⑤ settings.xml</text>
+<text x="598" y="110" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">server id=central</text>
+<text x="598" y="128" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">gpg.passphrase</text>
+</g>
+<g>
+<rect x="40" y="184" width="300" height="210" rx="8" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="54" y="208" font-size="13" font-weight="500" fill="#0C447C">关键命令</text>
+<text x="54" y="234" font-size="11" fill="#444441">gpg --version</text>
+<text x="68" y="250" font-size="10" fill="#8A8880">验证安装</text>
+<text x="54" y="272" font-size="11" fill="#444441">gpg --full-gen-key</text>
+<text x="68" y="288" font-size="10" fill="#8A8880">RSA3072 · 永不过期 · 设口令</text>
+<text x="54" y="310" font-size="11" fill="#444441">gpg --list-keys --keyid-format=long</text>
+<text x="68" y="326" font-size="10" fill="#8A8880">取 / 后的 Key ID</text>
+<text x="54" y="348" font-size="11" fill="#444441">gpg --keyserver keyserver.ubuntu.com \</text>
+<text x="68" y="364" font-size="11" fill="#444441">--send-keys &lt;KeyID&gt;</text>
+<text x="68" y="380" font-size="10" fill="#8A8880">上传公钥，供验签与 Portal 校验</text>
+</g>
+<g>
+<rect x="356" y="184" width="296" height="210" rx="8" fill="#FFFFFF" stroke="#534AB7" stroke-width="0.5"/>
+<text x="370" y="208" font-size="13" font-weight="500" fill="#3C3489">自检清单（全过才进下节）</text>
+<text x="370" y="236" font-size="11" fill="#444441">▸ Token 对已生成并保存（非登录密码）</text>
+<text x="370" y="258" font-size="11" fill="#444441">▸ Namespace 显示 VERIFIED</text>
+<text x="370" y="280" font-size="11" fill="#444441">▸ gpg --list-secret-keys 见 sec 密钥</text>
+<text x="370" y="302" font-size="11" fill="#444441">▸ keyserver 能检索到公钥</text>
+<text x="370" y="324" font-size="11" fill="#444441">▸ settings.xml 含 central + gpg.passphrase</text>
+<text x="370" y="346" font-size="11" fill="#444441">▸ settings.xml 不提交 git</text>
+<text x="370" y="372" font-size="10" fill="#8A8880">坑：GPG2.1+ 需 --pinentry-mode loopback</text>
+</g>
+<text x="340" y="416" text-anchor="middle" font-size="11" fill="#8A8880">mirror 管下载 · server 管发布认证 · 两者共存不冲突</text>
+</svg>

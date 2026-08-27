@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 410" width="100%" role="img">
+<title>JMM 内存模型抽象</title>
+<desc>主内存存放共享变量副本，每个线程有工作内存副本，何时同步是 JMM 的核心问题</desc>
+<defs>
+<marker id="arrow8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">JMM：每个线程有自己的"工作内存"</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">副本何时与主内存同步——这就是并发问题的全部来源</text>
+<rect x="160" y="70" width="360" height="64" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="92" text-anchor="middle" font-size="13" font-weight="500" fill="#444441" dominant-baseline="central">主内存 Main Memory</text>
+<text x="340" y="112" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">共享变量：堆中实例字段 · 静态字段</text>
+<text x="340" y="160" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">何时同步？—— JMM 全部问题之源</text>
+<rect x="40" y="200" width="220" height="70" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="150" y="220" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">线程 A 工作内存</text>
+<text x="150" y="238" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">副本在寄存器 / L1 cache</text>
+<text x="150" y="256" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">A 改了变量，未必立刻同步</text>
+<rect x="420" y="200" width="220" height="70" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="530" y="220" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">线程 B 工作内存</text>
+<text x="530" y="238" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">副本在寄存器 / L1 cache</text>
+<text x="530" y="256" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">B 读变量，未必看到 A 的修改</text>
+<line x1="200" y1="134" x2="200" y2="198" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow8)"/>
+<text x="215" y="170" font-size="11" fill="#3B6D11" dominant-baseline="central">read · load</text>
+<line x1="160" y1="198" x2="160" y2="134" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrow8)"/>
+<text x="100" y="170" font-size="11" fill="#993C1D" dominant-baseline="central">store · write</text>
+<line x1="480" y1="134" x2="480" y2="198" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow8)"/>
+<text x="495" y="170" font-size="11" fill="#3B6D11" dominant-baseline="central">read · load</text>
+<line x1="520" y1="198" x2="520" y2="134" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrow8)"/>
+<text x="565" y="170" font-size="11" fill="#993C1D" dominant-baseline="central">store · write</text>
+<rect x="40" y="320" width="220" height="60" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+<text x="150" y="342" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">线程 A 代码执行</text>
+<text x="150" y="360" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">use / assign 操作副本</text>
+<rect x="420" y="320" width="220" height="60" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+<text x="530" y="342" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">线程 B 代码执行</text>
+<text x="530" y="360" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">use / assign 操作副本</text>
+</svg>

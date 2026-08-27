@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 660" width="100%" role="img">
+<title>推演：领域边界到服务边界</title>
+<desc>从 BC/聚合推导候选服务，拆与不拆由判据决定</desc>
+<style>svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}</style>
+<text x="24" y="30" font-size="15" font-weight="500" fill="#2C2C2A">从领域边界推演到服务边界（DDD → 微服务的跳跃）</text>
+
+<rect x="40" y="70" width="300" height="150" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="190" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">第1步 · 找候选服务</text>
+<text x="60" y="122" font-size="11" fill="#3C3489">· 每个 BC = 一个候选服务（语言自治）</text>
+<text x="60" y="144" font-size="11" fill="#3C3489">· 网关候选：采集采集服务 / core 规则服务 /</text>
+<text x="60" y="166" font-size="11" fill="#3C3489">　config 点位配置服务 / alarm 告警服务</text>
+<text x="60" y="190" font-size="11" fill="#3C3489">　（每个都是独立 BC，天然对齐你网关模块）</text>
+
+<rect x="390" y="70" width="300" height="150" rx="12" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="1"/>
+<text x="540" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#5C4A06">第2步 · 独立演进判据</text>
+<text x="410" y="122" font-size="11" fill="#5C4A06">· 判据：这个 BC 的改动频率独立于其他吗？</text>
+
+<rect x="740" y="70" width="290" height="150" rx="12" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="885" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">第3步 · 拆与不拆的判据</text>
+<text x="760" y="122" font-size="11" fill="#27500A">· 不拆的信号：改动联动、强数据耦合</text>
+<text x="760" y="144" font-size="11" fill="#27500A">· 拆的信号：独立伸缩、独立部署、独立故障域</text>
+<text x="760" y="166" font-size="11" fill="#27500A">· 反模式：为技术炫技而拆 / 拆完互相调用频繁</text>
+
+<rect x="40" y="250" width="990" height="170" rx="12" fill="#FFF1F0" stroke="#C0392B" stroke-width="1"/>
+<text x="60" y="276" font-size="12" font-weight="500" fill="#A02617">常见拆错，都是没守住判据</text>
+<text x="60" y="302" font-size="11" fill="#5D1F18">① "按代码体积拆"：把大 Service 从中间一刀切成两半 → 切成了两个互相频繁调用的服务，网络延迟代替方法调用</text>
+<text x="60" y="324" font-size="11" fill="#5D1F18">② "共享同一张表拆成服务"：两个 BC 强共库 → 拆开后事务与一致性更糟，不如不分</text>
+<text x="60" y="346" font-size="11" fill="#5D1F18">③ "为了微服务而微服务"：单机就能扛住的模块拆出去，纯增成本</text>
+<text x="60" y="368" font-size="11" fill="#5D1F18">④ 正确样板：采集服务（高吞吐、需水平伸缩）拆出；config 服务（低频、需强一致）留单体，各自独立演进</text>
+<text x="60" y="390" font-size="11" fill="#5D1F18">→ 判据，永远是"独立演进"，不是"代码大小"</text>
+
+<text x="24" y="455" font-size="10.5" fill="#78716C">一句话：BC 提供"切分边界"，判据决定"切不切"；边界清晰不代表一定要拆，独立演进才是拆的理由。</text>
+</svg>

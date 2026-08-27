@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 860" width="100%" role="img">
+<title>体系复盘 · 完整知识树总览</title>
+<desc>17 份笔记 61 张图八大板块：JVM、并发、网络、Spring 原理、架构治理、结构软实力、架构精讲、SpringBoot 专题，七条跨线连接以星号标注</desc>
+<style>svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}</style>
+<text x="24" y="28" font-size="15" font-weight="500" fill="#2C2C2A">后端高级开发知识体系 · 全量知识树</text>
+<text x="24" y="46" font-size="11" fill="#5F5E5A">蓝 = L1 内核与 SpringBoot 专题　绿 = 网络线　紫 = 架构治理与结构（L6/L7）　琥珀 = L2 原理与架构精讲　★ = 跨线连接锚点</text>
+
+<rect x="16" y="388" width="106" height="72" rx="10" fill="#2C2C2A"/>
+<text x="69" y="412" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF">后端高级开发</text>
+<text x="69" y="429" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF">知识体系</text>
+<text x="69" y="447" text-anchor="middle" font-size="9.5" fill="#FFFFFF" opacity="0.75">17 笔记 · 61 图</text>
+<rect x="16" y="478" width="106" height="34" rx="8" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text x="69" y="492" text-anchor="middle" font-size="10" fill="#5F5E5A">00-01 知识地图</text>
+<text x="69" y="505" text-anchor="middle" font-size="9" fill="#5F5E5A">本树的展开依据</text>
+
+<path d="M122 424 H138 M138 56 V772 M138 104 H150 M138 208 H150 M138 312 H150 M138 403 H150 M138 479 H150 M138 572 H150 M138 665 H150 M138 741 H150" stroke="#A8A29E" stroke-width="1" fill="none"/>
+
+<rect x="150" y="82" width="136" height="44" rx="8" fill="none" stroke="#185FA5" stroke-width="1"/>
+<text x="218" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">L1 · JVM 线</text>
+<text x="218" y="116" text-anchor="middle" font-size="9.5" fill="#0C447C" opacity="0.8">第 01~03 课 · 9 图</text>
+<path d="M286 104 H298 V70 H310 M286 104 H310 M286 104 H298 V138 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="56" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="74" font-size="11" fill="#0C447C">01-01 JVM 运行时内存结构</text></g>
+<g><rect x="554" y="56" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="74" font-size="11" fill="#0C447C">01-02 GC 分代流转与触发</text></g>
+<g><rect x="798" y="56" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="808" y="74" font-size="11" fill="#0C447C">01-03 GC 排查决策树</text></g>
+<g><rect x="310" y="90" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="108" font-size="11" fill="#0C447C">02-01 G1 Region 模型</text></g>
+<g><rect x="554" y="90" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="108" font-size="11" fill="#0C447C">02-02 G1 并发标记四阶段</text></g>
+<g><rect x="798" y="90" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="808" y="108" font-size="11" fill="#0C447C">02-03 GC 日志解剖</text></g>
+<g><rect x="310" y="124" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="142" font-size="11" fill="#0C447C">03-01 执行引擎分层编译</text></g>
+<g><rect x="554" y="124" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="142" font-size="11" fill="#0C447C">03-02 逃逸分析决策路径</text></g>
+<g><rect x="798" y="124" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="808" y="142" font-size="11" fill="#0C447C">03-03 直接内存与 Netty 池化 ★</text></g>
+
+<rect x="150" y="186" width="136" height="44" rx="8" fill="none" stroke="#3B6D11" stroke-width="1"/>
+<text x="218" y="204" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">L1 · 并发线</text>
+<text x="218" y="220" text-anchor="middle" font-size="9.5" fill="#27500A" opacity="0.8">第 04~06 课 · 9 图</text>
+<path d="M286 208 H298 V174 H310 M286 208 H310 M286 208 H298 V242 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="160" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="178" font-size="11" fill="#0C447C">04-01 JMM 内存模型抽象 ★</text></g>
+<g><rect x="554" y="160" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="178" font-size="11" fill="#0C447C">04-02 三特性×三工具矩阵</text></g>
+<g><rect x="798" y="160" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="808" y="178" font-size="11" fill="#0C447C">04-03 双重检查单例与 volatile</text></g>
+<g><rect x="310" y="194" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="212" font-size="11" fill="#0C447C">05-01 synchronized 锁升级链</text></g>
+<g><rect x="554" y="194" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="212" font-size="11" fill="#0C447C">05-02 AQS 同步器框架</text></g>
+<g><rect x="798" y="194" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="808" y="212" font-size="11" fill="#0C447C">05-03 锁选型对照</text></g>
+<g><rect x="310" y="228" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="246" font-size="11" fill="#0C447C">06-01 线程池执行流程</text></g>
+<g><rect x="554" y="228" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="246" font-size="11" fill="#0C447C">06-02 七参数与拒绝策略</text></g>
+<g><rect x="798" y="228" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="808" y="246" font-size="11" fill="#0C447C">06-03 网关并发模型对照 ★</text></g>
+
+<rect x="150" y="290" width="136" height="44" rx="8" fill="none" stroke="#3B6D11" stroke-width="1"/>
+<text x="218" y="308" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">L1 · 网络线</text>
+<text x="218" y="324" text-anchor="middle" font-size="9.5" fill="#27500A" opacity="0.8">NIO 与 Netty · 9 图</text>
+<path d="M286 312 H298 V278 H310 M286 312 H310 M286 312 H298 V346 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="264" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="320" y="282" font-size="11" fill="#27500A">07-04 BIO 三个致命问题</text></g>
+<g><rect x="554" y="264" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="564" y="282" font-size="11" fill="#27500A">07-05 NIO 三件套与多路复用</text></g>
+<g><rect x="798" y="264" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="808" y="282" font-size="11" fill="#27500A">07-06 Reactor 三形态演进</text></g>
+<g><rect x="310" y="298" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="320" y="316" font-size="11" fill="#27500A">07-07 Netty 主从 Reactor 落地 ★</text></g>
+<g><rect x="554" y="298" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="564" y="316" font-size="11" fill="#27500A">07-08 Vert.x 对照映射</text></g>
+<g><rect x="798" y="298" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="808" y="316" font-size="11" fill="#27500A">07-09 全课主线小结</text></g>
+<g><rect x="310" y="332" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="320" y="350" font-size="11" fill="#27500A">07-10 ByteBuf 与零拷贝 ★</text></g>
+<g><rect x="554" y="332" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="564" y="350" font-size="11" fill="#27500A">07-11 粘包拆包与手写解码器</text></g>
+<g><rect x="798" y="332" width="232" height="28" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="808" y="350" font-size="11" fill="#27500A">07-12 EventLoop 任务队列 ★</text></g>
+
+<rect x="150" y="381" width="136" height="44" rx="8" fill="none" stroke="#9A7B0A" stroke-width="1"/>
+<text x="218" y="399" text-anchor="middle" font-size="12" font-weight="500" fill="#5C4A06">L2 · Spring 原理</text>
+<text x="218" y="415" text-anchor="middle" font-size="9.5" fill="#5C4A06" opacity="0.8">IoC/AOP/事务 · 6 图</text>
+<path d="M286 403 H298 V386 H310 M286 403 H310 M286 403 H298 V420 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="372" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="320" y="390" font-size="11" fill="#5C4A06">09-01 IoC 容器本质 ★</text></g>
+<g><rect x="554" y="372" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="564" y="390" font-size="11" fill="#5C4A06">09-02 Bean 生命周期流水线</text></g>
+<g><rect x="798" y="372" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="808" y="390" font-size="11" fill="#5C4A06">09-03 三级缓存解循环依赖 ★</text></g>
+<g><rect x="310" y="406" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="320" y="424" font-size="11" fill="#5C4A06">10-01 AOP 代理与自调用失效 ★</text></g>
+<g><rect x="554" y="406" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="564" y="424" font-size="11" fill="#5C4A06">10-02 事务传播七行为</text></g>
+<g><rect x="798" y="406" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="808" y="424" font-size="11" fill="#5C4A06">10-03 事务失效全景 ★</text></g>
+
+<rect x="150" y="457" width="136" height="44" rx="8" fill="none" stroke="#534AB7" stroke-width="1"/>
+<text x="218" y="475" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">L6 · 架构治理</text>
+<text x="218" y="491" text-anchor="middle" font-size="9.5" fill="#3C3489" opacity="0.8">第 07~08 课 · 6 图</text>
+<path d="M286 479 H298 V462 H310 M286 479 H310 M286 479 H298 V496 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="448" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="320" y="466" font-size="11" fill="#3C3489">07-01 可观测性三支柱</text></g>
+<g><rect x="554" y="448" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="564" y="466" font-size="11" fill="#3C3489">07-02 链路追踪 Span 树</text></g>
+<g><rect x="798" y="448" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="808" y="466" font-size="11" fill="#3C3489">07-03 RED 与 USE 方法论</text></g>
+<g><rect x="310" y="482" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="320" y="500" font-size="11" fill="#3C3489">08-01 限界上下文与映射</text></g>
+<g><rect x="554" y="482" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="564" y="500" font-size="11" fill="#3C3489">08-02 聚合根与一致性边界</text></g>
+<g><rect x="798" y="482" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="808" y="500" font-size="11" fill="#3C3489">08-03 DDD 四层 vs 三层</text></g>
+
+<rect x="150" y="550" width="136" height="44" rx="8" fill="none" stroke="#534AB7" stroke-width="1"/>
+<text x="218" y="568" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">L7 · 结构软实力</text>
+<text x="218" y="584" text-anchor="middle" font-size="9.5" fill="#3C3489" opacity="0.8">SOLID/模块/分包 · 9 图</text>
+<path d="M286 572 H298 V538 H310 M286 572 H310 M286 572 H298 V606 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="524" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="320" y="542" font-size="11" fill="#3C3489">09-01 SOLID 五原则指向变化 ★</text></g>
+<g><rect x="554" y="524" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="564" y="542" font-size="11" fill="#3C3489">09-02 OCP 扩展点对比</text></g>
+<g><rect x="798" y="524" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="808" y="542" font-size="11" fill="#3C3489">09-03 主序列与痛苦区</text></g>
+<g><rect x="310" y="558" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="320" y="576" font-size="11" fill="#3C3489">10-01 横向 vs 纵向划分</text></g>
+<g><rect x="554" y="558" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="564" y="576" font-size="11" fill="#3C3489">10-02 依赖方向三原则</text></g>
+<g><rect x="798" y="558" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="808" y="576" font-size="11" fill="#3C3489">10-03 循环依赖三种解法</text></g>
+<g><rect x="310" y="592" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="320" y="610" font-size="11" fill="#3C3489">11-01 按层 vs 按特性分包</text></g>
+<g><rect x="554" y="592" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="564" y="610" font-size="11" fill="#3C3489">11-02 接口包归属之争</text></g>
+<g><rect x="798" y="592" width="232" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/><text x="808" y="610" font-size="11" fill="#3C3489">11-03 包可见性与稳定抽象</text></g>
+
+<rect x="150" y="643" width="136" height="44" rx="8" fill="none" stroke="#185FA5" stroke-width="1"/>
+<text x="218" y="661" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">SpringBoot 专题</text>
+<text x="218" y="677" text-anchor="middle" font-size="9.5" fill="#0C447C" opacity="0.8">Starter 发版 · 5 图</text>
+<path d="M286 665 H298 V648 H310 M286 665 H310 M286 665 H298 V682 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="634" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="652" font-size="11" fill="#0C447C">08-01 发版流程全景</text></g>
+<g><rect x="554" y="634" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="652" font-size="11" fill="#0C447C">08-02 环境准备五步</text></g>
+<g><rect x="798" y="634" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="808" y="652" font-size="11" fill="#0C447C">08-03 条件装配决策流 ★</text></g>
+<g><rect x="310" y="668" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="320" y="686" font-size="11" fill="#0C447C">08-04 deploy 生命周期时序</text></g>
+<g><rect x="554" y="668" width="232" height="28" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/><text x="564" y="686" font-size="11" fill="#0C447C">08-05 全课主线闭环</text></g>
+<g><rect x="798" y="668" width="232" height="28" rx="6" fill="none" stroke="#A8A29E" stroke-width="0.8" stroke-dasharray="4 3"/><text x="808" y="686" font-size="11" fill="#78716C">L3 存储（TDengine/MySQL）· 待补</text></g>
+
+<rect x="150" y="719" width="136" height="44" rx="8" fill="none" stroke="#9A7B0A" stroke-width="1.3"/>
+<text x="218" y="737" text-anchor="middle" font-size="12" font-weight="500" fill="#5C4A06">架构精讲</text>
+<text x="218" y="753" text-anchor="middle" font-size="9.5" fill="#5C4A06" opacity="0.8">演进路线 · 6 图（最新）</text>
+<path d="M286 741 H298 V724 H310 M286 741 H310 M286 741 H298 V758 H310" stroke="#A8A29E" stroke-width="1" fill="none"/>
+<g><rect x="310" y="710" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="320" y="728" font-size="11" fill="#5C4A06">12-01 架构演进主线总览</text></g>
+<g><rect x="554" y="710" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="564" y="728" font-size="11" fill="#5C4A06">12-02 单体分层 MVC 得与失</text></g>
+<g><rect x="798" y="710" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="808" y="728" font-size="11" fill="#5C4A06">12-03 模块化单体与依赖治理</text></g>
+<g><rect x="310" y="744" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="320" y="762" font-size="11" fill="#5C4A06">12-04 DDD 收编边界切分工具</text></g>
+<g><rect x="554" y="744" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="564" y="762" font-size="11" fill="#5C4A06">12-05 领域边界到服务边界推演</text></g>
+<g><rect x="798" y="744" width="232" height="28" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="808" y="762" font-size="11" fill="#5C4A06">12-06 拆分保障与网关演进落地</text></g>
+
+<rect x="24" y="800" width="12" height="12" rx="3" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/>
+<text x="42" y="810" font-size="10" fill="#5F5E5A">L1 内核 · SpringBoot 专题</text>
+<rect x="210" y="800" width="12" height="12" rx="3" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/>
+<text x="228" y="810" font-size="10" fill="#5F5E5A">网络线</text>
+<rect x="290" y="800" width="12" height="12" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/>
+<text x="308" y="810" font-size="10" fill="#5F5E5A">架构治理与结构（L6/L7）</text>
+<rect x="480" y="800" width="12" height="12" rx="3" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/>
+<text x="498" y="810" font-size="10" fill="#5F5E5A">L2 原理 · 架构精讲</text>
+<rect x="650" y="800" width="12" height="12" rx="3" fill="none" stroke="#A8A29E" stroke-dasharray="3 2"/>
+<text x="668" y="810" font-size="10" fill="#5F5E5A">待补（L3）</text>
+<text x="760" y="810" font-size="10" fill="#5F5E5A">★ = 跨线连接锚点</text>
+<text x="24" y="836" font-size="10" fill="#5F5E5A">编号说明：07 前缀分属可观测性（01~03）与 NIO/Netty（04~12）；08 分属 DDD 与 Starter；09/10 分属架构治理与 Spring；12 为架构精讲——均以名称后缀区分。</text>
+</svg>

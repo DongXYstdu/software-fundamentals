@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 560" width="100%" role="img">
+<title>架构演进主线总览</title>
+<desc>MVC 单体 → 模块化单体 → DDD 战术 → 微服务，四次演进对应四次"拆出问题"</desc>
+<style>svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}</style>
+<text x="24" y="30" font-size="15" font-weight="500" fill="#2C2C2A">架构演进主线：每一次演进都是"把一个堵住的问题拆出去"</text>
+
+<rect x="40" y="90" width="200" height="56" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="140" y="114" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">MVC 单体</text>
+<text x="140" y="131" text-anchor="middle" font-size="10" fill="#5F5E5A">开始够用，包办一切</text>
+
+<rect x="330" y="90" width="200" height="56" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="430" y="114" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">模块化单体</text>
+<text x="430" y="131" text-anchor="middle" font-size="10" fill="#5F5E5A">切刀从"技术"变"业务"</text>
+
+<rect x="620" y="90" width="200" height="56" rx="10" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="1"/>
+<text x="720" y="114" text-anchor="middle" font-size="12" font-weight="500" fill="#5C4A06">DDD 战术</text>
+<text x="720" y="131" text-anchor="middle" font-size="10" fill="#5F5E5A">BC/聚合把切分做正确</text>
+
+<rect x="58" y="220" width="200" height="56" rx="10" fill="none" stroke="#A8A29E" stroke-width="1"/>
+<text x="158" y="244" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A">微服务</text>
+<text x="158" y="261" text-anchor="middle" font-size="10" fill="#5F5E5A">领域边界→服务边界（推演）</text>
+
+<path d="M240 118 H330" stroke="#A8A29E" stroke-width="1.5" fill="none"/>
+<path d="M530 118 H620" stroke="#A8A29E" stroke-width="1.5" fill="none"/>
+<path d="M430 146 V200 H158 V220" stroke="#A8A29E" stroke-width="1.5" fill="none"/>
+<path d="M720 146 V260 H360 V312 M360 312 H40 M40 318 H360" stroke="#A8A29E" stroke-width="1.2" stroke-dasharray="4 3" fill="none"/>
+
+<text x="285" y="110" font-size="9.5" fill="#7A0B0B" text-anchor="middle">代码膨胀/牵一发动全身</text>
+<text x="575" y="110" font-size="9.5" fill="#7A0B0B" text-anchor="middle">分层混乱/职责粘连</text>
+
+<g>
+<rect x="40" y="330" width="1000" height="120" rx="12" fill="#F5F5F4" stroke="#E4E4E7" stroke-width="1"/>
+<text x="60" y="356" font-size="12" font-weight="500" fill="#2C2C2A">每次演进对应的"堵点"（回忆锚点）</text>
+<text x="60" y="380" font-size="11" fill="#3F3F46">① MVC → 模块化：单体依赖无边界，改一处破全局 → 需要"业务弹药库"（模块）切刀对齐业务</text>
+<text x="60" y="402" font-size="11" fill="#3F3F46">② 模块化 → DDD：切了刀但要切得"正确"，否则只是把混乱搬进模块 → 需要 BC/聚合定义"切分边界"</text>
+<text x="60" y="424" font-size="11" fill="#3F3F46">③ DDD → 微服务：边界清晰后，把边界变成物理部署单元，独立性换取运维成本 → 拆不拆由判据决定</text>
+<text x="60" y="446" font-size="11" fill="#3F3F46">④ 微服务后：单体内建保障丢失 → 需要可观测性/接口契约补位（接 07 笔记）</text>
+</g>
+
+<text x="24" y="505" font-size="10" fill="#78716C">曲线路径 = 演进顺序；实线 = 已讲主体；虚线 = 第4、5 段推演；★本图即本课"一条主线"可视化</text>
+</svg>

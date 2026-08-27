@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 340" width="100%" role="img">
+<title>NIO 三件套与多路复用</title>
+<desc>Channel 注册进 Selector，线程只阻塞在一次 select，返回就绪清单；底层委托操作系统 epoll</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">NIO 三件套与多路复用</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A">阻塞点从「每个连接的 read」收敛为「一次 select」</text>
+<rect x="40" y="70" width="150" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="115" y="88" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">Channel A（就绪）</text>
+<text x="115" y="104" text-anchor="middle" font-size="10" fill="#185FA5">设备上报数据</text>
+<rect x="40" y="122" width="150" height="44" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="115" y="140" text-anchor="middle" font-size="12" fill="#444441">Channel B（沉默）</text>
+<text x="115" y="156" text-anchor="middle" font-size="10" fill="#5F5E5A">线程根本不碰它</text>
+<rect x="40" y="174" width="150" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="115" y="192" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">Channel C（就绪）</text>
+<text x="115" y="208" text-anchor="middle" font-size="10" fill="#185FA5">设备上报数据</text>
+<line x1="190" y1="92" x2="260" y2="140" stroke="#5F5E5A" stroke-width="1"/>
+<line x1="190" y1="144" x2="260" y2="144" stroke="#5F5E5A" stroke-width="1"/>
+<line x1="190" y1="196" x2="260" y2="148" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="260" y="110" width="160" height="68" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="340" y="136" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489">Selector（值班员）</text>
+<text x="340" y="156" text-anchor="middle" font-size="10" fill="#534AB7">只报告谁有事件</text>
+<text x="340" y="170" text-anchor="middle" font-size="10" fill="#534AB7">底层：Linux epoll / Win select</text>
+<line x1="420" y1="144" x2="480" y2="144" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="480" y="104" width="160" height="80" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="560" y="128" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">1 条线程</text>
+<text x="560" y="148" text-anchor="middle" font-size="10" fill="#3B6D11">阻塞点 = 一次 select()</text>
+<text x="560" y="164" text-anchor="middle" font-size="10" fill="#3B6D11">返回就绪清单（SelectionKey）</text>
+<text x="560" y="178" text-anchor="middle" font-size="10" fill="#3B6D11">只遍历清单处理</text>
+<rect x="40" y="240" width="600" height="72" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="264" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">网关场景：500 台 Modbus 设备</text>
+<text x="340" y="284" text-anchor="middle" font-size="11" fill="#185FA5">BIO 要 500 线程干等 → NIO 只需 1~2 线程跑 select() 循环</text>
+<text x="340" y="302" text-anchor="middle" font-size="11" fill="#185FA5">epoll 的就绪事件由内核主动推给用户态，不遍历所有连接</text>
+</svg>

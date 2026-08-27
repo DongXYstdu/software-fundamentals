@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 340" width="100%" role="img">
+<title>可观测性三支柱</title>
+<desc>Metrics 指标、Tracing 链路追踪、Logging 日志三者互补，单独任何一个都不够</desc>
+<rect x="270" y="70" width="140" height="70" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="92" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">Metrics 指标</text>
+<text x="340" y="110" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">聚合数值</text>
+<text x="340" y="128" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">健康度·CPU·QPS·GC</text>
+<rect x="290" y="195" width="100" height="60" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="215" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">完整</text>
+<text x="340" y="233" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">可观测性</text>
+<rect x="40" y="200" width="200" height="80" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="140" y="222" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">Tracing 链路追踪</text>
+<text x="140" y="240" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">单请求贯穿全过程</text>
+<text x="140" y="258" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">回答慢在哪·错在哪</text>
+<rect x="440" y="200" width="200" height="80" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="222" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">Logging 日志</text>
+<text x="540" y="240" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">离散事件文本</text>
+<text x="540" y="258" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">结构化 + trace_id 关联</text>
+<polyline points="340,140 340,195" fill="none" stroke="#5F5E5A" stroke-width="0.5" stroke-dasharray="3 2"/>
+<polyline points="240,225 290,225" fill="none" stroke="#5F5E5A" stroke-width="0.5" stroke-dasharray="3 2"/>
+<polyline points="440,225 390,225" fill="none" stroke="#5F5E5A" stroke-width="0.5" stroke-dasharray="3 2"/>
+<text x="340" y="312" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">Metrics 看曲线但不知哪次请求；Tracing 看一次但不知整体；Logging 知发生了什么但难聚合</text>
+</svg>

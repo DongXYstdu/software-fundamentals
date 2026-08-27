@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="100%" role="img">
+<title>五大模式在六边形上的安放</title>
+<desc>模式在六边形各层的安放：领域层策略/值对象/工厂方法，应用层责任链/事件，适配器层适配器/装饰器/注册表，组合根装配</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">五大模式在六边形上的安放</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">箭头全部向内 · 模式住进坐标系各层 · 组装在组合根</text>
+<rect x="26" y="70" width="170" height="36" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.7"/>
+<text x="111" y="83" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">REST 配置页 / MQTT 指令</text>
+<text x="111" y="98" text-anchor="middle" font-size="9" fill="#185FA5" dominant-baseline="central">驱动适配器：只翻译（薄）</text>
+<rect x="26" y="116" width="170" height="40" rx="6" fill="#E6F1FB" stroke="#0C447C" stroke-width="1.4"/>
+<text x="111" y="130" text-anchor="middle" font-size="9.5" font-weight="500" fill="#0C447C" dominant-baseline="central">★ 采集定时器（时钟 actor）</text>
+<text x="111" y="145" text-anchor="middle" font-size="9" fill="#185FA5" dominant-baseline="central">哑定时器：频率表在内核</text>
+<line x1="196" y1="88" x2="246" y2="150" stroke="#185FA5" stroke-width="1.2" marker-end="url(#a13)"/>
+<line x1="196" y1="136" x2="246" y2="180" stroke="#185FA5" stroke-width="1.2" marker-end="url(#a13)"/>
+<rect x="248" y="112" width="184" height="150" rx="10" fill="#EAF3EC" stroke="#3B6D11" stroke-width="1.4"/>
+<text x="340" y="130" text-anchor="middle" font-size="11" font-weight="500" fill="#1F3D0A" dominant-baseline="central">应用层（薄·编排）</text>
+<text x="340" y="152" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">责任链 FramePipeline（清洗管道）</text>
+<text x="340" y="170" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">组合 PollingOrchestrator</text>
+<text x="340" y="188" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">事件发布 DomainEventPublisher</text>
+<text x="340" y="206" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">用例 + 全部端口定义</text>
+<rect x="264" y="216" width="152" height="38" rx="6" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.8"/>
+<text x="340" y="231" text-anchor="middle" font-size="9" fill="#0C447C" dominant-baseline="central">领域层（纯·规则唯一的家）</text>
+<text x="340" y="246" text-anchor="middle" font-size="9" fill="#0C447C" dominant-baseline="central">策略族 LevelMapper · 值对象 · 工厂方法 create</text>
+<rect x="484" y="70" width="170" height="36" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.7"/>
+<text x="569" y="83" text-anchor="middle" font-size="9.5" fill="#444441" dominant-baseline="central">MySQL / TDengine / Kafka</text>
+<text x="569" y="98" text-anchor="middle" font-size="9" fill="#5F5E5A" dominant-baseline="central">被驱动适配器：翻译 + 装饰</text>
+<rect x="484" y="116" width="170" height="40" rx="6" fill="#F1EFE8" stroke="#444441" stroke-width="1.4"/>
+<text x="569" y="130" text-anchor="middle" font-size="9.5" font-weight="500" fill="#444441" dominant-baseline="central">★ ModbusDeviceAdapter</text>
+<text x="569" y="145" text-anchor="middle" font-size="9" fill="#5F5E5A" dominant-baseline="central">适配器 + 装饰器 + 注册表工厂</text>
+<line x1="432" y1="150" x2="484" y2="88" stroke="#3B6D11" stroke-width="1.2" marker-end="url(#a13)"/>
+<line x1="432" y1="180" x2="484" y2="136" stroke="#3B6D11" stroke-width="1.2" marker-end="url(#a13)"/>
+<rect x="26" y="240" width="628" height="58" rx="8" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.8"/>
+<text x="340" y="258" text-anchor="middle" font-size="10.5" font-weight="500" fill="#0C447C" dominant-baseline="central">组合根 @Configuration（gateway-app）：new 是知识，组装是策略</text>
+<text x="340" y="276" text-anchor="middle" font-size="9.5" fill="#444441" dominant-baseline="central">造实现（@Bean）· 叠装饰器（重试→日志）· 收注册表（List 注入）· 条件装配（内存库/MySQL）</text>
+<text x="340" y="292" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">全工程唯一允许 new 实现类 + 读配置的地方 · 业务层只声明依赖（接口）</text>
+<rect x="26" y="318" width="628" height="58" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+<text x="340" y="336" text-anchor="middle" font-size="10.5" font-weight="500" fill="#4A1B0C" dominant-baseline="central">红线：模式放错层 = 层次破坏</text>
+<text x="340" y="354" text-anchor="middle" font-size="9.5" fill="#993C1D" dominant-baseline="central">策略接口住 infrastructure → 内核反向依赖（13 课第 1 段反例）· 业务规则进适配器 → 换技术陪葬重写</text>
+<text x="340" y="370" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">三问检验：位置问 · 依赖问 · 组装问 —— 全绿才合规</text>
+<text x="340" y="404" text-anchor="middle" font-size="10.5" fill="#2C2C2A" dominant-baseline="central">模式与架构互相成就：架构给模式安放位置，模式给架构隔离变化</text>
+<defs>
+<marker id="a13" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+</svg>

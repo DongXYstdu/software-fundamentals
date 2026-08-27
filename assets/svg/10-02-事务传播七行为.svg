@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700" width="100%" role="img">
+<title>事务传播七行为与三强对比</title>
+<style>
+svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}
+.th{font-size:15px;font-weight:500;fill:#2C2C2A;}
+.ts{font-size:9.5px;fill:#5F5E5A;}
+.lb{font-size:11px;font-weight:500;fill:#0C447C;}
+.lp{font-size:11px;font-weight:500;fill:#3C3489;}
+.la{font-size:11px;font-weight:500;fill:#5C4A06;}
+.lr{font-size:11px;font-weight:500;fill:#4A1B0C;}
+.lm{font-size:11px;font-weight:500;fill:#5F5E5A;}
+.tb{font-size:10px;fill:#185FA5;}
+.tp{font-size:10px;fill:#534AB7;}
+.ta{font-size:10px;fill:#9A7B0A;}
+.tr{font-size:10px;fill:#993C1D;}
+.tm{font-size:10px;fill:#5F5E5A;}
+.hd{font-size:10.5px;font-weight:500;fill:#5F5E5A;}
+</style>
+<text class="th" x="24" y="28">七种传播行为 · 两种情形（内外层视角）</text>
+
+<rect x="24" y="44" width="330" height="30" rx="6" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text class="hd" x="189" y="63" text-anchor="middle">外层没有事务时</text>
+<rect x="370" y="44" width="366" height="30" rx="6" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text class="hd" x="553" y="63" text-anchor="middle">外层有事务时（主战场）</text>
+
+<rect x="24" y="84" width="330" height="42" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="lb" x="40" y="102">REQUIRED（默认）</text>
+<text class="tb" x="40" y="118">新建一个事务自己用</text>
+<rect x="370" y="84" width="366" height="42" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="lb" x="386" y="102">加入外层事务，共用同一条连接</text>
+<text class="tb" x="386" y="118">同生共死：任何一方标记回滚 → 整体回滚</text>
+
+<rect x="24" y="132" width="330" height="42" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="lp" x="40" y="150">REQUIRES_NEW</text>
+<text class="tp" x="40" y="166">新建事务（同上）</text>
+<rect x="370" y="132" width="366" height="42" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="lp" x="386" y="150">挂起外层事务，自己开新的（第二条连接）</text>
+<text class="tp" x="386" y="166">独立生死：内层提交后，外层回滚也救不回它</text>
+
+<rect x="24" y="180" width="330" height="42" rx="8" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.8"/>
+<text class="la" x="40" y="198">NESTED</text>
+<text class="ta" x="40" y="214">新建事务（同上）</text>
+<rect x="370" y="180" width="366" height="42" rx="8" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.8"/>
+<text class="la" x="386" y="198">在外层事务里建保存点（savepoint）</text>
+<text class="ta" x="386" y="214">外层回滚 → 内层跟着没；内层回滚 → 只回滚到保存点，外层可继续</text>
+
+<rect x="24" y="228" width="330" height="42" rx="8" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text class="lm" x="40" y="246">SUPPORTS</text>
+<text class="tm" x="40" y="262">跟着外层：有就加入，没有就非事务跑</text>
+<rect x="370" y="228" width="366" height="42" rx="8" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text class="lm" x="386" y="246">加入外层</text>
+<text class="tm" x="386" y="262">「随大流」型，少用</text>
+
+<rect x="24" y="276" width="330" height="42" rx="8" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text class="lm" x="40" y="294">NOT_SUPPORTED</text>
+<text class="tm" x="40" y="310">非事务执行</text>
+<rect x="370" y="276" width="366" height="42" rx="8" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+<text class="lm" x="386" y="294">挂起外层，非事务执行</text>
+<text class="tm" x="386" y="310">「逃离事务」型，报表/大查询用</text>
+
+<rect x="24" y="324" width="330" height="42" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="lr" x="40" y="342">MANDATORY</text>
+<text class="tr" x="40" y="358">直接抛异常（IllegalTransactionStateException）</text>
+<rect x="370" y="324" width="366" height="42" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="lr" x="386" y="342">加入外层</text>
+<text class="tr" x="386" y="358">「必须有事务」的断言，用于保护强事务入口</text>
+
+<rect x="24" y="372" width="330" height="42" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="lr" x="40" y="390">NEVER</text>
+<text class="tr" x="40" y="406">非事务执行</text>
+<rect x="370" y="372" width="366" height="42" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="lr" x="386" y="390">直接抛异常</text>
+<text class="tr" x="386" y="406">「禁止有事务」的断言，防止事务被意外拉长</text>
+
+<text class="th" x="24" y="446" font-size="14">三强对比 · 外层失败时内层记录的命运（yudao 批处理场景）</text>
+<text class="ts" x="24" y="466">场景：批量导入设备，外层 methodA 遍历插入，内层 methodB(propagation=?) 处理单台设备并提交</text>
+
+<rect x="24" y="480" width="230" height="100" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text class="lb" x="139" y="502" text-anchor="middle">REQUIRED（默认）</text>
+<text class="tb" x="139" y="522" text-anchor="middle">外层回滚 → 内层全部回滚</text>
+<text class="tb" x="139" y="540" text-anchor="middle">前 99 台已处理也没用</text>
+<text class="tb" x="139" y="558" text-anchor="middle">全或无：数据最一致</text>
+<text class="tb" x="139" y="574" text-anchor="middle">适用：强一致批处理</text>
+
+<rect x="262" y="480" width="230" height="100" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="lp" x="377" y="502" text-anchor="middle">REQUIRES_NEW</text>
+<text class="tp" x="377" y="522" text-anchor="middle">外层回滚救不回内层</text>
+<text class="tp" x="377" y="540" text-anchor="middle">前 99 台保持已提交</text>
+<text class="tp" x="377" y="558" text-anchor="middle">独立生死：占用两条连接，注意死锁</text>
+<text class="tp" x="377" y="574" text-anchor="middle">适用：日志/审计必须留痕</text>
+
+<rect x="500" y="480" width="236" height="100" rx="8" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.8"/>
+<text class="la" x="618" y="502" text-anchor="middle">NESTED</text>
+<text class="ta" x="618" y="522" text-anchor="middle">外层回滚 → 内层跟着没</text>
+<text class="ta" x="618" y="540" text-anchor="middle">但单台失败只回滚它自己</text>
+<text class="ta" x="618" y="558" text-anchor="middle">局部可回滚、整体同生共死</text>
+<text class="ta" x="618" y="574" text-anchor="middle">适用：单条失败不影响其余的批处理</text>
+
+<rect x="24" y="596" width="712" height="84" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text x="380" y="618" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A">选型口诀：要「全或无」用 REQUIRED；要「子事务独立留痕」用 REQUIRES_NEW；</text>
+<text x="380" y="638" text-anchor="middle" font-size="11" fill="#27500A">要「单条失败不连坐、外层兜底」用 NESTED —— NESTED 依赖 JDBC 保存点，DataSourceTransactionManager 支持，JPA 不支持</text>
+<text x="380" y="658" text-anchor="middle" font-size="11" fill="#27500A">注意：NESTED 内层回滚只到保存点，外层捕获异常后可继续 —— 这是它与 REQUIRES_NEW「彻底分开」的本质区别</text>
+</svg>

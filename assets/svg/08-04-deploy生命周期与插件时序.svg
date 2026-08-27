@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" width="100%" role="img">
+<title>deploy -Prelease 生命周期与插件触发时序</title>
+<desc>从 compile 到 Portal 发布：source、javadoc、gpg 在 verify 阶段触发，central-publishing 在 deploy 阶段接管上传</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">mvn clean deploy -Prelease · 插件触发时序</text>
+<text x="340" y="48" text-anchor="middle" font-size="12" fill="#5F5E5A">日常 package 只走前半段 · 发版链路全部在 release profile</text>
+<g>
+<rect x="40" y="70" width="90" height="44" rx="8" fill="#F7F7F5" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="85" y="92" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">compile</text>
+</g>
+<line x1="130" y1="92" x2="142" y2="92" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="142,88 150,92 142,96" fill="#5F5E5A"/>
+<g>
+<rect x="152" y="70" width="90" height="44" rx="8" fill="#F7F7F5" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="197" y="86" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">package</text>
+<text x="197" y="102" text-anchor="middle" font-size="10" fill="#8A8880" dominant-baseline="central">主 jar</text>
+</g>
+<line x1="242" y1="92" x2="254" y2="92" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="254,88 262,92 254,96" fill="#5F5E5A"/>
+<g>
+<rect x="264" y="70" width="200" height="44" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="364" y="86" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">verify 阶段</text>
+<text x="364" y="102" text-anchor="middle" font-size="10" fill="#534AB7" dominant-baseline="central">三个附加插件依次触发</text>
+</g>
+<line x1="464" y1="92" x2="476" y2="92" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="476,88 484,92 476,96" fill="#5F5E5A"/>
+<g>
+<rect x="486" y="70" width="160" height="44" rx="8" fill="#185FA5"/>
+<text x="566" y="86" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF" dominant-baseline="central">deploy 阶段</text>
+<text x="566" y="102" text-anchor="middle" font-size="10" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">central-publishing 接管</text>
+</g>
+<line x1="304" y1="114" x2="304" y2="134" stroke="#534AB7" stroke-width="1"/>
+<polygon points="300,134 304,142 308,134" fill="#534AB7"/>
+<line x1="364" y1="114" x2="364" y2="134" stroke="#534AB7" stroke-width="1"/>
+<polygon points="360,134 364,142 368,134" fill="#534AB7"/>
+<line x1="424" y1="114" x2="424" y2="134" stroke="#534AB7" stroke-width="1"/>
+<polygon points="420,134 424,142 428,134" fill="#534AB7"/>
+<g>
+<rect x="244" y="144" width="120" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="304" y="158" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489" dominant-baseline="central">source-plugin</text>
+<text x="304" y="174" text-anchor="middle" font-size="10" fill="#534AB7" dominant-baseline="central">-sources.jar</text>
+</g>
+<g>
+<rect x="374" y="144" width="120" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="434" y="158" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489" dominant-baseline="central">javadoc-plugin</text>
+<text x="434" y="174" text-anchor="middle" font-size="10" fill="#534AB7" dominant-baseline="central">-javadoc.jar</text>
+</g>
+<g>
+<rect x="114" y="144" width="120" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="174" y="158" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489" dominant-baseline="central">gpg-plugin</text>
+<text x="174" y="174" text-anchor="middle" font-size="10" fill="#534AB7" dominant-baseline="central">全部构件 → .asc</text>
+</g>
+<text x="174" y="204" text-anchor="middle" font-size="10" fill="#8A8880">verify 末尾签名，覆盖 jar/pom/sources/javadoc</text>
+<line x1="566" y1="114" x2="566" y2="230" stroke="#185FA5" stroke-width="1"/>
+<polygon points="562,230 566,238 570,230" fill="#185FA5"/>
+<g>
+<rect x="436" y="240" width="230" height="60" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="551" y="260" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">打 bundle.zip 上传 Portal</text>
+<text x="551" y="280" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">Uploaded bundle successfully</text>
+</g>
+<line x1="436" y1="270" x2="400" y2="270" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="400,266 392,270 400,274" fill="#5F5E5A"/>
+<g>
+<rect x="180" y="240" width="210" height="60" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="285" y="260" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">Portal 自动校验</text>
+<text x="285" y="280" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">Validated（尚未公开）</text>
+</g>
+<line x1="180" y1="270" x2="150" y2="270" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="150,266 142,270 150,274" fill="#5F5E5A"/>
+<g>
+<rect x="20" y="240" width="120" height="60" rx="8" fill="#FAEEDA" stroke="#996F00" stroke-width="0.5"/>
+<text x="80" y="260" text-anchor="middle" font-size="12" font-weight="500" fill="#7A5900" dominant-baseline="central">手动 Release</text>
+<text x="80" y="280" text-anchor="middle" font-size="11" fill="#996F00" dominant-baseline="central">autoPublish=false</text>
+</g>
+<line x1="80" y1="300" x2="80" y2="326" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="76,326 80,334 84,326" fill="#5F5E5A"/>
+<g>
+<rect x="20" y="336" width="180" height="52" rx="8" fill="#185FA5"/>
+<text x="110" y="354" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF" dominant-baseline="central">中央仓库公开</text>
+<text x="110" y="372" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">repo1.maven.org 可检索</text>
+</g>
+<line x1="200" y1="362" x2="240" y2="362" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="240,358 248,362 240,366" fill="#5F5E5A"/>
+<g>
+<rect x="250" y="336" width="180" height="52" rx="8" fill="#F7F7F5" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="340" y="354" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">镜像同步（有延迟）</text>
+<text x="340" y="372" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">aliyun 数分钟~数小时</text>
+</g>
+<line x1="430" y1="362" x2="470" y2="362" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="470,358 478,362 470,366" fill="#5F5E5A"/>
+<g>
+<rect x="480" y="336" width="180" height="52" rx="8" fill="#EAF3EC" stroke="#136C43" stroke-width="0.5"/>
+<text x="570" y="354" text-anchor="middle" font-size="12" font-weight="500" fill="#136C43" dominant-baseline="central">全世界项目可引入</text>
+<text x="570" y="372" text-anchor="middle" font-size="11" fill="#136C43" dominant-baseline="central">三行坐标即用</text>
+</g>
+<text x="340" y="420" text-anchor="middle" font-size="11" fill="#8A8880">BUILD SUCCESS ≠ 已发布：只代表上传+校验通过，Release 前可在 Portal Drop 撤回</text>
+<text x="340" y="440" text-anchor="middle" font-size="11" fill="#8A8880">Release 后不可撤回，只能升版本覆盖</text>
+</svg>

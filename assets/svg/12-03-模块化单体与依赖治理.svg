@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 640" width="100%" role="img">
+<title>模块化单体：切刀方向与依赖治理</title>
+<desc>从横向技术切到纵向业务模块，用依赖原则与度量执法</desc>
+<style>svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}</style>
+<text x="24" y="30" font-size="15" font-weight="500" fill="#2C2C2A">模块化单体：先把"大泥球"切开（切刀方向决定生死）</text>
+
+<rect x="40" y="70" width="470" height="210" rx="12" fill="#FFF1F0" stroke="#C0392B" stroke-width="1"/>
+<text x="275" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#A02617">错误的切法：横向切成 4 个大分层包</text>
+<rect x="60" y="110" width="200" height="30" rx="6" fill="#EDE9FE" stroke="#534AB7" stroke-width="0.6"/><text x="160" y="129" text-anchor="middle" font-size="10" fill="#3C3489">controller 包（全部业务）</text>
+<rect x="60" y="146" width="200" height="30" rx="6" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.6"/><text x="160" y="165" text-anchor="middle" font-size="10" fill="#5C4A06">service 包（全部业务）</text>
+<rect x="60" y="182" width="200" height="30" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.6"/><text x="160" y="201" text-anchor="middle" font-size="10" fill="#27500A">mapper 包（全部业务）</text>
+<rect x="60" y="218" width="200" height="30" rx="6" fill="#F5F5F4" stroke="#A8A29E" stroke-width="0.6"/><text x="160" y="237" text-anchor="middle" font-size="10" fill="#5F5E5A">common 包（什么都放）</text>
+<text x="280" y="133" font-size="11" fill="#5D1F18">· 换汤不换药：只是把"包"改成"模块"，依赖依旧无界</text>
+<text x="280" y="155" font-size="11" fill="#5D1F18">· service 层依然是上帝类，切了等于没切</text>
+<text x="280" y="177" font-size="11" fill="#5D1F18">· 判据：按删除测试失败——删了一个模块，别的全红</text>
+
+<rect x="540" y="70" width="490" height="210" rx="12" fill="#EFF6FF" stroke="#2E64A6" stroke-width="1"/>
+<text x="785" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#1F4E8C">正确的切法：纵向按业务特性切</text>
+<rect x="560" y="116" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/><text x="630" y="138" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489">point 模块</text><text x="630" y="155" text-anchor="middle" font-size="9" fill="#5F5E5A">点位/点位表</text>
+<rect x="720" y="116" width="140" height="56" rx="8" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="0.8"/><text x="790" y="138" text-anchor="middle" font-size="11" font-weight="500" fill="#5C4A06">device 模块</text><text x="790" y="155" text-anchor="middle" font-size="9" fill="#5F5E5A">设备/连接</text>
+<rect x="880" y="116" width="130" height="56" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/><text x="945" y="138" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A">alarm 模块</text><text x="945" y="155" text-anchor="middle" font-size="9" fill="#5F5E5A">告警/事件</text>
+<rect x="560" y="186" width="450" height="44" rx="8" fill="#F5F5F4" stroke="#A8A29E" stroke-width="0.8"/>
+<text x="785" y="205" text-anchor="middle" font-size="11" fill="#3F3F46">每个模块内部自含 controller → service → mapper</text>
+<text x="785" y="221" text-anchor="middle" font-size="9.5" fill="#78716C">分层保留，但"下沉"到模块内部；模块之间只见接口不见实现</text>
+<text x="560" y="252" font-size="11" fill="#1F4E8C">· 判据：删整个 point 模块，其余模块不受牵连（删除测试通过）</text>
+<text x="560" y="271" font-size="11" fill="#1F4E8C">· 依赖方向由原则约束（复用 10/11 的 ADP/SDP/SAP 与 D 值/ArchUnit）</text>
+
+<rect x="40" y="310" width="990" height="180" rx="12" fill="#F5F5F4" stroke="#E4E4E7" stroke-width="1"/>
+<text x="60" y="336" font-size="12" font-weight="500" fill="#2C2C2A">模块化单体的自洽闭环（为何仍不是终局）</text>
+<text x="60" y="364" font-size="11" fill="#3F3F46">· 模块边界 = 编译期约束（Maven/Gradle 依赖）+ 运行期执法（ArchUnit 测依赖方向）</text>
+<text x="60" y="386" font-size="11" fill="#3F3F46">· 代价小：仍是单进程单库，事务、调用、部署照旧——因此绝大多数团队止步于此且正确</text>
+<text x="60" y="408" font-size="11" fill="#3F3F46">· 剩余堵点：① 切刀靠"经验"未必正确，可能把强内聚业务切开 ② 模块间仍共享 DB 与事务</text>
+<text x="60" y="430" font-size="11" fill="#3F3F46">· 由此引出 DDD：BC/聚合告诉你"边界到底划在哪"，让切刀从拍脑袋变成有依据</text>
+<text x="60" y="470" font-size="10.5" fill="#78716C">一句话：模块化是"切"的动作，DDD 是"切对"的依据；先有依据，切刀才不白切。</text>
+</svg>

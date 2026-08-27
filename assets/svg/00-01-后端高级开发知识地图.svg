@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 550" width="100%" role="img">
+<title>Java 后端高级开发知识地图</title>
+<desc>六层递进知识体系：Java 内核、Spring 原理、存储深入、分布式、高并发、架构治理</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">Java 后端高级开发 · 知识地图</text>
+<text x="340" y="48" text-anchor="middle" font-size="12" fill="#5F5E5A">六层递进 · 每格末行对应你的项目场景</text>
+<g>
+<rect x="40" y="68" width="100" height="64" rx="8" fill="#185FA5"/>
+<text x="90" y="88" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF" dominant-baseline="central">L1</text>
+<text x="90" y="108" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">Java 内核</text>
+</g>
+<rect x="160" y="68" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="235" y="83" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">并发编程</text>
+<text x="235" y="100" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">JMM·线程池·锁</text>
+<text x="235" y="117" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ 网关 FIFO 限速</text>
+<rect x="320" y="68" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="395" y="83" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">JVM 与 GC</text>
+<text x="395" y="100" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">内存模型·分代·调优</text>
+<text x="395" y="117" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ 生产日志排查</text>
+<rect x="480" y="68" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="555" y="83" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">NIO 异步网络</text>
+<text x="555" y="100" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">Reactor·事件驱动</text>
+<text x="555" y="117" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ Modbus TCP 网关</text>
+<g>
+<rect x="40" y="142" width="100" height="64" rx="8" fill="#185FA5"/>
+<text x="90" y="162" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF" dominant-baseline="central">L2</text>
+<text x="90" y="182" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">Spring 原理</text>
+</g>
+<rect x="160" y="142" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="235" y="157" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">IoC 容器</text>
+<text x="235" y="174" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">Bean 加载·三级缓存</text>
+<text x="235" y="191" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ 循环依赖解析</text>
+<rect x="320" y="142" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="395" y="157" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">AOP 与事务</text>
+<text x="395" y="174" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">传播行为·失效场景</text>
+<text x="395" y="191" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ 批处理事务</text>
+<rect x="480" y="142" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="555" y="157" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">自动装配</text>
+<text x="555" y="174" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">Starter·条件装配</text>
+<text x="555" y="191" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ yudao 模块化</text>
+<g>
+<rect x="40" y="216" width="100" height="64" rx="8" fill="#185FA5"/>
+<text x="90" y="236" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF" dominant-baseline="central">L3</text>
+<text x="90" y="256" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">存储深入</text>
+</g>
+<rect x="160" y="216" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="235" y="231" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">索引与 SQL</text>
+<text x="235" y="248" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">B+树·执行计划·慢SQL</text>
+<text x="235" y="265" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ 点位表查询</text>
+<rect x="320" y="216" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="395" y="231" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">事务与锁</text>
+<text x="395" y="248" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">MVCC·间隙锁·死锁</text>
+<text x="395" y="265" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ 并发下行控制</text>
+<rect x="480" y="216" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="555" y="231" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">Redis 实战</text>
+<text x="555" y="248" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">穿透·击穿·雪崩</text>
+<text x="555" y="265" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">▸ 设备最新值缓存</text>
+<g>
+<rect x="40" y="290" width="100" height="64" rx="8" fill="#534AB7"/>
+<text x="90" y="310" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF" dominant-baseline="central">L4</text>
+<text x="90" y="330" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">分布式</text>
+</g>
+<rect x="160" y="290" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="235" y="305" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">消息队列</text>
+<text x="235" y="322" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">削峰解耦·顺序·幂等</text>
+<text x="235" y="339" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 消息溢出治理</text>
+<rect x="320" y="290" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="395" y="305" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">分布式锁</text>
+<text x="395" y="322" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">Redisson·看门狗</text>
+<text x="395" y="339" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 控制序列防重</text>
+<rect x="480" y="290" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="555" y="305" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">分布式事务</text>
+<text x="555" y="322" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">2PC·TCC·SAGA</text>
+<text x="555" y="339" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ TDengine 双写</text>
+<g>
+<rect x="40" y="364" width="100" height="64" rx="8" fill="#534AB7"/>
+<text x="90" y="384" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF" dominant-baseline="central">L5</text>
+<text x="90" y="404" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">高并发</text>
+</g>
+<rect x="160" y="364" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="235" y="379" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">流量防护</text>
+<text x="235" y="396" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">限流·熔断·降级</text>
+<text x="235" y="413" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 轮询过载保护</text>
+<rect x="320" y="364" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="395" y="379" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">缓存架构</text>
+<text x="395" y="396" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">多级缓存·旁路模式</text>
+<text x="395" y="413" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 大屏时序渲染</text>
+<rect x="480" y="364" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="555" y="379" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">分库分表</text>
+<text x="555" y="396" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">分片·读写分离</text>
+<text x="555" y="413" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 告警记录检索</text>
+<g>
+<rect x="40" y="438" width="100" height="64" rx="8" fill="#534AB7"/>
+<text x="90" y="458" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF" dominant-baseline="central">L6</text>
+<text x="90" y="478" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">架构治理</text>
+</g>
+<rect x="160" y="438" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="235" y="453" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">微服务治理</text>
+<text x="235" y="470" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">注册发现·网关·灰度</text>
+<text x="235" y="487" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 架构视野</text>
+<rect x="320" y="438" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="395" y="453" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">可观测性</text>
+<text x="395" y="470" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">链路追踪·指标·日志</text>
+<text x="395" y="487" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 生产排障</text>
+<rect x="480" y="438" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="555" y="453" text-anchor="middle" font-size="13" font-weight="500" fill="#3C3489" dominant-baseline="central">DDD 落地</text>
+<text x="555" y="470" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">聚合·防腐层·重构</text>
+<text x="555" y="487" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">▸ 模块演进</text>
+<rect x="40" y="522" width="12" height="12" rx="3" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="58" y="528" font-size="12" fill="#444441" dominant-baseline="central">基础内核 L1–L3</text>
+<rect x="180" y="522" width="12" height="12" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="198" y="528" font-size="12" fill="#444441" dominant-baseline="central">架构进阶 L4–L6</text>
+<text x="640" y="528" text-anchor="end" font-size="12" fill="#5F5E5A" dominant-baseline="central">建议自底向上，可按工作需要切入</text>
+</svg>

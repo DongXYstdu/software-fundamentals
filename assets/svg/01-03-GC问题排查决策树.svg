@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 424" width="100%" role="img">
+<title>GC 问题排查决策树</title>
+<desc>四种症状分支：CPU 飙高、接口间歇超时、OOM 退出、频繁 Full GC，各对应定位手段</desc>
+<defs>
+<marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<rect x="270" y="64" width="140" height="44" rx="8" fill="#185FA5"/>
+<text x="340" y="86" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF" dominant-baseline="central">生产 JVM 异常</text>
+<line x1="340" y1="108" x2="115" y2="148" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<line x1="340" y1="108" x2="275" y2="148" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<line x1="340" y1="108" x2="435" y2="148" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<line x1="340" y1="108" x2="595" y2="148" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<rect x="40" y="150" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="115" y="168" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">CPU 100% 飙高</text>
+<text x="115" y="188" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">线程空转或狂 GC</text>
+<rect x="200" y="150" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="275" y="168" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">接口间歇超时</text>
+<text x="275" y="188" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">无报错周期卡顿</text>
+<rect x="360" y="150" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="435" y="168" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">OOM 进程退出</text>
+<text x="435" y="188" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">heap·meta·direct</text>
+<rect x="520" y="150" width="150" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="595" y="168" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">频繁 Full GC</text>
+<text x="595" y="188" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">启动慢·整体卡顿</text>
+<line x1="115" y1="214" x2="115" y2="252" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<line x1="275" y1="214" x2="275" y2="252" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<line x1="435" y1="214" x2="435" y2="252" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<line x1="595" y1="214" x2="595" y2="252" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<rect x="40" y="254" width="150" height="104" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="115" y="274" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">jstack 连抓两次</text>
+<text x="115" y="292" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">对比找死循环/锁</text>
+<text x="115" y="310" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">GC 线程忙→jstat</text>
+<text x="115" y="328" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">查堆与分配速率</text>
+<rect x="200" y="254" width="150" height="104" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="275" y="274" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">开 GC 日志看停顿</text>
+<text x="275" y="292" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">jstat -gcutil</text>
+<text x="275" y="310" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">FGC 高→泄漏或堆小</text>
+<text x="275" y="328" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">停顿长→调参/换 G1</text>
+<rect x="360" y="254" width="150" height="104" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="435" y="274" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">HeapDumpOnOOM</text>
+<text x="435" y="292" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">dump 出 hprof</text>
+<text x="435" y="310" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">MAT 支配树</text>
+<text x="435" y="328" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">定位大对象/缓存</text>
+<rect x="520" y="254" width="150" height="104" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="595" y="274" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">jstat 每 1s 连测</text>
+<text x="595" y="292" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">看 O 区回收效果</text>
+<text x="595" y="310" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">调 Xmx/MaxMetaspace</text>
+<text x="595" y="328" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">或换收集器</text>
+<text x="340" y="396" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">Windows 生产：任务管理器看线程 → Arthas dashboard / thread / heapdump 一把梭</text>
+</svg>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" width="100%" role="img">
+<title>三大特性与三大工具矩阵</title>
+<desc>原子性、可见性、有序性 × synchronized、volatile、final，标注保证与否及选型原则</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">三大特性 × 三大工具：哪些保证、哪些不保证</text>
+<rect x="40" y="76" width="160" height="44" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="120" y="98" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">特性</text>
+<rect x="200" y="76" width="140" height="44" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="270" y="98" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">synchronized</text>
+<rect x="340" y="76" width="140" height="44" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="410" y="98" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">volatile</text>
+<rect x="480" y="76" width="160" height="44" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="560" y="98" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">final</text>
+<rect x="40" y="120" width="160" height="44" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="120" y="142" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">原子性</text>
+<rect x="200" y="120" width="140" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="270" y="142" text-anchor="middle" font-size="12" fill="#27500A" dominant-baseline="central">✓</text>
+<rect x="340" y="120" width="140" height="44" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="410" y="142" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">✗ i++ 救不了</text>
+<rect x="480" y="120" width="160" height="44" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="560" y="142" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">—</text>
+<rect x="40" y="164" width="160" height="44" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="120" y="186" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">可见性</text>
+<rect x="200" y="164" width="140" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="270" y="186" text-anchor="middle" font-size="12" fill="#27500A" dominant-baseline="central">✓</text>
+<rect x="340" y="164" width="140" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="410" y="186" text-anchor="middle" font-size="12" fill="#27500A" dominant-baseline="central">✓</text>
+<rect x="480" y="164" width="160" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="560" y="186" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">✓ 构造期</text>
+<rect x="40" y="208" width="160" height="44" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="120" y="230" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">有序性</text>
+<rect x="200" y="208" width="140" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="270" y="230" text-anchor="middle" font-size="12" fill="#27500A" dominant-baseline="central">✓</text>
+<rect x="340" y="208" width="140" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="410" y="230" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">✓ 禁重排</text>
+<rect x="480" y="208" width="160" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="560" y="230" text-anchor="middle" font-size="12" fill="#27500A" dominant-baseline="central">✓</text>
+<text x="340" y="282" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">synchronized 全包；volatile 取一半（可见+有序，不原子）；final 只保构造期安全发布</text>
+<text x="340" y="304" text-anchor="middle" font-size="11" fill="#993C1D" dominant-baseline="central">volatile 救不了 i++——自增必须用 synchronized 或 AtomicInteger（CAS）</text>
+</svg>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 552" width="100%" role="img">
+<title>线程池七参数与拒绝策略</title>
+<desc>ThreadPoolExecutor 七个核心参数及推荐设置；四种拒绝策略及适用场景</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">ThreadPoolExecutor 七参数</text>
+<rect x="40" y="60" width="180" height="36" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="130" y="78" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">参数</text>
+<rect x="220" y="60" width="220" height="36" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="330" y="78" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">含义</text>
+<rect x="440" y="60" width="200" height="36" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="540" y="78" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">推荐设置</text>
+<rect x="40" y="96" width="180" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="112" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">corePoolSize</text>
+<rect x="220" y="96" width="220" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="330" y="112" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">核心线程数</text>
+<rect x="440" y="96" width="200" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="112" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">CPU 密集 N+1 · IO 密集 2N</text>
+<rect x="40" y="128" width="180" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="144" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">maxPoolSize</text>
+<rect x="220" y="128" width="220" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="330" y="144" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">最大线程数</text>
+<rect x="440" y="128" width="200" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="144" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">IO 密集可放大到 N×倍</text>
+<rect x="40" y="160" width="180" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="176" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">keepAliveTime</text>
+<rect x="220" y="160" width="220" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="330" y="176" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">非核心线程空闲存活</text>
+<rect x="440" y="160" width="200" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="176" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">60s 起</text>
+<rect x="40" y="192" width="180" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="208" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">unit</text>
+<rect x="220" y="192" width="220" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="330" y="208" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">时间单位</text>
+<rect x="440" y="192" width="200" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="208" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">TimeUnit.SECONDS</text>
+<rect x="40" y="224" width="180" height="32" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="130" y="240" text-anchor="middle" font-size="11" font-weight="500" fill="#4A1B0C" dominant-baseline="central">workQueue</text>
+<rect x="220" y="224" width="220" height="32" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="330" y="240" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">任务队列</text>
+<rect x="440" y="224" width="200" height="32" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="540" y="240" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">⚠ 必须有界！拒绝无界</text>
+<rect x="40" y="256" width="180" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="272" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">threadFactory</text>
+<rect x="220" y="256" width="220" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="330" y="272" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">线程工厂</text>
+<rect x="440" y="256" width="200" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="272" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">命名前缀 + 守护标志</text>
+<rect x="40" y="288" width="180" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="304" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">handler</text>
+<rect x="220" y="288" width="220" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="330" y="304" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">拒绝策略</text>
+<rect x="440" y="288" width="200" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="304" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">见下方四种</text>
+<text x="340" y="356" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">四种拒绝策略</text>
+<rect x="40" y="376" width="180" height="32" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="130" y="392" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">策略</text>
+<rect x="220" y="376" width="220" height="32" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="330" y="392" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">行为</text>
+<rect x="440" y="376" width="200" height="32" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="540" y="392" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">适用</text>
+<rect x="40" y="408" width="180" height="32" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="130" y="424" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A" dominant-baseline="central">AbortPolicy</text>
+<rect x="220" y="408" width="220" height="32" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="330" y="424" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">抛 RejectedExecution</text>
+<rect x="440" y="408" width="200" height="32" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="540" y="424" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">默认·可感知</text>
+<rect x="40" y="440" width="180" height="32" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="130" y="456" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A" dominant-baseline="central">CallerRunsPolicy</text>
+<rect x="220" y="440" width="220" height="32" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="330" y="456" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">调用者线程自己跑</text>
+<rect x="440" y="440" width="200" height="32" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="540" y="456" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">反压限流·推荐</text>
+<rect x="40" y="472" width="180" height="32" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="130" y="488" text-anchor="middle" font-size="11" font-weight="500" fill="#4A1B0C" dominant-baseline="central">DiscardPolicy</text>
+<rect x="220" y="472" width="220" height="32" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="330" y="488" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">静默丢最新</text>
+<rect x="440" y="472" width="200" height="32" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="540" y="488" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">不推荐·隐藏问题</text>
+<rect x="40" y="504" width="180" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="520" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">DiscardOldest</text>
+<rect x="220" y="504" width="220" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="330" y="520" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">丢队首（最早）</text>
+<rect x="440" y="504" width="200" height="32" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="520" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">老任务过期场景</text>
+</svg>

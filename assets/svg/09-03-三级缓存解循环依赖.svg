@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 620" width="100%" role="img">
+<style>svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}</style>
+<title>三级缓存解循环依赖：A ↔ B 完整推演</title>
+<desc>三级缓存结构：一级存成品、二级存早期对象、三级存工厂；右侧按七步推演 A 与 B 的循环依赖解决过程</desc>
+<text x="24" y="28" font-size="15" font-weight="500" fill="#2C2C2A">三级缓存结构（左）与 A↔B 解决推演（右）</text>
+
+<g><rect x="24" y="52" width="240" height="64" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text x="144" y="74" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">一级 · singletonObjects</text>
+<text x="144" y="92" text-anchor="middle" font-size="9.5" fill="#3B6D11">成品池：初始化完成的 Bean</text>
+<text x="144" y="106" text-anchor="middle" font-size="9" fill="#3B6D11" font-family="monospace">name → bean</text></g>
+
+<g><rect x="24" y="128" width="240" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="144" y="150" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">二级 · earlySingletonObjects</text>
+<text x="144" y="168" text-anchor="middle" font-size="9.5" fill="#185FA5">早期池：已暴露的半成品（含可能的代理）</text>
+<text x="144" y="182" text-anchor="middle" font-size="9" fill="#185FA5" font-family="monospace">name → earlyBean</text></g>
+
+<g><rect x="24" y="204" width="240" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="144" y="226" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">三级 · singletonFactories</text>
+<text x="144" y="244" text-anchor="middle" font-size="9.5" fill="#534AB7">工厂池：存的是 ObjectFactory 不是对象</text>
+<text x="144" y="258" text-anchor="middle" font-size="9" fill="#534AB7" font-family="monospace">name → () → earlyBean</text></g>
+
+<text x="144" y="288" text-anchor="middle" font-size="9.5" fill="#5F5E5A">查询顺序：一级 → 二级 → 三级（命中即升级）</text>
+<text x="144" y="304" text-anchor="middle" font-size="9.5" fill="#5F5E5A">三级命中 → 调工厂 → 结果放二级 → 删三级</text>
+
+<g><rect x="24" y="320" width="240" height="96" rx="8" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="144" y="342" text-anchor="middle" font-size="12" font-weight="500" fill="#5C4A06">为什么三级存工厂？</text>
+<text x="144" y="362" text-anchor="middle" font-size="9.5" fill="#5C4A06">代理正常在初始化后才生成</text>
+<text x="144" y="378" text-anchor="middle" font-size="9.5" fill="#5C4A06">工厂把「要不要包代理」延迟到</text>
+<text x="144" y="394" text-anchor="middle" font-size="9.5" fill="#5C4A06">被引用的那一刻才决定（懒）</text>
+<text x="144" y="410" text-anchor="middle" font-size="9.5" fill="#5C4A06">无循环依赖 → 工厂永远不被调用</text></g>
+
+<g><rect x="24" y="432" width="240" height="76" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="144" y="454" text-anchor="middle" font-size="12" font-weight="500" fill="#4A1B0C">两种无解情况</text>
+<text x="144" y="474" text-anchor="middle" font-size="9.5" fill="#993C1D">构造器循环依赖：实例化都没完成</text>
+<text x="144" y="490" text-anchor="middle" font-size="9.5" fill="#993C1D">没法提前暴露 → 直接报错</text>
+<text x="144" y="504" text-anchor="middle" font-size="9.5" fill="#993C1D">prototype：不进缓存，无解</text></g>
+
+<g><rect x="290" y="52" width="446" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="306" y="70" font-size="11" font-weight="500" fill="#0C447C">① A 实例化（裸对象）→ 包装成 ObjectFactory 放入三级缓存</text>
+<text x="306" y="86" font-size="9.5" fill="#185FA5">此时 A 还没注入任何依赖，是个半成品 —— 但已经可以「被引用」</text></g>
+<line x1="513" y1="96" x2="513" y2="110" stroke="#5F5E5A" stroke-width="1.2"/>
+<g><rect x="290" y="112" width="446" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="306" y="130" font-size="11" font-weight="500" fill="#0C447C">② A 注入依赖时发现需要 B → 去创建 B</text>
+<text x="306" y="146" font-size="9.5" fill="#185FA5">A 挂起在注入阶段，三级缓存里留着 A 的工厂</text></g>
+<line x1="513" y1="156" x2="513" y2="170" stroke="#5F5E5A" stroke-width="1.2"/>
+<g><rect x="290" y="172" width="446" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="306" y="190" font-size="11" font-weight="500" fill="#0C447C">③ B 实例化 → B 注入依赖时发现需要 A</text>
+<text x="306" y="206" font-size="9.5" fill="#185FA5">循环闭合的瞬间：B 去缓存里找 A</text></g>
+<line x1="513" y1="216" x2="513" y2="230" stroke="#5F5E5A" stroke-width="1.2"/>
+<g><rect x="290" y="232" width="446" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="306" y="250" font-size="11" font-weight="500" fill="#3C3489">④ 一级没有、二级没有、三级命中 A 的工厂</text>
+<text x="306" y="266" font-size="9.5" fill="#534AB7">调用工厂 getObject()：若 A 需要 AOP 代理 → 此刻提前生成代理</text>
+<text x="306" y="280" font-size="9.5" fill="#534AB7">结果放入二级缓存，删除三级 —— 保证所有人拿到同一个引用</text></g>
+<line x1="513" y1="288" x2="513" y2="302" stroke="#5F5E5A" stroke-width="1.2"/>
+<g><rect x="290" y="304" width="446" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="306" y="322" font-size="11" font-weight="500" fill="#0C447C">⑤ B 拿到 A 的早期引用，注入完成 → B 初始化 → B 进一级缓存</text>
+<text x="306" y="338" font-size="9.5" fill="#185FA5">B 成为成品，回头解救挂起的 A</text></g>
+<line x1="513" y1="348" x2="513" y2="362" stroke="#5F5E5A" stroke-width="1.2"/>
+<g><rect x="290" y="364" width="446" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="306" y="382" font-size="11" font-weight="500" fill="#0C447C">⑥ A 拿到成品 B，注入完成 → A 继续初始化</text>
+<text x="306" y="398" font-size="9.5" fill="#185FA5">若 ④ 已提前生成代理，后置钩子直接复用它，不再包第二次</text></g>
+<line x1="513" y1="408" x2="513" y2="422" stroke="#5F5E5A" stroke-width="1.2"/>
+<g><rect x="290" y="424" width="446" height="44" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.8"/>
+<text x="306" y="442" font-size="11" font-weight="500" fill="#27500A">⑦ A 进一级缓存，删除二级 —— 循环依赖解除</text>
+<text x="306" y="458" font-size="9.5" fill="#3B6D11">最终：一级池里 A、B 都是成品，且 B 持有的 A 与池中的 A 是同一引用</text></g>
+
+<rect x="290" y="484" width="446" height="80" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="306" y="504" font-size="11" font-weight="500" fill="#4A1B0C">著名陷阱：@Async + 循环依赖</text>
+<text x="306" y="522" font-size="9.5" fill="#993C1D">@Async 的代理不参与三级缓存的提前暴露机制，只在后置钩子生成</text>
+<text x="306" y="538" font-size="9.5" fill="#993C1D">→ B 拿到的是原始 A，池里却是代理 A，引用不一致 → 启动报错</text>
+<text x="306" y="554" font-size="9.5" fill="#993C1D">解法：消除循环依赖，或 @Lazy 延迟注入</text>
+
+<text x="380" y="596" text-anchor="middle" font-size="10" fill="#5F5E5A">一句话：三级缓存 = 用「半成品窗口期」提前暴露引用 + 用「工厂」把代理决策延迟到必要时刻</text>
+</svg>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 380" width="100%" role="img">
+<title>粘包拆包与手写解码器</title>
+<desc>发送端三帧进入字节流后边界消失；接收端可能粘包或拆包；解码器在字节流上重建帧边界</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">粘包拆包与手写解码器</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A">TCP 是字节流：帧边界只存在于应用层的认知里</text>
+<text x="40" y="74" font-size="11" fill="#5F5E5A">发送端 · 写入三个完整 Modbus 帧</text>
+<rect x="40" y="84" width="120" height="36" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="100" y="106" text-anchor="middle" font-size="11" fill="#0C447C">帧 F1</text>
+<rect x="168" y="84" width="120" height="36" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="228" y="106" text-anchor="middle" font-size="11" fill="#0C447C">帧 F2</text>
+<rect x="296" y="84" width="120" height="36" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="356" y="106" text-anchor="middle" font-size="11" fill="#0C447C">帧 F3</text>
+<line x1="100" y1="120" x2="100" y2="138" stroke="#5F5E5A" stroke-width="1"/>
+<line x1="228" y1="120" x2="228" y2="138" stroke="#5F5E5A" stroke-width="1"/>
+<line x1="356" y1="120" x2="356" y2="138" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="40" y="140" width="600" height="40" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<line x1="240" y1="146" x2="240" y2="174" stroke="#5F5E5A" stroke-width="0.8" stroke-dasharray="4 3"/>
+<line x1="440" y1="146" x2="440" y2="174" stroke="#5F5E5A" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="140" y="164" text-anchor="middle" font-size="11" fill="#444441">F1 字节</text>
+<text x="340" y="164" text-anchor="middle" font-size="11" fill="#444441">F2 字节</text>
+<text x="540" y="164" text-anchor="middle" font-size="11" fill="#444441">F3 字节</text>
+<text x="340" y="198" text-anchor="middle" font-size="10" fill="#5F5E5A">Nagle 合并小包 · 接收缓冲区堆积 · MSS 分片 —— 帧边界不再可靠</text>
+<text x="40" y="224" font-size="11" fill="#5F5E5A">接收端 · read() 可能拿到的两种情况</text>
+<rect x="40" y="234" width="230" height="36" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<line x1="155" y1="240" x2="155" y2="264" stroke="#5F5E5A" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="97" y="256" text-anchor="middle" font-size="11" fill="#0C447C">F1</text>
+<text x="212" y="256" text-anchor="middle" font-size="11" fill="#0C447C">F2</text>
+<text x="290" y="256" font-size="10" fill="#993C1D">粘包：多帧合并到达</text>
+<rect x="40" y="278" width="120" height="36" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="100" y="300" text-anchor="middle" font-size="11" fill="#0C447C">F1 前半</text>
+<rect x="168" y="278" width="180" height="36" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="258" y="300" text-anchor="middle" font-size="11" fill="#0C447C">F1 后半 + F2</text>
+<text x="368" y="300" font-size="10" fill="#993C1D">拆包：一帧分片到达</text>
+<rect x="40" y="330" width="600" height="36" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="340" y="352" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A">解码器职责：在字节流上重建帧边界 —— 攒够一帧才下传，不够就原样等着（cumulation buffer 保留现场）</text>
+</svg>

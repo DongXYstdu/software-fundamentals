@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 264" width="100%" role="img">
+<title>G1 并发标记四阶段</title>
+<desc>初始标记、并发标记、最终标记、筛选回收，其中两段 STW 极短，主要停顿在筛选回收</desc>
+<defs>
+<marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<rect x="40" y="80" width="132" height="96" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="106" y="100" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">1 初始标记</text>
+<text x="106" y="118" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">STW · 极短</text>
+<text x="106" y="136" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">标记 GC Roots</text>
+<text x="106" y="154" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">直达的老对象</text>
+<rect x="188" y="80" width="132" height="96" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5" stroke-dasharray="4 3"/>
+<text x="254" y="100" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">2 并发标记</text>
+<text x="254" y="118" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">不 STW · 最久</text>
+<text x="254" y="136" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">沿引用图遍历</text>
+<text x="254" y="154" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">SATB 记录变化</text>
+<rect x="336" y="80" width="132" height="96" rx="8" fill="#85B7EB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="402" y="100" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">3 最终标记</text>
+<text x="402" y="118" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">STW · 极短</text>
+<text x="402" y="136" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">清空 SATB 缓冲</text>
+<text x="402" y="154" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">处理并发残余</text>
+<rect x="484" y="80" width="132" height="96" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+<text x="550" y="100" text-anchor="middle" font-size="13" font-weight="500" fill="#4A1B0C" dominant-baseline="central">4 筛选回收</text>
+<text x="550" y="118" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">STW · 主要停顿</text>
+<text x="550" y="136" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">按收益选 Region</text>
+<text x="550" y="154" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">复制存活·整理</text>
+<line x1="172" y1="128" x2="186" y2="128" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow4)"/>
+<line x1="320" y1="128" x2="334" y2="128" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow4)"/>
+<line x1="468" y1="128" x2="482" y2="128" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow4)"/>
+<text x="340" y="212" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">Young GC = 只做阶段4的新生代部分（高频·几ms）；Mixed GC = 并发标记后，阶段4连老年代高收益 Region 一起回收</text>
+<text x="340" y="234" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">停顿预算 MaxGCPauseMillis 由历史停顿数据预测——G1 据此决定每次回收多少个 Region</text>
+</svg>

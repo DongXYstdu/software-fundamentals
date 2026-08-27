@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 640" width="100%" role="img">
+<title>单体分层 MVC 的得与失</title>
+<desc>分层解决依赖与复用，但技术分层埋下职责粘连，最终导向业务分层</desc>
+<style>svg{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}</style>
+<text x="24" y="30" font-size="15" font-weight="500" fill="#2C2C2A">单体分层（MVC）：先"够用"，再被"技术分层"拖垮</text>
+
+<rect x="40" y="70" width="150" height="150" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="115" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">Controller</text>
+<text x="115" y="120" text-anchor="middle" font-size="9.5" fill="#5F5E5A">接收请求/参数</text>
+<text x="115" y="150" text-anchor="middle" font-size="11" fill="#3C3489">↓</text>
+<text x="115" y="170" text-anchor="middle" font-size="11" fill="#5F5E5A">调 Service 拿结果</text>
+
+<rect x="250" y="70" width="150" height="150" rx="10" fill="#FBF3D5" stroke="#9A7B0A" stroke-width="1"/>
+<text x="325" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="#5C4A06">Service</text>
+<text x="325" y="120" text-anchor="middle" font-size="9.5" fill="#5F5E5A">业务逻辑/事务边界</text>
+<text x="325" y="150" text-anchor="middle" font-size="11" fill="#5C4A06">↓</text>
+<text x="325" y="170" text-anchor="middle" font-size="11" fill="#5F5E5A">协调 Mapper/外部</text>
+
+<rect x="460" y="70" width="150" height="150" rx="10" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="535" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">Mapper / DAO</text>
+<text x="535" y="120" text-anchor="middle" font-size="9.5" fill="#5F5E5A">数据访问</text>
+<text x="535" y="150" text-anchor="middle" font-size="11" fill="#27500A">↓</text>
+<text x="535" y="170" text-anchor="middle" font-size="11" fill="#5F5E5A">SQL/DB</text>
+
+<path d="M190 145 H250 M400 145 H460" stroke="#A8A29E" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+
+<rect x="670" y="70" width="360" height="150" rx="10" fill="#F5F5F4" stroke="#E4E4E7" stroke-width="1"/>
+<text x="690" y="96" font-size="12" font-weight="500" fill="#2C2C2A">分层的价值（为什么先从 3 层起步）</text>
+<text x="690" y="120" font-size="11" fill="#3F3F46">· 依赖单向：Web → 业务 → 数据，好测、好替换</text>
+<text x="690" y="142" font-size="11" fill="#3F3F46">· 关注点分离：改接口不影响存储，换库不动业务</text>
+<text x="690" y="164" font-size="11" fill="#3F3F46">· 团队分工：前端/后端/数据各管一层（早期够用）</text>
+<text x="690" y="186" font-size="11" fill="#3F3F46">· 入门成本低：一个 Controller 就能上线</text>
+
+<rect x="40" y="260" width="480" height="170" rx="12" fill="#FFF1F0" stroke="#C0392B" stroke-width="1"/>
+<text x="60" y="288" font-size="12" font-weight="500" fill="#A02617">技术分层的祸根：业务被横向截断</text>
+<text x="60" y="314" font-size="11" fill="#5D1F18">· 一个业务"点表下发"被拆到 4 个层，改需求跨 4 处</text>
+<text x="60" y="334" font-size="11" fill="#5D1F18">· Service 层越滚越胖：所有人的业务都塞进它 → "上帝 Service"</text>
+<text x="60" y="354" font-size="11" fill="#5D1F18">· 层间只见技术不见业务：控制器/仓储代码量超过真正的领域逻辑</text>
+<text x="60" y="374" font-size="11" fill="#5D1F18">· 模块无边界：谁都 import 谁，改一个 Service 牵动全应用</text>
+<text x="60" y="394" font-size="11" fill="#5D1F18">· 演进触发信号：一次需求改动要跨 3+ 层、测试全回归、部署全量</text>
+
+<rect x="540" y="260" width="490" height="170" rx="12" fill="#EFF6FF" stroke="#2E64A6" stroke-width="1"/>
+<text x="560" y="288" font-size="12" font-weight="500" fill="#1F4E8C">分水岭：从"按技术切"到"按业务切"</text>
+<text x="560" y="314" font-size="11" fill="#1F4E8C">· 技术分层是"横切"，业务模块是"纵切"</text>
+<text x="560" y="334" font-size="11" fill="#1F4E8C">· 演进不是推翻分层，而是把分层"下沉"到每个业务模块内部</text>
+<text x="560" y="354" font-size="11" fill="#1F4E8C">· 你网关的对照：PointController/PointService/PointMapper 聚成</text>
+<text x="560" y="374" font-size="11" fill="#1F4E8C">　一个"点位"纵向模块，而非散的横向切片</text>
+<text x="560" y="394" font-size="11" fill="#1F4E8C">· 回归点：脱耦到 DDD 后，Controller/Service/CON 仍在，只是归属业务</text>
+
+<text x="24" y="470" font-size="10" fill="#78716C">一句话：MVC 分层解决"要不要分层"；模块化解决"按什么切"；DDD 解决"切得正不正确"。</text>
+</svg>

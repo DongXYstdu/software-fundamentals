@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 366" width="100%" role="img">
+<title>GC 分代流转：一个对象的一生</title>
+<desc>对象从 Eden 出生，Minor GC 复制存活对象到 Survivor，年龄达标晋升老年代，老年代满触发 Full GC</desc>
+<defs>
+<marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<rect x="40" y="76" width="104" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="92" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">新对象</text>
+<text x="92" y="112" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">分配请求</text>
+<rect x="170" y="76" width="130" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="235" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">Eden</text>
+<text x="235" y="112" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">Eden 满即 Minor GC</text>
+<rect x="330" y="76" width="150" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="405" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">Survivor S0/S1</text>
+<text x="405" y="112" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">每次复制 age+1</text>
+<rect x="510" y="76" width="130" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="575" y="94" text-anchor="middle" font-size="12" font-weight="500" fill="#4A1B0C" dominant-baseline="central">老年代 Old</text>
+<text x="575" y="112" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">长期存活·大对象</text>
+<line x1="144" y1="104" x2="168" y2="104" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<text x="156" y="92" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">分配</text>
+<line x1="300" y1="104" x2="328" y2="104" stroke="#185FA5" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<text x="314" y="92" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">复制存活</text>
+<line x1="480" y1="104" x2="508" y2="104" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<text x="494" y="92" text-anchor="middle" font-size="11" fill="#993C1D" dominant-baseline="central">age≥15</text>
+<rect x="160" y="190" width="150" height="84" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="235" y="210" text-anchor="middle" font-size="13" font-weight="500" fill="#0C447C" dominant-baseline="central">Minor GC</text>
+<text x="235" y="230" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">Eden 满 · 复制存活</text>
+<text x="235" y="248" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">停顿：几 ms 到几十 ms</text>
+<rect x="500" y="190" width="140" height="84" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="570" y="210" text-anchor="middle" font-size="13" font-weight="500" fill="#4A1B0C" dominant-baseline="central">Full GC</text>
+<text x="570" y="230" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">Old/Metaspace 满</text>
+<text x="570" y="248" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">停顿：百 ms 到秒级</text>
+<line x1="235" y1="132" x2="235" y2="188" stroke="#185FA5" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<line x1="575" y1="132" x2="572" y2="188" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<text x="340" y="308" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">Full GC 其他触发：System.gc() · 空间分配担保失败 · Metaspace 动态扩容</text>
+<text x="340" y="330" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">G1 已无固定分代边界：Region 化回收，目标停顿可设（-XX:MaxGCPauseMillis）</text>
+</svg>

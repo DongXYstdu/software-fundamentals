@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="100%" role="img">
+<title>依赖方向三原则</title>
+<desc>ADP 保结构（无环）、SDP 定方向（箭头指向稳定）、SAP 定内容（稳定者高抽象）；网关模块依赖图示例</desc>
+<defs>
+<marker id="arrow1002" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">依赖方向三原则：保结构 → 定方向 → 定内容</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">ADP 无环是底线 · SDP 箭头指向稳定 · SAP 越稳定越抽象（09 课主序列的模块版）</text>
+<rect x="255" y="300" width="170" height="52" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+<text x="340" y="318" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">domain-core</text>
+<text x="340" y="336" text-anchor="middle" font-size="10" fill="#0C447C" dominant-baseline="central">I=0 · A=0.8 · 全图汇点，只进不出</text>
+<rect x="270" y="196" width="140" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="212" text-anchor="middle" font-size="11.5" font-weight="500" fill="#444441" dominant-baseline="central">设备管理</text>
+<text x="340" y="228" text-anchor="middle" font-size="10" fill="#5F5E5A" dominant-baseline="central">I≈0.4 · 台账唯一写入者</text>
+<rect x="60" y="96" width="130" height="44" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="125" y="112" text-anchor="middle" font-size="11.5" font-weight="500" fill="#4A1B0C" dominant-baseline="central">采集驱动</text>
+<text x="125" y="128" text-anchor="middle" font-size="10" fill="#993C1D" dominant-baseline="central">I≈1 · 协议天天变</text>
+<rect x="220" y="96" width="110" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="275" y="112" text-anchor="middle" font-size="11.5" font-weight="500" fill="#444441" dominant-baseline="central">告警</text>
+<text x="275" y="128" text-anchor="middle" font-size="10" fill="#5F5E5A" dominant-baseline="central">I≈0.7</text>
+<rect x="350" y="96" width="110" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="405" y="112" text-anchor="middle" font-size="11.5" font-weight="500" fill="#444441" dominant-baseline="central">能耗</text>
+<text x="405" y="128" text-anchor="middle" font-size="10" fill="#5F5E5A" dominant-baseline="central">I≈0.7</text>
+<rect x="490" y="96" width="130" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="555" y="112" text-anchor="middle" font-size="11.5" font-weight="500" fill="#444441" dominant-baseline="central">控制下发</text>
+<text x="555" y="128" text-anchor="middle" font-size="10" fill="#5F5E5A" dominant-baseline="central">I≈0.7</text>
+<line x1="125" y1="140" x2="295" y2="194" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1002)"/>
+<line x1="275" y1="140" x2="320" y2="194" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1002)"/>
+<line x1="405" y1="140" x2="362" y2="194" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1002)"/>
+<line x1="555" y1="140" x2="390" y2="194" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1002)"/>
+<line x1="340" y1="240" x2="340" y2="298" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1002)"/>
+<text x="430" y="272" font-size="10" fill="#185FA5" dominant-baseline="central">SDP：箭头从不稳定指向稳定</text>
+<rect x="40" y="64" width="600" height="0" fill="none"/>
+<text x="340" y="378" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">体检：ADP 拓扑排序找环 → SDP 每条箭头查起点 I &gt; 终点 I → SAP 高入度模块查 A 值</text>
+</svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="100%" role="img">
+<title>按层分包 vs 按特性分包</title>
+<desc>删除测试：移除"告警通知"特性，by-layer 动 5 个包，by-feature 只动 1 个包</desc>
+<defs>
+<marker id="arrow1101" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">删除测试：移除一个特性，要动几个包？</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">需求：完整移除"告警通知"功能 —— by-layer 横穿 5 包，by-feature 整包删除</text>
+<rect x="30" y="64" width="300" height="30" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="180" y="79" text-anchor="middle" font-size="12" font-weight="500" fill="#4A1B0C" dominant-baseline="central">❌ package-by-layer：动 5 个包</text>
+<rect x="50" y="108" width="260" height="36" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="180" y="126" text-anchor="middle" font-size="10.5" fill="#4A1B0C" dominant-baseline="central">controller/ ← 通知接口混在设备接口里</text>
+<rect x="50" y="152" width="260" height="36" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="180" y="170" text-anchor="middle" font-size="10.5" fill="#4A1B0C" dominant-baseline="central">service/ ← NotifyService 与 RuleService 混居</text>
+<rect x="50" y="196" width="260" height="36" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="180" y="214" text-anchor="middle" font-size="10.5" fill="#4A1B0C" dominant-baseline="central">mapper/ ← 通知记录 Mapper</text>
+<rect x="50" y="240" width="260" height="36" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="180" y="258" text-anchor="middle" font-size="10.5" fill="#4A1B0C" dominant-baseline="central">entity/ ← NotifyRecord 实体</text>
+<rect x="50" y="284" width="260" height="36" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="180" y="302" text-anchor="middle" font-size="10.5" fill="#4A1B0C" dominant-baseline="central">dto/ ← NotifyVO</text>
+<text x="180" y="342" text-anchor="middle" font-size="10.5" fill="#993C1D" dominant-baseline="central">逐个甄别 · 删错即波及其他特性 · service 包内无边界</text>
+<rect x="350" y="64" width="300" height="30" rx="6" fill="#EAF3EC" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="500" y="79" text-anchor="middle" font-size="12" font-weight="500" fill="#1F3D0A" dominant-baseline="central">✅ package-by-feature：只动 1 个包</text>
+<rect x="368" y="108" width="124" height="60" rx="6" fill="#EAF3EC" stroke="#3B6D11" stroke-width="1"/>
+<text x="430" y="126" text-anchor="middle" font-size="11" font-weight="500" fill="#1F3D0A" dominant-baseline="central">notify/ 整包</text>
+<text x="430" y="144" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">接口+逻辑+持久化</text>
+<text x="430" y="158" text-anchor="middle" font-size="9.5" fill="#3B6D11" dominant-baseline="central">自包含 · 整包删除</text>
+<rect x="508" y="108" width="124" height="36" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="570" y="130" text-anchor="middle" font-size="10.5" fill="#5F5E5A" dominant-baseline="central">rule/ 无感</text>
+<rect x="508" y="152" width="124" height="36" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="570" y="174" text-anchor="middle" font-size="10.5" fill="#5F5E5A" dominant-baseline="central">confirm/ 无感</text>
+<rect x="508" y="196" width="124" height="36" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="570" y="218" text-anchor="middle" font-size="10.5" fill="#5F5E5A" dominant-baseline="central">record/ 无感</text>
+<text x="500" y="342" text-anchor="middle" font-size="10.5" fill="#3B6D11" dominant-baseline="central">特性代码聚集 · 增删改都局部化 · 特性包间可立禁互依规矩</text>
+<text x="340" y="374" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" dominant-baseline="central">次序铁律：第一级目录必须是特性，第二级才允许技术分层；反过来就是 by-layer 套娃</text>
+</svg>

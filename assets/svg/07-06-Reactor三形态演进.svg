@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" width="100%" role="img">
+<title>Reactor 模式三形态演进</title>
+<desc>单线程 Reactor、单 Reactor 加 Worker 线程池、主从 Reactor；每发现一个瓶颈就拆出一个职责</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">Reactor 三形态演进</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A">每发现一个瓶颈，就拆出一个职责</text>
+<rect x="40" y="70" width="190" height="150" rx="8" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="135" y="92" text-anchor="middle" font-size="12" font-weight="500" fill="#444441">① 单线程 Reactor</text>
+<text x="135" y="114" text-anchor="middle" font-size="11" fill="#5F5E5A">一个线程包办一切</text>
+<text x="135" y="132" text-anchor="middle" font-size="11" fill="#5F5E5A">accept+read+业务+write</text>
+<text x="135" y="158" text-anchor="middle" font-size="11" font-weight="500" fill="#993C1D">瓶颈：业务处理时</text>
+<text x="135" y="176" text-anchor="middle" font-size="11" fill="#993C1D">新连接进不来</text>
+<text x="135" y="194" text-anchor="middle" font-size="11" fill="#993C1D">其他连接读不到</text>
+<text x="135" y="212" text-anchor="middle" font-size="10" fill="#5F5E5A">例：早期 Redis</text>
+<line x1="230" y1="145" x2="245" y2="145" stroke="#5F5E5A" stroke-width="1"/>
+<text x="238" y="138" text-anchor="middle" font-size="10" fill="#5F5E5A">拆</text>
+<rect x="245" y="70" width="190" height="150" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="92" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">② 单 Reactor + Worker 池</text>
+<text x="340" y="114" text-anchor="middle" font-size="11" fill="#185FA5">Reactor 只管 IO</text>
+<text x="340" y="132" text-anchor="middle" font-size="11" fill="#185FA5">业务扔给 Worker 线程池</text>
+<text x="340" y="158" text-anchor="middle" font-size="11" font-weight="500" fill="#993C1D">瓶颈：单个 Reactor</text>
+<text x="340" y="176" text-anchor="middle" font-size="11" fill="#993C1D">扛所有连接 accept+读写</text>
+<text x="340" y="194" text-anchor="middle" font-size="11" fill="#993C1D">连接上万先撑不住</text>
+<line x1="435" y1="145" x2="450" y2="145" stroke="#5F5E5A" stroke-width="1"/>
+<text x="443" y="138" text-anchor="middle" font-size="10" fill="#5F5E5A">拆</text>
+<rect x="450" y="70" width="190" height="150" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="545" y="92" text-anchor="middle" font-size="12" font-weight="500" fill="#27500A">③ 主从 Reactor（Netty）</text>
+<text x="545" y="114" text-anchor="middle" font-size="11" fill="#3B6D11">Main 专职 accept（低频）</text>
+<text x="545" y="132" text-anchor="middle" font-size="11" fill="#3B6D11">Sub 组专职 IO（高频）</text>
+<text x="545" y="150" text-anchor="middle" font-size="11" fill="#3B6D11">Worker 池专职业务</text>
+<text x="545" y="176" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A">一条连接固定绑定</text>
+<text x="545" y="194" text-anchor="middle" font-size="11" fill="#27500A">一个 SubReactor → 免锁</text>
+<rect x="40" y="244" width="600" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="268" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489">映射到 Netty：bossGroup = Main（1 线程）· workerGroup = Sub 组（2×CPU）· 业务线程池 = Worker</text>
+<text x="340" y="288" text-anchor="middle" font-size="11" fill="#534AB7">网关：设备长连接 accept 少 → Main 一线程足够；读写帧频繁 → 多个 Sub 分摊</text>
+</svg>

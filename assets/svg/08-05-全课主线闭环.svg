@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 460" width="100%" role="img">
+<title>第 08 课全课主线：六节闭环</title>
+<desc>全景图、环境、Starter 本体、pom 发版配置、发布验证、进阶方向六节串联</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">第 08 课全课主线 · 六节闭环</text>
+<text x="340" y="48" text-anchor="middle" font-size="12" fill="#5F5E5A">手写 Starter 与 Maven 中央仓库发版</text>
+<g>
+<rect x="40" y="70" width="180" height="76" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">1 发版全景图</text>
+<text x="130" y="110" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">五角色 · 五条校验</text>
+<text x="130" y="128" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">发布不可撤回</text>
+</g>
+<line x1="220" y1="108" x2="246" y2="108" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="246,104 254,108 246,112" fill="#5F5E5A"/>
+<g>
+<rect x="256" y="70" width="180" height="76" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="346" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">2 环境准备</text>
+<text x="346" y="110" text-anchor="middle" font-size="11" fill="#185FA5" dominant-baseline="central">Token · 命名空间 · GPG</text>
+<text x="346" y="128" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">settings.xml 凭证</text>
+</g>
+<line x1="436" y1="108" x2="462" y2="108" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="462,104 470,108 462,112" fill="#5F5E5A"/>
+<g>
+<rect x="472" y="70" width="180" height="76" rx="8" fill="#185FA5"/>
+<text x="562" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF" dominant-baseline="central">3 Starter 本体</text>
+<text x="562" y="110" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">属性 → 组件 → 装配 → 注册</text>
+<text x="562" y="128" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.85" dominant-baseline="central">自动装配是灵魂</text>
+</g>
+<line x1="562" y1="146" x2="562" y2="172" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="558,172 562,180 566,172" fill="#5F5E5A"/>
+<g>
+<rect x="472" y="182" width="180" height="76" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="562" y="202" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">4 pom 发版配置</text>
+<text x="562" y="222" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">五校验逐一兑现</text>
+<text x="562" y="240" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">release profile 四插件</text>
+</g>
+<line x1="472" y1="220" x2="446" y2="220" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="446,216 438,220 446,224" fill="#5F5E5A"/>
+<g>
+<rect x="256" y="182" width="180" height="76" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="346" y="202" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">5 发布与验证</text>
+<text x="346" y="222" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">deploy → Validated → Release</text>
+<text x="346" y="240" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">BUILD SUCCESS ≠ 已发布</text>
+</g>
+<line x1="256" y1="220" x2="230" y2="220" stroke="#5F5E5A" stroke-width="1"/>
+<polygon points="230,216 222,220 230,224" fill="#5F5E5A"/>
+<g>
+<rect x="40" y="182" width="180" height="76" rx="8" fill="#EAF3EC" stroke="#136C43" stroke-width="0.5"/>
+<text x="130" y="202" text-anchor="middle" font-size="12" font-weight="500" fill="#136C43" dominant-baseline="central">6 总结与进阶</text>
+<text x="130" y="222" text-anchor="middle" font-size="11" fill="#136C43" dominant-baseline="central">运维 · 版本策略 · 演进</text>
+<text x="130" y="240" text-anchor="middle" font-size="11" fill="#136C43" dominant-baseline="central">双模块 · CI · 测试</text>
+</g>
+<g>
+<rect x="40" y="290" width="612" height="140" rx="8" fill="#FFFFFF" stroke="#B4B2A9" stroke-width="0.5"/>
+<text x="54" y="314" font-size="13" font-weight="500" fill="#2C2C2A">三个最重要的认知</text>
+<text x="54" y="342" font-size="11" fill="#444441">1. 自动装配 = 发现（imports）+ 条件（@ConditionalOnXxx）+ 注册（@EnableConfigurationProperties + @Bean）</text>
+<text x="54" y="366" font-size="11" fill="#444441">2. 发版 = 五条校验的兑现：元信息 · sources · javadoc · GPG 签名 · 命名空间，pom 无多余配置</text>
+<text x="54" y="390" font-size="11" fill="#444441">3. 发布不可撤回 + autoPublish=false 人工闸：Validated 到 Release 之间是最后的 Drop 反悔机会</text>
+<text x="54" y="414" font-size="11" fill="#8A8880">版本基线：Boot 3.5.16 · central-publishing 0.11.0 · gpg-plugin 3.2.8（2026-08 查证）</text>
+</g>
+</svg>

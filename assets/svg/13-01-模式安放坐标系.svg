@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="100%" role="img">
+<title>模式安放坐标系</title>
+<desc>二维定位法：横轴变化轴（业务/技术），纵轴架构层（领域/应用/适配器/组合根），右下为禁区</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">模式安放坐标系：二维定位法</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">第一问定变化轴（09 课）→ 第二问定架构层（12 课）→ 组装永远在组合根</text>
+<line x1="60" y1="360" x2="610" y2="360" stroke="#5F5E5A" stroke-width="1.6"/>
+<line x1="60" y1="60" x2="60" y2="360" stroke="#5F5E5A" stroke-width="1.6"/>
+<text x="60" y="380" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A">业务轴（规则/流程会变）</text>
+<text x="610" y="380" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A">技术轴（协议/中间件会变）</text>
+<text x="34" y="220" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" transform="rotate(-90 34 220)">架构层（12 课）</text>
+<rect x="72" y="70" width="530" height="54" rx="6" fill="#EAF3EC" stroke="#3B6D11" stroke-width="0.8"/>
+<text x="337" y="88" text-anchor="middle" font-size="11" font-weight="500" fill="#1F3D0A" dominant-baseline="central">领域层（组合根上方）</text>
+<text x="337" y="108" text-anchor="middle" font-size="9.5" fill="#3B6D11" dominant-baseline="central">业务规则区 · 住这：策略（规则族）、值对象、工厂方法、规格</text>
+<rect x="72" y="130" width="530" height="54" rx="6" fill="#EAF3EC" stroke="#3B6D11" stroke-width="0.8"/>
+<text x="337" y="148" text-anchor="middle" font-size="11" font-weight="500" fill="#1F3D0A" dominant-baseline="central">应用层（组合根上方）</text>
+<text x="337" y="168" text-anchor="middle" font-size="9.5" fill="#3B6D11" dominant-baseline="central">流程编排区 · 住这：责任链、组合编排（替代模板方法）、事件发布</text>
+<rect x="72" y="190" width="530" height="54" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="337" y="208" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">适配器层（组合根上方）</text>
+<text x="337" y="228" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">技术翻译区 · 住这：适配器、装饰器（重试/熔断）、注册表工厂</text>
+<rect x="72" y="250" width="530" height="54" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+<text x="337" y="268" text-anchor="middle" font-size="11" font-weight="500" fill="#444441" dominant-baseline="central">组合根（轴外）</text>
+<text x="337" y="288" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">组装区 · 住这：@Configuration 装配、条件装配、简单工厂 —— new 是知识，组装是策略</text>
+<rect x="72" y="310" width="530" height="42" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/>
+<text x="337" y="326" text-anchor="middle" font-size="11" font-weight="500" fill="#4A1B0C" dominant-baseline="central">⚠ 右下禁区：技术轴 × 领域层 = 概念污染</text>
+<text x="337" y="342" text-anchor="middle" font-size="9.5" fill="#993C1D" dominant-baseline="central">领域模型里出现协议解析/重试/序列化 → 12 课病灶 3 重演</text>
+<text x="340" y="406" text-anchor="middle" font-size="10.5" fill="#5F5E5A" dominant-baseline="central">三问：解决什么变化（X）· 属于哪个层（Y）· 谁负责组装（组合根）——跳过第一问是第 1 段反例的原始病因</text>
+</svg>

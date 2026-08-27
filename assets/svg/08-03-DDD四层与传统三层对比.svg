@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 350" width="100%" role="img">
+<title>DDD 四层与传统三层对比</title>
+<desc>传统三层业务散在 Service，Entity 是贫血数据袋；DDD 四层业务回到 Domain，Entity 充血</desc>
+<text x="140" y="28" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A">传统三层（贫血）</text>
+<text x="540" y="28" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A">DDD 四层（充血）</text>
+<rect x="40" y="50" width="200" height="36" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="140" y="68" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">Controller</text>
+<rect x="40" y="92" width="200" height="56" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="140" y="110" text-anchor="middle" font-size="11" font-weight="500" fill="#4A1B0C" dominant-baseline="central">Service</text>
+<text x="140" y="128" text-anchor="middle" font-size="11" fill="#993C1D" dominant-baseline="central">⚠ 业务逻辑都在这</text>
+<rect x="40" y="154" width="200" height="36" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="140" y="172" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">DAO / Mapper</text>
+<rect x="40" y="196" width="200" height="36" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="140" y="214" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">贫血 Entity（getter/setter）</text>
+<rect x="440" y="50" width="200" height="36" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="68" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">Controller</text>
+<rect x="440" y="92" width="200" height="36" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="540" y="110" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">Application</text>
+<text x="540" y="122" text-anchor="middle" font-size="10" fill="#185FA5" dominant-baseline="central">编排·事务·无业务</text>
+<rect x="440" y="134" width="200" height="66" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="540" y="156" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489" dominant-baseline="central">Domain</text>
+<text x="540" y="174" text-anchor="middle" font-size="11" fill="#3B6D11" dominant-baseline="central">✓ 业务回到这里</text>
+<text x="540" y="190" text-anchor="middle" font-size="10" fill="#534AB7" dominant-baseline="central">聚合+实体+值对象+领域服务</text>
+<rect x="440" y="206" width="200" height="36" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="540" y="224" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">Infrastructure（Repository 实现）</text>
+<text x="340" y="280" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">贫血模型：业务散在 Service，Entity 是数据袋，改字段改 Service 一堆 if/else</text>
+<text x="340" y="302" text-anchor="middle" font-size="11" fill="#3B6D11" dominant-baseline="central">充血模型：业务回到 Domain，Entity 自带行为；Repository 抽象持久化，可换实现</text>
+<text x="340" y="324" text-anchor="middle" font-size="11" fill="#993C1D" dominant-baseline="central">落地提示：yudao 是典型贫血三层，要 DDD 化先按上下文拆包，再迁领域逻辑</text>
+</svg>

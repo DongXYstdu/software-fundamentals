@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 410" width="100%" role="img">
+<title>包可见性与稳定抽象放置</title>
+<desc>一包一门面：public 门面 + package-private 内部；api 契约区在上、internal 实现区在下，箭头单向</desc>
+<defs>
+<marker id="arrow1103" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">一包一门面 + api/internal：包内的层次分明</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">可见性封内部（编译器级边界）· 契约在上实现在下 · 箭头单向指向稳定</text>
+<rect x="40" y="100" width="150" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="115" y="116" text-anchor="middle" font-size="11" font-weight="500" fill="#444441" dominant-baseline="central">notify 包</text>
+<text x="115" y="132" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">KafkaAlarmSink</text>
+<rect x="40" y="240" width="150" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="115" y="256" text-anchor="middle" font-size="11" font-weight="500" fill="#444441" dominant-baseline="central">confirm 包</text>
+<text x="115" y="272" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">AlarmConfirmService</text>
+<rect x="250" y="70" width="390" height="290" rx="12" fill="#FFFFFF" stroke="#185FA5" stroke-width="1"/>
+<text x="445" y="92" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">rule 包（com.example.gateway.alarm.rule）</text>
+<rect x="272" y="108" width="346" height="100" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="286" y="126" font-size="11" font-weight="500" fill="#0C447C" dominant-baseline="central">api/ 契约区（public · 稳定 · 被依赖）</text>
+<rect x="286" y="138" width="150" height="28" rx="5" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="361" y="152" text-anchor="middle" font-size="10" fill="#0C447C" dominant-baseline="central">AlarmRuleEngine 门面</text>
+<rect x="286" y="172" width="150" height="28" rx="5" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="361" y="186" text-anchor="middle" font-size="10" fill="#0C447C" dominant-baseline="central">AlarmSink 接口</text>
+<rect x="452" y="138" width="150" height="28" rx="5" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.5"/>
+<text x="527" y="152" text-anchor="middle" font-size="10" fill="#0C447C" dominant-baseline="central">AlarmRecord 契约模型</text>
+<rect x="272" y="232" width="346" height="110" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+<text x="286" y="250" font-size="11" font-weight="500" fill="#444441" dominant-baseline="central">internal/ 实现区（package-private · 易变 · 可任意重构）</text>
+<rect x="286" y="262" width="150" height="28" rx="5" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="361" y="276" text-anchor="middle" font-size="10" fill="#5F5E5A" dominant-baseline="central">WindowStateTracker</text>
+<rect x="286" y="298" width="150" height="28" rx="5" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="361" y="312" text-anchor="middle" font-size="10" fill="#5F5E5A" dominant-baseline="central">ThresholdEvaluator</text>
+<rect x="452" y="262" width="150" height="28" rx="5" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="527" y="276" text-anchor="middle" font-size="10" fill="#5F5E5A" dominant-baseline="central">SlidingWindowStore</text>
+<line x1="445" y1="232" x2="445" y2="210" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1103)"/>
+<text x="458" y="224" font-size="9.5" fill="#185FA5" dominant-baseline="central">internal → api 单向</text>
+<line x1="190" y1="122" x2="270" y2="150" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1103)"/>
+<text x="222" y="124" text-anchor="middle" font-size="9.5" fill="#185FA5" dominant-baseline="central">只见门面</text>
+<line x1="190" y1="262" x2="270" y2="186" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow1103)"/>
+<text x="340" y="384" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" dominant-baseline="central">包外只见 public 门面 · internal 连 import 都做不到 · 重构自由度由编译器保证</text>
+</svg>

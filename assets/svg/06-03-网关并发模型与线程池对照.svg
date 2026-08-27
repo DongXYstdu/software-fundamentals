@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 432" width="100%" role="img">
+<title>网关并发模型与线程池对照</title>
+<desc>网关每设备 FIFO+调度线程+限速器对照线程池单线程池+有界队列+反压</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">网关并发模型 ↔ 线程池</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">把整条并发线的知识点对回你的项目</text>
+<rect x="40" y="76" width="300" height="40" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="190" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">网关做法</text>
+<rect x="340" y="76" width="300" height="40" rx="6" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="490" y="96" text-anchor="middle" font-size="12" font-weight="500" fill="#444441" dominant-baseline="central">线程池等价</text>
+<rect x="40" y="116" width="300" height="44" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="190" y="138" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">每设备独立 FIFO + 调度线程</text>
+<rect x="340" y="116" width="300" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="490" y="138" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">每设备一个 core=max=1 单线程池</text>
+<rect x="40" y="160" width="300" height="44" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="190" y="182" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">MIN_REQUEST_INTERVAL = 400ms</text>
+<rect x="340" y="160" width="300" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="490" y="182" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">自实现限速器（线程池无此能力）</text>
+<rect x="40" y="204" width="300" height="44" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="190" y="226" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">LinkedHashMap 去重重排</text>
+<rect x="340" y="204" width="300" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="490" y="226" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">自定义 workQueue（去重优先）</text>
+<rect x="40" y="248" width="300" height="44" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="190" y="270" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">写后回读确认（替代高频轮询）</text>
+<rect x="340" y="248" width="300" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="490" y="270" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">Future.get() / CompletableFuture</text>
+<rect x="40" y="292" width="300" height="44" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="190" y="314" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">怀疑 pollInterval Redis 与 DB 不一致</text>
+<rect x="340" y="292" width="300" height="44" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="490" y="314" text-anchor="middle" font-size="11" fill="#4A1B0C" dominant-baseline="central">配置项可见性（见第 4 课 JMM）</text>
+<rect x="40" y="336" width="300" height="44" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="190" y="358" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">消息队列溢出治理</text>
+<rect x="340" y="336" width="300" height="44" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="490" y="358" text-anchor="middle" font-size="11" fill="#27500A" dominant-baseline="central">CallerRunsPolicy 反压</text>
+<text x="340" y="408" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" dominant-baseline="central">并发线三课串联：JMM（可见性）→ AQS（同步骨架）→ 线程池（资源调度）</text>
+</svg>

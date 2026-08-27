@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" width="100%" role="img">
+<title>NIO 与 Netty 全课主线小结</title>
+<desc>一条主线五步演进，三个核心结论：瓶颈转移、终身绑定、职责分离</desc>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">第 6 课主线小结</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A">一条主线 · 三个核心结论</text>
+<rect x="40" y="70" width="112" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="96" y="92" text-anchor="middle" font-size="11" font-weight="500" fill="#4A1B0C">BIO</text>
+<text x="96" y="110" text-anchor="middle" font-size="10" fill="#993C1D">线程爆炸</text>
+<line x1="152" y1="98" x2="166" y2="98" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="166" y="70" width="112" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="222" y="92" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C">NIO Selector</text>
+<text x="222" y="110" text-anchor="middle" font-size="10" fill="#185FA5">1 线程盯 N 连接</text>
+<line x1="278" y1="98" x2="292" y2="98" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="292" y="70" width="112" height="56" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="348" y="92" text-anchor="middle" font-size="11" font-weight="500" fill="#0C447C">Reactor 演进</text>
+<text x="348" y="110" text-anchor="middle" font-size="10" fill="#185FA5">逐级拆职责</text>
+<line x1="404" y1="98" x2="418" y2="98" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="418" y="70" width="112" height="56" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+<text x="474" y="92" text-anchor="middle" font-size="11" font-weight="500" fill="#27500A">Netty 落地</text>
+<text x="474" y="110" text-anchor="middle" font-size="10" fill="#3B6D11">EventLoop/Pipeline</text>
+<line x1="530" y1="98" x2="544" y2="98" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="544" y="70" width="96" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+<text x="592" y="92" text-anchor="middle" font-size="11" font-weight="500" fill="#3C3489">Vert.x</text>
+<text x="592" y="110" text-anchor="middle" font-size="10" fill="#534AB7">印证同源</text>
+<rect x="40" y="150" width="600" height="120" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="174" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C">三个核心结论</text>
+<text x="60" y="200" font-size="11" fill="#0C447C">① 瓶颈转移：从「线程数量」转移到「事件循环不能被阻塞」—— 非阻塞体系的思维转折点</text>
+<text x="60" y="224" font-size="11" fill="#0C447C">② 终身绑定：Channel 与 EventLoop 绑定，免锁的便利与一阻塞全冻结的代价是同一枚硬币两面</text>
+<text x="60" y="248" font-size="11" fill="#0C447C">③ 职责分离：accept 单线程 / IO 多线程分摊 / 业务独立线程池 —— bossGroup·workerGroup·业务池</text>
+</svg>

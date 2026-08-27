@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="100%" role="img">
+<title>洋葱与整洁架构同心圆</title>
+<desc>洋葱与整洁架构的同心圆模型，依赖规则只能由外向内；三种架构词汇对照</desc>
+<circle cx="170" cy="225" r="126" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+<circle cx="170" cy="225" r="96" fill="#FAFAF7" stroke="#5F5E5A" stroke-width="0.8"/>
+<circle cx="170" cy="225" r="66" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<circle cx="170" cy="225" r="38" fill="#EAF3EC" stroke="#3B6D11" stroke-width="1"/>
+<text x="170" y="112" text-anchor="middle" font-size="9" fill="#444441" dominant-baseline="central">Infrastructure（DB·消息·UI）</text>
+<text x="170" y="143" text-anchor="middle" font-size="9" fill="#444441" dominant-baseline="central">Application Services</text>
+<text x="170" y="172" text-anchor="middle" font-size="9" fill="#0C447C" dominant-baseline="central">Domain Services</text>
+<text x="170" y="225" text-anchor="middle" font-size="9.5" font-weight="500" fill="#1F3D0A" dominant-baseline="central">Domain</text>
+<text x="170" y="238" text-anchor="middle" font-size="9.5" font-weight="500" fill="#1F3D0A" dominant-baseline="central">Model</text>
+<text x="170" y="316" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" dominant-baseline="central">洋葱架构（2008）</text>
+<text x="170" y="334" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">内核显式分层 + 基础设施全外置</text>
+<circle cx="470" cy="225" r="126" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+<circle cx="470" cy="225" r="96" fill="#FAFAF7" stroke="#5F5E5A" stroke-width="0.8"/>
+<circle cx="470" cy="225" r="66" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<circle cx="470" cy="225" r="38" fill="#EAF3EC" stroke="#3B6D11" stroke-width="1"/>
+<text x="470" y="112" text-anchor="middle" font-size="9" fill="#444441" dominant-baseline="central">Frameworks &amp; Drivers</text>
+<text x="470" y="143" text-anchor="middle" font-size="9" fill="#444441" dominant-baseline="central">Interface Adapters</text>
+<text x="470" y="172" text-anchor="middle" font-size="9" fill="#0C447C" dominant-baseline="central">Use Cases</text>
+<text x="470" y="225" text-anchor="middle" font-size="9.5" font-weight="500" fill="#1F3D0A" dominant-baseline="central">Entities</text>
+<text x="470" y="316" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" dominant-baseline="central">整洁架构（2012）</text>
+<text x="470" y="334" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">适配器成层 + 企业级/应用级规则再分</text>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">洋葱与整洁：同一思想的同心圆画法</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">依赖规则：源代码依赖只能由外向内，无一例外</text>
+<text x="340" y="70" text-anchor="middle" font-size="10" fill="#3B6D11" dominant-baseline="central">外圈（易变技术）──► 圆心（稳定业务），永不反向</text>
+<rect x="30" y="356" width="620" height="60" rx="8" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.8"/>
+<text x="340" y="372" text-anchor="middle" font-size="10" fill="#0C447C" dominant-baseline="central">词汇对照：端口 Port（六边形）＝ 内部接口（洋葱）＝ Use Case 边界（整洁）</text>
+<text x="340" y="390" text-anchor="middle" font-size="10" fill="#0C447C" dominant-baseline="central">适配器 Adapter ＝ Infrastructure 实现 ＝ Interface Adapters；领域层 ＝ Domain Model ＝ Entities</text>
+<text x="340" y="408" text-anchor="middle" font-size="10" font-weight="500" fill="#1F3D0A" dominant-baseline="central">四套词汇一栋房子：业务居心 · 箭头向内 · 选一种词汇贯穿到底</text>
+</svg>

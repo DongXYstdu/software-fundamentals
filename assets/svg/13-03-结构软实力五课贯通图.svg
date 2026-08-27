@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" width="100%" role="img">
+<title>结构软实力五课贯通图</title>
+<desc>知识地图：09 尺子 → 10 分割线 → 11 结构单元 → 12 建筑 → 13 精装修，概念互相支撑</desc>
+<defs>
+<marker id="a13b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">结构软实力五课贯通图（知识地图）</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">尺子 → 分割线 → 结构单元 → 建筑 → 精装修：每一课解决上一课的落地形式</text>
+<rect x="210" y="66" width="260" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/>
+<text x="340" y="84" text-anchor="middle" font-size="11.5" font-weight="500" fill="#4A1B0C" dominant-baseline="central">09 SOLID + 耦合度量（尺子）</text>
+<text x="340" y="102" text-anchor="middle" font-size="9.5" fill="#993C1D" dominant-baseline="central">变化轴 SRP/OCP · 依赖方向 DIP · 主序列 Ca/Ce/I/A/D</text>
+<line x1="340" y1="122" x2="340" y2="148" stroke="#993C1D" stroke-width="1.4" marker-end="url(#a13b)"/>
+<rect x="210" y="150" width="260" height="62" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="340" y="168" text-anchor="middle" font-size="11.5" font-weight="500" fill="#444441" dominant-baseline="central">10 模块划分与依赖治理（分割线）</text>
+<text x="340" y="186" text-anchor="middle" font-size="9.5" fill="#5F5E5A" dominant-baseline="central">纵向按业务能力切 · ADP/SDP/SAP · Enforcer+ArchUnit</text>
+<text x="340" y="201" text-anchor="middle" font-size="9" fill="#5F5E5A" dominant-baseline="central">用尺子判断：模块边界与变化轴平行</text>
+<line x1="340" y1="212" x2="340" y2="238" stroke="#5F5E5A" stroke-width="1.4" marker-end="url(#a13b)"/>
+<rect x="210" y="240" width="260" height="62" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.2"/>
+<text x="340" y="258" text-anchor="middle" font-size="11.5" font-weight="500" fill="#0C447C" dominant-baseline="central">11 分包策略与健壮包设计（结构单元）</text>
+<text x="340" y="276" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">by-feature · api/internal · package-private · 接口归消费者</text>
+<text x="340" y="291" text-anchor="middle" font-size="9" fill="#185FA5" dominant-baseline="central">分割线降维到模块内部 · 用尺子度量 D 值验收</text>
+<line x1="340" y1="302" x2="340" y2="328" stroke="#185FA5" stroke-width="1.4" marker-end="url(#a13b)"/>
+<rect x="210" y="330" width="260" height="62" rx="8" fill="#EAF3EC" stroke="#3B6D11" stroke-width="1.2"/>
+<text x="340" y="348" text-anchor="middle" font-size="11.5" font-weight="500" fill="#1F3D0A" dominant-baseline="central">12 分层架构：六边形/洋葱/整洁（建筑）</text>
+<text x="340" y="366" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">端口/适配器 · 箭头向内 · 领域纯应用薄 · 时钟也是 actor</text>
+<text x="340" y="381" text-anchor="middle" font-size="9" fill="#3B6D11" dominant-baseline="central">结构单元升维成架构 · 尺子=主序列=SDP/SAP</text>
+<line x1="340" y1="392" x2="340" y2="418" stroke="#3B6D11" stroke-width="1.4" marker-end="url(#a13b)"/>
+<rect x="210" y="420" width="260" height="62" rx="8" fill="#F4F0E6" stroke="#7A5C12" stroke-width="1.2"/>
+<text x="340" y="438" text-anchor="middle" font-size="11.5" font-weight="500" fill="#4A3808" dominant-baseline="central">13 设计模式与分层安放（精装修）</text>
+<text x="340" y="456" text-anchor="middle" font-size="9.5" fill="#7A5C12" dominant-baseline="central">安放坐标系 · 各层模式归位 · 组合根装配 · 三问检验</text>
+<text x="340" y="471" text-anchor="middle" font-size="9" fill="#7A5C12" dominant-baseline="central">模式住进建筑的各层 · 尺子判变化轴定住址</text>
+<rect x="90" y="66" width="92" height="56" rx="6" fill="#FFFFFF" stroke="#993C1D" stroke-width="0.6"/>
+<text x="136" y="84" text-anchor="middle" font-size="9.5" fill="#4A1B0C" dominant-baseline="central">判据</text>
+<text x="136" y="100" text-anchor="middle" font-size="9" fill="#993C1D" dominant-baseline="central">变化轴</text>
+<rect x="498" y="66" width="92" height="56" rx="6" fill="#FFFFFF" stroke="#993C1D" stroke-width="0.6"/>
+<text x="544" y="84" text-anchor="middle" font-size="9.5" fill="#4A1B0C" dominant-baseline="central">判据</text>
+<text x="544" y="100" text-anchor="middle" font-size="9" fill="#993C1D" dominant-baseline="central">主序列</text>
+<rect x="498" y="150" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.6"/>
+<text x="544" y="168" text-anchor="middle" font-size="9.5" fill="#444441" dominant-baseline="central">判据</text>
+<text x="544" y="184" text-anchor="middle" font-size="9" fill="#5F5E5A" dominant-baseline="central">删除测试</text>
+<rect x="90" y="150" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#5F5E5A" stroke-width="0.6"/>
+<text x="136" y="168" text-anchor="middle" font-size="9.5" fill="#444441" dominant-baseline="central">执法</text>
+<text x="136" y="184" text-anchor="middle" font-size="9" fill="#5F5E5A" dominant-baseline="central">ArchUnit</text>
+<rect x="498" y="240" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.6"/>
+<text x="544" y="258" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">武器</text>
+<text x="544" y="274" text-anchor="middle" font-size="9" fill="#185FA5" dominant-baseline="central">可见性</text>
+<rect x="90" y="240" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#185FA5" stroke-width="0.6"/>
+<text x="136" y="258" text-anchor="middle" font-size="9.5" fill="#0C447C" dominant-baseline="central">策略</text>
+<text x="136" y="274" text-anchor="middle" font-size="9" fill="#185FA5" dominant-baseline="central">按特性分包</text>
+<rect x="498" y="330" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#3B6D11" stroke-width="0.6"/>
+<text x="544" y="348" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">核心</text>
+<text x="544" y="364" text-anchor="middle" font-size="9" fill="#3B6D11" dominant-baseline="central">DIP 空间化</text>
+<rect x="90" y="330" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#3B6D11" stroke-width="0.6"/>
+<text x="136" y="348" text-anchor="middle" font-size="9.5" fill="#1F3D0A" dominant-baseline="central">亮点</text>
+<text x="136" y="364" text-anchor="middle" font-size="9" fill="#3B6D11" dominant-baseline="central">时钟=actor</text>
+<rect x="498" y="420" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#7A5C12" stroke-width="0.6"/>
+<text x="544" y="438" text-anchor="middle" font-size="9.5" fill="#4A3808" dominant-baseline="central">工具</text>
+<text x="544" y="454" text-anchor="middle" font-size="9" fill="#7A5C12" dominant-baseline="central">坐标系</text>
+<rect x="90" y="420" width="92" height="62" rx="6" fill="#FFFFFF" stroke="#7A5C12" stroke-width="0.6"/>
+<text x="136" y="438" text-anchor="middle" font-size="9.5" fill="#4A3808" dominant-baseline="central">红线</text>
+<text x="136" y="454" text-anchor="middle" font-size="9" fill="#7A5C12" dominant-baseline="central">组装在组合根</text>
+</svg>

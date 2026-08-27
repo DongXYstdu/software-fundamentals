@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" width="100%" role="img">
+<title>限界上下文与上下文映射</title>
+<desc>同一商品概念在订单/商品/库存三个上下文里是不同模型，通过映射模式协作</desc>
+<defs>
+<marker id="arrow14" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="340" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">限界上下文：把大系统拆成独立模型</text>
+<text x="340" y="48" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">同一个商品概念，在不同上下文里是不同模型</text>
+<rect x="40" y="80" width="180" height="120" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="130" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="#3C3489" dominant-baseline="central">订单上下文</text>
+<text x="130" y="120" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">订单·订单行</text>
+<text x="130" y="138" text-anchor="middle" font-size="11" fill="#534AB7" dominant-baseline="central">下单流程·状态机</text>
+<text x="130" y="170" text-anchor="middle" font-size="11" fill="#7F77DD" dominant-baseline="central">商品 = 快照(id+价)</text>
+<rect x="250" y="80" width="180" height="120" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">商品上下文</text>
+<text x="340" y="120" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">商品·SKU·分类</text>
+<text x="340" y="138" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">商品管理·上下架</text>
+<text x="340" y="170" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">商品 = 完整实体</text>
+<rect x="460" y="80" width="180" height="120" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="550" y="100" text-anchor="middle" font-size="12" font-weight="500" fill="#0C447C" dominant-baseline="central">库存上下文</text>
+<text x="550" y="120" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">库存记录·出入库</text>
+<text x="550" y="138" text-anchor="middle" font-size="11" fill="#0C447C" dominant-baseline="central">可用量·锁定</text>
+<text x="550" y="170" text-anchor="middle" font-size="11" fill="#378ADD" dominant-baseline="central">商品 = SKU+数量</text>
+<line x1="220" y1="130" x2="248" y2="130" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arrow14)"/>
+<text x="234" y="118" text-anchor="middle" font-size="10" fill="#534AB7" dominant-baseline="central">C/S</text>
+<line x1="430" y1="130" x2="458" y2="130" stroke="#185FA5" stroke-width="1.5" marker-end="url(#arrow14)"/>
+<text x="444" y="118" text-anchor="middle" font-size="10" fill="#185FA5" dominant-baseline="central">共享内核</text>
+<polyline points="130,200 130,230 550,230 550,200" fill="none" stroke="#993C1D" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow14)"/>
+<text x="340" y="220" text-anchor="middle" font-size="10" fill="#993C1D" dominant-baseline="central">防腐层（ACL）</text>
+<text x="340" y="262" text-anchor="middle" font-size="11" fill="#5F5E5A" dominant-baseline="central">C/S=客户供应商关系 · 共享内核=两边共享一部分模型 · 防腐层=翻译隔绝对侧污染</text>
+<text x="340" y="284" text-anchor="middle" font-size="11" fill="#993C1D" dominant-baseline="central">DDD 拒绝"统一上帝模型"——一个 Order 背两百字段是反模式</text>
+</svg>
