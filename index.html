@@ -41,6 +41,37 @@ order: 0
   </div>
 </div>
 
+<!-- 精选速查：置顶文章 -->
+<div class="section-block featured-block">
+  <div class="section-header">
+    <span class="section-badge featured-badge"><i class="fas fa-fire"></i> 精选速查</span>
+    <h3 class="section-title">软件类型缩写大全（20+ 领域 · 380+ 缩写 · 15 张架构图）</h3>
+  </div>
+  <a class="featured-card" href="{% post_url 2026-09-07-软件工程-软件类型缩写大全 %}">
+    <div class="featured-card-body">
+      <p class="featured-desc">
+        系统整理国内外主流软件系统缩写，覆盖企业经营、工业制造、物联网、医疗、云服务、数据、安全、金融、AI 大模型、区块链、数据库、前端、测试、电商、网络协议、项目管理等 20 大领域，
+        附 15 张 Mermaid 集成关系图，可直接作为技术术语速查手册。
+      </p>
+      <div class="featured-tags">
+        <span class="tag-lg">ERP</span>
+        <span class="tag-lg">MES</span>
+        <span class="tag-lg">IoT</span>
+        <span class="tag-lg">HIS</span>
+        <span class="tag-lg">SCADA</span>
+        <span class="tag-lg">LLM</span>
+        <span class="tag-lg">K8s</span>
+        <span class="tag-lg">...</span>
+      </div>
+      <div class="featured-meta">
+        <span><i class="far fa-calendar"></i> 2026-09-07</span>
+        <span><i class="fas fa-folder"></i> 软件工程</span>
+        <span class="featured-cta">立即查看 <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </div>
+  </a>
+</div>
+
 <!-- 置顶分类 -->
 {% assign pinned_categories = "数据库, 数据结构" | split: ", " %}
 {% assign pinned_count = 0 %}
@@ -321,6 +352,70 @@ order: 0
     line-height: 1.3;
   }
 
+  /* 精选速查卡片 */
+  .featured-block {
+    border-left: 4px solid #ef4444;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffffff 60%);
+  }
+  .featured-badge {
+    background: linear-gradient(135deg, #ef4444, #f97316);
+  }
+  .featured-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+  }
+  .featured-card:hover {
+    transform: translateY(-2px);
+  }
+  .featured-card-body {
+    padding: 0.2rem 0;
+  }
+  .featured-desc {
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.7;
+    margin: 0 0 0.85rem 0;
+  }
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+  .tag-lg {
+    font-size: 0.72rem;
+    color: #dc2626;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 0.2rem 0.55rem;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+  .featured-meta i {
+    margin-right: 0.25rem;
+  }
+  .featured-cta {
+    margin-left: auto;
+    color: #ef4444;
+    font-weight: 600;
+    font-size: 0.78rem;
+    transition: transform 0.2s ease;
+  }
+  .featured-card:hover .featured-cta {
+    transform: translateX(4px);
+  }
+
   /* 暗色模式 */
   @media (prefers-color-scheme: dark) {
     .site-banner {
@@ -359,6 +454,24 @@ order: 0
     .tag {
       color: #9ca3af;
       background: #2d3348;
+    }
+    .featured-block {
+      background: linear-gradient(135deg, #2a1f2e 0%, #1e2333 60%);
+      border-left-color: #f87171;
+    }
+    .featured-desc {
+      color: #cbd5e1;
+    }
+    .tag-lg {
+      color: #fca5a5;
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+    .featured-meta {
+      color: #6b7280;
+    }
+    .featured-cta {
+      color: #f87171;
     }
   }
 </style>
